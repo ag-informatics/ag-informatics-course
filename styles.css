@@ -1,0 +1,108 @@
+img{
+    max-height:100%;
+    max-width:100%;
+}
+
+p, ul{
+    font-size:xx-large;
+}
+
+.text-small{
+    font-size: medium;
+}
+
+.red{
+    color:crimson;
+}
+
+.blue{
+    color:dodgerblue;
+}
+
+.green{
+    color:forestgreen;
+}
+
+.purple{
+    color:darkorchid;
+}
+
+.cite{
+    position:absolute;
+    bottom: 0em;
+    right: 0em;
+    font-size:0.3em;
+    color: lightsteelblue;
+}
+
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margins */
+  }
+
+
+.align-right{
+    text-align: right;
+}
+
+.align-left{
+    text-align: left;
+}
+
+.container{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.col{
+    flex-flow: column wrap;
+    flex-basis: 100%;
+    flex:1;
+}
+
+td{
+    font-size: 0.8em;
+}
+
+.card{
+    display:flex;
+}
+
+.item{
+    height:100px;
+    width:100px;
+}
+.item-center{
+    flex-grow:1;
+    font-size: medium;
+    text-align: left;
+}
+
+.item + .item {
+    margin-left: 2%;
+}
+
+.box{
+    margin: auto;
+    padding-left:50px;
+    width: 600px;
+    text-align: left;
+}
+
+.footer {
+    position:absolute;
+    bottom: 0em;
+    left: 0em;
+    font-size:0.3em;
+    color: lightsteelblue;
+  }
+
+
+@media (min-width: px){
+    
+}
+
+@media (max-width: px){
+    
+}
