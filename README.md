@@ -36,7 +36,7 @@ This course is divided into eight 2 week modules. Each module is structured appr
 
 - **Week 1:**
   - **Lecture 1 - Ankita:** introduces the topic of the module. This will be discussion-based synchronous lecture. 
-  - **Lecture 2 - Video(s):** introduces the skills required for the module. Typically a link to video(s) that you can watch in your own time. I will be available in the lecture room in case you have questions, or want to discuss any concepts.
+  - **Lecture 2 - Ankita and/or Video(s):** introduces the skills required for the module. Typically a link to video(s) that you can watch in your own time. I will be available in the lecture room in case you have questions, or want to discuss any concepts.
   - **Lab Part 1:** apply the introductory skills and concepts learned in week 1.
   - **Quiz:** quick knowledge evaluation in the form of short, multiple choice questions via Brightspace.
 - Week 2:
