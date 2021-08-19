@@ -20,14 +20,14 @@ By the end of this course, you will be able to:
 **Student Consultations:** Make appointments with me via email or slack.
 
 ## Purdue Instructor: Ankita Raturi
-**Slack:** Contact @sudoktia via Slack direct message for quick responses. If it's a question/comment others can benefit from, consider using the more general channels. I aim to respond within 24 hours to Slack messages.
+**Slack:** Contact @sudokita via Slack direct message for quick responses. If it's a question/comment others can benefit from, consider using the more general channels. I aim to respond within 24 hours to Slack messages.
 
 **Email:** Contact **ankita@purdue.edu** with the email subject: **[ASM 591 AGINF]** for better indexing. Reserve use of email for long and/or complex communications. I aim to respond to email within 48 hours.
 
 **Office:** ABE Building, Room 4031K. For in-person consultations, make an appointment first. In case we can't meet in person, we will use WebEx for a video-call meeting, as agreed upon via email. I aim to provide in-person appointments within 1 week of your request.
 
 ## Purdue Logistics
-**Lectures:** ABE 1144. Tuesdays & Thursdays @ 11.30am - 12.30pm. These will be recorded and made available online if possible. 
+**Lectures:** Room TBD. Tuesdays & Thursdays @ 9.30am - 11.20am. These will be recorded and made available online if possible. 
 
 **Labs:** ABE 2098. Thursdays, 1.30pm - 3.20pm. If you have a scheduling conflict, I expect you to complete the labs in your own time.
 
@@ -73,7 +73,7 @@ The **Exam** will consist of a mix of short and essay style questions. More deta
 Assessment | Description | Due Dates | Weight
 -----|-----|----- |----- 
 Quizzes | Due every two weeks, in week 1 of each module | 8/27/2021, 9/10/2021, 9/24/2021, 10/8/2021, 10/22/2021, 11/5/2021, 11/19/2021 | 1% for quizzes 1, 3, 5, and 7. 2% for quiz 2, 4, and 6.
-Labs | Due every two weeks on the Mondays. | 9/6/2021, 9/20/2021, 10/4/2021, 10/18/2021, 11/1/2021, 11/15/2021, 11/29/2021 | 5% x 7 labs |
+Labs | Due every two weeks on the Mondays (Holiday exceptions, due next day). | 9/7/2021, 9/20/2021, 10/4/2021, 10/18/2021, 11/1/2021, 11/15/2021, 11/29/2021 | 5% x 7 labs |
 Project Part 1 | Concept motivation: select 3 papers and write a combined reflection on an agricultural informatics problem | 09/28/2021 | 5%
 Project Part 2 | Concept proposal: a short proposal of a research/development concept | 10/27/2021 | 10%
 Project Part 3 | Concept presentation and write up of your proposed approach/solution in class during lecture time (same day submission). | 12/2/2021 | 5% presentation + 10% writeup
@@ -86,7 +86,7 @@ Letter | Percentage
 ----- | -----
 A+| 97 and above
 A| 94 to 96.99
-A-| 90 to 92.99
+A-| 90 to 93.99
 B+ | 87 to 89.99
 B |84.00 to 86.99
 B-| 80.00 to 83.99
