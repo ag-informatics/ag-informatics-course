@@ -14,9 +14,9 @@ Source code for the slides is in this folder. The slides are live here:
 
 ## Labs
 
-Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders. Navigate to "lab1.1" to begin the lab for Module 1, Week 1. Make sure you watch the videos associated with Lecture 1.2 prior to coming to the lab.
+Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders. Navigate to "lab1.1" to begin the lab for Module 1, Week 1. Make sure you watch the videos prior to coming to the lab.
 
-**Lab 1 is due: 9/6/2021**
+**Lab 1 is due: 9/7/2021**
 
 ## Quiz
 
