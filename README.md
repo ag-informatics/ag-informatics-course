@@ -43,7 +43,7 @@ By the end of this course, you will be able to:
 **Office:** ABE Building, Room 4031K. For in-person consultations, make an appointment first. In case we can't meet in person, we will use WebEx for a video-call meeting, as agreed upon via email. I willy try to provide in-person appointments within 2 working days of your request.
 
 ## Purdue Logistics
-**Lectures:** Room 1164. Tuesdays & Thursdays @ 9.30am - 10.20am. These will be recorded and made available online if possible. 
+**Lectures:** ABE 1164. Tuesdays & Thursdays @ 9.30am - 10.20am. These will be recorded and made available online if possible. 
 
 **Labs:** ABE 2098. Thursdays, 1.30pm - 3.20pm. If you have a scheduling conflict, I expect you to complete the labs in your own time.
 
