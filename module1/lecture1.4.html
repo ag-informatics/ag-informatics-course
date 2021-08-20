@@ -1,0 +1,531 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 1, Lecture 4 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>What is Design?</li>
+            <li>Designing Software for Food and Agricultural Systems</li>
+            <li>Heuristic Evaluation Exercise</li>
+            <li>Conducting User & Design Research in Agriculture: Case Study</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>What is Design?</h3>
+          <p><span class="red">Envisioning solutions</span> (concepts, methods, tools, systems)<br /> 
+          <span class="red">to real-world problems.</span></p>
+          <img class="r-stretch" src="img/diagram-software-process.png" /><br />
+
+          <ol class="text-small">
+            <li>Understanding stakeholders: goals, needs, and information challenges</li>
+            <li>Mapping out the design space: problems, assumptions, constraints</li>
+            <li>Explore the solution space: data, user experiences, systems, scope </li>
+            <li>Architecting prototype solutions, of varying fidelity, to test with users</li>
+            <li>Creating a product specification, prototype, and/or plan for implementation</li>
+          </ol>
+          <br />
+          <p class="cite">img src: Petre, van der Hoek & Quach, 2016</p>
+        </section>
+
+        <section>
+          <div class="container">
+            <div class="col">
+              <h4>User Interface (UI)</h4>
+              <img src="img/design-ui.jpg" />
+            </div>
+            <div class="col">
+              <h4>User Experience (UX)</h4>
+              <img src="img/design-ux.png" />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>The Three Mile Island Accident, 1979</h3>
+          <div class="container">
+            <div class="col">
+              <h4>Jimmy Carter & the UI</h4>
+              <img src="img/design-tmi-tour.jpg" width="79%" />
+            </div>
+            <div class="col">
+              <h4>Aftermath</h4>
+              <img src="img/design-tmi-aftermath.jpg" />
+            </div>
+          </div>
+          <ul class="no-bullets text-small">
+            <li>Series of malfunctions -> </li>
+            <li>Relief valve indicator is ON = electricity running through connected loop -> </li>
+            <li>Indicator light gave false evidence that the valve was shut</li>
+            <li>Operators were not alerted to a critical error -> </li>
+            <li>Partial meltdown and radiation leak. </li>
+            <li>Most significant commercial nuclear accident in U.S.</li>
+          </ul>
+          <p class="cite">https://americanhistory.si.edu/tmi/04-03.htm</p>
+        </section>
+
+        <section>
+          <h3 class="r-fit-text">User Interface<br /> & User Experience Design <br /> in Agriculture</h3>
+          <p>A critical challenge in food and ag tech. Let's look at some examples.</p>
+        </section>
+
+        <section>
+          <h3>Massey, 1973</h3>
+          <img src="img/design-tractor-massey.JPG" width = "45%" />
+          <p class="cite">Jamie Casey, via Farming Independent</p>
+        </section>
+
+        <section>
+          <h3>Deere, 2019</h3>
+          <img src="img/design-tractor-deere1.jpg" width="51%" />
+          <img src="img/design-tractor-deere2.jpg" width="47%" />
+        </section>
+
+        <section>
+          <h3>Granular</h3>
+          <img src="img/design-granular2.png" />
+          <p class="cite">https://agfundernews.com/dupont-acquires-farm-management-software-granular-300m.html</p>
+        </section>
+
+        <section>
+          <h3>Tend</h3>
+          <img src="img/design-tend2.gif" />
+          <p class="cite">https://tend-com.zendesk.com/hc/en-us/articles/360037714152-Crop-Planning-in-Tend-"</p>
+        </section>
+
+        <section>
+          <h3>Cover Crop Species Selector - Excel</h3>
+          <img src="img/design-cc-excel.png" />
+          <p class="cite">Midwestern Cover Crop Council</p>
+        </section>
+
+        <section>
+          <h3>Cover Crop Species Selector - Web</h3>
+          <img src="img/design-cc-online.png" />
+          <p class="cite">Northeastern Cover Crop Council</p>
+        </section>
+
+        <section>
+          <img src="img/design-eval.png" width="55%" />
+        </section>
+
+        <section>
+          <h3>Activity: Heuristic Evaluation</h3>
+          <p>In PAIRS, Choose ONE:
+          <ul>
+            <li>Graze Cart Product Setup: <a href="https://www.loom.com/share/2569fbeeadfd4dc493216ac23c21d7ff">https://www.loom.com/share/2569fbeeadfd4dc493216ac23c21d7ff</a></li>
+
+            <li>Local Line Produce Setup: <a href="https://share.vidyard.com/watch/cuFnPqoo7Jaatc5jdQQWQh">https://share.vidyard.com/watch/cuFnPqoo7Jaatc5jdQQWQh</a></li>
+          </ul></p>
+
+          <br />
+          <p>Evaluate using Nielsen's 10 Heuristics for Usability.<br />
+          <ul class="text-small">
+            <li>For each heuristic, describe what you see and why you think it is a problem. 2-3 bullet response per heuristic.</li>
+            <li>Use this reference: <a href="https://media.nngroup.com/media/articles/attachments/Heuristic_Summary1-compressed.pdf">https://media.nngroup.com/media/articles/attachments/Heuristic_Summary1-compressed.pdf</a></li>
+          </ul>
+        </section>
+          
+        <section>
+          <h3>What did you find?</h3>
+          <img src="img/design-eval.png" width="45%" />
+        </section>
+
+        <section>
+          <h3>User & Design Research in Agriculture</h3>
+          <p>Case Study:<br />Information Challenges in Small to Medium Scale Californian Agriculture</p>
+          <br />
+          <p class = "cite">https://escholarship.org/uc/item/64n882qb, Raturi 2017, Modeling Sustainable Agriculture</p>
+        </section>
+
+        <section data-background-image="img/study-eggplant1.JPG">
+
+                    <img class="fragment" src="img/logos-certs.png" width = "80%" />
+                </section>
+
+                <section>
+                    <h3>Environmental Assessments</h3>
+
+                    <div class="container">
+                        <div class="col">
+              <ul class="no-bullets" >
+                <li><b class="red">Certification & Labeling</b></li>
+                <li>Federal</li>
+                                    <ul class="text-small">
+                                        <li>National Organic Program</li>
+                                    </ul>
+                <li>Non-Profit</li>
+                                    <ul class="text-small">
+                                        <li>Certified Naturally Grown</li>
+                                    </ul>
+                <li>Product Specific</li>
+                                    <ul class="text-small">
+                                        <li>Certified Humane</li>
+                                    </ul>
+                                <li>Retailer Specific</li>
+                                    <ul class="text-small">
+                                        <li>Whole Foods Rating</li>
+                                    </ul>
+                </ul>
+            </div>
+
+            <div class="col">
+              <ul class="no-bullets" >
+                <li><b class="red">Policy & Regulation</b></li>
+                <li>State (California)</li>
+                                    <ul class="text-small">
+                                        <li>Irrigated Lands Regulatory Program</li>
+                                        <li>Global Warming Solutions Act</li>
+                                    </ul>
+
+                <li>Federal</li>
+                                    <ul class="text-small">
+                                        <li>Food Quality Protection Act</li>
+                                        <li>Food, Ag, Conservation Trade Act</li>
+                                    </ul>
+
+                <li>Voluntary</li>
+                                    <ul class="text-small">
+                                        <li>Environmental Quality Incentives Program</li>
+                                    </ul>
+                </ul>
+            </div>
+          </div>
+                </section>
+
+                <section>
+                    <p>but, there is a fundamental</p>
+                    <h3 class="r-fit-text">Information Challenge</h3>
+                    <p>since farms are</p>
+                    <h3 class = "r-fit-text">complex, dynamic, and connected.</h3>
+
+                </section>
+
+                <section>
+                    <p>Environmental assessment methods and software are not designed for <span class="red">farmers' usability or usefulness.</span> 
+                        Farmers are incorrectly assumed to be:</p>
+                    <ul>
+                        <li>Homogenous, uniform, or somehow standardized.</li>
+                        <li>Static, predictable, or short-lived, or somehow time bound.</li>
+                        <li>Isolated, individual, or disconnected from other systems.</li>
+                    </ul>
+                    
+                    <br />
+                    <p>Methods and tools do not take into account how farmers collect, store, and use farm data. There is a disconnect between assessment methods and tools, and farmers' existing information toolboxes and workflows</p>
+                </section>
+
+                <section>
+                    <h3>Research Question</h3>
+                    <p>How do <br />
+                    small-to-medium scale, <br />
+                    sustainability-oriented farmers, <br />
+                    model their agricultural systems to <br />
+                    assess environmental performance?</p>
+                </section>
+
+                <section>
+                        <h3>Theoretical Framing</h3>
+          <div class="container">
+            <div class="col">
+              <ul class="no-bullets" >
+                <li><h3>Farms are Compex Adaptive Systems</h3></li>
+                                <li><img src="img/diagram-farm-cas.png" width="80%" /></li>
+                                <li class="text-small">
+                                    CAS Characteristics:
+                                    <ul class="text-small">
+                                        <li>Individuality and Adaptation,</li>
+                                        <li>Feedback and Interdependence,</li>
+                                        <li>Heterogeneity,</li>
+                                        <li>Spatial and Dynamic Complexity. (NAP, 2015)</li>
+                                    </ul>
+                                </li>
+              </ul>
+            </div>
+          
+            <div class="col fragment">
+              <ul class="no-bullets" >
+                <li><h3>Everybody Models</h3></li>
+                                <li><img src="img/photo-models-wall.png" /></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+            <h3>Qualitative Field Study</h3>
+            <img src="img/table-study-overview.png" width="88%" />
+        </section>
+
+        <section data-background-image="img/study-1.jpg" data-background-size="contain"></section>
+        <!-- <section data-background-image ="img/study-apple2.JPG" data-background-size="contain"></section> -->
+        <section data-background-image="img/study-apple.JPG" data-background-size="contain"></section>
+        <section data-background-image="img/study-banana.JPG" data-background-size="contain"></section>
+        <!-- <section data-background-image="img/study-carrot.JPG" data-background-size="contain"></section> -->
+        <!-- <section data-background-image="img/study-eggplant.JPG" data-background-size="contain"></section> -->
+        <!-- <section data-background-image="img/study-fennel.JPG" data-background-size="contain"></section> -->
+        <section data-background-image="img/study-guava.JPG" data-background-size="contain"></section>
+        <section data-background-image="img/study-honey.JPG" data-background-size="contain"></section>
+        <!-- <section data-background-image="img/study-honey2.JPG" data-background-size="contain"></section> -->
+        <!-- <section data-background-image="img/study-kale.JPG" data-background-size="contain"></section> -->
+        <section data-background-image="img/study-lemon2.JPG" data-background-size="contain"></section>
+        <section data-background-image="img/study-mulberry.png" data-background-size="contain"></section>
+        <section data-background-image="img/study-mulberry2.png" data-background-size="contain"></section>
+        <!-- <section data-background-image="img/study-mulberry3.JPG" data-background-size="contain"></section> -->
+        <!-- <section data-background-image="img/study-nori.JPG" data-background-size="contain"></section> -->
+        <!-- <section data-background-image="img/study-orange.JPG" data-background-size="contain"></section> -->
+        <section data-background-image="img/study-orange2.png" data-background-size="contain"></section>
+        <section data-background-image="img/study-potato.JPG" data-background-size="contain"></section>
+            
+            
+            <!-- <section>
+                <em><p>"We work with a lot of data, but <span class="red">data comes in different forms</span>. So lots of being in and walking the fields. Lots of, lots of tracking weather. </p>
+                <p>And looking at the moisture content of the soil, sort of like, my dad has a better sense of- it’s still a little mystical to me when we have to water!</p>
+                <p>[... A] lot of what we do is very old fashioned in term of: we just spend a lot of time in the fields. Walking, driving, by virtue of living here, we do a lot of visual observation of what’s happening."</p></em>
+                <p class="align-right text-small">Farmer Gina, Stonefruit Orchard</p>
+            </section> -->
+
+        <section>
+            <h3>Data Collection Methods?</h3>
+            <ul class="no-bullets">
+                <li>Observation:<br />
+                    <em><p class="text-small">"We work with a lot of data, but <span class="red">data comes in different forms</span>. So lots of being in and walking the fields. Lots of, lots of <span class="red">tracking weather</span>. 
+                    And looking at the <span class="red">moisture content of the soil</span>, sort of like, my dad has a better sense of- it’s still a little mystical to me <span class="red">when we have to water</span>! [... A] lot of what we do is very old fashioned in term of: we just spend a lot of time in the fields. Walking, driving, by virtue of living here, we do a lot of <span class="red">visual observation of what’s happening.</span>"</em> Intervieweee, Glass Organic Orchard</p>
+                </li>
+                <li>Sampling<br />
+                    </span><img src = "img/study-water-tests.png" width="60%" style="vertical-align:top;" /><span class="text-small">Marsden Organic Farm, Water Tests</span>
+                </li>
+                <li>Sensing<br />
+                    <p class="text-small">In 2015 when this study was conducted, not a lot of in-field or remote sensing used due to cost, availability, accessibility.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Genres of Data?</h3>
+                <ul class="no-bullets">
+                    <li>Operational Data
+                        <ul class="no-bullets  text-small">
+                            <li>Labor, finances, medical</li>
+                            <li>Regarding farm management</li>
+                        </ul>
+                    </li>
+                    <li>Environmental Data
+                        <ul class="no-bullets text-small">
+                            <li>Weather, land, pests</li>
+                            <li>Regarding the farming context.</li>
+                        </ul>
+                    </li>
+                    <li class="red">Resource Data
+                        <ul class="no-bullets  text-small">
+                            <li>Water, energy, seed, fertilizers, pesticides</li>
+                            <li>Regarding farming inputs.</li>
+                        </ul>
+                    </li>                                
+                </ul>
+                <div class="container">
+                    <div class="col">
+                        <img src="img/study-inputs-organic.png" />
+                        <span class="text-small">Atwood Organic Vineyard, Organic Input Form</span>
+                </div>
+                    <div class="col">
+                            <img src="img/study-inputs-spray.png" />
+                            <span class="text-small">Marsden Organic Farm, Spray Logs</span>
+                    </div>
+                </div>
+        </section>
+
+        <section>
+            <h3>Spatio-temporal Models!</h3>
+            <img src="img/study-models.png" width="62%" />
+            <p class="text-small">Clockwise from top left: Pullman Biodynamic Vineyard's tree layout map, Brooks Organic Farm's monthly crop rotation map, Glass Organic Orchard's tree and infrastructure map, Marsden Organic Farm's flower planting record</p>
+        </section>
+
+        <section>
+            <h3>Data model design method</h3>
+            <img src="img/moss-method-design.png" />
+        </section>
+
+        <section>
+            <p>0. Create Farm Personas (archetypes)</p>
+            <img src="img/moss-farm-persona.png" width="60%" />
+        </section>
+
+        <section>
+            <p>1. Trace information flows</p>
+            <img src="img/moss-artifact-trail.jpg" />
+        </section>
+
+    <!--     <section>
+            <p>2. Cluster common data using affinity diagrams</p>
+            <img src="img/moss-method-clustering.png" />
+        </section> -->
+
+        <section>
+            <p>3. Cluster common data then abstract to create pseudo-software models</p>
+            <img src="img/moss-data-model.png" />
+        </section>
+        
+        <section>
+            <p>4. Test early prototypes of the data model</p>
+            <img src="img/moss-personas-blackbird.png" />
+        </section>
+
+         <section>
+            <p>5. Test our modeling approach with farmers</p>
+            <img src="img/method-activity-samples.png" />
+        </section>
+
+        <section>
+            <h3>MoSS Framework</h3>
+            <p><span class="red">Mo</span>deling <span class="red">S</span>ustainable <span class="red">S</span>ystems Framework</p>
+            <img src="img/moss-abstract.png" width="70%" />
+        </section>
+
+        <section>
+            <h3>Luna Orchard</h3>
+            <p>1 acre mandarin field subsection</p>
+
+            <div class="r-stack">
+            <img class = "fragment fade-out" src="img/moss-luna-persona.png" />
+            <img class = "fragment" src="img/moss-luna.png" width = "70%" />
+        </div>
+        </section>
+
+
+        <section>
+            <p>The MoSS Framework offers a means to represent heterogeneous farm data, in a coherent, changeable, 
+                system model.</p>
+            <img src="img/moss-system-data.png" width="50%" />
+            <h3 class="fragment">So What?</h3>
+        </section>
+
+        <section>
+          <h3>Implications for Design</h3>
+          <ul>
+            <li>Standardized data structures to model disparate types of farm data. </li>
+            <li>A consistent modeling workflow spanning across devices. </li>
+            <li>Varying levels of abstraction, formality, and granularity. </li>
+            <li>Data reusability gap must be addressed. </li>
+            <li>Change tracking is required by dynamic farms.</li>
+            <li>Original data collection reasons and actual data use cases differ.</li>
+            <li>Need for increased support for coordination and collaboration on farms.</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h3></h3>
+          <ol class = "no-bullets">
+               <li>Design of tools for small farmers.
+                  <img src="img/resilientfood.png" width="80%" />
+              </li>
+              <li>Design of agricultural data architectures.<br />
+                  <span class="text-small align-right"> --- More on this next time during the cover crops case study.<br /></span></li>    
+          </ol>
+        </section>
+
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li>Optional further reading:
+              <ul class="text-small">
+                <li><a href="https://dl.acm.org/doi/pdf/10.1145/3027063.3027075?casa_token=yW_PpZqtAJ8AAAAA:RlHBLsMQw93kwW0tFOEYuopHoZMRGWKY50M7AY_tLZSBdtODUBxDos2ACHJTADeiymG2TmIcHz4dPg">Designing Sustainable Food Systems, Raturi et al. 2017</a></li>
+                <li><a href="https://ieeexplore.ieee.org/abstract/document/8982747?casa_token=EkCadfiW7swAAAAA:v6OJlihfQ1Kgcs8UC-X92SD9Y3TCfFDy-_ZHFfTWEdAo6TqsmUxwulKysIjoFu0N3lQtu7u4gg ">Growing Plants, Raising Animals, and Feeding Communities through Connected Agriculture: An IoT Challenge, Raturi & Buckmaster, 2019</a></li>
+                <li><a href="https://www.gsma.com/mobilefordevelopment/agritech/magri-design-toolkit/">Mobile Agriculture Design Toolkit, GSMA</a></li>
+                <li><a href="https://www.nature.com/articles/s41893-020-0510-0">Digital agriculture to design sustainable agricultural systems, Basso & Antle, 2020</a></li>
+              </ul>
+            </li>
+
+            <li><p>Next week: Data Discovery, Python, and Graphing</p></li>
+
+           <li>Lab 1 (part 1.1 and 1.2) is due on Monday @ 5pm<br />
+            Submit the link to your repository on<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+
+        </section>
+
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Introduction to Agricultural Informatics Course</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName" rel="cc:attributionURL">Ankita Raturi, Purdue University</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+            </li>
+
+          <li class="text-small align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+            </li>
+
+          <li class="text-small align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+            </li>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>

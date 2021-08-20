@@ -1,0 +1,503 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 1, Lecture 1.1 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+
+        </section>
+
+        <section>
+          <h3>Lecture Outline</h3>
+          <ul>
+            <li>Introductions</li>
+            <li>What is Agricultural Informatics?</li>
+            <li>Genres of Software</li>
+            <li>What will this course cover?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Intros</h3>
+          <ul>
+            <li>Name</li>
+            <li>Major, University</li>
+            <li>Interests in <span class="red"> (food & agriculture) x tech</span></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>The Digital Revolution in Agriculture</h3>
+          <img class="r-stretch" src="img/diagram-accenture-digitalag.png" />
+          <p class="cite">img src: Accenture, 2017</p>
+        </section>
+
+        <section data-background-image="img/study-banana-pano.JPG">
+          <div class="container" style="background: rgba(255, 255, 255, 0.7);">
+            <div class="col">
+              <ul class="no-bullets" >
+                <li class="align-right"><h3>Challenges</h3></li>
+                <li class="align-right">Handling in-field spatial variability</li>
+                <li class="align-right">Identifying weeds & pests</li>
+                <li class="align-right">Improving soil health quality</li>
+                <li class="align-right">Adaptive farm management</li>
+                <li class="align-right">Empowering stakeholders</li>
+                <li class="align-right">Enhancing food security</li>
+              </ul>
+            </div>
+          
+            <div class="col">
+              
+              <ul class="no-bullets">
+                <li><h3>Explorations</h3></li>
+                <li>by sensing across scales</li>
+                <li>via machine learning</li>
+                <li>through geospatial analytics</li>
+                <li>using realtime, site-specific data</li>
+                <li>with decision-support tools</li>
+                <li>by connecting people through tech</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section  data-background-image="img/image-ghibli-farm.jpg" data-background-opacity=0.8>
+          <h3 style="background: rgba(255, 255, 255, 0.7);">Software gives us the ability to <br /> manage agricultural complexity across scales.</h3>
+          <!-- <ul class="no-bullets">
+            <li>Reduce the cognitive overload of managing agricultural systems.</li>
+            <li>Trace inefficiencies in data and resource flows.</li>
+            <li>Check for regulatory compliance through automated model checking.</li>
+            <li>Enable sharing of best management practices</li>
+            <li>Identify obfuscated bugs in farms</li>
+          </ul> -->
+          <br />
+          <br />
+          <p class="cite">img src: Studio Ghibli, Laputa Castle in the Sky, 1986</p>
+        </section>
+
+        <section data-background-image="img/drawing-pascalcrimson-neo.jpg" data-background-size="30%" data-background-position="bottom right">
+          <h3>Teasing apart Technology</h3>
+          <div class="container">
+            <div class="col">
+              <ul class="no-bullets" >
+                <li><h3>Hardware</h3></li>
+                <li>Manipulate the world</li>
+                <li>Manipulate reality</li>
+                <li>Physical interactions</li>
+                <li>Augment human action</li>
+              </ul>
+            </div>
+          
+            <div class="col">
+              <ul class="no-bullets">
+                <li><h3>Software</h3></li>
+                <li>Manipulate information</li>
+                <li>Manipulate models</li>
+                <li>Hypothetical interactions</li>
+                <li>Augment human thought</li>
+              </ul>
+            </div>
+          </div>
+          <p class="fragment red"> predictive analytics, real-time monitoring, problem diagnosis, decision support, data driven insights, system-level analysis, communication, coordination, and collaboration</p>
+          <br />
+          <br />
+          <p class="cite">img src: PascalCrimson @ DeviantArt, Neo from Matrix, 2016</p>
+
+        </section>
+
+        <section>
+          <h3>Agricultural <span class="red">Informatics</span></h3>
+
+          <img src ="img/icon-plant-data.png" width="10%" />
+          <div class="container">
+            <div class="col">
+              <ul class="no-bullets" >
+                <li>Design, build, and use</li>
+                <li>*digital technology*</li>
+                <li>to enable</li>
+                <li>*people* to...</li>
+              </ul>
+            </div>
+            
+            <div class = "fragment" class="col">
+              <ul class="no-bullets" >
+                <li>grow and distribute food,</li>
+                <li>manage natural systems,</li>
+                <li>coordinate and organize work, &</li>
+                <li>strategize for food system resilience.</li>
+              </ul>
+            </div>
+          
+          </div>
+        </section>
+
+        <section>
+          <h3>Genres of Software</h3>
+          <ul class="no-bullets">
+            <li>Data collection, management, and visualization tools</li>
+            <li>Computer applications</li>
+            <li>Mobile applications</li>
+            <li>Websites and web applications</li>
+            <li>Control systems</li>
+            <li>Modeling and simulation tools</li>
+          </ul>
+
+        </section>
+<!-- 
+        <section data-auto-animate>
+          <h3>Essential Difficulties of Software</h3>
+          <ul class="no-bullets">
+            <li>Complexity<br /></li>
+            <li><span class="text-small">No two systems are alike. Software has many possible states. Nonlinear increase in complexity. Math is hard. Management is difficult.</span></li>
+          <li>Conformity</li>
+            <li><span class="text-small">No unifying theories about goodness, correctness, usefulness.</span></li>
+            <li>Changeability</li>
+            <li><span class="text-small"> Software needs to be adapted. One change = dependencies galore. Maintenance is hard. Technology evolves. Humans change.</span></li>
+            <li>Invisibility</li>
+            <li><span class="text-small">If a line of code fails in a computer and you don't get an error message, did anything break?</span></li>
+          </ul>
+
+          <p class="cite">"No Silver Bullet", Fred Brooks, 1986</p>
+        </section> -->
+
+        <section data-auto-animate>
+          <h3>Essential Difficulties of Software</h3>
+          <ul class="no-bullets">
+            <li class = "fragment" data-fragment-index="1">Complexity<br /></li>
+            <li class = "fragment" data-fragment-index="1"><span class="text-small">No two systems are alike. Software has many possible states. Nonlinear increase in complexity. Math is hard. Management is difficult.</span></li>
+            <li class = "fragment" data-fragment-index="1"><span class="text-small red">How to represent the complex interplay between agricultural, social, environmental, and economic aspects of a farm? </span></li>
+            <li class = "fragment" data-fragment-index="2">Conformity</li>
+            <li class = "fragment" data-fragment-index="2"><span class="text-small">No unifying theories about goodness, correctness, usefulness.</span></li>
+            <li class = "fragment" data-fragment-index="2"><span class="text-small red">How to decide what elements of a farm to focus on in software? </span></li>
+            <li class = "fragment" data-fragment-index="3">Changeability</li>
+            <li class = "fragment" data-fragment-index="3"><span class="text-small"> Software needs to be adapted. One change = dependencies galore. Maintenance is hard. Technology evolves. Humans change.</span></li>
+            <li class = "fragment" data-fragment-index="3"><span class="text-small red">Food and ag systems are dynamic and temporally complex. How to manage?</span></li>
+            <li class = "fragment" data-fragment-index="4">Invisibility</li>
+            <li class = "fragment" data-fragment-index="4"><span class="text-small">If a line of code fails in a computer and you don't get an error message, did anything break?</span></li>
+            <li class = "fragment" data-fragment-index="4"><span class="text-small red">Balance between visibility of farms and invisibility of, for instance, food flows.</span></li>
+          </ul>
+
+          <p class="cite">"No Silver Bullet", Fred Brooks, 1986</p>
+        </section>
+
+        <section>
+          <h3>Compounding Difficulties of Software in Agriculture</h3>
+          <img src="https://imgs.xkcd.com/comics/here_to_help.png" width = "80%"/><br /><br />
+          <p class="cite">https://xkcd.com/1831/, Randall Munroe</p>
+        </section>
+
+
+        <section>
+          <h3>Components of Software</h3>
+          <table>
+            <tr class="fragment">
+              <td>User Interface</td> 
+              <td>view</td>
+              <td>HTML, CSS, Javascript</td>
+            </tr>
+            <tr class="fragment">
+              <td>Controllers </td> 
+              <td>logic</td>
+              <td>Javascript, Python</td>
+            </tr>
+            <tr class="fragment">
+              <td>Data Access & Model</td> 
+              <td>APIs, <br />database</td>
+              <td>Javascript, Python, SQL</td>
+            </tr>
+            <tr class="fragment">
+              <td>Environment</td> 
+              <td>web server</td>
+              <td>Linux, Node, Docker</td>
+            </tr>
+            <tr class="fragment">
+              <td>Configurations</td> 
+              <td>hosting, <br />versioning</td>
+              <td>Digital Ocean, <br />Github</td>
+            </tr>
+            <tr class="fragment">
+              <td>Meta</td> 
+              <td>licenses, <br />docs</td>
+              <td>GNU GPL, <br />markdown</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3 class="r-fit-text">How It's Made: Ag Tech Software</h3>
+        </section>
+
+        <section>
+          <h3>Web Apps: FarmOS</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/tech-farmos1.png" />
+            <iframe class = "fragment" width="760" height="515" src="img/tech-farmos-assets.mp4" ></iframe>
+          </div>
+          <div class = "container box">
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>UI + logic: Drupal (PHP)</li>
+              <li>Mobile UI: Vue.js</li>
+              <li>Data: SQL database</li>
+              <li>API available</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Environment: Docker available </li>
+              <li>License: GNU GPL</li>
+              <li>Docs & Versioning: Github</li>
+              <li>Link: farmos.org</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Mobile Apps: Row Crop Sampling</h3>
+          <img src="img/tech-mobile-apps.jpg" />
+          <div class = "container box">
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>IOS: Swift</li>
+              <li>Android: Java</li>
+              <li>Data: Some sort of database</li>
+              <li></li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Environment: Cloud service provider </li>
+              <li>License: Proprietary</li>
+              <li>Docs & Versioning: Likely Github</li>
+              <li></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>IoT System: Water Sensor System</h3>
+          <iframe width="760" height="515" src="https://www.youtube.com/embed/PmO3XwmOGcY?start=414" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class = "container box">
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Sensor-Gateway: C on Arduino</li>
+              <li>Communication: LoRa + Hologram API</li>
+              <li>Data: PostgreSQL database</li>
+              <li>Dashboard: React.js</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Environment: Docker on Azure </li>
+              <li>License: MIT</li>
+              <li>Docs & Versioning: Github</li>
+              <li>Link: precisionsustainableag.org</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Modeling Tool: COMET-Farm</h3>
+          <iframe width="760" height="515" src="https://www.youtube.com/embed/EBuKvziAUlE?start=44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class = "container box">
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>UI: .NET, Javascript</li>
+              <li>Logic: Daycent Model (FORTRAN, C, Perl)</li>
+              <li>Data: Entity Framework</li>
+              <li>Python API</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Environment: Google Cloud?</li>
+              <li>License: Proprietary</li>
+              <li>Docs & Versioning: Internal</li>
+              <li>Link: comet-farm.com</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>AI & Robotics: EarthSense</h3>
+          <iframe width="760" height="515" src="https://www.youtube.com/embed/GK5ncp82je4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class = "container box">
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Device: Arduino likely with ROS (C/C++)</li>
+              <li>UI: Android app (Java)</li>
+              <li>Logic: Python with openCV/pytorch/etc</li>
+              <li>Data: likely something noSQL</li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="no-bullets text-small">
+              <li>Environment: Azure?</li>
+              <li>License: Proprietary</li>
+              <li>Docs & Versioning: Internal</li>
+              <li>Link: earthsense.co</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+  
+        <section>
+          <h3>Activity: Genres of Software</h3>
+          <div class=fragment>
+            <p>In PAIRS</p>
+            <ul class="text-small">
+              <li>Scribe: writes down the ideas on the appropriate sticky note and hands over to mapper.</li>
+              <li>Mapper: places the sticky note on the wall. Try to cluster similar things together.</li>
+            </ul>
+          </div>
+
+          <div class="fragment">
+            <p class="red">What types of software are used or needed in food and agricultural systems?</p>
+            <ul class="text-small">
+              <li>Be specific! Either give an example, or describe the software itself.</li>
+              <li>Use a YELLOW sticky note for EXISTING software</li>
+              <li>Use a PINK sticky note for ideas you come up with for NEW software.</li>
+              <li>Take a picture of the wall once you're done.</li>
+            </ul>
+            <p>15 mins starts now.</p>
+          </div>
+
+          <div class="fragment">
+            <h3>Discussion</h3>
+            <p>Each pair, tell us what you came up with.</p>
+          </div>
+        </section>
+
+        <section>
+          <img src="img/tech-landscape.png" />
+        </section>
+
+        <section>
+          <h3>What will this course cover?</h3>
+          
+          <ul class="no-bullets">
+          <li><p>Slides released each week at: <br />
+          <a href="www.aginformaticslab.org/asm591/index.html">www.aginformaticslab.org/asm591/index.html</a><br /> 
+            <ul class="no-bullets text-small">
+              <li>Module 1, Lecture 1 = <a href="www.aginformaticslab.org/asm591/module1/lecture1.1.html">www.aginformaticslab.org/asm591/module1/lecture1.1.html</a></li>
+              <li>Module 1, Lecture 2 = <a href="www.aginformaticslab.org/asm591/module1/lecture1.2.html">www.aginformaticslab.org/asm591/module1/lecture1.2.html</a></li>
+              <li>...</li>
+              <li>Module 8, Lecture 4 = <a href="www.aginformaticslab.org/asm591/module8/lecture8.4.html">www.aginformaticslab.org/asm591/module8/lecture8.4.html</a></li>
+            </ul>
+          </li>
+
+          <li><p>Course Syllabus & Materials via Github Repository:<br />
+              <a href="https://github.com/ag-informatics/course">https://github.com/ag-informatics/course</a></p></li>
+          <ul>
+        </section>
+
+        <section>
+          <h3>Teaching Philosophy</h3>
+          <img src="img/hoverboard.gif" />
+        </section>
+
+         <section>
+          <h3>Background on the Course</h3>
+
+          <p class = "fragment">National Institute for Food and Agriculture Higher Education Challenge Grant</p>
+
+          <p class = "fragment">ASM 591: A work in progress. Please provide feedback via Github Issues, Slack Message, or just email/tell me!</p>
+
+        </section>
+
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li><p>Make sure you watch the videos for this week<br />
+            <a href="https://github.com/ag-informatics/course/module1">https://github.com/ag-informatics/course-instructors/tree/main/module1</a></p></li>
+
+            <li><p>Thursday's lecture is <b>in-person</b> and will cover skills building on the videos. Lab will include time for you to get started on the week's lab.<br />
+                <a href="https://github.com/ag-informatics/module1/lab1">https://github.com/ag-informatics/course-instructors/tree/main/module1/lab1.1</a></p></li>
+
+           <li>The quiz is due on Friday @ 5pm<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Introduction to Agricultural Informatics Course</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName" rel="cc:attributionURL">Ankita Raturi, Purdue University</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+            </li>
+
+          <li class="text-small align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+            </li>
+
+          <li class="text-small align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+            </li>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>

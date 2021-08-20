@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 1, Lecture 1.2 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Internet & Web Fundamentals</li>
+            <li>Version Control</li>
+            <li>Getting your Code on the Web</li>
+            <li>About Lab 1</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Goal</h3>
+          <p>Learn the fundamentals necessary to engage in <br /><span class="red">web application development</span> for food and agricultural systems.</p>
+          <p><em>#software-engineering #front-end</em></p>
+        </section>
+
+        <section>
+          <h3>Internet</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/web-internet-map.png" width="90%" />
+            <iframe class = "fragment" width="760" height="515" src="https://www.youtube.com/embed/DdaElt6oP6w?controls=0" allowfullscreen></iframe><p class="cite">img src, in order: https://www.submarinecablemap.com/; Barrett Lyon, https://www.opte.org/the-internet.</p>
+        </section>
+
+        <section>
+          <h3>World Wide Web</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/web-wiki-chris73.png" width="80%" />
+            <img class ="fragment" src="img/web-evolution.png" />
+          </div>
+          <br />
+          <p class="cite">img src, in order: Chris73, Wikimedia Commons; Euclid Project, https://euclid-project.eu/modules/chapter1.html</p>
+              
+        </section>
+
+        <section>
+          <h3>How do websites work?</h3>
+          <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/kBXQZMmiA4s" allowfullscreen></iframe>
+        
+          <p class="text-small">You can watch the entire series on the <a href="https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7?controls=0">code.org youtube playlist</a></p>
+        </section>
+
+        <section>
+          <h3>Addressing</h3>
+          <p>Internet Protocol (IP) Address: <span class="blue">93.184.216.34</span></p>
+          <img class = "fragment" src="img/web-url-parts.png" width = "60%" />
+          <img class = "fragment" src="img/web-url-parts2.png" width = "80%" />
+          <p class="cite">img src: mickmackusa, https://stackoverflow.com/questions/43183205/how-to-use-get-variable-index-phpcat-about, 2017</p>
+        </section>
+
+        <section>
+          <h3>An HTTP Request</h3>
+          <img src="img/web-request.png" width = "80%" />
+          <ul class="no-bullets">
+            <li>GET: request a web page or data </li>
+            <li>POST: submit data</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Server's Response</h3>
+          <img src="img/web-response.png" width = "80%" />
+          <ul class="no-bullets fragment">
+            <li>Response Types:</li>
+            <li>200 Ok</li>
+            <li>404 Not Found</li>
+            <li>301/302 Moved Permanently/Temporarily</li>
+            <li>500 Internal Server Error</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Connected Devices</h3>
+          <img src="img/web-devices.png" width = "80%" />
+        </section>
+
+        <section>
+          <h3>Inspecting Websites</h3>
+          <ul>
+            <li>Launch firefox</li>
+            <li>Go to the search engine: <a href>www.duckduckgo.com</a></li>
+            <li>Open Firefox's Network Monitor: 
+              <ul class="text-small">
+                <li>CTRL + SHFT + E (windows), or</li>
+                <li> In the File Menu, go to Tools > Browser Tools > Web Developer Tools > Network tab</li>
+                <li>Stuck? Visit  <a href>https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor</a></li>
+              </ul>
+            <li class = "fragment">What do you see?</li>
+            <ul class="text-small">
+              <li class = "fragment">Now try: <a href>www.google.com</a>.</li>
+              <li class = "fragment">Streaming site like: <a href>www.youtube.com</a></li>
+              <li class = "fragment">How about a website with user input like: <a href>www.twitter.com</a> Filter to just view media loading.</li>
+              <li class = "fragment">Learn more about the requests: <a href>https://docs.google.com/document/d/1ctikDy9v-e_bxvZvgFIE4Di7OUt2usz2V8qvdCpF5Ts/edit</a></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Inspecting Websites</h3>
+          <ul>
+            <li>Navigate to <a href>example.org</a></li>
+            <li>Click on <img src="img/web-inspector.png" style="vertical-align:middle;" /></li>
+            <li>Hover over the text <pre><code data-trim><h1>Example Domain</h1></code></pre> </li>
+            <li class = "fragment">What do you see?</li>
+            <li class = "fragment">How about: <a href>www.purdue.edu</a> Let's poke around.</li>
+            <ul class="text-small fragment">
+              <li>What do you think has been used to build the site?</li>
+              <li>Right click on the banner image and click inspect. Can you find the URL for the image?</li>
+              <li>Let's go through the parts of the inspector.</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Version Control</h3>
+         <iframe width="760" height="515" src="https://youtu.be/w3jLJU7DT5E" allowfullscreen></iframe>
+         <p class="cite">https://youtu.be/w3jLJU7DT5E</p>
+       </section>
+
+       <section>
+          <h3>GIT, a command line tool</h3>
+          <p>Demo: cloning the class repository.</p>
+          <p><a href="https://onlywei.github.io/explain-git-with-d3/#commit">https://onlywei.github.io/explain-git-with-d3/#commit</a></p>
+       </section>
+
+        <section>
+          <h3>Getting your code on the cloud!</h3>
+          <p>Demo: example of how to create a virtual server, and deploy your code so it is publicly accessible</p>
+          <p class = text-small>You will *not* have to do this for your lab. However it is good to know.</p>
+        </section>
+
+       
+       <section>
+          <h3>Using the internet to write code!</h3>
+          <ul class="no-bullets">
+            <li>Stack Overflow: <a href="https://stackoverflow.com/">https://stackoverflow.com/</a></li>
+            </ul>
+
+          <img src="img/stackoverflow.png" width="48%" />
+          <p class="cite">https://stackoverflow.com/questions/114543/how-to-horizontally-center-an-element</p>
+       </section>
+        
+        <section>
+          <h3>Internet Swag</h3>
+          <p>Github education pack provides access to a range of tools, including some of the ones I've shown you that usually cost money.</p>
+          <a href="https://education.github.com/pack">https://education.github.com/pack</a>
+
+          <p>Each module, I will share references and resources for you to deepen your knowledge/skills.</p>
+        </section>
+
+
+        <section>
+          <h3>Lab 1</h3>
+          <ul>
+            <li>Pre-work: You should have already viewed the pre-class videos and gotten familiar with HTML, CSS, and Git.</li>
+            <li>Today's lab: You will create a basic website and add it to a repository.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Introduction to Agricultural Informatics Course</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName" rel="cc:attributionURL">Ankita Raturi, Purdue University</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+            </li>
+
+          <li class="text-small align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+            </li>
+
+          <li class="text-small align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+            </li>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
