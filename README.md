@@ -1,3 +1,19 @@
+![axilab nd purdue Logo](http://aginformaticslab.org/wp-content/uploads/2021/08/axilab-logo-vsmall.png)
+
+<!-- LICENSE -->
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
+
+<!-- This work is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License][cc-by-nc-sa].
+
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa] -->
+
+[cc-by-nc-sa]: http://creativecommons.org/licenses/by-nc-sa/4.0/
+[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+[cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
+
+  "Introduction to Agricultural Informatics Course" by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 <!-- Course Syllabus -->
 
 # Introduction to Agricultural Informatics
@@ -27,7 +43,7 @@ By the end of this course, you will be able to:
 **Office:** ABE Building, Room 4031K. For in-person consultations, make an appointment first. In case we can't meet in person, we will use WebEx for a video-call meeting, as agreed upon via email. I aim to provide in-person appointments within 1 week of your request.
 
 ## Purdue Logistics
-**Lectures:** Room TBD. Tuesdays & Thursdays @ 9.30am - 11.20am. These will be recorded and made available online if possible. 
+**Lectures:** Room 1164. Tuesdays & Thursdays @ 9.30am - 10.20am. These will be recorded and made available online if possible. 
 
 **Labs:** ABE 2098. Thursdays, 1.30pm - 3.20pm. If you have a scheduling conflict, I expect you to complete the labs in your own time.
 
@@ -60,7 +76,7 @@ Module | Weeks | What's happening?
 
 ## Course Assessments
 
-**Quizzes** will be available on Brightspace the Monday before they are due. They 7 quizzes, due every 2 weeks. The quiz will automatically close at 5pm, Fridays, on the due dates listed below. Quizzes are multiple choice/short answer, and will be autgraded. These are intended to serve as "participation" checks, and hopefully help you evaluate how you're coping with the course. 
+**Quizzes** will be available on Brightspace the Monday before they are due. They 7 quizzes, due every 2 weeks. The quiz will automatically close at 5pm, Fridays, on the due dates listed below. Quizzes are multiple choice/short answer, and will be auto graded. These are intended to serve as "participation" checks, and hopefully help you evaluate how you're coping with the course. 
 
 **Labs** will be available on Github every Monday. Each lab is due at the start of the next 2 week module. Each lab will come with submission instructions, but I will generally expect a timestamp of no later than 5pm the day it is due. There will be a 5 hour no-penalty grace period in case you have technical difficulties with submission. <!-- **Grading Note:** There are 8 labs in total. You can either do all 8 and I'll drop the lowest grade, skip one with no grade penalty (since I only count 7). Labs are graded based on your ability to demonstrate successful completion of the lab. There will be instructions for each lab (e.g., submit a screenshot and your code). --> 
 
