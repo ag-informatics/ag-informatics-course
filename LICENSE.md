@@ -1,7 +1,6 @@
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
-CC BY-NC-SA 4.0
 
-This license form
+CC BY-NC-SA 4.0
 =======================================================================
 
 Creative Commons Corporation ("Creative Commons") is not a law firm and
