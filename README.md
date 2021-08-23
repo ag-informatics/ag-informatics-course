@@ -38,7 +38,7 @@ By the end of this course, you will be able to:
 ## Purdue Instructor: Ankita Raturi
 **Slack:** Contact @sudokita via Slack direct message for quick responses. If it's a question/comment others can benefit from, consider using the more general channels. I will try to respond within 1 working day to Slack messages.
 
-**Email:** Contact **ankita@purdue.edu** with the email subject: **[ASM 591 AGINF]** for better indexing. Reserve use of email for long and/or complex communications. I will try to respond to email within 2 working day hours.
+**Email:** Contact **ankita@purdue.edu** with the email subject: **[ASM 591 AGINF]** for better indexing. Reserve use of email for long and/or complex communications. I will try to respond to email within 2 working day.
 
 **Office:** ABE Building, Room 4031K. For in-person consultations, make an appointment first. In case we can't meet in person, we will use WebEx for a video-call meeting, as agreed upon via email. I willy try to provide in-person appointments within 2 working days of your request.
 
