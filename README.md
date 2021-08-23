@@ -115,6 +115,7 @@ D-| 60.00 to 63.99
 F| 59.00 and below
 
 # Course Feedback & Evaluation
+This is the inaugural offering of this "special topics" course, which means components are actively under development and there may be bugs! I would love to hear about your experience, get feedback on the course materials, and generally learn more about where and how this course fails/succeeds to meet your needs. No need to wait till the end!
 
 **Reporting issues in Github**: Found a bug in the code, slides, syllabus, or other materials? Have a suggestion for how to improve this course? [Submit an "issue"](https://github.com/ag-informatics/course/issues) to this repository! Alternatively, send a message on the "issues" slack channel.
 
