@@ -13,6 +13,8 @@
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
   "Introduction to Agricultural Informatics Course" by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+  
+**A Course in Progress:** this course is currently being developed as it is offered for the first time. Relevant changes to this course will be posted to this Github repository. New materials will be shared here each week. Major updates will be announced in class and/or via email/Slack. 
 
 <!-- Course Syllabus -->
 
@@ -36,9 +38,9 @@ By the end of this course, you will be able to:
 **Student Consultations:** Make appointments with me via email or slack.
 
 ## Purdue Instructor: Ankita Raturi
-**Slack:** Contact @sudokita via Slack direct message for quick responses. If it's a question/comment others can benefit from, consider using the more general channels. I will try to respond within 1 working day to Slack messages.
+**Slack:** Contact @sudokita via Slack direct message for quick general discussion about the course. If it's a question/comment others can benefit from, consider using the more general channels. I will try to respond within 1 working day to Slack messages. We cannot discuss grades, personal matters, and so on via Slack due to [FERPA policies](https://slack.com/trust/compliance/ferpa-compliance). If in doubt, contact me via email/in-person.
 
-**Email:** Contact **ankita@purdue.edu** with the email subject: **[ASM 591 AGINF]** for better indexing. Reserve use of email for long and/or complex communications. I will try to respond to email within 2 working day.
+**Email:** Contact **ankita@purdue.edu** with the email subject: **[ASM 591 AGINF]** for better indexing. Reserve use of email for long and/or complex communications. I will try to respond to email within 2 working days.
 
 **Office:** ABE Building, Room 4031K. For in-person consultations, make an appointment first. In case we can't meet in person, we will use WebEx for a video-call meeting, as agreed upon via email. I willy try to provide in-person appointments within 2 working days of your request.
 
