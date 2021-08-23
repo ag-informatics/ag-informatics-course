@@ -68,7 +68,10 @@ You will create state Profile Webpage that looks similar to the mockup below:
 	b. Use the correct "veiwport" to make your webpage "responsive", i.e. it should be scale for device size.
 
 ## Use Git to submit your labs
-1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions and I will grade work that is in the repository with a timestamp corresponding to 5.00pm on the due date. If you have trouble contact me ASAP.
+1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
+	- MAKE SURE THIS REPOSITORY IS "PRIVATE". See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
+	- Add @sudokita (Ankita, Instructor) and @taanis98 (Aanis, TA) as collaborators on your repository so that we can access your work and grade it.
+	- I expect to see at least 5 distinct "commits" in your repository history, with appropriate comments, demonstrating that you have been working on your project over a period of time.
 
 2. For this module's lab, place the folder containing your HTML code, "Lab1" into this repository. This will be the first part of your submission next week! You should see something like the screenshot below:
 
