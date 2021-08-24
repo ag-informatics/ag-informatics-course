@@ -1,4 +1,4 @@
-# Module 1: Designing for the Web
+# Module 1: Web Design
 
 ## Lecture Notes
 
