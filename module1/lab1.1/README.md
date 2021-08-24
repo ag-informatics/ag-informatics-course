@@ -12,17 +12,17 @@ Watch the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/. We will
 - `git commit -m "message here"` to commit all your changes with a message
 - `git push` to send all my local changes to the remote repository.
 
+Setup Github:
+- If you haven't already, create an account using your Purdue ID on www.github.com. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
+- Install github on your computer using this tutorial: https://github.com/git-guides/install-git
 
 ## Use Git to access class materials (we'll do this in-class too!)
-1. If you haven't already, create an account using your Purdue ID on www.github.com. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
 
-2. Install github on your computer using this tutorial: https://github.com/git-guides/install-git
-
-3. Clone this repository using `git clone https://github.com/ag-informatics/course.git'` You can view the repository URL here: 
+1. Clone this repository using `git clone https://github.com/ag-informatics/course.git'` You can view the repository URL here: 
 	
 ![Clone Repo](img/git1.png)
 
-4. Every week, I will update this repository with new things. You can update your local repository by `git pull` the changes from the web. When you navigate to the folder containing the repository on your local machine, you will be able to see the changes.
+2. Every week, I will update this repository with new things. You can update your local repository by `git pull` the changes from the web. When you navigate to the folder containing the repository on your local machine, you will be able to see the changes.
 
 ## Introduction to HTML and CSS
 
