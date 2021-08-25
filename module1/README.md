@@ -16,7 +16,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders. Navigate to "lab1.1" to begin the lab for Module 1, Week 1. Make sure you watch the videos prior to coming to the lab.
 
-**Lab 1 is due: 9/7/2021**
+**Lab 1 is due: 9/7/2021** Make sure you complete both Lab 1.1 and Lab 1.2 before submission.
 
 **Academic Integrity Reminder:** Make sure your lab Github repositories are "private" for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
 
