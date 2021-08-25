@@ -1,6 +1,6 @@
-# Module 1, Lab 1, Part 1
+# Module 1, Homework 1, Part 1
 
-## BEFORE THE LAB
+## Beginning
 
 Watch the CS50 video on HTML: https://cs50.harvard.edu/web/2020/weeks/0/
 
@@ -13,12 +13,15 @@ Watch the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/. We will
 - `git push` to send all my local changes to the remote repository.
 
 Setup Github:
-- If you haven't already, create an account using your Purdue ID on www.github.com. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
+- If you haven't already, create an account using your UK ID on www.github.com. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
 - Install github on your computer using this tutorial: https://github.com/git-guides/install-git
+- OR use a program like GitHub desktop (https://desktop.github.com/)
+- Another option is to use a text editor with built-in Git support like VS Code (https://code.visualstudio.com/) or Atom (https://atom.io/). 
+- I think a stand alone program like GitHub desktop is most useful.
 
 ## Use Git to access class materials (we'll do this in-class too!)
 
-1. Clone this repository using `git clone https://github.com/ag-informatics/course.git'` You can view the repository URL here: 
+1. Clone this repository using `git clone https://github.com/joedvorak/ag-informatics-course.git'` You can view the repository URL here: 
 	
 ![Clone Repo](img/git1.png)
 
@@ -29,7 +32,7 @@ Setup Github:
 In this lab, you will create a basic webpage to demonstrate your understanding of HTML. 
 
 **File Structure** 
-- Create a folder titled "Lab1". 
+- Create a folder titled "HW1". 
 - In this folder create a file called "profile.html". You will be making a basic web page to showcase your work.
 - Create a file called "styles.css". This will contain all the CSS for your webpage. Make sure you link it in the "head" section of your profile.html web page.
 - Create a folder called "img", this will contain any images that you use on the webpage.
@@ -50,7 +53,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
      - Photo has a black border of 2px. 
      - Change the description font and size to one of your choosing.
   b. Include at least 3 hyperlinks to your github repository and any other links you may want to share (e.g., Linked In). 
-  	- Select an "mail" icond from the Noun Project, available publicly here: <a href="https://thenounproject.com/search/?q=mail">https://thenounproject.com/search/?q=mail</a>. Use a "mailto" to activate my default mail client and send an email to you. 
+  	- Select an "mail" icon from the Noun Project, available publicly here: <a href="https://thenounproject.com/search/?q=mail">https://thenounproject.com/search/?q=mail</a>. Use a "mailto" to activate my default mail client and send an email to you. 
 
 3. Create a `<div>` with the ID name "work-samples". This division should contain a "flexbox", "table", or "grid" layout consisting of three sub-elements. Each sub-element should contain a placeholder image and some descriptive text of your work. 
 	a. Your styles.css file should contain relevant styling for this section. At minimum:
@@ -68,12 +71,12 @@ You will create state Profile Webpage that looks similar to the mockup below:
 	b. Use the correct "veiwport" to make your webpage "responsive", i.e. it should be scale for device size.
 
 ## Use Git to submit your labs
-1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
-	- MAKE SURE THIS REPOSITORY IS "PRIVATE". See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
-	- Add @sudokita (Ankita, Instructor) and @taanis98 (Aanis, TA) as collaborators on your repository so that we can access your work and grade it.
-	- I expect to see an appropriate number of distinct "commits" in your repository history per lab (i.e., >5 commits for lab 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
+1. Create a new repository called "YOURNAME-BAE599-Homework". Mine would be, for example "DVORAK-BAE599-Homework". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
+	- MAKE SURE THIS REPOSITORY IS "PRIVATE". Refer to UK's academic honest policy in the syllabus.
+	- Add @joedvorak (Dr. Dvorak, Instructor) as acollaborator on your repository so that I can access your work and grade it.
+	- I expect to see an appropriate number of distinct "commits" in your repository history per homework (i.e., >5 commits for homework 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
 
-2. For this module's lab, place the folder containing your HTML code, "Lab1" into this repository. This will be the first part of your submission next week! You should see something like the screenshot below:
+2. For this module's homework, place the folder containing your HTML code, "HW1" into this repository. This will be the first part of your submission next week! You should see something like the screenshot below:
 
 	![Lab1 Repo](img/lab1.png)
 
