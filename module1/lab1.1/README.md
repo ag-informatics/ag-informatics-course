@@ -18,7 +18,7 @@ Setup Github:
 
 ## Use Git to access class materials (we'll do this in-class too!)
 
-1. Clone this repository using `git clone https://github.com/ag-informatics/course.git'` You can view the repository URL here: 
+1. Clone this repository using `git clone https://github.com/ag-informatics/ag-informatics-course'` You can view the repository URL here: 
 	
 ![Clone Repo](img/git1.png)
 
@@ -50,7 +50,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
      - Photo has a black border of 2px. 
      - Change the description font and size to one of your choosing.
   b. Include at least 3 hyperlinks to your github repository and any other links you may want to share (e.g., Linked In). 
-  	- Select an "mail" icond from the Noun Project, available publicly here: <a href="https://thenounproject.com/search/?q=mail">https://thenounproject.com/search/?q=mail</a>. Use a "mailto" to activate my default mail client and send an email to you. 
+  	- Select an "mail" icon from the Noun Project, available publicly here: <a href="https://thenounproject.com/search/?q=mail">https://thenounproject.com/search/?q=mail</a>. Use a "mailto" to activate my default mail client and send an email to you. 
 
 3. Create a `<div>` with the ID name "work-samples". This division should contain a "flexbox", "table", or "grid" layout consisting of three sub-elements. Each sub-element should contain a placeholder image and some descriptive text of your work. 
 	a. Your styles.css file should contain relevant styling for this section. At minimum:
