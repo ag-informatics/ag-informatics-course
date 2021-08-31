@@ -73,7 +73,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
 ## Use Git to submit your labs
 1. Create a new repository called "YOURNAME-BAE599-Homework". Mine would be, for example "DVORAK-BAE599-Homework". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
 	- MAKE SURE THIS REPOSITORY IS "PRIVATE". Refer to UK's academic honest policy in the syllabus.
-	- Add @joedvorak (Dr. Dvorak, Instructor) as acollaborator on your repository so that I can access your work and grade it.
+	- Add @joedvorak (Dr. Dvorak, Instructor) as a collaborator on your repository so that I can access your work and grade it.
 	- I expect to see an appropriate number of distinct "commits" in your repository history per homework (i.e., >5 commits for homework 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
 
 2. For this module's homework, place the folder containing your HTML code, "HW1" into this repository. This will be the first part of your submission next week! You should see something like the screenshot below:
