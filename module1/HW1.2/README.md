@@ -65,13 +65,13 @@ In particular, we will focus on the design of a **Product Availability Page** th
 Note: the storyboard and wireframes are not going to be graded based on artistic quality - that doesn't matter. You will be graded on attempting the design exercises and putting together a **logcial flow of information**.
 
 ## How to Submit your Lab
-Make sure all your work for this week is inside the "Lab1" folder within your repository titled "YOURNAME-ASM591-Labs". Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website.
+Make sure all your work for this week is inside the "Lab1" folder within your repository titled "YOURNAME-BAE599-Homework". Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website.
 
 Your github repository should now look like this:
 
 ![Lab1.2 Contents](img/lab1.2-contents.png)
 
-GO TO BRIGHTSPACE, submit the link to your repository in Lab1. You are now done! 
+GO TO CANVAS, submit the link to your repository in Homework1. You are now done! 
 
 Hurray, you rocked Module 1!
 
