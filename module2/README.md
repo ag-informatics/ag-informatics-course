@@ -4,7 +4,7 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 2.1 [in-person]: www.aginformaticslab.org/module2/lecture2.1.html 
+- Lecture 2.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module2/lecture2.1.html 
     Set up Anaconda and do the introductory Lab tutorials (there's one for each package we will use). These are linked inside the lab folder.
 - Lecture 2.2 [in-person]:
 - Lecture 2.3 [in-person]: 
