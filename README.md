@@ -67,7 +67,7 @@ This course is divided into eight 2 week modules. Each module is structured appr
 Module | Weeks | What's happening?
 -----|-----|-----
 [1 - Web Design](https://github.com/ag-informatics/ag-informatics-course/tree/main/module1) | Week 1 & 2 | Lectures 1.1-1.4, Quiz 1, Execute Lab 1.1 & 1.2
-2 - Data Exploration | Week 3 & 4 | Lectures 2.1-2.4, Quiz 2, Submit Lab 1, Execute Lab 2.1 & 2.2
+[2 - Data Exploration](https://github.com/ag-informatics/ag-informatics-course/tree/main/module2) | Week 3 & 4 | Lectures 2.1-2.4, Quiz 2, Submit Lab 1, Execute Lab 2
 3 - Web Applications | Week 5 & 6 | Lectures 3.1-3.4, Quiz 3, Submit Lab 2, Execute Lab 3.1 & 3.2, Submit Project Part 1
 4 - Data Management | Week 7 & 8 | Lectures 4.1-4.4, Quiz 4, Submit Lab 3, Execute Lab 4.1 & 4.2
 5 - User Interfaces | Week 9 & 10 | Lectures 5.1-5.4, Quiz 5, Submit Lab 4, Execute Lab 5.1 & 5.2, Submit Project Part 2
