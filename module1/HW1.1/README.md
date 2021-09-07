@@ -52,6 +52,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
   a. In your styles.css file, add code to style this section as follows:
      - Photo has a black border of 2px. 
      - Change the description font and size to one of your choosing.
+     
   b. Include at least 3 hyperlinks to your github repository and any other links you may want to share (e.g., Linked In). 
   	- Select an "mail" icon from the Noun Project, available publicly here: <a href="https://thenounproject.com/search/?q=mail">https://thenounproject.com/search/?q=mail</a>. Use a "mailto" to activate my default mail client and send an email to you. 
 
