@@ -32,35 +32,35 @@ Anaconda automatically installs the Python packages that we will use in our lab.
 
 
 ## Copy the Lab Skeleton File into your Repository
-You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "lab2" folder inside it. It will contain this README.md file and a **"lab2-skeleton.ipynb" file** This file contains the instructions for your lab. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here". 
+You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "HW2" folder inside it. It will contain this README.md file and a **"HW2-skeleton.ipynb" file** This file contains the instructions for your Homework. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here". 
 
 Let's move this file into your repository for you to use:
 
-1. Copy the "lab2" into your existing github repository titled "YOURNAME-ASM591-Labs".
-2. Rename "lab2-skeleton.ipnyb" to "lab2-YOURNAME.ipnyb". **THIS IS THE FILE YOU WILL BE WORKING IN**
+1. Copy the "HW2" into your existing github repository titled "YOURNAME-BAE599-Homework".
+2. Rename "HW2-skeleton.ipnyb" to "HW2-YOURNAME.ipnyb". **THIS IS THE FILE YOU WILL BE WORKING IN**
 3. Replace the README.md file with your own. 
 4. Git add, commit, and push so that your repository now contains these items.
 5. View your new Jupyter Notebook in your github repository to confirm everything is in the right place. It should look like the image below.
 
-![Lab2-contents](img/lab2-contents.png)
+![Homework2-contents](img/lab2-contents.png)
 
 
 ## Open your Jupyter Notebook
 1. Open Anaconda Navigator. 
 
-2. Launch Jupyter Notebooks. A window will open in your browser that allows you to navigate to your repository folder > lab2. Click on "lab2-YOURNAME.ipnyb" and it will open in the a new tab.
+2. Launch Jupyter Notebooks. A window will open in your browser that allows you to navigate to your repository folder > HW2. Click on "HW2-YOURNAME.ipnyb" and it will open in the a new tab.
 
 3. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below.
 
-![Lab2-edit1](img/lab2-edit1.png)
+![Homework2-edit1](img/lab2-edit1.png)
 
 4. Click on the ">Run" button. This will execute that code block and render it as Markdown again. It will look like the image below. You've just successfully edited your first block!
 
-![Lab2-edit1](img/lab2-edit2.png)
+![Homework2-edit1](img/lab2-edit2.png)
 
 5. From here on, follow the instructions in the notebook itself. The image below describes how you can interact with a Jupyter Notebook block:
 
-![Lab2-block](img/lab2-block.jpg)
+![Homework2-block](img/lab2-block.jpg)
 
 6. Complete the entire set of tasks in the notebook. You will have two weeks to complete the entire thing.
 
@@ -70,9 +70,9 @@ Let's move this file into your repository for you to use:
 
 Once you have successfully completed all tasks for this lab, your lab2 folder should look like this in your github repository:
 
-![Lab2 Contents](img/lab2-contents-done.png)
+![Homework2 Contents](img/lab2-contents-done.png)
 
-GO TO BRIGHTSPACE, submit the link to your repository to your Lab2 folder in your repository. You are now done! 
+GO TO CANVAS, submit the link to your repository to your Lab2 folder in your repository. You are now done! 
 
 Hurray, you crushed Module 2!
 
