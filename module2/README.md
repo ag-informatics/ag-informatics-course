@@ -23,7 +23,7 @@ Academic Integrity Reminder: Make sure your lab Github repositories are "private
 
 The quiz for this module is available via Canvas. 
 
-**Quiz 2 is due: 9/10/2021**
+**Quiz 2 is due: 9/17/2021**
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
