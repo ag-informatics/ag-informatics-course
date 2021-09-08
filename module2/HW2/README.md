@@ -1,16 +1,16 @@
-# Module 2, Lab 2
+# Module 2, Homework 2
 
-## BEFORE THE LAB
+## BEFORE STARTING
 
-**Install Anaconda** 
-Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson/setup.html) provides a helpful installation guide in case you need it. 
+**[Install Anaconda](https://www.anaconda.com/products/individual-d)** 
+Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [Download it from the Anaconda website by clicking here.](https://www.anaconda.com/products/individual-d) It does not require admin rights on MacOS, but it does take a long time to run the final installation script, so don't be worried if it looks like it has locked up. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson/setup.html) provides a helpful installation guide in case you need it. 
 
 **PYTHON INTRO/REFRESH!** 
 If you are not familiar with Python, or need a quick refresher, do this 30 minute [Short Introduction to Programming in Python by the Data Carpentry](https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python/index.html).
 
 
 **IMPORTANT TUTORIALS**
-Anaconda automatically installs the Python packages that we will use in our lab. Here are some basic tutorials for each of them:
+Anaconda automatically installs the Python packages that we will use in our assignment. Here are some basic tutorials for each of them:
 
 1. [Jupyter notebook](https://jupyter.org/): An interactive python environment that allows you to run and view code in the browser. Here's a tutorial video on Jupyter Notebooks: 
     - We'll do a quick demo in-class.
@@ -31,7 +31,7 @@ Anaconda automatically installs the Python packages that we will use in our lab.
     - Full documentation: https://matplotlib.org/stable/ with some introductory tutorials at: https://matplotlib.org/stable/tutorials/index.html#introductory
 
 
-## Copy the Lab Skeleton File into your Repository
+## Copy the Homework Skeleton File into your Repository
 You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "HW2" folder inside it. It will contain this README.md file and a **"HW2-skeleton.ipynb" file** This file contains the instructions for your Homework. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here". 
 
 Let's move this file into your repository for you to use:
@@ -65,14 +65,14 @@ Let's move this file into your repository for you to use:
 6. Complete the entire set of tasks in the notebook. You will have two weeks to complete the entire thing.
 
 
-## How to Submit your Lab
+## How to Submit your Homework
  Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website. Also remember, you should have a commit history with at least 5 commits to demostrate ongoing effort (don't just commit it all 5 mins before it's due!).
 
-Once you have successfully completed all tasks for this lab, your lab2 folder should look like this in your github repository:
+Once you have successfully completed all tasks for this homework, your HW2 folder should look like this in your github repository:
 
 ![Homework2 Contents](img/lab2-contents-done.png)
 
-GO TO CANVAS, submit the link to your repository to your Lab2 folder in your repository. You are now done! 
+GO TO CANVAS, submit the link to your repository to your HW2 folder in your repository. You are now done! 
 
 Hurray, you crushed Module 2!
 
