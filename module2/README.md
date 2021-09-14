@@ -4,10 +4,10 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 2.1 [in-person] 
+- Lecture 2.1 [in-person]: 
     Set up Anaconda and do the introductory Homework tutorials (there's one for each package we will use). These are linked inside the Homework folder.
-- Lecture 2.2 [in-person]
-- Lecture 2.3 [in-person]
+- Lecture 2.2 [in-person]: Worked a Notebook data example lecture 2.2.ipynb
+- Lecture 2.3 [in-person]: Lecture 2.3
 - Lecture 2.4 [in-person]: Tyler Mark Guest Lecture (moved to 9/21).
 
 ## Homework
