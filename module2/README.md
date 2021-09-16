@@ -14,7 +14,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 Instructions for the Homework, including submission instructions, can be found inside the homework sub-folders.
 
-**Homework 2 is due: 9/20/2021** Make sure you start Lab 2 early. There is only one part, but it's long, so we'll take the full 2 weeks to complete it. The second lab session will be for final trouble shooting and I expect that you will have most of the lab under control by then.
+**Homework 2 is due: 9/24/2021** Make sure you start Lab 2 early. There is only one part, but it's long, so we'll take the full 2 weeks to complete it. The second lab session will be for final trouble shooting and I expect that you will have most of the lab under control by then.
 
 Academic Integrity Reminder: Make sure your lab Github repositories are "private" for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
 
