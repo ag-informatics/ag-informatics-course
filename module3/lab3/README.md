@@ -3,7 +3,7 @@
 ## BEFORE THE LAB
 [Django](https://www.djangoproject.com/) is a python web framework that allows you to quickly develop web applications. This entire lab is loosely based on a set of introductory Django tutorials, also available [here](https://docs.djangoproject.com/en/3.2/intro/tutorial01/). You're going to need a working installation of Python, the package manager 'pip', and finally, Django. 
 
-### Install Django via Anaconda
+### Install Django via Anaconda Termnial
 A package manager is a tool that keeps a running list of all the packages associated with a particular language on your computer. You can use it to install, update, and remove different types of packages, or libraries. In the past, we had used Anaconda, a package manager with a nice user interface. This module, we'll use the `conda` command in the terminal to use the Anaconda package manager. (Note: ['pip'](https://pip.pypa.io/en/stable/) is a popular package manager for python, but since we started with Anaconda we'll stick with it. If you use pip, then follow [these instructions](https://docs.djangoproject.com/en/3.2/topics/install/#installing-an-official-release-with-pip) instead).
 
 1. Open your terminal, and run the following command to install the 'django' package.
@@ -16,6 +16,21 @@ A package manager is a tool that keeps a running list of all the packages associ
 import django
 print(django.get_version())
 ```
+
+### Install Django via Anaconda Termnial
+Anaconda Navigator also provides a GUI for package mangement. You can follow these steps to install django with the GUI.
+Steps:
+1. Click on Environments to switch to the Environment page.
+2. Click on the package view filter and change to "All."
+3. Type django in the package search box and hit enter.
+ - If nothing appears, you may need to click on Update Index to refresh your package list (or build it for the first time).
+4. Click the little box in front of django so that it changes to a down arrow
+![GUI](img/graphical-django-installation-step1.png)
+5. Click Apply to start the installation
+![GUI](img/graphical-django-installation-step2.png)
+6. A dialog box may pop up saying you need to install other programs or libraries, just click Apply again.
+![GUI](img/graphical-django-installation-step3.png)
+django should now be installed!
 
 ### Watch this tutorial video
 
