@@ -1,0 +1,471 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 3, Lecture 1 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Introducting Dynamic Web Apps</li>
+            <li>A little bit about Web Frameworks, esp. Django</li>
+            <li>From procedural to Object Oriented Programming (OOP)</li>
+            <li>OOP in Python</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Static Websites</h3>
+          <img src="img/web-response.png" />
+        </section>
+
+        <section>
+          <h3>Dynamic Sites?</h3>
+          <p>"[C]an generate and return content based on the specific request URL and data (rather than always returning the same hard-coded file for a particular URL)."</p>
+          <br /><br />
+          <p class="cite">https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview</p>
+        </section>
+
+        <section>
+          <h3>Dynamic sites</h3>
+          <h4>(Web Apps)<h4>
+          <h4>use 'server-side' code to...</h4>
+           <ul>
+              <li> Store, structure, and deliver data (e.g., search engine)</li>
+              <li> Notify user on status (e.g., calendar notifications) </li>
+              <li> Provide controlled access to content (e.g., email)</li>
+              <li> Data analysis to provide user recommendations (e.g., netflix)</li>
+              <li> Provide customized user experiences ("Hello {{ person_name }}!)"</li>
+              <li>...and much more!</li> 
+            </ul>
+        </section>
+
+        <section>
+          <h3>Server-Side Programming</h3>
+          <img src="img/web-application-dynamic.png" />
+          <p class="text-small">"Requests for dynamic resources are instead forwarded (2) to server-side code (shown in the diagram as a Web Application). For "dynamic requests" the server interprets the request, reads required information from the database (3), combines the retrieved data with HTML templates (4), and sends back a response containing the generated HTML (5,6)."</p>
+
+          <br />
+          <p class="cite"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction">Mozilla, Intro to the server side, https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction</a></p>
+        </section>
+
+        <section>
+          <h3>A Simplified Web App Architecture</h3>
+          <img src="img/web-application.png" width ="50%" />
+          <br /><br />
+          <p class="cite">Pettit, 2001, White paper: Anatomy of a Web Application: Security Considerations. <a href="https://www.cgisecurity.com/lib/Web_Server.pdf">https://www.cgisecurity.com/lib/Web_Server.pdf</a></p>
+        </section>
+
+        <section>
+          <h3>Web Frameworks</h3>
+          <p><span class="red">Django (python)</span>. Flask (python).  Drupal (php). Express (javascript). Spring (java). ASP.NET. Ruby on Rails (ruby)</p> 
+          <ul>
+            <li>Handle HTTP requests and responses</li>
+            <li>Manage access to data (in request, in database)</li>
+            <li>Render data in dyanmic user interfaces</li>
+            <li>...provide a skeleton and toolbox to build web apps!</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Django</h3>
+          <ul>
+            <li>Easy(ish) to learn: esp. since we've already started python</li>
+            <li>Batteries included: lots of good defaults (web security, caching, shortcuts)</li>
+            <li><a href="https://docs.djangoproject.com/en/3.2/">Excellent documentation.</a></li>
+            <li>Built to scale </li>
+            <li>Portable - runs on Windows, Linux, and Mac OS X.</li>
+            <li>Good for rapid prototyping!</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Built with Django?</h3>
+          <div class="r-stack">
+              <img class="fragment fade-in-then-out" src="img/django-insta.png" width="70%" />
+              <img class="fragment fade-in-then-out" src="img/django-spotify.png" width="70%" />
+              <img class="fragment" src="img/django-robinhood.png" width="50%" />
+          </div>
+          <p class="text-small"><a href="https://instagram-engineering.com/types-for-python-http-apis-an-instagram-story-d3c3a207fdb7">Instagram</a> | <a href="https://engineering.atspotify.com/2013/03/20/how-we-use-python-at-spotify/">Spotify</a> | <a href="https://boards.greenhouse.io/robinhood/jobs/2357305?t=gh_src=&gh_jid=2357305">Robinhood</a></p>
+        </section>
+
+        <section>
+          <h3>What's used in AgTech?</h3>
+          <ul>
+            <li>Farmlogs/Bushel (<a href="https://www.paycomonline.net/v4/ats/web.php/jobs/ViewJobDetails?job=64902&clientkey=484ED2188E091C199C755AB75A7B7C68">backend software engineer</a>)</li>
+            <li>Granular (<a href="https://boards.greenhouse.io/granular/jobs/3308097">software engineer - python </a>)</li>
+            <li>AcreTrader (<a href="https://acretrader.breezy.hr/p/2a76e7fc1bd3-senior-python-developer">python software engineer</a>)</li>
+            <li>FarmOS (<a href="https://github.com/farmOS/farmOS">open source drupal</a>)</li>
+           <li>USDA (<a href="https://www.usajobs.gov/Search/Results?l=&l=&d=AG&k=python&wma=15509&p=1">ARS & NASS positions</a>)  </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Django for Rapid Prototyping</h3>
+          <img src="img/cctool-umd-prototype.png" width="80%" />
+          <ul class="text-small">
+            <li>Used to create an early prototype of a cover crop decision support platform for Northeast Cover Crop Council + USDA ARS</li>
+            <li>Quick prototype = 6 undergrad CS students x 3 months</li>
+            <li>Focus on proof of concept for converting an excel tool to online web app</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Structure of a Django Application</h3>
+          <img src="img/basic-django.png" width="60%" />
+          <h4 class="fragment"><span class="red">Need to know: Object Oriented Programming in Python!</span></h4>
+        </section>
+
+
+        <section>
+          <h4>Previously...</h4>
+          <h3>Procedural Programming</h3>
+          <pre><code data-trim data-line-numbers="1-2|3-5|6,7|8,9">
+            import pandas as pd
+            ...
+            dirty_CORN = pd.read_csv('dirty-cornprices.csv')
+            dirty_CORN.dropna(how='all', axis=1, inplace=True)
+            ...
+            dirty_CORN.to_csv('clean-cornprices.csv')
+            ...
+            plt.plot(clean_CORN['Year'], clean_CORN['Value'])
+            plt.show()
+          </code></pre>
+
+          <br />
+          <div class="container">
+            <div class="col">
+              <p>PROS</p>
+              <ul>
+                <li>Linear batch-processing</li>
+                <li>Straightforward logic flow</li>
+              </ul>
+            </div>
+            <div class="col">
+              <p>CONS</p>
+              <ul>
+                <li>Can't reuse code</li>
+                <li>Can't support dynamic logic flow</li>
+              </ul>
+            </div>
+          </div>
+
+          <br /><br />
+          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p> 
+        </section>
+
+        <section>
+            <h3>Functional Programming</h3>
+            <pre><code data-trim data-line-numbers="1-2|3-5">
+            def greet():
+              print ("Hello World!")
+
+            def greet(name):
+              print ("Hello " + name)
+          </code></pre>
+
+          <br />
+          <p><ul>
+            <li>Logical groups of actions can be bundled into a function()</li>
+            <li>Functions can have inputs AKA arguments, e.g. "name".</li><br />
+            <li>You've imported functions from libraries, e.g., <a href="https://github.com/pandas-dev/pandas/blob/v1.3.3/pandas/core/algorithms.py#L328-L433">pandas.unique()</a></li>
+          </ul>
+          </p>
+
+          <br /><br />
+          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p>          
+        </section>
+
+        <section>
+            <h3>Functional Programming</h3>
+            <p>Function with variable number of arguments (*args)</p>
+            <pre><code data-trim data-line-numbers>
+            def greet(*args):
+                for name in names:
+                  print(f"Hello {name}")
+          </code></pre>
+
+          <br />
+          <ul>
+            <li>"*args" is variable length <a href="https://www.w3schools.com/python/python_tuples.asp">tuple</a> of arguments.</li>
+            <li>You can also send in keyword arguments (kwargs) and a variable number of keyword arguments (**kwrags)</li>
+            <li>Use of a <a href="https://www.w3schools.com/python/ref_string_format.asp">formatted string</li>
+          </ul>
+
+
+          <br /><br />
+          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p>  
+        </section>
+
+        <section>
+            <h3>Functional Programming</h3>
+            <p>Function can have outputs, aka a "return" value</p>
+           
+          <pre><code data-trim data-line-numbers=1-3|1-5>
+            def ac_to_sqft(value):
+              answer = value*43560
+              return answer
+
+            sqft = ac_to_sqft(15)
+          </code></pre>
+
+          <br />
+          <div class="container">
+            <div class="col">
+              <p >PROS</p>
+              <ul>
+                <li>Can reuse code!</li>
+              </ul>
+            </div>
+            <div class="col">
+              <p>CONS</p>
+              <ul>
+                <li>Still a linear program flow</li>
+              </ul>
+            </div>
+          </div>
+
+          <br /><br />
+          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p>
+        </section>
+
+        <section>
+        <h3>Object-Oriented Programming (OOP)</h3>
+          <p>Modeling involves representing the real world through <span class="red">abstractions</span> to aid in reflection, analysis, and prediction.</p>
+              <img src ="img/photo-StateIV.png" width="28%" />
+              <img src ="img/photo-StateVII.png" width="25%" />
+              <img src ="img/photo-StateXIV.png" width="25%" />
+          <br /><br />
+          <p class="cite">img src: Estate of Pablo Picasso / Artists Rights Society (ARS), New York</p>
+        </section>
+
+        <section>
+        <h3>Principle #1 of OOP: Abstraction</h3>
+          <p>OOP use abstractions known as <span class="red">objects.</span></p>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src ="img/oop-abstraction.png" width="50%" />
+            <img class="fragment" src ="img/oop-object.png" />
+          </div>
+
+          </section>
+
+        <section>
+          <h3>Objects</h3>
+          <img src ="img/oop-object-field.png" width ="25%" />
+          <div class="container">
+            <div class="col">
+              <ul>
+                <li><b>Attributes</b> (Nouns)</li>
+                <li>A variable inside an object</li>
+                <li>Attributes have a type</li>
+                <li>Accessed: field.location
+              </ul>
+            </div>
+            <div class="col">
+              <ul>
+                <li><b>Methods</b> (Verbs)</li>
+                <li>A function inside an object</li>
+                <li>Optional input/output.</li>
+                <li>Run: field.plant(crop)</li>
+              </ul>
+            </div>
+          </div>
+
+        </section>
+
+        <section>
+          <h3>Objects in Python</h3>
+
+          <p>Classes are used to represent objects</p>
+          <pre><code data-trim data-line-numbers>
+            class Animal:
+              animal_type = cow
+              name = Bessy
+              age = 10
+              breed = Holstein
+          </code></pre>
+
+          <p>Class = Animal. Object = this_specific_animal_instance</p>
+          <p>"Constructors" can be used to instantiate an object. __init__().</p>
+          <p class="red fragment"><b>Let's try to create a more abstract, reusable class.</b></p>
+        </section>
+
+        <section>
+          <h3>Principle #2 of OOP: Inheritance.</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/oop-heirarchy.png" width="30%" />
+            <img class="fragment" src="img/oop-animal-heirarchy.png" width="50%" />
+          </div>
+
+          <p>Objects have relationships!</p>
+          <p class="red fragment"><b>Let's try to create a heirarchy of reusable classes</b></p>
+          <br />
+          <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis & Design.</p>
+        </section>
+
+        <section>
+          <h3>Composition & Association</h3>
+          <img src="img/oop-car.png" />
+           <br />
+          <p class="cite">img src: Visual Paradigm, Tool Examples 2021.</p>
+        </section>
+
+        <section>
+            <h3>Principle #3 of OOP: Encapsulation</h3>
+            <img src="img/oop-encapsulation.png" width = "50%" />
+            <p>Objects have a notion of "self".</p>
+            <p class="red fragment"><b>Let's write a few methods</b></p>
+            <br />
+            <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis & Design.</p>
+        </section>
+
+
+        <section>
+          <h3>Principle #3 of OOP: Polymorphism</h3>
+          <img src="img/oop-animal-polymorphism.png" width="50%" />
+          <p class="red fragment"><b>Let's make our classes behave differently depending on what they are</b></p>
+        </section>
+
+        <section>
+          <h3>Methods as an Object Interface</h3>
+          <img src="img/oop-interfaces.png" width="50%" />
+          <p>Interface with: a library, a module, an application.<br /><br>An Application Programming Interface (API!)</p>
+          <br />
+          <p class="cite">https://medium.com/practicum-by-yandex/introduction-to-object-oriented-programming-34cc3b7ab582</p>
+        </section>
+
+        <section>
+          <h3>OOP, in short</h3>
+          <p>Model your system as objects</p>
+          <ul>
+            <li>Identify classes.</li>
+            <li>Identify attributes (nouns).</li>
+            <li>Outline methods (verbs).</li>
+            <li>Create associations & other relationships</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Function Design, in short</h3>
+          <pre><code data-trim data-line-numbers=1|2|3|4-8|10-12|1-12>
+            def get_area(width, height):
+              """Get the area of a rectangle.
+              @type width, height: int
+              >>> get_area(2, 5)
+              10
+              >>> get_area(100,42)
+              4200
+              """
+
+              area = width*height
+
+              return(area)
+          </code></pre>
+
+          <ul class="text-small">
+            <li>Write function header</li>
+            <li>Write a little description in the comments</li>
+            <li>Write "type contract", i.e., what is each attribute going to be</li>
+            <li>Write examples expected behavior.</li>
+            <li>Write your function itself!</li>
+            <li>Test it.</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li><p>Make sure you watch the video for this week. Do the "before the lab" work before Lecture on thursday.<br />
+            <a href="https://github.com/ag-informatics/ag-informatics-course/module3">https://github.com/ag-informatics/ag-informatics-course/tree/main/module3</a></p></li>
+
+            <li><p>Thursday's lecture is <b>in-person</b> and will cover skills building on the videos. Lab will include time for you to get started on the week's lab. <br />
+                <a href="https://github.com/ag-informatics/ag-informatics-course/module3/lab3">https://github.com/ag-informatics/ag-informatics-course/tree/main/module3/lab3</a></p></li>
+
+           <li>The quiz is due on Friday @ 5pm<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Ankita Raturi, Purdue University, 2021. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
