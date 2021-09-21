@@ -4,7 +4,7 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 3.1 [in-person]:
+- Lecture 3.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module3/lecture3.1.html
 - Lecture 3.2 [in-person]:
 - Lecture 3.3 [in-person]: 
 - Lecture 3.4 [live web lecture]: Mike Stenta. Call in via <a href="https://purdue.webex.com">WebEx</a> (sent via email/Brightspace/slack).
