@@ -162,15 +162,34 @@ Now that we have a basic web application, let's create a structure to allow us t
 
 In Django, a MODEL describes the structure of your data, as well as your database. Since models are written in python, we are essentially creating python OBJECTS, or CLASSESS, that Django processes and converts into the database itself. This means we don't actually leave python, even though we are in effect creating the model of a datbase.
 
-### Creata models to represent Fields and Observations.
+### Create models to represent Fields and Observations.
 
->Creating the models is your first major knowledg check for this lab. I don't give you the answer but expect you to be able to convert the diagram to code given what we covered in class and in the associated review materials.
+>Creating the models is your first major knowledge check for this lab. I don't give you the answer but expect you to be able to convert the diagram to code given what we covered in class and in the associated review materials.
 
 Open the **'models.py'**. Create two classes, one titled "Field" and one titled "Observation", based on the class diagram below.
 
 **farmnotes/models.py**
 
 ![ClassDiagram](img/classdiag.png)
+
+HINT: You will need to create a tuple at the very top of your **'models.py'** file, so the first few of your file (before you start to write the code for your two classes), will look like the snippet below:
+
+**farmnotes/models.py**
+```python
+from django.db import models
+
+OBSERVATION_TYPES = [
+  ('weather', 'Weather'), 
+  ('crop', 'Crop'), 
+  ('soil', 'Soil'), 
+  ('water', 'Water'), 
+  ('pest', 'Pest'), 
+  ('other', 'Other'),
+]
+
+#class definitions below
+```
+
 
 
 Now, let's make sure that we register our **'farmnotes'** app with the **'lab3'** project. Navigate to the **'lab3/lab3/settings.py'**. In the section titled #Application definition, insert the line marked in the code below:
@@ -186,7 +205,7 @@ INSTALLED_APPS = [
 
 Once you are done, save the file and open your terminal. Make sure you are inside your Django 'lab3' project folder. Run the following command:
 
-`python manage.py makemigration farmnotes`
+`python manage.py makemigrations farmnotes`
 
 You will see a message similar to the following:
 
@@ -206,10 +225,10 @@ Next, run:
 
 Django will now actually alter your databse as instructed by your model: creating, editing, and deleting things as necessary. This is like the Django equivalent of `git push`-- it actually makes the changes you desire. 
 
-If you made a mistake in your original model, just change it, run the `makemigration` command to tell Django to make the changes, and run `migrate` to actually push the changes to the database. We'll dig into models more in the next module, but for now remember:
+If you made a mistake in your original model, just change it, run the `makemigrations` command to tell Django to make the changes, and run `migrate` to actually push the changes to the database. We'll dig into models more in the next module, but for now remember:
 
 1. Edit your models in the file **'models.py'**
-2. Run `python manage.py makemigration farmnotes` to create the migration for the changes.
+2. Run `python manage.py makemigrations farmnotes` to create the migration for the changes.
 3. Run `python manage.py migrate` to push the changes to the database.
 
 ### Using the Django API
@@ -319,11 +338,11 @@ Save your file. If you had left the server running, notice that your admin web p
 ![Admin](img/admin03.png)
 
 
-Go ahead create at least 5 fields in the admin site. Create at least 10 observations, and associate them with different fields. This will populate our database with some test data as we continue.
+Go ahead create at least 5 fields in the admin site. Create at least 10 observations, and associate them with different fields. This will populate our database with some test data as we continue. Use the admin page for ease of creation.
 
 ## 3. Creating the front-end
 
-We will end up with a total of three views, or web pages, for our site:
+We will create a total of three views, or web pages, for our site:
 
 1. Field `index` page - displays all the fields in my farm.
 
@@ -438,6 +457,8 @@ This **'index.html'** template, when rendered, should display a list of all the 
 
 **farmnotes/views.py**
 ```python
+from .models import Field
+
 #Show all the fields in my farm
 def index(request):
     latest_fields = Field.objects.all()
@@ -447,9 +468,9 @@ def index(request):
 We use the function `render()`, a [Django shortcut function](https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/#django.shortcuts.render). It has three arguments:
     - `request` which is the HTTP request object that was passed into the `index(request)` function in the first place.
     - the name of the template that we want to render, in this case `'farmnotes/index.html'`.
-    - and an optional thurd argument: a dictionary referencing the object that we want to pass to the template. This allows us to pass the object `'lastest_fields'` from this view to the template as shown in the previous code block. That's how come we could use the argument `{% if latest_fields %}` in the **'index.html'** file. 
+    - and an optional third argument: a dictionary referencing the object that we want to pass to the template. This allows us to pass the object `'lastest_fields'` from this view to the template as shown in the previous code block. That's how come we could use the argument `{% if latest_fields %}` in the **'index.html'** file. 
 
-With your webserver is running, navigate to http://127.0.0.1:8000/farmnotes/. You should see output that looks like the image below. You can see the five fields I had created in the image (you won't have a black border, that's just the picture here). 
+Whileviews.py your webserver is running, navigate to http://127.0.0.1:8000/farmnotes/. You should see output that looks like the image below. You can see the five fields I had created in the image (you won't have a black border, that's just the picture here). 
 
  ![Index](img/index01.png)
 
@@ -478,6 +499,8 @@ Since this is a common enough thing that people need to do, there is a Django sh
 
 **views.py**
 ```python
+from django.shortcuts import get_object_or_404
+
 #List all notes related to a particular field
 def notes(request, field_id):
     field = get_object_or_404(Field, pk=field_id)
@@ -582,6 +605,12 @@ GO TO BRIGHTSPACE, submit the link to your repository to your Lab3 folder in you
 Huzzah, Module 3 has been conquered!
 
 ## Future Learning Pathways 
+
+Mozilla server-side programming overview: https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction
+
+Mozilla Django overview: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
+
+Full Django documentation (with tutorials!): https://docs.djangoproject.com/en/3.2/
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
