@@ -4,3 +4,7 @@
 #ignore python checkpoints
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+
+#ignore visual paradigm backup files
+*.vpp.bak*
+*.vpp.*
