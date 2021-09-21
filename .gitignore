@@ -1,3 +1,6 @@
+#ignore ds_store
 .DS_Store
-.sass-cache
-module2/.ipynb_checkpoints/2-3ClassDemo-checkpoint.ipynb
+
+#ignore python checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
