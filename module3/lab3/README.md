@@ -478,7 +478,6 @@ Whileviews.py your webserver is running, navigate to http://127.0.0.1:8000/farmn
 > Reminder: if you made any changes to your model, make sure you `makemigrations` and `migrate`, or you will get an error!
 
 ### 404 page not found errors 
-
 Let's create field `notes` page  that will display all the observations related to a particular field. First, we will update the `notes` function inside our **'views.py'** file. In this case, we want the function to check to see if the field actually exists, otherwise throw a 404 page not found error. Let's look at two ways in which you can do it.
 
 The long way would be...
@@ -506,7 +505,6 @@ def notes(request, field_id):
     field = get_object_or_404(Field, pk=field_id)
     return render(request, 'farmnotes/notes.html', {'field': field})
 ```
-
 Now you will practice what you've learned, and create the corresponding **'notes.html'** template file. Some tips:
 
 1. The file will be placed in **'farmnotes/templates/farmnotes/notes.html'**. 
@@ -520,7 +518,7 @@ Now you will practice what you've learned, and create the corresponding **'notes
 ![notes](img/notes01.png)
 
 ## View a single observation
-Now that you've had experience with a few, try your hand at creating the `observation` function and the associated **'observation.html'** template file. You will not have to update anything else to get this page working. 
+Now that you've had experience with a few, try your hand at creating the `observation` function in **'views.py'** and the associated **'observation.html'** template file. You will not have to update anything else to get this page working. 
 
 When I click on one of the links to an observation in the previous image, it should give me a detailed view of the observation. That is, when I visit the URL http://127.0.0.1:8000/farmnotes/1/1/, I should see the details of Field 1's Observation 1. Your page should display the following:
 
