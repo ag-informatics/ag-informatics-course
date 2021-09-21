@@ -7,3 +7,4 @@
 
 #ignore visual paradigm backup files
 *.vpp.bak*
+*.vpp.*
