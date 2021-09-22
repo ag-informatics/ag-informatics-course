@@ -6,7 +6,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 3.1 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.1.html
   -  Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/. This tutorial covers some of the things we will do in this lab, plus a few extra things.
-- Lecture 3.2 [in-person]:
+- Lecture 3.2 [CANCELLED]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.2.html
 - Lecture 3.3 [in-person]: 
 - Lecture 3.4 [live web lecture]: Mike Stenta. Call in via <a href="https://purdue.webex.com">WebEx</a> (sent via email/Brightspace/slack).
 
