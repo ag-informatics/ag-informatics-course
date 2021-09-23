@@ -1,7 +1,7 @@
-# Module 3, Lab 3
+# Module 3, Homework 3
 
-## BEFORE THE LAB
-[Django](https://www.djangoproject.com/) is a python web framework that allows you to quickly develop web applications. This entire lab is loosely based on a set of introductory Django tutorials, also available [here](https://docs.djangoproject.com/en/3.2/intro/tutorial01/). You're going to need a working installation of Python, the package manager 'pip', and finally, Django. 
+## START HERE
+[Django](https://www.djangoproject.com/) is a python web framework that allows you to quickly develop web applications. This entire homeowrk is loosely based on a set of introductory Django tutorials, also available [here](https://docs.djangoproject.com/en/3.2/intro/tutorial01/). You're going to need a working installation of Python, the package manager 'pip', and finally, Django. 
 
 ### Install Django via Anaconda Termnial
 A package manager is a tool that keeps a running list of all the packages associated with a particular language on your computer. You can use it to install, update, and remove different types of packages, or libraries. In the past, we had used Anaconda, a package manager with a nice user interface. This module, we'll use the `conda` command in the terminal to use the Anaconda package manager. (Note: ['pip'](https://pip.pypa.io/en/stable/) is a popular package manager for python, but since we started with Anaconda we'll stick with it. If you use pip, then follow [these instructions](https://docs.djangoproject.com/en/3.2/topics/install/#installing-an-official-release-with-pip) instead).
@@ -17,7 +17,7 @@ import django
 print(django.get_version())
 ```
 
-### Install Django via Anaconda Termnial
+### Install Django via Anaconda GUI
 Anaconda Navigator also provides a GUI for package mangement. You can follow these steps to install django with the GUI.
 Steps:
 1. Click on Environments to switch to the Environment page.
@@ -36,7 +36,7 @@ django should now be installed!
 
 Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/
 
-This tutorial covers some of the things we will do in this lab, plus a few extra things. I strongly recommend following along with the video as going through these concepts a couple of times will help you make sense of the framework and how the different files and components fit together.
+This tutorial covers some of the things we will do in this homework, plus a few extra things. I strongly recommend following along with the video as going through these concepts a couple of times will help you make sense of the framework and how the different files and components fit together.
 
 ### Do you have code editor?
 
@@ -45,17 +45,17 @@ If not, I recommend either [VS Code](https://code.visualstudio.com/) or [Sublime
 ## 1. Creating a skeleton web application
 > This section is a customized version of [part 1 of this Django tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/).
 
-### Create a 'lab3' project
+### Create a 'HW' project
 
-Open your terminal! Navigate to the place (using the `cd` command) where you would like to create your project. (In my examples, I have a "Code" folder that I put all my labs inside). We'll create a skeleton project called 'lab3'. You will upload everything inside this folder as part of your lab submission!
+Open your terminal! Navigate to the place (using the `cd` command) where you would like to create your project. (In my examples, I have a "Code" folder that I put all my homeworks inside). We'll create a skeleton project called 'HW3'. You will upload everything inside this folder as part of your homework submission!
 
-`django-admin startproject lab3`
+`django-admin startproject HW3`
 
 The `django-admin` is our main command line tool for adminstrative tasks. We'll use this a fair bit in cojunction with other commands as you will see later. This first command automatically create a set of files that are your core project skeleton:
 ```
-lab3/
+HW3/
   manage.py
-  lab 3/
+  HW 3/
     __init__.py
     settings.py
     urls.py
@@ -65,7 +65,7 @@ lab3/
 
 These files determine the way in which your python is "run". For now, we won't worry most of these files. I'll explain these as we begin to interact with them.
 
-First, let's check that our project 'lab3' works. Run the following command:
+First, let's check that our project 'HW3' works. Run the following command:
 
 `python manage.py runserver`
 
@@ -80,7 +80,7 @@ You have unapplied migrations; your app may not work properly until they are app
 Run 'python manage.py migrate' to apply them.
 
 September 17, 2021 - 15:50:53
-Django version 3.2, using settings 'lab3.settings'
+Django version 3.2, using settings 'HW3.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
@@ -93,18 +93,18 @@ Once you're satisfied, hit CTL-C and stop the server.
 
 We're going to create a basic web appllication called **farmnotes** to allow a farmer to create quick observations and make notes about what they see as they are walking around their fields doing day to day activities. 
 
-Make sure you're inside the 'lab3' folder. Run the following command:
+Make sure you're inside the 'HW3' folder. Run the following command:
 
 `python manage.py startapp farmnotes`
 
-As we run the manage.py tool this time, we provide the argument `startapp` followed by our app name `farmnotes`. This will create a skeleton web app inside the project folder 'lab3'. For future reference, remember that a project can contain multiple apps, hence the nesting.
+As we run the manage.py tool this time, we provide the argument `startapp` followed by our app name `farmnotes`. This will create a skeleton web app inside the project folder 'HW3'. For future reference, remember that a project can contain multiple apps, hence the nesting.
 
-Your 'farmnotes' *app* folder should look like this inside your 'lab3' *project* folder:
+Your 'farmnotes' *app* folder should look like this inside your 'HW3' *project* folder:
 
 ```
-lab3/
+HW3/
   manage.py
-  lab3/
+  HW3/
   farmnotes/
       __init__.py
       admin.py
@@ -125,7 +125,7 @@ If you go to the URL: http://127.0.0.1:8000/farmnotes in your browser, you shoul
 
 Open your project in an editor of your choosing. The **'views.py'** file contains python commands to "render" web pages.
 
-Insert the following code into your **'lab3/farmnotes/views.py'** file:
+Insert the following code into your **'HW3/farmnotes/views.py'** file:
 
 **farmnotes/views.py**
 ```python
@@ -136,7 +136,7 @@ def index(request):
     return HttpResponse("Hello, world! You're at the farmnotes index, or 'home' page.")
 ```
 
-Next we will map this file to URL. Inside **'lab3/farmnotes'** create a file called **'urls.py'**. Inside this file, insert the following code:
+Next we will map this file to URL. Inside **'HW3/farmnotes'** create a file called **'urls.py'**. Inside this file, insert the following code:
 
 **farmnotes/urls.py**
 ```python
@@ -153,9 +153,9 @@ This file will be used to tell the server where different files are located. Dja
 
 In this instance, we're pointing the server to the `index` function as specified inside the file 'views.py'. We now need to point the root URLconf file at the project level to this application.
 
-Open the **'lab3/lab3/urls.py'** file. It will contain some code already, with two import statements and one item in the `urlpatterns` list regarding the admin site. Edit the file to import the package `include` from `django.urls` and add a line to route the server to the **'farmnotes'** app.
+Open the **'HW3/HW3/urls.py'** file. It will contain some code already, with two import statements and one item in the `urlpatterns` list regarding the admin site. Edit the file to import the package `include` from `django.urls` and add a line to route the server to the **'farmnotes'** app.
 
-**lab3/lab3/urls.py**
+**HW3/HW3/urls.py**
 ```python
 from django.contrib import admin
 from django.urls import include, path
@@ -179,7 +179,7 @@ In Django, a MODEL describes the structure of your data, as well as your databas
 
 ### Create models to represent Fields and Observations.
 
->Creating the models is your first major knowledge check for this lab. I don't give you the answer but expect you to be able to convert the diagram to code given what we covered in class and in the associated review materials.
+>Creating the models is your first major knowledge check for this homework. I don't give you the answer but expect you to be able to convert the diagram to code given what we covered in class and in the associated review materials.
 
 Open the **'models.py'**. Create two classes, one titled "Field" and one titled "Observation", based on the class diagram below.
 
@@ -207,9 +207,9 @@ OBSERVATION_TYPES = [
 
 
 
-Now, let's make sure that we register our **'farmnotes'** app with the **'lab3'** project. Navigate to the **'lab3/lab3/settings.py'**. In the section titled #Application definition, insert the line marked in the code below:
+Now, let's make sure that we register our **'farmnotes'** app with the **'HW3'** project. Navigate to the **'HW3/HW3/settings.py'**. In the section titled #Application definition, insert the line marked in the code below:
 
-**lab3/lab3/settings.py**
+**HW3/HW3/settings.py**
 ```python
 # Application definition
 
@@ -218,7 +218,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
 ``` 
 
-Once you are done, save the file and open your terminal. Make sure you are inside your Django 'lab3' project folder. Run the following command:
+Once you are done, save the file and open your terminal. Make sure you are inside your Django 'HW3' project folder. Run the following command:
 
 `python manage.py makemigrations farmnotes`
 
@@ -321,7 +321,7 @@ Try to run `Field.objects.all()` inside your app's shell (remember: `python mana
 
 Django has a friendly little admin site already built into it, so we'll set that up for now so that we can play around with our data without worrying about the shell for now. Let's quickly set it up. This is a back-end tool, that is, this portal is not typically end-user facing. We will only use this to create test data and inspect our database.
 
-In your terminal, make sure you are inside your **'lab3'** folder before you proceed. 
+In your terminal, make sure you are inside your **'HW3'** folder before you proceed. 
 
 First, we need to set up a `super user`, that is, and admin account:
 
@@ -579,15 +579,15 @@ Let's make each of the pages in our web app look a little better. You will have 
 
 4. Center all content on the webpage (like we did in week 1!)
 
-## How to Submit your Lab
+## How to Submit your Homework
 Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website. Also remember, you should have a commit history with at least 5 commits to demostrate ongoing effort (don't just commit it all 5 mins before it's due!).
 
-You will submit your entire lab3 folder that contains all the code for your farmnotes app. Your file structure should look like this:
+You will submit your entire HW3 folder that contains all the code for your farmnotes app. Your file structure should look like this:
 
 ```
-lab3/
+HW3/
   manage.py
-  lab3/         ## I'm not showing what's in here becuase it shouldn't have changed since the beginning.
+  HW3/         ## I'm not showing what's in here becuase it shouldn't have changed since the beginning.
   farmnotes/
       static
         farmnotes
@@ -609,11 +609,11 @@ lab3/
   db.sqlite3
 ```
 
-Once you have commited to github, the **'farmnotes'** app folder (inside your **'lab3'** Django project folder) will look like this:
+Once you have commited to github, the **'farmnotes'** app folder (inside your **'HW3'** Django project folder) will look like this:
 
 ![Repo image](img/submit.png)
 
-GO TO BRIGHTSPACE, submit the link to your repository to your Lab3 folder in your repository. You are now done!
+GO TO Canvas, submit the link to your repository to your HW3 folder in your repository. You are now done!
 
 Huzzah, Module 3 has been conquered!
 
@@ -637,4 +637,4 @@ Full Django documentation (with tutorials!): https://docs.djangoproject.com/en/3
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
-  "Introduction to Agricultural Informatics Course" by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+  "Introduction to Agricultural Informatics Course" by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) and modified by Joe Dvorak, University of Kentucky, is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
