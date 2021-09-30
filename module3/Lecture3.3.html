@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 3, Lecture 3 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Designing a web app.</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Warmup: Representing Crops</h3>
+          <p>Let's extend the lab project to represent crops in my farm.</p>
+          <div class="fragment">
+            <p>How might we...</p>
+            <ul>
+              <li>Represent a plant?</li>
+              <li>Which Attributes?</li>
+              <li>Where does the data come from?</li>
+              <li>What about varieties?</li>
+              <li>Seed vs seedling vs crop vs product?</li>
+              <li>Limits to object oriented modeling?</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>Activity</h3>
+          <p>Designing a Farm Management System</p>
+          <p>Groups of 3.</p>
+        </section>
+
+        <section>
+          <h3>Activity: Farm Management System</h3>
+          <h4>Part 1: Specifying Functionality</h4>
+           <ul>
+              <li>Who are your users?</li>
+              <li>What do the users need to do?</li>
+              <li>What data will they collect or use?</li>
+            </ul>
+          <p>Goal: Specify your overarching goal and functionality to have a Minimum Viable product (MVP).</p>
+        </section>
+
+        <section>
+          <h3>Activity: Farm Management System</h3>
+          <h4>Part 2: Modeling the Farm</h4>
+          <p>How would you decompose a farm into logical Django models?</p>
+          <img src="img/oop-object-field.png" width="20%" />
+          <p>Object.  Attribute:type[limits]. Function (input):(output).
+          </ul>
+          <p class="fragment">Goal: Low coupling (relationships between models), high cohesion (relationships within a model).</p>
+        </section>
+
+        <section>
+          <h3>Activity: Farm Management System</h3>
+          <h4>Part 3: Determining your Views</h4>
+          <p>What are the main pages of the app?</p>
+          <p>Consider:</p>
+          <ul>
+            <li>Page layout: template?</li>
+            <li>Data: internal model vs external location?</li>
+          </ul>
+           <p class="fragment">Goal: Logical sequencing of activities. Grouping similar tasks together.</p>
+        </section>
+
+        <section>
+          <h3>Farm Management Systems</h3>
+          <h4>Micro-presentation</h4>
+          <p>We'll go around the room and see what everyone's designed.</p>
+        </section>
+
+        <section>
+          <h3>Project Discussion</h3>
+          <a href="https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part1.pdf">Project Part 1: Concept Motivation</a>
+        </section>
+
+        <section>
+          <h3>Homework</h3>
+          <ul class="no-bullets">
+            <li>Thursday Lecture ONLINE! Webex link will be sent out via email/slack/brightspace.</li>
+
+          <li><a href="https://github.com/ag-informatics/ag-informatics-course/tree/main/module3">PROJECT PART 1 is due Oct 1, Friday @ 5pm.</a></li>
+
+           <li>Lab is due on Monday @ 5pm<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Ankita Raturi, Purdue University, 2021. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>

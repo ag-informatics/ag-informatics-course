@@ -187,7 +187,7 @@ Open the **'models.py'**. Create two classes, one titled "Field" and one titled 
 
 ![ClassDiagram](img/classdiag.png)
 
-HINT: You will need to create a tuple at the very top of your **'models.py'** file, so the first few of your file (before you start to write the code for your two classes), will look like the snippet below:
+HINT: You will need to create a tuple at the very top of your **'models.py'** file, so the first few lines of your file (before you start to write the code for your two classes), will look like the snippet below:
 
 **farmnotes/models.py**
 ```python
@@ -365,14 +365,9 @@ We will create a total of three views, or web pages, for our site:
 
 3. A Field `observation` page - displays the details of a specific observation related to a field.
 
-The image below shows a mockup of what we'll try to create:
-
->MOCKUP TO BE INSERTED
-![Mockup]()
-
 ### Stub Views & Routing
 
-We've already created a 'stub' (that is, a small piece of code that does a minimal set of actions) for our 'index' page view. We'll create each of these views in turn and iterage on our original 'index' view. Let's quickly put together a few more stubs so that we can set up the URLs for each of the pages.
+We've already created a 'stub' (that is, a small piece of code that does a minimal set of actions) for our 'index' page view. We'll create each of these views in turn and iterate on our original 'index' view. Let's quickly put together a few more stubs so that we can set up the URLs for each of the pages.
 
 Add the following view functions to **'farmnotes/views.py'**.
 
@@ -485,7 +480,7 @@ We use the function `render()`, a [Django shortcut function](https://docs.django
     - the name of the template that we want to render, in this case `'farmnotes/index.html'`.
     - and an optional third argument: a dictionary referencing the object that we want to pass to the template. This allows us to pass the object `'lastest_fields'` from this view to the template as shown in the previous code block. That's how come we could use the argument `{% if latest_fields %}` in the **'index.html'** file. 
 
-Whileviews.py your webserver is running, navigate to http://127.0.0.1:8000/farmnotes/. You should see output that looks like the image below. You can see the five fields I had created in the image (you won't have a black border, that's just the picture here). 
+While your webserver is running, navigate to http://127.0.0.1:8000/farmnotes/. You should see output that looks like the image below. You can see the five fields I had created in the image (you won't have a black border, that's just the picture here). 
 
  ![Index](img/index01.png)
 
@@ -573,7 +568,7 @@ Let's make each of the pages in our web app look a little better. You will have 
 
 1. Create a solid colored header at the top of every page with the "Farmnotes" title. It should look the same across all pages.
 
-2. Add a background image to the entire website. Your folder structure for the files will be like this: **'farmnotes/static/farmnotes/images/imagehere.png'**. The point is to figure out hwo to handle static files, so consider using a simple pattern image like those [found here](https://www.toptal.com/designers/subtlepatterns/).
+2. Add a background image to the entire website. Your folder structure for the files will be like this: **'farmnotes/static/farmnotes/images/imagehere.png'**. The point is to figure out how to handle static files, so consider using a simple pattern image like those [found here](https://www.toptal.com/designers/subtlepatterns/).
 
 3. Add a solid color background behind all the content on your webpage so that the text doesn't interfere with the background. 
 
