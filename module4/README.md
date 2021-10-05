@@ -17,7 +17,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 Part 2 COMING SOON.
 
-**Project Part 2 is due: November**
+**Project Part 2 is due: 10/29/2021**
  
 ## Labs
 
