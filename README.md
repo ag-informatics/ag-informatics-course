@@ -54,12 +54,12 @@ This course is divided into eight 2 week modules. Each module is structured appr
 
 - **Week 1:**
   - **Lecture 1 - Ankita:** introduces the topic of the module. This will be discussion-based synchronous lecture. 
-  - **Lecture 2 - Ankita and/or Video(s):** introduces the skills required for the module. Typically a link to video(s) that you can watch in your own time. I will be available in the lecture room in case you have questions, or want to discuss any concepts.
+  - **Lecture 2 - Ankita and Video(s):** introduces the skills required for the module. Includes supplementary link(s) to video(s) that you can watch in your own time.
   - **Lab Part 1:** apply the introductory skills and concepts learned in week 1.
   - **Quiz:** quick knowledge evaluation in the form of short, multiple choice questions via Brightspace.
 - Week 2:
-  - **Lecture 3 - Guest:** this will typically be a guest lecture. Depending on the guest's availability, it may be swapped with lecture 4. These will typically give you insight into how the module topic is practices in industry or research.
-  - **Lecture 4 - Ankita:** I will typically bookend the module with a discussion/demonstration of how the skills/concepts apply to problems in food and agriculture systems.
+  - **Lecture 3 - Ankita:** bookend the module with a discussion/demonstration of how the skills/concepts apply to problems in food and agriculture systems. Time permitting, includes supplementary topics (e.g., privacy, open source) and case studies (e.g., small farms, cover crops). 
+  - **Lecture 4 - Guest:** this will typically be a guest lecture. Depending on the guest's availability, it may be swapped with lecture 3. These will typically give you insight into how the module topic is practices in industry or research.
   - **Lab Part 2:** building on the previous lab, you will apply the skills/concepts in the context of food and agricultural data/challenges.
 
   The full course schedule is described below. If you click on each module, you will see details on the lectures, labs, and the quiz.
