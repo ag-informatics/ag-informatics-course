@@ -1,0 +1,428 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 4, Lecture 1 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Data modeling</li>
+            <li>Managing sensitive data</li>
+            <li>The open data ecosystem</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>A Data Lifecycle</h3>
+          <div>
+            <img src="img/diagram-data-lifecycle.jpg" width="70%" />
+            </div>
+        </section>
+
+        <section>
+          <h3>Data Modeling</h3>
+          <p>Decide what needs to be represented!</p>
+          <p>Determine the correct data type for different kinds of data.</p>
+          <p>Identify the right data structure to pool together related items.</p>
+          <p>Develop the right process to manage your data as a whole.</p>
+        </section>
+
+        <section>
+          <h3>Example: Cover Crop Data</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrops-book.jpg" width="40%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-phz.jpg" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-soil.png" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-usda.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-chart.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-smartmix.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-midwest-old.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-dataverification.png" width="70%" />
+          </div>
+        </section>
+
+        <section>
+          <h3>Spreadsheets / CSVs</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrop-sample-before.png" />
+            <img class="fragment" src="img/covercrop-sample.png" />
+          </div>
+          <p class="text-small"><a href="https://datacarpentry.org/spreadsheet-ecology-lesson/">Learn more about structuring spreadsheets</a></p>
+        </section>
+
+        <section>
+          <h3>Metadata & Documentation</h3>
+          <p>Data Dictionary:</p>
+          <img src="img/covercrop-datadict.png" />
+
+          <p>Data / Code Documentation Tools<br />
+          <a href="https://readthedocs.org/">https://readthedocs.org/</a></p>
+        </section>
+
+        <section>
+          <h3>JSON</h3>
+
+          "Serialize" a data model.
+
+          <pre><code data-trim>
+            [{ 
+              "Cover Crop Name": "Barley, Spring",
+              "Scientific Name": "Hordeum vulgare",
+              "Drought Tolerance": 4,
+              "Shade Tolerance": 2,
+              "Flood Tolerance": 2,
+              "Low Fertility Tolerance": 4,
+              "Salinity Tolerance": 3,
+              "Winter Survival": ["Seldom"],
+              "Active Growth Period": ["Spring", "Summer"],
+              "Duration": ["Annual"],
+              "Shape & Orientation": ["Erect"],
+              "Notes: Basic Agronomics": "Dry matter highly dependent on planting and termination date and precipitation....",
+            }]  
+          </code></pre>
+          
+          <p><a href="https://github.com/ag-informatics/covercrops/blob/master/src/shared/crop-data.json">Cover Crop Data in JSON</a></p>
+
+          <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">Learn more about JSON</a></p>
+        </section>
+
+        <section>
+          <h3>The Cover Crop Data in Action</h3>
+          <img src="img/covercrop-tool.png" />
+
+          <p class="text-small">Built a Javascript-based web app. <br />Uses the airtable API (where we have spreadsheets) to pull live data (still being curated). <br />Data is restructured and stored as JSON files.<br />To be continued....</p>
+        </section>
+
+        <section>
+          <h3>Structuring your data: Python</h3>
+
+          <ul class="no-bullets">
+          <li><b>Data types:</b> int, float, String, etc. </li>
+          <li><b>Data structures:</b>
+            <ul class="no-bullets">
+              <li>Lists (array): [1, 2, 3, 4, 5]</li>
+              <li>Tuples: ([1, 2, 3], 55, "what?")</li>
+              <li>Dictionaries: {'key': value, 'bobby': 42, 'noddy': 54}</li>
+              <li>Pandas' DataFrames.</li>
+            </ul>
+          </li><br /><br />
+          <li class="fragment">Object-oriented models in Python and
+            <br />data models in Django using <b>Classes</b> (as prev. discussed).</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Databases</h3>
+          <div class="container">
+            <div class="col">
+              <h6>Relational (SQL)</h6>
+              <ul>
+                  <li>All records have a unique identified, a column in the table deemed the PRIMARY KEY </li>
+                  <li>Tables are linked based on a lookup "column", known as a FOREIGN KEY</li>
+                  <li>Three relationship types: 
+                    <ul class="no-bullets text-small">
+                      <li>one-one: one book can have one ISBN (id number)</li>
+                      <li>one-many: one book can be borrowed many times </li>
+                      <li>many-many: many books can be borrowed by many people</li>
+              </ul>
+            </div>
+            <div class="col">
+              <img src="img/db-relational.png" />
+              <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models">Django Example</a></p>
+            
+            </div>
+            
+          </div>
+        </section>
+
+                <section>
+          <h3>Databases</h3>
+
+              <h6>Non-Relational (NoSQL)</h6>
+              <img src="img/db-nosql.png">
+              <p class="text-small">Key-Value e.g., <a href="https://redis.io/">redis</a>. 
+                Document e.g., <a href="https://www.mongodb.com/">MongoDB</a>.
+                Columnar e.g., <a href="https://cassandra.apache.org/_/index.html">Apache Cassandra</a>
+                Graph e.g., <a href="https://neo4j.com/">Neo4J</a>
+              </p>
+              
+            <p class="text-small"><a href="https://azure.microsoft.com/en-us/overview/nosql-database/">Learn more about NoSQL dbs.</a></p>
+        </section>
+
+        <section>
+          <h3>Django + SQLite </h3>
+          <pre><code data-trim data-noescape><script type="text/template">
+            sqlite3 <database_name>
+
+            .tables
+
+            SELECT * FROM <table_name>;
+
+            SELECT * FROM <table_name> WHERE <condition>;
+            
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h3>Django + JSON </h3>
+
+          <p>Create <a href="https://docs.djangoproject.com/en/3.2/howto/initial-data/">Django fixtures</a>, that is, an "annotated" JSON file:
+          <pre><code data-trim data-noescape><script type="text/template">
+          [
+            {
+              "model":"cropexplorer.crop",
+              "pk":"1",
+              "fields": {
+                "crop_name": "Millet, Japanese",
+                "crop_scientific_name": "Echinochloa esculenta",
+                "cover_crop_group": "Grass",
+                "family_common_name": "Grass family",
+                "family_scientific_name": "Poaceae",
+                "zone_inclusion": "Zone 6,Zone 5,Zone 4",
+                "crop_description": "Summer annual grass. Can grow in flooded soils and standing water. Adapted to soil with pH as low as 4.5. Prone to premature flowering if seeded late summer. Very responsive to nitrogen. Good smother crop at high seeding rate but may become weed if allowed to go to seed. Mix with cowpeas, soybeans to create a diverse summer mixture. Shorter, finer-stemmed, lower-biomass option compared to sorghum-sudangrass or pearl millet. Does not mow-kill as well and may mature faster\\/reseed more easily than foxtail millet. ",
+                "heat_tolerance": 5,
+                "shade_tolerance": 1
+              }
+            }
+          ]
+          </script></code></pre></p>
+
+          <p>Bulk Load the data!
+          <pre><code data-trim data-noescape><script type="text/template">
+            manage.py loaddata <fixture_file_name>
+          </script></code></pre></p>
+        </section>
+
+
+        <section>
+          <h3>Sensitivity of Data</h3>
+          <ul class="no-bullets">
+            <li><b>Private:</b> Some Farmer Data, Proprietary Data, Human Subjects Research Data</li><br />
+            <li><b>Protected:</b> Same as above, but can be released in certain ways (e.g., de-identified, aggregated, shared with certain people)</li><br />
+            <li><b>Public:</b> Publicly funded research data, "Generic" data e.g., general plant data, "utility" data e.g., weather, can also include protected data e.g., deidentified data. </li>
+        </ul>
+        </section>
+
+         <section>
+          <h3>Research Data Perspective</h3>
+            <div class="r-stack">
+              <img src="img/sensitivity-iu1.png" width="70%" /> 
+              <img class = "fragment" src="img/sensitivity-iu2.png" width="70%"  /> 
+            </div>
+            <br />
+            <p class="cite">IU Data Management 2021, https://datamanagement.iu.edu/types-of-data/classifications.php</p>
+        </section>
+
+        <section>
+          <div class = "r-stack">
+            <img src="img/farmer-perspectives1.png" />
+            <img class = "fragment" src="img/farmer-perspectives2.png" />
+          </div>
+
+          <br />
+          <p class="cite">Slattery et al., 2021, https://www.trustinfood.com/wp-content/uploads/2021/05/Farmer-Perspectives-on-Data-2021.pdf</p>
+        </section>
+
+        <section>
+          <h3>Practicing Trust with Data</h6>
+           <div class="container">
+            <div class="col">
+              <h6>Privacy</h6>
+              <ul>
+                <li>Protect personal information</li><br />
+                <li>Handle geolocation information with sensitivity</li><br />
+                <li>Provide granular data access controls</li>
+              </ul>
+            </div>
+
+            <div class="col fragment">  
+              <h6>Agency</h6>
+              <ul>
+                <li>Come to early consensus on data ownership</li><br />
+                <li>Provide situational control over data</li><br />
+                <li>Empower stakeholder voices</li>
+              </ul>
+            </div>
+          </div>
+          <br /><br />
+          <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable Agricultural Research".</p>
+        </section>
+
+        <section>
+          <h3>Cultivate Trust in your Process</h3>
+           <div class="container">
+            <div class="col">
+              <h6>Transparency</h6>
+              <ul>
+                <li>Be inclusive of stakeholders in the process</li><br />
+                <li>Provide feedback and clarity on the process</li><br />
+                <li>Open source development of tools</li><br />
+                <li>Open access to privacy-preserved data</li>
+              </ul>
+            </div>
+
+            <div class="col fragment">  
+              <h6>Accountability</h6>
+              <ul>
+                <li>Uphold the responsbility of protecting data and research stakeholder rights</li><br />
+                <li>Provide traceability of action</li><br />
+                <li>Provide feedback among stakeholders</li>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable Agricultural Research".</p>
+        </section>
+
+        <section>
+          <h3>Precision Sustainable Agriculture</h3>
+          <p>Managing access to cover crop research data from US farms.</p>
+          <img src="img/psa-datasensitivity.png" />
+          <br />
+          <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable Agricultural Research".</p>
+        </section>
+
+        <section>
+          <h3>The Open Data Ecosystem</h3>
+          Publish data* on the web.
+          <a href="https://purr.purdue.edu/sharedata"><img src="img/data-purr.png" width="80%" /></a>
+          <p>*with appropriate permissions/protections</p>
+          
+          <br />
+          <p class="cite">https://purr.purdue.edu/sharedata</p>
+        </section>
+
+        <section>
+          <h3>Re-usable Media/Writing/Courses!</h3>
+          <img src="img/course-license.png" width="70%" />
+          <a class="fragment" href="https://creativecommons.org/share-your-work/"><img src="img/creativecommons.png" width="80%" /></a>
+          <p class="cite">https://creativecommons.org/share-your-work/</p>
+          
+        </section>
+
+        <section>
+          <h3>Open Source Software Code</h3>
+          <a href="https://tldrlegal.com/"><img src="img/tldrlegal.png" width="70%" /></a>
+          <p class="cite">https://tldrlegal.com/</p>
+        </section>
+
+        <section>
+          <h3>FAIR DATA</h3>
+          <img src="img/data-fair.png" width="70%" />
+          <p class="cite"><a href="https://www.nature.com/articles/sdata201618">https://www.nature.com/articles/sdata201618</a></p>
+        </section>
+
+        <section>
+          <h3>Data FAIRification process</h3>
+          <img src="img/data-fairification.png" width="80%" />
+          <br /><br />
+          <p class="cite"><a href="https://www.go-fair.org/fair-principles/fairification-process/">https://www.go-fair.org/fair-principles/fairification-process/</a></p>
+        </section>
+
+        <section>
+          <h3>The future is linked data</h3>
+          <img src="img/digital-ag-accenture.png" />
+          <p>Learn more about <a href="https://www.sciencedirect.com/science/article/pii/S0308521X16303754">Big Data in Smart Farming</a></p>
+
+          <br />
+          <p class="cite">https://skyfarms.io/wp-content/uploads/2020/05/2-Accenture-Digital-Agriculture.pdf</p>
+        </section>
+
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li><p>Thursday's lecture is <b>in-person</b> and will be a replacement for lab.</p></li>
+
+            <li><p>Thurday's lab time is a FIELD TRIP TO ACRE. If you haven't already, let me know if you need transport.</p></li>
+
+            <li><p><a href="https://github.com/ag-informatics/ag-informatics-course/tree/main/module4">https://github.com/ag-informatics/ag-informatics-course/tree/main/module4</a></p></li>
+
+  
+           <li>The quiz is due on Friday @ 5pm<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Ankita Raturi, Purdue University, 2021. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>

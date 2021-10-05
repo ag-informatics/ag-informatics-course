@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Crop Explorer</title>
+</head>
+<body>
+    {% if crop_list %}
+        <ul>
+        {% for crop in crop_list %}
+            <li>{{ crop.crop_name }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No crops are available.</p>
+    {% endif %}
+</body>
+</html>

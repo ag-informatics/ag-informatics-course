@@ -1,0 +1,17 @@
+[
+	{
+		"model":"cropexplorer.crop",
+		"pk":"1",
+		"fields": {
+			"crop_name": "Millet, Japanese",
+			"crop_scientific_name": "Echinochloa esculenta",
+			"cover_crop_group": "Grass",
+			"family_common_name": "Grass family",
+			"family_scientific_name": "Poaceae",
+			"zone_inclusion": "Zone 6,Zone 5,Zone 4",
+			"crop_description": "Summer annual grass. Can grow in flooded soils and standing water. Adapted to soil with pH as low as 4.5. Prone to premature flowering if seeded late summer. Very responsive to nitrogen. Good smother crop at high seeding rate but may become weed if allowed to go to seed. Mix with cowpeas, soybeans to create a diverse summer mixture. Shorter, finer-stemmed, lower-biomass option compared to sorghum-sudangrass or pearl millet. Does not mow-kill as well and may mature faster\\/reseed more easily than foxtail millet. ",
+			"heat_tolerance": 5,
+			"shade_tolerance": 1
+		}
+	}
+]
