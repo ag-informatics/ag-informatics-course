@@ -43,10 +43,12 @@ Start by **downloading our sample ACRE dataset** from this [Google Drive link](h
 
 Explore the sample ACRE dataset: design a data model that considers logical groupings of data entities into Django `classes` and attributes. 
 
-Consider the first data entry for 2018 in the logbook image previously shown that reads: "*3-15-19 Coop spread 200# Urea on wheat*". This entry tells us that on 3-15-19, a farm worker named "Coop" spread 200 pounds of Urea on the wheat planted in Field 70. Thus, we can glean the following data from the entry:
+Consider the first data entry for 2018 in the logbook image previously shown that reads: "*3-15-19 Coop spread 200# Urea on wheat*". This entry tells us that on 3-15-19, work was done by the "Co-op". They spread 200 pounds of Urea on the wheat planted in Field 70.  (Fun fact: I initially thought the work was done by a person named "coop", until Rachel told me that refers to the co-op that they contract out the work too. #contextualdata)
+
+Thus, we can glean the following data from the entry:
   - Field number: 70
-  - Date of oepration: 3-15-18
-  - Worker name: Coop
+  - Date of operation: 3-15-18
+  - Worker: Co-op
   - What was done: Spreading of a material
     - Which material: Urea
     - What amount? 200 pounds
@@ -81,19 +83,19 @@ field_name | Field, Attribute | Name of the field | 50 characterss | String
 
 
 ## 3. Initialize the Project & Application
-Initalize a project titled **'ACRE'**.
-Within this project, initialize an app titled **'acreLog'**.
+Initalize a project titled **'acre'**.
+Within this project, initialize an app titled **'acrelog'**.
 
-Make sure you create a **'urls.py'** file inside acreLog, as well as required subfolders (e.g., for templates), just like we did in the previous module. 
+Make sure you create a **'urls.py'** file inside acrelog, as well as required subfolders (e.g., for templates), just like we did in the previous module. 
 
 Create a stub template file called **'index.hml'**, and add the corresponding `index` function in **'views.py'**. You will also need to add a route to this file, just like we did in the previous module. Display a message like "hello world" via your `index` stub to test that you have connected all the pieces together.
 
 Your app folder should look like this:
 ```
-ACRE/
+acre/
   manage.py
-  lab4/
-  acreLog/
+  acre/
+  acrelog/
       migrations/
       templates/
         index.html
@@ -107,7 +109,7 @@ ACRE/
   db.sqlite3
 ```
 
-Start the server and visit http://127.0.0.1:8000/acreLog to confirm that you have a working application.
+Start the server and visit http://127.0.0.1:8000/acrelog to confirm that you have a working application.
 
 > IMAGE UPLOAD: Take a screenshot of your working application with the filename **'hello-world'** inside your **'lab4/images'** folder.
 
@@ -152,7 +154,7 @@ I do NOT expect you to digitize the entire ACRE sample dataset. Instead, pick 10
 Open your terminal and run the command:
 
 ```python
-  manage.py loaddata acre-data.json
+  python manage.py loaddata acre-data.json
 
 ```
 Once you have run this command, open your Django app's admin dashboard. Your 10 entries should now appear in your database!
@@ -180,10 +182,10 @@ lab4/
     hello-world.png
     sample-data.png
     sample-view.png
-  ACRE/                       <-- your Django project
+  acre/                       <-- your Django project
     manage.py
-    lab4/                     
-    acreLog/                  <-- your Django APP
+    acre/                     
+    acrelog/                  <-- your Django APP
         fixtures/             <-- you created everything in here
           acre-data.json
         migrations/
