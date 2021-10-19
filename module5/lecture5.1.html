@@ -1,0 +1,266 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 5, Lecture 1 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>User Interfaces 101</li>
+            <li>Paper Prototyping</li>
+            <li>Intro to Bootstrap</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Types of User Interfaces</h3>
+          <ul>
+          <li>Command Line Interface (CLI)</li>
+          <li>Graphical User Interface (GUI)</li>
+          <li>Natural Language Inteface (NLI)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Command Line Interface (CLI)</h3>
+          <div class="r-stack">
+            <p class="fragment fade-in-then-out">Example: DayCent, a biogeochemical model used in agroecosystem simulation (e.g., nitrogen leaching, soil organic carbon, etc.)</p>
+            <img class = "fragment fade-in-then-out" src="img/daycent-model.png" width="40%" />
+            <img class = "fragment fade-in-then-out" src="img/daycent-cli.png" width="40%" />
+            <div class="fragment">
+              <ul class="no-bullets">
+                <li><b>CLI DESIGN CONSIDERATIONS:</b></li>
+                <li>Linear program flow. How to manage decision logic?</li>
+                <li>Provide user with options via arguments OR text-based menus</li>
+                <li>Good documentation is key!</li>
+              </ul>
+            </div>
+          </div>
+
+          <br /><br />
+          <p class="cite">DayCent example, <a href="https://www2.nrel.colostate.edu/projects/daycent-downloads.html">https://www2.nrel.colostate.edu/projects/daycent-downloads.html</a></p>
+        </section>
+
+        <section>
+          <h3>Natural Language Interface (NLI)</h3>
+          <div class="r-stack">
+              <p class="fragment fade-in-then-out">Example: <a href="https://www.wolframalpha.com/">Wolfram Alpha</a></p>
+              <img class="fragment fade-in-then-out" src="img/nli-wolfram.png" width="40%" />
+              <p class="fragment fade-in-then-out"><a href="https://www.wolframalpha.com/examples/society-and-culture/economic-data/agriculture/">More Wolfram agriculture examples...</a></p>
+              <div class="fragment">
+                <ul class="no-bullets">
+                  <li><b>NLI DESIGN CONSIDERATIONS:</b></li>
+                  <li>Are there appropriate algorithms to parse user inputs?</li>
+                  <li>What is the breadth of possible inputs?</li>
+                  <li>Mode of user input: voice vs text.</li>
+                  <li>Good training data is key!</li>
+                </ul>
+              </div>
+          </div>
+          <br />
+          <p class="cite">Wolfram Alpha example, <a href="https://www.wolframalpha.com/input/?i=what+is+the+total+acreage+of+farmland+in+the+US">https://www.wolframalpha.com/input/?i=what+is+the+total+acreage+of+farmland+in+the+US</a></p>
+        </section>
+
+        <section>
+          <h3>Graphical User Interface (GUI)</h3>
+            <p>Interaction Styles:</p>
+            <p>1. Form Fillin, 2. Menu Selection, 3. Direct Manipulation.</p>
+                <img class="fragment" src="img/gui-form.gif" width="25%" />
+                <img class="fragment" src="img/gui-menu.gif" width="20%" />
+                <img class="fragment" src="img/gui-direct.gif" width="25%" />
+            
+          <br /><br />
+          <p class="cite">Learn more about interaction styles: <a href="https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/interaction-styles">https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/interaction-styles</a></p>
+        </section>
+
+        <section>
+          <h3>GUI Design: Mobile vs Web</h3>
+          <img src="img/mobile-v-desktop.png" width="80%"/>
+          <p class="cite"><a href="https://developer.ibm.com/articles/wa-interface/">https://developer.ibm.com/articles/wa-interface/</a></p>
+        </section>
+
+        <section>
+          <h3>GUI Anatomy: Web Page</h3>
+          <img src="img/web-elements.jpg" width="45%"/>
+        </section>
+
+
+        <section>
+          <h3>GUI Anatomy: Mobile App</h3>
+          <img src="img/mobile-elements.jpg" width="40%"/>
+        </section>
+
+        <section>
+          <h3>User Interface Components</h3>
+          <ul class="no-bullets">
+            <li><b class="red">Input controls:</b> buttons, text-fields, checkboxes, radio buttons, dropdown lists, list boxes, toggles, date field</li><br />
+            <li><b class="red">Navigational components:</b> breadcrumbs, sliders, search fields, pagination, tags, icons</li><br />
+            <li><b class="red">Information components:</b> tooltips, icons, progress bars, notifications, message boxes, modal windows</li><br />
+            <li><b class="red">Containers:</b> accordions, sliders, tables, galleries, cards</li>
+          </ul>
+          <br />
+          <br />
+          <p class="cite">Learn more: https://www.usability.gov/how-to-and-tools/methods/user-interface-elements.html</p>
+        </section>
+
+        <section>
+          <h3>User Interface Frameworks</h3>
+          <h6><a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/">Bootstrap!</a></h6>
+          <p>An open source collection of prebuilt, configurable, user interface components and page layouts. Think lego.</p>
+          <br /><br />
+
+          <h6>What does it contain?</h6>
+          <ul>
+            <li>Full Source: <a href="https://github.com/twbs/bootstrap">https://github.com/twbs/bootstrap</a>
+            <ul><li>CSS file: <a href="https://github.com/twbs/bootstrap/blob/main/dist/css/bootstrap.css">https://github.com/twbs/bootstrap/blob/main/dist/css/bootstrap.css</a></li></ul></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Bootstrap UI Kit</h3>
+          <a href="https://getbootstrap.com/docs/4.3/examples/album/"><img src="img/demo-album.png" width="50%" /></a><br />
+          <p class="cite"><a href="https://getbootstrap.com/docs/4.3/examples/album/">https://getbootstrap.com/docs/4.3/examples/album/</a></p>
+        </section>
+
+        <section>
+          <h3>Bootstrap UI Kit</h3>
+          <a href="https://getbootstrap.com/docs/4.3/examples/dashboard/"><img src="img/demo-dashboard.png" width="80%" /></a>
+          <p class="cite"><a href="https://getbootstrap.com/docs/4.3/examples/dashboard/">https://getbootstrap.com/docs/4.3/examples/dashboard/</a></p>
+        </section>
+
+        <section>
+          <h3>Paper Prototyping</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/paper-prototypes.png" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/paper-prototyping.png" />
+            <p class="fragment"><a href="https://www.youtube.com/watch?v=GrV2SZuRPv0">A little demo!</a></p>
+          </div>
+          <br />
+          <p class="cite"><a href="http://fpl.cs.depaul.edu/jriely/360/extras/prototyping-for-tiny-fingers.pdf">Marc Rettig, Prototyping for tiny fingers, 1994.</a></p>
+        </section>
+
+        <section>
+          <h3>Activity: Paper Prototyping LITE</h3>
+          <h4>Individually</h4>
+          <p>Consider your ACRE Farm Management Django App (Lab 4)</p>
+          <ul>
+            <li>What is a missing feature that the farm manager/workers might desire?</li>
+            <li>What might the interface for this feature look like?</li>
+            <li>Keep in mind the Bootstrap components and UI elements.</li>
+          </ul>
+
+          <p>Create an "interactive" paper prototype for your new functionality.</p>
+        </section>
+
+        <section>
+          <h3>Activity: Paper Prototyping LITE</h3>
+          <h4>In PAIRS</h4>
+          <p>Test each others "prototype"</p>
+          <ul>
+            <li>What constuctive feedback can you provide?</li>
+            <li>What worked, what didn't?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Next: Bootstrap + Django</h3>
+          <p><a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/">Link to hosted stylesheets & javascript</a></p>
+
+        </section>
+
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li><p>Thursday's lecture is <b>live web lecture</b> and will include a case study. Lab this week will include time for you finish last module's work, because....</p></li>
+
+            <li><p><b>Project Part II is coming Thursday!</b></p></li>
+
+            <li>Lab 5 will be a minor addition (views) onto Lab 4. To be released on Monday.</li>
+
+           <li>The quiz is due *next* Friday @ 5pm<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Ankita Raturi, Purdue University, 2021. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
