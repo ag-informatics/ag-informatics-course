@@ -5,7 +5,7 @@
 Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 4.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module4/lecture4.1.html
-  - Follow along with the CS50 video on SQL, Models, and Migrations: https://docs.djangoproject.com/en/3.2/howto/initial-data/
+  - Follow along with the CS50 video on SQL, Models, and Migrations: https://cs50.harvard.edu/web/2020/weeks/4/
   - Note, the video comes with accompanying notes that you can refer to instead: https://cs50.harvard.edu/web/2020/notes/4/
 - Lecture 4.2 [in-person]: We'll do an activity to get you started with the lab. 
   - Lab timeslot -> Field Trip to ACRE, Purdue w/Rachel Stevens. ANKITA to coordinate transport.
@@ -15,9 +15,9 @@ Source code for the slides is in this folder. The slides are live here:
 
 ## Project
 
-Part 2, Approach, of the project is out now! Here is the [project information](../project/Project-part2.pdf).
+Part 2 COMING SOON.
 
-**Project Part 2 is due: November**
+**Project Part 2 is due: 10/29/2021**
  
 ## Labs
 
