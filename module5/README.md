@@ -4,7 +4,7 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 5.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.1.html
+- Lecture 5.1 [live web lecture]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.1.html
 - Lecture 5.2 [in-person]: Juliet Norton. Call in via <a href="https://purdue.webex.com">WebEx</a> (sent via email/Brightspace/slack).
 - Lecture 5.3 [in-person]: 
 - Lecture 5.4 [live web lecture]: Greg Austic. Call in via <a href="https://purdue.webex.com">WebEx</a> (sent via email/Brightspace/slack).
@@ -13,7 +13,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 ## Project
 
-Project Part 2, Proposed Approach, out shortly! Here is the [project information](../project/Project-part2.pdf).
+Project Part 2, Proposed Approach out now! Here is the [project information](../project/Project-part2.pdf).
 
 **Project Part 2 is due: 11/22/201**
 
