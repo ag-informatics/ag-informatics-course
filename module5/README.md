@@ -15,7 +15,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 Project Part 2, Proposed Approach out now! Here is the [project information](../project/Project-part2.pdf).
 
-**Project Part 2 is due: 11/22/201**
+**Project Part 2 is due: 11/15/2021**
 
 
 ## Labs
@@ -31,7 +31,7 @@ Academic Integrity Reminder: Make sure your lab Github repositories are "private
 
 The quiz for this module is available via Brightspace. 
 
-**Quiz 5 is due: 10/29/2021**
+**Quiz 5 is due: 11/01/2021**
 
 
 ## License
