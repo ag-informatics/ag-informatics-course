@@ -86,7 +86,7 @@ The first part of the **Project** description and submission instructions will b
 
 The **Exam** will consist of a mix of short and essay style questions. More detail will be shared later in the semester.
 
-**Late Policy:** You can have three "late days" where you submit work a day late with no questions asked. You can use these for quizzes, labs, and projects part 1 & 2. After that, you will be penalised 5% per day late. *The moment you have any issues, please contact me, and we can discuss options.*
+**Late Policy:** You can have three "late days" where you submit work one business day late with no questions asked. You can use these for quizzes, labs, and projects part 1 & 2. After that, you will be penalised 5% per day late. *The moment you have any issues, please contact me, and we can discuss options.*
 
 Assessment | Description | Due Dates | Weight
 -----|-----|----- |----- 
