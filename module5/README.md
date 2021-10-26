@@ -6,7 +6,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 5.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.1.html
 - Lecture 5.2 [live web lecture]: Juliet Norton. Call in via <a href="https://purdue.webex.com">WebEx</a> (sent via email/Brightspace/slack).
-- Lecture 5.3 [in-person]: 
+- Lecture 5.3 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.3.html
 - Lecture 5.4 [live web lecture]: Greg Austic. Call in via <a href="https://purdue.webex.com">WebEx</a> (sent via email/Brightspace/slack).
 
 
