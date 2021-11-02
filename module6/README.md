@@ -4,7 +4,7 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 6.1 [live web lecture]: www.aginformaticslab.org/ag-informatics-course/module5/lecture6.1.html
+- Lecture 6.1 [live web lecture]: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.1.html
 - Lecture 6.2 [live web lecture]: 
 - Lecture 6.3 [live web lecture]: 
 - Lecture 6.4 [live web lecture]: 
