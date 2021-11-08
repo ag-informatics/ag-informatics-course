@@ -15,7 +15,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 Project Part 2, Proposed Approach out now! Here is the [project information](../project/Project-part2.pdf).
 
-**Project Part 2 is due: 11/15/2021**
+**Project Part 2 is due: 11/22/2021**
 
 
 ## Labs
