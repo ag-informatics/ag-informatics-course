@@ -1,12 +1,12 @@
-# Module X: asfaf
+# Module X: Future of Ag Tech!
 
 ## Lecture Slides / Notes
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 7.1 [in-person]: Discussion
-- Lecture 7.2 [live web lecture]: Jason Ackerson
-- Lecture 7.3 [live web lecture]: Brian Davis
+- Lecture 7.1 [in-person]: Guest Lecture, Academia: Joe Dvorak
+- Lecture 7.2 [live web lecture]: Guest Lecture, Industry: Jason Ackerson
+- Lecture 7.3 [live web lecture]: Guest Lecture, Government: Brian Davis
 - Lecture 7.4 [-]: No class
 
 ## Project
