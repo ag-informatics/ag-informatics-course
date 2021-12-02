@@ -73,7 +73,7 @@ Module | Weeks | What's happening?
 [5 - User Interfaces](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5) | Week 9 & 10 | Lectures 5.1-5.4, Quiz 5, Submit Lab 4, Execute Lab 
 [6 - Geometric Processing](https://github.com/ag-informatics/ag-informatics-course/tree/main/module6) | Week 11 & 12 | Lectures 6.1-6.4, Quiz 6, Submit Lab 5, Execute Lab 6, Submit Project Part 2
 [7 - Future of Ag Tech](https://github.com/ag-informatics/ag-informatics-course/tree/main/module7) | Week 13 & 14 | Lectures 7.1-7.4, Quiz 7, Submit Lab 6, Execute Lab 7
-8 - Reviews and Previews | Week 15 & 16 | Lectures 8.1-8.4, Submit Project Part 3
+[8 - Reviews and Previews](https://github.com/ag-informatics/ag-informatics-course/tree/main/module8) | Week 15 & 16 | Lectures 8.1-8.4, Submit Project Part 3
 
 
 ## Course Assessments
