@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 1, Lecture 4 <br />
+          Ankita Raturi, ankita@purdue.edu<br /></p>
+        </section>
+
+        <section>
+          <img src="img/landscape-agtech.png" />
+
+          <aside class="notes">
+            This means that the the flood of data in agriculture is being matched with a flood of technology options, for better and worse. There are many genres of software for production agriculture, with niche and specialized tools coming on the market every day. Better Food Ventures puts out these almost annual tech landscape reports, and this is their most recent ag tech landscape report that describes what's out there from tools used during production itself, as wells as tools for planning and farm management, and market access and financing technologies.
+          </aside>
+        </section>
+
+        <section>
+          <div class="r-stack">
+            <img src="img/landscape-climatetech.png" />
+            <img class="fragment" src="img/landscape-climatetech-highlightDST.png" />
+          </div>
+          <p class="cite">https://usfarmersandranchers.org/wp-content/uploads/2021/02/USFRA-Transformative-Investment-Report.pdf</p>
+
+          <aside class="notes">
+            More recently they put out a climate-smart soil tech landscape that begins to outline some tools that are available for practictioners of sustainable agriculture.
+          </aside>
+        </section>
+
+        <section>
+          <h3 class="r-big">How can we <span class="red">design effective decision support tools</span> that empower farmers and advisors to improve sustainability in agriculture?</h3>
+
+          <aside class="notes">
+            In my work, I focus on this question... and we'll talk a little bit about what we've done in my lab, what tools are out there, and how you can get involved too.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Essential Challenges</h3>
+          <br />
+          <p class="r-stack">
+          <ul class="no-bullets">
+            <li class="fragment"><b>Utility:</b> how useful is it for users (farmers, managers, workers, etc)?</li><br />
+            <li class="fragment"><b>Usability:</b> how easy is it to use?</li><br />
+            <li class="fragment"><b>Interoperability:</b> can we move data across tools, devices, systems?</li><br />
+            <li class="fragment"><b>Trust:</b> do users trust the tech with their data?</li><br />
+            <li class="fragment"><b>Resilient:</b> are the tools robust, reliable, and adaptable? Will they stand the test of time?</li><br />
+          </ul>
+          </p>
+
+          <aside class="notes">
+            So, how can we evaluate the quality of software for sustainable agriculture? I suggest starting with five characteristics of the software... first,
+
+            Excel/spreadsheets have stood the test of time.
+          </aside>
+
+        </section>
+
+        <section>
+          <h3><span class="red">Using data to<br /> learn something, <br />solve a problem,<br /> or make a decision.</span> </h3>
+        </section>
+
+        <section data-background-image="img/photos-farms-sorghum.jpeg">
+
+          <br /><br /><br />
+          <b><h8 style="background: rgba(255, 255, 255, 0.7);">"Decision Support Tools are interactive software tools used by decision-makers to help answer questions, solve problems, and support or refute conclusions."</h8></b>
+
+          <br /><br /><br />
+          <p class="cite">U.S. EPA, "Decision Support Tools - Development of a Screening Matrix for 20 Specific Software Tools". Available at: https://frtr.gov/decisionsupport/PDF/DST%20Matrix%20Report.pdf</p>
+        </section>
+
+        <section>
+          <h3>DST Examples: NRCS Worksheets</h3>
+            <img src="img/dsts-nrcs.png" width="50%" />
+
+            <ul class="no-bullets text-small">
+              <li>Data: User-inputted, work through this with an advisor.</li>
+              <li>Decisions: Conservation planning with a focus on environmental and economic tradeoffs</li>
+            </ul>
+            <br /><br />
+            <p class="cite"><a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/technical/econ/tools/?cid=nrcs143_009735">https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/technical/econ/tools/?cid=nrcs143_009735</a></p>
+        </section>
+
+        <section>
+          <h3>DST Examples: PAM Spreadsheet</h3>
+            <img src="img/dsts-pam.png" width="80%" />
+
+            <ul class="no-bullets text-small">
+              <li>Data: User-inputted, work through this with an advisor.</li>
+              <li>Decisions: Palmer amaranth management decisions and herbicide interactions to enable weed management.</li>
+            </ul>
+            <br /><br />
+            <p class="cite"><a href="https://agribusiness.uark.edu/decision-support-software.php">https://agribusiness.uark.edu/decision-support-software.php</a></p>
+        </section>
+
+        <section>
+          <h3>DST Example: Climate Stress Maps</h3>
+          <img src="img/dsts-cowstress.png" width="50%" />
+
+            <ul class="no-bullets text-small">
+              <li>Data: Public climate data, consult only</li>
+              <li>Decisions: Likelihood of heat stress on cows to enable livestock management</li>
+            </ul>
+            <br /><br />
+          <p class="cite"><a href="https://www.ars.usda.gov/plains-area/clay-center-ne/marc/docs/heat-stress/main/">https://www.ars.usda.gov/plains-area/clay-center-ne/marc/docs/heat-stress/main/</a></p>
+        </section>
+          
+        <section>
+          <h3>DST Example: Corn GDD Web Tool</h3>
+            <img src="img/dsts-corn-gdd.png" width="50%" />
+
+            <ul class="no-bullets text-small">
+              <li>Data: public data, research data, user input data</li>
+              <li>Decisions: growing degree day trend projections to enable activity planning, climate risk assessment, and marketing.</li>
+            </ul>
+            <br /><br />
+          <p class="cite"><a href="https://mrcc.purdue.edu/U2U/gdd/">https://mrcc.purdue.edu/U2U/gdd/</a></p>
+        </section>
+
+        <section>
+          <h3>Comet-Farm Modeling Tool</h3>
+              <img src="img/dsts-comet-farm.png" width="50%" />
+
+            <ul class="no-bullets text-small">
+              <li>Data: public data, research data, user input data</li>
+              <li>Decisions: farm management history enables whole farm carbon and GHG accounting.</li>
+            </ul>
+            <br /><br />
+          <p class="cite"><a href="https://www.comet-farm.com">https://www.comet-farm.com</a></p>
+
+          <aside class="notes">
+            But I'm not here to provide a literature review of every DST out there, but to provide a framework by which you can think about DST efficacy, figure out a DSTs place in your toolbox, and get involved in designing better DSTs.
+          </aside>
+        </section>
+
+                <section>
+          <h3>Factors of DST Uptake & Use</h3>
+          <img src="img/dst-rose-uptake-model.jpg" width="65%" />
+          <br /><br />
+          <p class="cite">Rose et al., 2016, "Decision support tools for agriculture: Towards effective design and delivery". Available: https://www.sciencedirect.com/science/article/pii/S0308521X16305418</p>
+
+          <aside class="notes">
+            This model of DST uptake and ultimately use, is a result of a survey of British farmers and advisors around their use of decision support tools. This graph....
+          </aside>
+        </section>
+
+        <section>
+          <h3>Spatio-temporal scope of decisions</h3>
+          <img src="img/dst-scope.png" width="70%" />
+          <p class="cite">Rossie et al., 2012, "Helping farmers face the increasing complexity of decision-making for crop protection", Available: https://www.jstor.org/stable/43872334</p>
+
+          <aside class="notes">
+            Rossi and his colleagues describe in the context of crop potection: "Strategic decisions involve one to several years both at farming and crop levels. Tactical management decisions are made day-by-day, or within a day, in response to what is happening at the crop level. Operational decisions involve quick response to unpredicted events at the crop or within-crop."
+          </aside>
+        </section>
+
+        <section>
+          <h3>Information delivery mechanisms</h3>
+          <img src="img/dst-mechanisms.png" width="70%" />
+          <p class="cite">Rossie et al., 2012, "Helping farmers face the increasing complexity of decision-making for crop protection", Available: https://www.jstor.org/stable/43872334</p>
+
+          <aside class="notes">
+            This same group of researchers have described how optimal information delivery mechanisms for different kinds of spatial scales and directionality of the information... warning services that are more along the lines of extension materials, where the information provider is pushing information to users. For example, a map displaying disease spread. IoT systems, or on-site devices, that are typically comprised of an in-field sensor and data collection tool are great for when you need to collect local data. And finally, the sweet spot for the genre of decision support tools that I work on, is really the when users want to be able to "pull" site-specific information for operational, tactical, and strategic decision making.
+          </aside>
+        </section>
+
+        <section>
+          <h3>The DST Dream!</h3>
+          <img src="img/landscape-data-integration.png" />
+          <p class="cite">https://usfarmersandranchers.org/wp-content/uploads/2021/02/USFRA-Transformative-Investment-Report.pdf</p>
+        </section>
+
+        <section data-background-image="img/photo-crimson-clover.jpg">
+          <h3>Case Study: Cover Crop Decision Support Tools</h3>
+        </section>
+
+        <section>
+          <h3>Soil Health Decision Space</h3>
+          <img src="img/dashi-soil-management.jpg" width="75%" />
+
+          <aside class="notes">
+            Consider this decision space. Let's focus on one of these management practices: cover crops.
+          </aside>
+        </section>
+
+        <section data-background-image="img/remsberg_13042315658.JPG">
+          <h3>Cover Crops Services</h3>
+          <div style="background: rgba(255, 255, 255, 0.3);">
+            <ul class="no-bullets">
+              <li>Erosion protection</li>
+              <li>Nutrient cycling</li>
+              <li>Good grazing</li>
+              <li>Improved water quality</li>
+              <li>Pollinator habitats</li>
+              <li>Increased soil organic matter</li>
+              <li>...and more.</li>
+            </ul>
+          </div>
+
+          <br /><br />
+          <p class="cite">OXFORD, MARYLAND - Aerial view of cover crops sitting next to the Chesapeake Bay © Edwin Remsberg, SARE Cover Crop Image Library</p>
+
+          <aside class="notes">
+            Cover crops provide a range of ecological services. 
+
+            Management complexity incurs a cognitive burden as you balance crop genetics, environmental conditions, cultural practices, and overall system management. 
+          </aside>
+        </section>
+
+        <section>
+          <h8>Effective Cover Cropping is Knowledge Intensive</h8>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrops-book.jpg" width="40%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-phz.jpg" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-soil.png" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-usda.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-chart.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-smartmix.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-midwest-old.png" width="80%" />
+          </div>
+
+          <aside class="notes">
+            Many tools [species, seed rate, smart mix etc]
+
+            Shortcomings: not site specific, difficult to use, proprietary, siloed data
+          </aside>
+        </section>
+
+
+        <section data-background-image="img/photos-farms-corn.jpeg">
+          <h3 class="r-big">"Don't bother corn farmers with potato questions"</h3>
+
+          <br /><br />
+          <p class="cite">In conversation w/Chris, MyFarms.com</p>
+
+          <aside class="notes">
+            Someone once cautioned me to not bother corn farmers with potato questions. And that's the point of decision support: timely, specific guidance.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Communities of Practice</h3>
+
+          <img src="img/covercrop-communities.png" />
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Cover Crop DST User Groups</h3>
+
+          <img src="img/covercrop-usergroups.png" />
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Desire: Full-Stack Decision Making</h3>
+
+          <ol>
+            <li class="red">Select species</li>
+            <li class="red">Create mixes</li>
+            <li class="red">Calculate seeding rates</li>
+            <li>Cost-share & economic evaluation</li>
+            <li>Plan termination</li>
+            <li>Nutrient management</li>
+            <li>Weed management</li>
+            <li>Assess performance of cover crops</li>
+          </ol>
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Goal: Modular Architecture</h3>
+
+          <img src="img/covercrop-dst-modules.png" width="80%" />
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>What leads to *effective* cover crop decision support?</h3>
+          <br />
+          <div class="container">
+            <div class="col">
+              <ul class="no-bullets">
+                <li><h3>Data</h3></li>
+                <li>High quality regional cover crop performance data + local field conditions</li><br /><br />
+                <li class="red">Behind the scenes</li>
+              </ul>
+            </div>
+          
+            <div class="col fragment">
+              <ul class="no-bullets">
+                <li><h3>Design</h3></li>
+                <li>An improved user experience that reduces information overload</li><br /><br />
+                <li class="red">What you see on the screen</li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Existing Data & Tools</h3>
+
+          <img src="img/covercrop-existing.png" />
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Data Curation</h3>
+          <p>50+ cover crop experts: Farmers, crop advisors, researchers, and more.</p>
+          <img src="img/covercrop-dataverification.png" width="60%" />
+          
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>User-Centered Design</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrop-design.png" />
+
+            <img class="fragment fade-in-then-out" src="img/covercrop-ux.png" />
+
+            <img class="fragment fade-in-then-out" src="img/covercrop-lofi.png" />
+
+          </div>
+          
+
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Species Selector Tool: NECCC</h3>
+          <img src="img/covercrop-tool-new.gif" />
+          <br />
+          <p class="cite">http://covercrop.tools/</p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h3>Partners in the Midwest: MCCC Tool</h3>
+
+          <img src="img/covercrop-mccc.png" width="65%" />
+          <br />
+          <p class="cite">https://mccc.msu.edu/covercroptool/</p>
+
+
+          <aside class="notes">
+            We did not build this but this has Midwest data that is more relevant to you.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Seeding Rate Calculator</h3>
+
+          <div class="r-stack">
+            <img src="img/covercrop-src-lofi.png" />
+
+            <img class="fragment" src="img/covercrop-src-hifi.png" />
+          </div>
+
+          <p>MCCC + NECCC, a unified design effort. <br />Tool ETA: 2022.</p>
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section data-background-image="img/photos-farms-rye.jpeg">
+          <h3><span style="background: rgba(255, 255, 255, 0.7);">So what next?</span></h3>
+        </section>
+
+        <section>
+          <h3>Co-designing Decision Tools</h3>
+
+          <p class="red">How can we better support farmers and farm advisors?</p>
+
+          <p class="text-small">Imagine your at a local farm. You’re in the field, it’s a great day, but your grower has a really hard problem that they’ve called out here for. As you're talking, you get to the point where you whip out your phone and do what? Do you calculate something? Look for information about what you see in the field? Draw something? <span class="red"><b>What is it you want this digital portal to provide?</span></b><br /><br />Draw out a storyboard and share it with the group!</p>
+
+          <img src="img/lofi-mockup.jpg" width="50%" />
+        </section>
+
+        </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
