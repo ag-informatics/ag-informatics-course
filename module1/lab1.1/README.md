@@ -13,7 +13,7 @@ Watch the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/. We will
 - `git push` to send all my local changes to the remote repository.
 
 Setup Github:
-- If you haven't already, create an account using your Purdue ID on www.github.com. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
+- If you haven't already, create an account on www.github.com. If you already have a GitHub account, feel free to use it. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
 - Install github on your computer using this tutorial: https://github.com/git-guides/install-git
 
 ## Use Git to access class materials (we'll do this in-class too!)
