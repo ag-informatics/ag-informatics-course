@@ -38,7 +38,7 @@ In particular, we will focus on the design of a **Product Availability Page** th
 ## Create Wireframes
 1. You can use a whiteboarding app like [Miro](miro.com/), layout a fake "web page" in Microsoft Powerpoint or Google Slides, or a wireframing tool like [Balsamiq](https://balsamiq.com/) or [Pencil](https://pencil.evolus.vn/).
 
-2. Create mockup of the web page, based on your 3 Crazy8 Sketches, that demonstrate how you would layout your ideal farm product availability.
+2. Create 3 mockups of the web page, based on your 3 Crazy8 Sketches, that demonstrate how you would layout your ideal farm product availability.
 
 3. Save your solution as a PDF titled "solution-mockup" and place it in your Lab1 folder. Save your work to your Github Repository.
 
