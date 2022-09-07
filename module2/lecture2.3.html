@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 2, Lecture 3 <br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul> 
+            <li>The value of exploration</li>
+            <li>Good data visualizations</li>
+            <li>Data storytelling</li>
+          </ul>
+        </section>
+
+         <section>
+          <p class="r-fit-text">
+            "The greatest value <br />
+            of a picture<br /> 
+            is when it forces us to notice<br /> 
+            what we never expected to see."
+          </p>
+          
+          <br /><br />
+          <p class="cite">John W. Tukey, Exploratory Data Analysis, 1977</p>
+        </section>
+
+        <section>
+          <h3>The Datasaurus Dozen</h3>
+          <p><a href="https://www.autodesk.com/content/dam/autodesk/www/autodesk-reasearch/Publications/pdf/The%20Datasaurus%20Dozen.zip">Download this dataset</a></p>
+          <p>Open a Jupyter notebook.</p>
+          <p>Let's inspect (plot, describe)!</p>
+          <p class="red">What do you notice?</p>
+        </section>
+
+        <section>
+          <h3>The Value of Exploration</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/graphs-dinosequential.gif" />
+            <img class = "fragment fade-in-then-out" src="img/graphs-boxviolin.gif" />
+            <img class = "fragment fade-in" src ="img/graphs-anscombe.png" />
+          </div>
+
+          <br /><br />
+          <p class="cite">Matejka & Fitzmaurice, 2017, https://www.autodesk.com/research/publications/same-stats-different-graphs. <br /> 
+          Cairo, 2016, http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html</p>
+        </section>
+
+        <section>
+          <h3>Good Data Visualizations are...</h3>
+          <ol class="fragment">
+            <li>Truthful: Evidence based.</li>
+            <li>Functional: Useful!</li>
+            <li>Beautiful: Aesthetic & User-centered.</li>
+            <li>Insightful: Reveals things that are hard to see.</li>
+            <li>Enlightening: The path to knowledge.</li>
+          </ol>
+          <br /><br />
+          <p class="cite">Alberto Cairo, 2016, A Truthful Art.</p>
+        </section>
+
+        <section>
+          <h3>A Truthful Viz</h3>
+          <img src="img/graphs-ipcc2021.png" width ="80%"/>
+          <p class="text-small">Fig SPM.1: History of global temperature change and causes of recent warming.
+            <br />
+          <a href="https://catalogue.ceda.ac.uk/uuid/76cad0b4f6f141ada1c44a4ce9e7d4bd">Download the data!</a></p>
+        
+          <br />
+          <p class="cite">IPCC Summary for Policy Makers IPCC AR6WGI, https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf</p>
+        </section>
+
+        <section>
+          <h3>Viz Function: Data Type?</h3>
+          <a href="https://www.data-to-viz.com/"><img src="img/graphs-datatoviz.png" /></a>
+          <p class="cite"><a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a></p>
+        </section>
+
+        <section>
+          <h3>Viz Function: Data structure?</h3>
+          <a href="https://datavizproject.com/#"><img src="img/graphs-datavizproject.png" /></a>
+          <p class="cite"><a href="https://datavizproject.com/#">https://datavizproject.com/#</a></p>
+        </section>
+
+        <section>
+          <h3>Viz Function: What to Highlight?</h3>
+          <a href="https://datavizcatalogue.com/search.html"><img src="img/graphs-datavizcat.png" width="50%" /></a>
+          <p class="cite"><a href="https://datavizcatalogue.com/search.html">https://datavizcatalogue.com/search.html</a></p>
+        </section>
+
+        <section>
+          <h3>Python Possibilities</h3>
+          <a href="https://www.python-graph-gallery.com/"><img src="img/graphs-datavizpython.png" width="70%" /></a>
+          <p class="cite"><a href="https://www.python-graph-gallery.com/">https://www.python-graph-gallery.com/</a></p>
+        </section>
+
+        <section>
+          <h3>Python Plotting Libraries</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td><a href="https://matplotlib.org/">Matplotlib</a></td>
+                <td>Utility plotting library.</td>
+              </tr>
+              <tr>
+                <td><a href="https://seaborn.pydata.org/index.html#">SeaBorn</a></td>
+                <td>'Prettier' matplotlib.</td>
+              </tr>
+              <tr>
+                <td><a href="https://plotnine.readthedocs.io/en/stable/#">Plotnine</a></td>
+                <td>ggplot2 style grammar.</td>
+              </tr>
+              <tr>
+                <td><a href="https://bokeh.org/">Bokeh</a></td>
+                <td>Interactive visualizations.</td>
+              </tr>
+              <tr>
+                <td><a href="https://geopandas.org/">Geopandas</a> & <a href="https://residentmario.github.io/geoplot/index.html">Geoplot</a></td>
+                <td>Maps maps maps.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Functional?</h3>
+          <p><a href="https://www.ers.usda.gov/data-products/food-expenditure-series/interactive-charts-food-expenditures/">ERS Food Expenditures Charts</a></p>
+        </section>
+
+        <section>
+          <h3>Beautiful?</h3>
+          <img src="img/graphs-beaut.png" width="90%" />
+          <p><a href="https://stephanieevergreen.com/wp-content/uploads/2020/12/EvergreenDataVizChecklist.pdf">Data Visualization Checklist</a></p>
+          <br />
+          <p class="cite">Green & Emery, 2015, Data Visualization Checklist https://stephanieevergreen.com/data-visualization-checklist/</p>
+        </section>
+
+        <section>
+          <h3>Insightful & Enlightening?</h3>
+          <img src="img/graphs-calorie-gdp.png" width="80%" />
+          <p class="cite">Roser & Ritchie. https://ourworldindata.org/food-supply#the-link-between-food-supply-and-prosperity/p>
+        </section>
+
+        <section>
+          <h3>Storytelling with Data</h3>
+          <p><a href="https://www.npr.org/sections/money/2015/05/18/404991483/how-machines-destroy-and-create-jobs-in-4-graphs">How machines destory (and create!) jobs, in 4 graphs</a></p>
+        </section>
+
+        <section>
+          <h3>Activity: Data Storytelling</h3>
+          <div class="fragment">
+            <h6>Explore a dataset.</h6>
+            <ul class="no-bullets text-small">
+              <li><a href="https://www.ers.usda.gov/media/0lopunto/farmsectorindicators_september2021.xlsx">Farm sector financial indicators: 2014 - 2021.</a> Also: <a href="https://www.ers.usda.gov/data-products/farm-income-and-wealth-statistics/data-files-us-and-state-level-farm-income-and-wealth-statistics/">Dataset info</a></li>
+              <li><a href="https://www.ers.usda.gov/webdocs/DataFiles/50606/monthly_sales.xlsx?v=4634.8">Monthly sales of food at home & away from home: 1997 to 2021.</a> Also: <a href="https://www.ers.usda.gov/data-products/food-expenditure-series/">Dataset info.</a></li>
+              <li><a href="https://www.ers.usda.gov/media/0pkn0h41/monthlywicparticipation.xlsx">Average monthly participation in the Women, Infants, and Children (nutrition) program, 1980 to 2020.</a> Also: <a href="https://www.ers.usda.gov/topics/food-nutrition-assistance/wic-program/">Dataset info.</a></li>
+            </ul>
+          </div>
+          <div class="fragment">
+            <h6><a href="https://datatherapy.files.wordpress.com/2018/10/finding-a-story.pdf">Pick a story type.</a></h6>
+            <ul class="no-bullets text-small">
+              <li><b>Factoid (Outlier)</b>: Why does this data point stand out from the others?</li>
+              <li><b>Interaction (Correlation)</b>: Why do these data change with each other?</li>
+              <li><b>Comparison</b>: What is the meaningful difference between these parts?</li>
+              <li><b>Change</b>: What made this part of the data change from this to that?</li>
+              <li><b>Personal</b>: How does this data connect to the lives of the audience?</li>
+            </ul>
+            <p><a href="https://datatherapy.files.wordpress.com/2014/07/finding-a-story-worksheets-v1-1.pdf">Fill out the appropriate story worksheet.</a></p>
+          </div>
+
+          <div class="fragment">
+            <h6>Mock up a Data Viz.</h6>
+            <p>Plot, infographic, or data dashboard.</p>
+          </div>
+        </section>
+
+        <section>
+            <h3>Learn More:</h3>
+          <ul class = "no-bullets"> 
+            <li><a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Same Stats, Different Graphs</a></li>
+            <li><a href="http://www.thefunctionalart.com/">Alberto Cairo. A Functional Art / A Truthful Art</a></li>
+            <li><a href="http://www.stat.cmu.edu/~hseltman/309/Book/chapter4.pdf">Howard Seltman, 2018. Exploratory Data Analysis</a></li>
+          </ul>
+        </section>
+        
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li><p>Thursday's lecture is an <b>in-person</b> guest lecture.<br />
+                <a href="https://github.com/ag-informatics/module1/lab1">https://github.com/ag-informatics/ag-informatics-course/tree/main/module2/lab2</a></p></li>
+
+           <li>Lab is due on Monday @ 5pm<br />
+            <a href="https://purdue.brightspace.com">https://purdue.brightspace.com</a></p></li>
+          <ul>
+
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Introduction to Agricultural Informatics Course</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName" rel="cc:attributionURL">Ankita Raturi, Purdue University</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+            </li>
+
+          <li class="text-small align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+            </li>
+
+          <li class="text-small align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+            </li>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
