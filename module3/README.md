@@ -7,7 +7,7 @@ Source code for the slides is in this folder. The slides are live here:
 - Lecture 3.1 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.1.html
   -  Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/. This tutorial covers some of the things we will do in this lab, plus a few extra things.
 - Lecture 3.2 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.2.html
-- Lecture 3.3 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.3.htmlå
+- Lecture 3.3 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.3.html
  
 ## Labs
 
