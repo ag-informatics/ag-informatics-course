@@ -62,8 +62,8 @@ Module | Weeks | What's happening?
 [2 - Data Exploration](https://github.com/ag-informatics/ag-informatics-course/tree/main/module2) | Week 3 & 4 | Lectures 2.1-2.4, Quiz 2, Submit Lab 1, Execute Lab 2
 [3 - Web Applications](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3) | Week 5 & 6 | Lectures 3.1-3.4, Quiz 3, Submit Lab 2, Execute Lab 3, Submit Project Part 1
 [4 - Data Management](https://github.com/ag-informatics/ag-informatics-course/tree/main/module4) | Week 7 & 8 | Lectures 4.1-4.4, Quiz 4, Submit Lab 3, Execute Lab 4
-[5 - User Interfaces](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5) | Week 9 & 10 | Lectures 5.1-5.4, Quiz 5, Submit Lab 4, Execute Lab 
-[6 - Geometric Processing](https://github.com/ag-informatics/ag-informatics-course/tree/main/module6) | Week 11 & 12 | Lectures 6.1-6.4, Quiz 6, Submit Lab 5, Execute Lab 6, Submit Project Part 2
+[5 - User Interfaces](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5) | Week 9 & 10 | Lectures 5.1-5.4, Quiz 5, Submit Lab 4, Execute Lab, Submit Project Part 2 
+[6 - Geometric Processing](https://github.com/ag-informatics/ag-informatics-course/tree/main/module6) | Week 11 & 12 | Lectures 6.1-6.4, Quiz 6, Submit Lab 5, Execute Lab 6,
 [7 - Future of Ag Tech](https://github.com/ag-informatics/ag-informatics-course/tree/main/module7) | Week 13 & 14 | Lectures 7.1-7.4, Quiz 7, Submit Lab 6, Execute Lab 7
 [8 - Reviews and Previews](https://github.com/ag-informatics/ag-informatics-course/tree/main/module8) | Week 15 & 16 | Lectures 8.1-8.4, Submit Project Part 3
 
@@ -83,7 +83,7 @@ Assessment | Description | Due Dates | Weight
 Quizzes | Due every two weeks on the Monday in week 1 of each module | | 5% total, (your lowest score is dropped)
 Labs | Due every two weeks on the Mondays following the end of each module| | 5% x 5 labs, Lab 4 & 5 are 10% |
 [Project Part 1](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3) | Concept motivation: select 3 papers and write a combined reflection on an agricultural informatics problem | 9/12/2022 | 5%
-[Project Part 2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part2.pdf) | Concept proposal: a short proposal of a research/development concept | 10/10/2022 | 15%
+[Project Part 2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part2.pdf) | Concept proposal: a short proposal of a research/development concept | 10/24/2022 | 15%
 [Project Part 3.1](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part3.pdf) | Concept presentation of your proposed approach/solution in class during lecture and lab time (same day submission). | 11/30/2022 | 10%
 [Project Part 3.2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part3.pdf) | Concept writeup to be submitted online | 12/08/2022 | 20% 
 
