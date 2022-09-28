@@ -9,7 +9,9 @@ Source code for the slides is in this folder. The slides are live here:
   - Note, the video comes with accompanying notes that you can refer to instead: https://cs50.harvard.edu/web/2020/notes/4/
 - Lecture 4.2 [video]: Instead of in-person lecture on Oct 5, watch this video to learn more about how a research farm in the UK, Rothamstead Research uses a range of tools, from github to FarmOS to manage their agricultural research proejcts and data: https://www.youtube.com/watch?v=pa32Ll3DPj8 
 - Lecture 4.3 [no class]: October Break on Oct 10.
-- Lecture 4.4 [in-person]: Coming soon.
+- Lecture 4.4 [in-person]: NOTE A QUICK SWITCH:
+    - Oct 12 (lecture time): will be lab time instead
+    - Oct 13 (lab time): FIELD TRIP TO ACRE!
  
 ## Labs
 
