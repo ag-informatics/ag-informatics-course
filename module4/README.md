@@ -4,7 +4,7 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 4.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module4/lecture4.1.html. Please note I'm giving this lecture a week early since I'm out of town on Oct 4!
+- Lecture 4.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module4/Lecture4.1.html. Please note I'm giving this lecture a week early since I'm out of town on Oct 4!
   - Follow along with the CS50 video on SQL, Models, and Migrations: https://cs50.harvard.edu/web/2020/weeks/4/
   - Note, the video comes with accompanying notes that you can refer to instead: https://cs50.harvard.edu/web/2020/notes/4/
 - Lecture 4.2 [video]: Instead of in-person lecture on Oct 6, watch this video to learn more about how a research farm in the UK, Rothamstead Research uses a range of tools, from github to FarmOS to manage their agricultural research proejcts and data: https://www.youtube.com/watch?v=pa32Ll3DPj8 
