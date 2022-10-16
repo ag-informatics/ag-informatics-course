@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmnotes App</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'farmnotes/style.css' %}">
+</head>
+</head>
+
+<body>
+	<h1>{{ observation.field }} </h1>
+    <h2>Observation: {{ observation.observation_title }}</h2>
+    <p>{{ observation.observation_content }}</p>
+    <p>{{ observation.author }}</p>
+    <p>{{ observation.observation_date }}</p>
+    <p>{{ observation.observation_type }}</p>
+</body>
+</html>
