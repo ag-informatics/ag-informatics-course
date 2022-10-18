@@ -1,0 +1,317 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AEC 500/BAE 599 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          joe.dvorak@uky.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <img src="img/BAE-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 6, Lecture 1 <br />
+          Joe Dvorak, joe.dvorak@uky.edu<br />
+          <span>Fall 2021</span></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Why do we care about using geometric or spatial data?</li>
+            <li>How do computers represent geometry?</li>
+            <li>What are common libraries for handling geometric data?</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Why?</h3>
+          <p>We live in a multidimensional world!</p>
+          <p>Designs that address some of humanity's most critical problems require handling 2D and 3D information.</p>
+          <ul>
+            <li>Supply Chain Logistics</li>
+            <li>Improvements of the Natural Environment</li>
+            <li>Robotics and automation</li>
+          </ul>
+          <p>Less critcal, but still valuable systems require 2D and 3D data as well.</p>
+          <ul>
+            <li>Mapping, Location Tracking</li>
+            <li>Games and virtual worlds</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Logistics</h3>
+          <h4>Routing</h4>
+          <p>How do we get from point A to point B?</p>
+          <p class="fragment"><i>We have to know the locations!</i></p>
+          <img src="img/800px-Logistic.svg.png" width="50%"/>
+          <img class="fragment" src="img/337px-MAPS.ME_Android_App_v9.4.4_Screenshot_with_Car_Route_Built.jpg"  width="20%"/>
+          <p class="cite"><a href="https://commons.wikimedia.org/wiki/File:MAPS.ME_Android_App_v9.4.4_Screenshot_with_Car_Route_Built.jpg">Eugene Lisovskiy</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
+        </section>
+
+        <section>
+          <h3>Logistics</h3>
+          <h4>Storage</h4>
+          <p>Where do we put things?</p>
+          <img class="r-stretch" src="img/storage.jpg"/>
+        </section>
+
+        <section>
+          <h3>Precision Agriculture and Environmental Monitoring</h3>
+          <img src="img/3090_0604_SLRmean.png" width="50%"/>
+        </section>
+
+        <section>
+          <h3>Robotics</h3>
+          <p>Autonomous Motion Control Requires knowing where everything is.</p>
+          <img src="img/Tripteron_robot.jpg"/>
+        </section>
+
+        <section>
+          <h3>Automated and Autonomous Vehicles</h3>
+          <p>We have to know the locations of obstacles and plan a path through them.</p>
+          <img src="img/Autonomous-driving-Barcelona.jpg" width="50%"/>
+          <p class="cite"><a href="https://www.wikispeedia.org/wordpress/the-future-of-autonomous-vehicles/">Drivasvalencia</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, via wikispeedia.org</p>
+        </section>
+
+        <section>
+          <h3>Computing</h3>
+          <p>To operate in all of these applications, computers must process geometric data.</p>
+          <p>This requires models that represent the real world.</p>
+          <p>These models must capture the rules of geometry.</p>
+          <img src="img/oop-animal-polymorphism.png" width="40%"/>
+          <p>All models are approximations and not necessarily perfect!</p>
+        </section>
+
+        <section>
+          <h3>Challenges of Computing - Example</h3>
+          <p>Consider the image below</p>
+          <img class="r-stretch" src="img/pointInBox.png" />
+          <p>Is the point inside or outside the box?</p>
+          <p>How long did it take to figure that out?</p>
+        </section>
+
+        <section>
+          <h3>Challenges of Computing - Example</h3>
+          <p>Try to think of a rule you could use to check if the point is inside or outside the box.</p>
+          <img class="r-stretch" src="img/pointsAroundBox.png" />
+          <p>Take 5 minutes and try to figure out a rule, programming or math that could be used.</p>
+        </section>
+
+        <section>
+          <h3>Challenges of Computing - Example</h3>
+          <p>Let's check with a different square</p>
+          <img class="r-stretch" src="img/pointsAroundTiltedBox.png" />
+          <p>Do your rules still work?</p>
+          <p>Take 5 minutes to double check your rule or come up with new ones.</p>
+        </section>
+
+        <section>
+          <h3>Challenges of Computing - Example</h3>
+          <p>How about a shape that we might see in the real world?</p>
+          <img class="r-stretch" src="img/pointsAroundPolygon.png" />
+          <p>Do your rules still work?</p>
+          <p>Take 5 minutes and see if you can come up with a set of rules for this case.</p>
+        </section>
+
+        <section>
+          <h3>Challenges of Computing</h3>
+          <p>We are JUST trying to figure out if a point is inside or outside a boundary.</p>
+          <p>Why is this so difficult? We do can it easily with our eyes.</p>
+          <p>Geometry gets complex when we want to work with very precise rules like programming and math. Fortunately, people have created libraries and models that help us with this.</p>
+          <p>Aren't you glad we can use them?!</p>
+          <img class="r-stretch" src="img/pointsAroundPolygon.png" />
+        </section>
+
+        <section>
+          <h3>Challenges of Computing</h3>
+          <p>Other difficult procedures:</p>
+          <ul>
+            <li>Area for complex shapes</li>
+            <li>Splitting shapes</li>
+            <li>Combining shapes</li>
+            <li>Determing distances between complex shapes</li>
+            <li>Calculating overlapping regions</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>The models we use for geometry</h3>
+          <p>Geometric Objects</p>
+          <img class="r-stretch" src="img/geometric objects.png" />
+        </section>
+
+        <section>
+          <h3>There are other objects to implement if you want true curves</h3>
+          <p>Many geometric operations can be approximated with straight lines and polygons so curves are not always supported.</p>
+          <img class="r-stretch" src="img/Other_geometric_objects.png" />
+        </section>
+
+        <section>
+          <h3>Collections</h3>
+          <p>Some applications want to work with groups of geometric objects</p>
+          <div class="container">
+            <div class="col">
+              <h6>Examples</h6>
+              <ul>
+                  <li>Point Cloud</li>
+                  <li>Lines (Ex: Field Paths)</li>
+                  <li>Polygons (Ex: Sets of Fields)</li>
+              </ul>
+            </div>
+            <div class="col">
+              <img src="img/Combined 3D model.png"  width="50%"/>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Going to 3D</h3>
+          <p>Points are 0D.</p>
+          <p>Lines are 1D, and polygons are 2D.</p>
+          <p>Polyhedrons and Spheres are 3D.</p>
+          <img class="r-stretch" src="img/227px-Small_stellated_dodecahedron.png" />
+          <p class="cite"><a href="https://en.wikipedia.org/wiki/File:Small_stellated_dodecahedron.png">Image </a>created by Robert Webb's <a href="http://www.software3d.com/Stella.php">Stella Software</a></p>
+          <p>We will focus on 2D in this class.</p>
+        </section>
+
+        <section>
+          <h3>A note about Points</h3>
+          <p>Two common methods to describe a location</p>
+          <ul>
+            <li>Cartesian (x-y plane)</li>
+            <li>Latitude, Longitude (on a planet)</li>
+          </ul>
+          <p><img src="img/Earth_(16530938850).jpg" width = "50%" /></p>
+          <p>Not equivalent!</p>
+          <p class="cite"><a href="https://commons.wikimedia.org/wiki/File:Earth_(16530938850).jpg">Kevin Gill from Nashua, NH, United States</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0">CC BY-SA 2.0</a>, via Wikimedia Commons</p>
+        </section>
+
+        <section>
+          <h3>Change in Distance</h3>
+          <div class="container">
+            <div class="col">
+              <h4>Prudhoe Bay, Alaska</h4>
+              <p>70°19'31.8"N, 148°42'41.0"W</p>
+              <p><b>+1 degree latitude: 112 km</b></p>
+              <p>(111 km North, 2.6 km West)</p>
+              <p><b>+1 degree longitude: 37.8 km</b></p>
+              <p>(570 m North, 37.8 km East)</p>
+            </div>
+            <div class="col">
+              <h4>Honolulu, Hawaii </h4>
+              <p>21°18'25.0"N, 157°51'30"W</p>
+              <p><b>+1 degree latitude: 111 km</b></p>
+              <p>(111 km North, 820 m East)</p>
+              <p><b>+1 degree longitude: 104 km</b></p>
+              <p>(104 km North, 1.1 km East)</p>
+            </div>
+          </div>
+          <p><a href="https://geodesy.noaa.gov/NCAT/">NGS Coordinate Conversion and Transformation Tool (NCAT)</a></p>
+        </section>
+
+        <section>
+          <h3>Use Libraries!</h3>
+          <p><a href="https://shapely.readthedocs.io/en/latest/manual.html">Shapely</a></p>
+          <p><a href="https://shapely.readthedocs.io/en/latest/manual.html#other-transformations">Shapely and PyProj</a> for Coordinate Transforms</p>
+          <p>To transform into Cartesian Coordinates</p>
+          <ul>
+            <li>WGS84 (GPS or Lat/Long Coordinates): EPSG:4326</li>
+            <li>UTM Zone: 16N for Indiana, Central and Western Kentucky: EPSG:32616</li>
+          </ul>
+          <p>Gotcha: Sometimes latitude bands are lettered. Kentucky and Southern Indiana are in band S, and Northern Indiana is in band T. The "N" in 16N from EPSG:32616 is for North, instead!</p>
+        </section>
+        <section>
+          <h3>Shapely Example</h3>
+          <p>Break this field into tractor passes</p>
+          <p><img src="img/Odd Field.png" /></p>
+          <p>Blue line represents your desired first pass.</p>
+        </section>
+
+        <section>
+          <h3>Paths on a Field with Shapely</h3>
+          <p><img src="img/Paths on Odd Field.png" /></p>
+          <p><img src="img/AB lines for Odd Field.png" /></p>
+        </section>
+
+        <section>
+          <h3>Homework</h3>
+
+          <ul class="no-bullets">
+            <li><p>We will work with Shapely this week! To be released after class.</p></li>
+
+           <li>The quiz for module 6 will be posted soon.<br />
+          <ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Joe Dvorak, University of Kentucky. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
