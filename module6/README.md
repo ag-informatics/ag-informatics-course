@@ -9,20 +9,9 @@ Source code for the slides is in this folder. The slides are live here:
 - Lecture 6.3 [live web lecture]: 
 - Lecture 6.4 [live web lecture]: 
 
-
-
-## Project
-
-Project Part 2, Proposed Approach out now! Here is the [project information](../project/Project-part2.pdf).
-
-**Project Part 2 is due: 11/22/2021**
-
-
 ## Labs
 
 Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders.
-
-**Lab 6 is due: 11/15/2021** 
 
 Academic Integrity Reminder: Make sure your lab Github repositories are "private" for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
 
@@ -30,8 +19,6 @@ Academic Integrity Reminder: Make sure your lab Github repositories are "private
 ## Quiz
 
 The quiz for this module is available via Brightspace. 
-
-**Quiz 6 is due: 11/15/2021**
 
 
 ## License
