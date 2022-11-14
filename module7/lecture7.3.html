@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 7, Lecture 1 <br />
+          Ankita Raturi, ankita@purdue.edu<br /></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Quick Primer: Software Architecture</li>
+            <li>Mapping your path in Agricultural Informatics</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Agricultural <span class="red">Informatics</span></h3>
+
+          <img src ="img/icon-plant-data.png" width="10%" />
+          <div class="container">
+            <div class="col">
+              <ul class="no-bullets" >
+                <li>Design, build, and use</li>
+                <li>*digital technology*</li>
+                <li>to enable</li>
+                <li>*people* to...</li>
+              </ul>
+            </div>
+            
+            <div class = "fragment" class="col">
+              <ul class="no-bullets" >
+                <li>grow and distribute food,</li>
+                <li>manage natural systems,</li>
+                <li>coordinate and organize work, &</li>
+                <li>strategize for food system resilience.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Informatics Disciplines</h3>
+
+          <ul class="no-bullets">
+
+            <li>Human-Computer Interaction & Design</li>
+
+            <li>Embedded Systems and IoT</li>
+
+            <li>Computer Vision and Sensing</li>
+
+            <li>Remote Sensing and GIS</li>
+
+            <li>Data Science and Data Modeling</li>
+
+            <li>Machine Learning and AI</li>
+
+            <li>Web Development and Software Engineering</li>
+
+            <li>Ethics, Information Theory, Law</li>
+            
+          </ul>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Informatics Disciplines</h3>
+
+          <ul class="no-bullets">
+
+            <li class="red">Human-Computer Interaction & Design</li>
+
+            <li>Embedded Systems and IoT</li>
+
+            <li>Computer Vision and Sensing</li>
+
+            <li>Remote Sensing and GIS</li>
+
+            <li class="red">Data Science and Data Modeling</li>
+
+            <li>Machine Learning and AI</li>
+
+            <li class="red">Web Development and Software Engineering</li>
+
+            <li>Ethics, Information Theory, Law</li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3>What is Software Engineering?</h3>
+          <p><span class="red">Building</span> (design, implement, test, maintain) <span class="red">useful and usable software.</span></p>         
+        </section>
+
+        <section>
+          <h3>Phases of Software Engineering</h3>
+
+          <ul class="no-bullets">
+            <li class="fragment">
+              Requirements Elicitation<br />
+              <span class="text-small">user research, domain understanding, articulate scope and goal.</span>
+            </li>
+            <li class="fragment">
+              Software Design & Architecture<br />
+              <span class="text-small"> exploring the problem and solution space, coming up with a plan.</span>
+            </li>
+            <li class="fragment">
+              Software Implementation<br />
+              <span class="text-small"> preparing data, writing code, integrating features, deployment.</span>
+            </li>
+            <li class="fragment">
+              Software Testing<br />
+              <span class="text-small"> bug hunting, user testing, did you build what you said you were going to?</span>
+            </li>
+            <li class="fragment">
+              Maintenance<br />
+              <span class="text-small"> updates, bug fixes, new features, user support, life cycle management.</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Phases of Software Engineering</h3>
+          <img src="img/design-spiral.png" width = "60%" />
+          <p class="cite">img src: Boehm 1988 revision by Conny, Wikimedia Commons</p>
+        </section>
+
+        <section>
+          <h3>Software Architecture Diagram</h3>
+          <img src="img/architecture-flood.png" />
+          <p class="cite"><a href="https://www.edrawsoft.com/software-architecture-example.html">https://www.edrawsoft.com/software-architecture-example.html</a></p>
+        </section>
+
+        <section>
+          <h3>Alexa Skills Kit</h3>
+          <img src="img/architecture-alexa.png" />
+          <p class="cite"><a href="https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/alexa-skills.html">https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/alexa-skills.html</a></p>
+        </section>
+
+        <section>
+          <h3>Farm Carbon Footprint Web App</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/architecture-ofoot-mockup.jpg" width="80%" />
+            <img class="fragment" src="img/architecture-ofoot.jpg" width="60%" />
+          </div>
+          <p class="cite"><a href="https://www.sciencedirect.com/science/article/pii/S0168169917303952">https://www.sciencedirect.com/science/article/pii/S0168169917303952</a></p>
+        </section>
+
+
+        <section>
+          <h3>Nori Carbon Marketplace</h3>
+          <a href="https://raw.githubusercontent.com/nori-dot-eco/nori-architecture/master/diagrams/supplier-comet-flow.png"><img src="img/architecture-nori-supplier-comet-flow.png" /></a>
+          <p class="cite"><a href="https://raw.githubusercontent.com/nori-dot-eco/nori-architecture/master/diagrams/supplier-comet-flow.png">https://raw.githubusercontent.com/nori-dot-eco/nori-architecture/master/diagrams/supplier-comet-flow.png</a></p>
+        </section>
+
+        <section>
+          <h3>Microsoft Ag IoT</h3>
+          <img src="img/architecture-farmbeats.png" />
+          <p class="cite"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/FarmBeats-webpage-1.pdf">https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/FarmBeats-webpage-1.pdf</a></p>
+        </section>
+        
+
+        <section>
+          <h3>Beware Diagram Gore</h3>
+          <div class="r-stack">
+            <img class="fragment" src="https://applicationarchitecture.files.wordpress.com/2010/03/f0022-sample-network-diagram.png" />
+
+            <img class="fragement" src="img/diagram-health.png" width="80%" />
+          </div>
+        </section>
+
+        <section>
+          <h3>Essential Difficulties of Software</h3>
+          <ul class="no-bullets">
+            <li class="fragment" data-fragment-index="1">Complexity<br /></li>
+            <li class="fragment" data-fragment-index="1"><span class="text-small">No two systems are alike. Software has many possible states. Nonlinear increase in complexity. Math is hard. Management is difficult.</span></li>
+            <li class="fragment" data-fragment-index="1"><span class="text-small red">How to represent the complex interplay between agricultural, social, environmental, and economic aspects of a farm? </span></li>
+            <li class="fragment" data-fragment-index="2">Conformity</li>
+            <li class="fragment" data-fragment-index="2"><span class="text-small">No unifying theories about goodness, correctness, usefulness.</span></li>
+            <li class="fragment" data-fragment-index="2"><span class="text-small red">How to decide what elements of a farm to focus on in software? </span></li>
+            <li class="fragment" data-fragment-index="3">Changeability</li>
+            <li class="fragment" data-fragment-index="3"><span class="text-small"> Software needs to be adapted. One change = dependencies galore. Maintenance is hard. Technology evolves. Humans change.</span></li>
+            <li class="fragment" data-fragment-index="3"><span class="text-small red">Food and ag systems are dynamic and temporally complex. How to manage?</span></li>
+            <li class="fragment" data-fragment-index="4">Invisibility</li>
+            <li class="fragment" data-fragment-index="4"><span class="text-small">If a line of code fails in a computer and you don't get an error message, did anything break?</span></li>
+            <li class="fragment" data-fragment-index="4"><span class="text-small red">Balance between visibility of farms and invisibility of, for instance, food flows.</span></li>
+          </ul>
+
+          <p class="cite">"No Silver Bullet", Fred Brooks, 1986</p>
+        </section>
+
+        <section>
+          <h3>Compounding Difficulties of Software in Agriculture</h3>
+          <img src="https://imgs.xkcd.com/comics/here_to_help.png" width = "80%"/><br /><br />
+          <p class="cite">https://xkcd.com/1831/, Randall Munroe</p>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Mapping your Pathway</h3>
+
+          <ul class="no-bullets">
+
+            <li>Human-Computer Interaction & Design</li>
+
+            <li>Embedded Systems and IoT</li>
+
+            <li>Computer Vision and Sensing</li>
+
+            <li>Remote Sensing and GIS</li>
+
+            <li>Data Science and Data Modeling</li>
+
+            <li>Machine Learning and AI</li>
+
+            <li>Web Development and Software Engineering</li>
+
+            <li>Ethics, Information Theory, Law</li>
+            
+          </ul>
+        </section>
+
+        <section>
+          <h3>Some course listings</h3>
+
+          <ul class="no-bullets">
+
+            <li><a href="https://polytechnic.purdue.edu/degrees/ux-design">UX Design Courses in Polytechnic</a></li>
+            <li><a href="https://online.purdue.edu/programs/agriculture/spatial-data-science-certificate">Spatial Data Science Certificate</a></li>
+            <li><a href="https://catalog.purdue.edu/preview_program.php?catoid=14&poid=19570">Applications in Data Science Certificate (>just data science courses)</a></li>
+            <li><a href="https://www.purdue.edu/data-science/education/academics.php">Digital Ag Course listing (though titled data science courses)</a></li>
+            <li><a href="https://ag.purdue.edu/digital-ag-resources/data-driven-agriculture-minor/">Data-Driven Ag Minor</a></li><br /> 
+            <li>.. and some courses I've heard about: 
+              <ul>
+                <li>AGRY 333 Data Science for Agriculture -- survey of topics</li>
+                <li>ASM 422: Advances in Crop Production -- QGIS / Precision Ag</li>
+                <li>FNR 498: Ecological Sensors and Data -- sensors!</li>
+                <li>ASM 591: Computer Vision & IoT -- new</li>
+                <li>ABE 651 Environmental Informatics -- python, unix!</li> 
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h6>Spring 2022, ASM 591: <br />Research & Practice in <br />Agricultural Informatics</h6>
+
+          <p class="text-small"> This course will empower you to think critically about the role of digital technologies in food systems and agriculture, and provide a structured experience for you to implement a project of your choosing. We will alternate between two lecture formats over the semester. <span class="red">The first lecture format will be discussion-based meetings where students will review state of the art in research and practice on topics in digital agriculture, and engage in critical assessment of topics such as: data ethics, open source, sensing across scales, algorithmic bias, design justice, etc. </span> The goal is dig into informatics research and consider how it influences the design of technologies for food and agricultural systems. Students will engage in one research/development project in which you either a) write a research article, or b) implement an informatics project in the domain of food systems and agriculture. Thus, <span class="red">the second lecture format will be workshop-style meetings in which students will report on their project process and challenges, provide peer-feedback and review, or simply use the space to get input on their work. </span>Those who took Intro to Ag Informatics (Fall 2021) can build out their previously propose solution, while new students will be invited to put together a short proposal before diving into their implementation. 
+          </p>
+
+          <p class="text-small"><b>TL;DR:</b></p>
+          <ul class="text-small">
+            <li>2 credits = 1 lecture per week</li>
+            <li>Alternate between reading papers/discussion + presenting your project/work for peer review</li>
+            <li>Space to build out your project or write a paper</li>
+            <li>Come workshop your paper/project/idea!</li>
+          </ul>
+
+        </section>
+
+        <section>
+          <h3>Programming Skillz Roadmaps</h3>
+            <a href="https://roadmap.sh/frontend"><img src="img/roadmap-frontend.png" /></a>
+
+          <p class="cite"><a href="https://roadmap.sh/">https://roadmap.sh/</a></p>
+        </section>
+
+        <section>
+          <h3>Programming Skillz Roadmaps</h3>
+            <a href="https://roadmap.sh/backend"><img src="img/roadmap-backend.png" /></a>
+          <p class="cite"><a href="https://roadmap.sh/">https://roadmap.sh/</a></p>
+        </section>
+
+        <section>
+          <h3>Programming Skillz Roadmaps</h3>
+          <a href="https://roadmap.sh/python"><img src="img/roadmap-python.png" /></a>
+          <p class="cite"><a href="https://roadmap.sh/">https://roadmap.sh/</a></p>
+        </section>
+
+
+        <section>
+          <h3>Learning via the Interwebs</h3>
+          <p>Remember: Previous modules have specific resource lists! <br />Here's a few more:</p>
+          <a href="https://www.freecodecamp.org/"><img src="img/freecodecamp.png" /></a>
+        </section>
+
+        <section>
+          <h3>Learning via the Interwebs</h3>
+          <p>Remember: Previous modules have specific resource lists! <br />Here's a few more:</p>
+          <a href="https://www.kaggle.com/learn"><img src="img/kaggle.png" /></a>
+        </section>
+
+        <section>
+          <h3>Learning via the Interwebs</h3>
+          <p>Remember: Previous modules have specific resource lists! <br />Here's a few more:</p>
+          <a href="https://www.coursera.org/specializations/michiganux"><img src="img/michigan-ux.png" /></a>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Ankita Raturi, Purdue University, 2021. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>
