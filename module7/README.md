@@ -5,10 +5,11 @@
 Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 7.1 [in-person]: Envisioning Digital Agricultural Futures
-- Lecture 7.2 [in-person]: 
-- Lecture 7.3 [in-person]: 
-- Lecture 7.4 [-]: No class (Thanksgiving Break)
+- Lecture 7.2 [in-person]: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.2.html
+- Lecture 7.3 [in-person]: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.3.html
+- No class on Nov 23 (Thanksgiving Break)
 
+Supplementary Video posted to Brightspace overviewing ML applications.
 
 ## Labs
 
