@@ -27,7 +27,7 @@
 
           <img src="img/axilab-logo.png" width="200px" />
           <h3>Introduction to Ag Informatics</h3>
-          Module 7, Lecture 1 <br />
+          Module 7, Lecture 3 <br />
           Ankita Raturi, ankita@purdue.edu<br /></p>
         </section>
  
@@ -36,80 +36,6 @@
           <h3>Outline for Today</h3>
           <ul>
             <li>Quick Primer: Software Architecture</li>
-            <li>Mapping your path in Agricultural Informatics</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Agricultural <span class="red">Informatics</span></h3>
-
-          <img src ="img/icon-plant-data.png" width="10%" />
-          <div class="container">
-            <div class="col">
-              <ul class="no-bullets" >
-                <li>Design, build, and use</li>
-                <li>*digital technology*</li>
-                <li>to enable</li>
-                <li>*people* to...</li>
-              </ul>
-            </div>
-            
-            <div class = "fragment" class="col">
-              <ul class="no-bullets" >
-                <li>grow and distribute food,</li>
-                <li>manage natural systems,</li>
-                <li>coordinate and organize work, &</li>
-                <li>strategize for food system resilience.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section data-auto-animate>
-          <h3>Informatics Disciplines</h3>
-
-          <ul class="no-bullets">
-
-            <li>Human-Computer Interaction & Design</li>
-
-            <li>Embedded Systems and IoT</li>
-
-            <li>Computer Vision and Sensing</li>
-
-            <li>Remote Sensing and GIS</li>
-
-            <li>Data Science and Data Modeling</li>
-
-            <li>Machine Learning and AI</li>
-
-            <li>Web Development and Software Engineering</li>
-
-            <li>Ethics, Information Theory, Law</li>
-            
-          </ul>
-        </section>
-
-        <section data-auto-animate>
-          <h3>Informatics Disciplines</h3>
-
-          <ul class="no-bullets">
-
-            <li class="red">Human-Computer Interaction & Design</li>
-
-            <li>Embedded Systems and IoT</li>
-
-            <li>Computer Vision and Sensing</li>
-
-            <li>Remote Sensing and GIS</li>
-
-            <li class="red">Data Science and Data Modeling</li>
-
-            <li>Machine Learning and AI</li>
-
-            <li class="red">Web Development and Software Engineering</li>
-
-            <li>Ethics, Information Theory, Law</li>
-            
           </ul>
         </section>
 
@@ -152,7 +78,133 @@
         </section>
 
         <section>
-          <h3>Software Architecture Diagram</h3>
+          <h3>What is an Architectural Pattern?</h3>
+          <blockquote>An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.</blockquote>
+          
+          <p class="fragment red">Pick a base Pattern for your Software Blueprint!</p>
+
+          <br />
+          <p class="cite">Paraphrasing Taylor & Medvidovic via https://en.wikipedia.org/wiki/Architectural_pattern</p>
+
+        </section>
+
+        <section>
+          <h3>Model-View-Controller Pattern</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/arch-mvc.png" width="50%" />
+            <img class = "fragment fade-in-then-out" src="img/arch-mvc-js.png" width="70%" />
+            <p class="fragment">
+              Common Uses: Web applications!
+            </p>
+          </div>
+
+          <br />
+            <ol  class="cite">
+              <li>MVC: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</li>
+              <li>MVC in JS: https://stackoverflow.com/questions/32305911/mvc-with-angular-node-js-and-mongodb</li>
+            </ol>
+        </section>
+
+        <section>
+          <h3>Pattern in Action: Django MVT</h3>
+          <div class="r-stack">
+            <img src="img/arch-django.png" width="80%" />
+          </div>
+        </section>
+
+        <section>
+          <h3>Blackboard Pattern</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/arch-blackboard.png" width="60%" />
+
+            <ul class="fragment fade-in-then-out no-bullets">
+              <li>Components:<br /></li>
+                  <li>1. Blackboard — a structured global memory</li>
+                  <li>2. Knowledge source — create, inspect & update data, compute things</li>
+                  <li>3. Controller — coordination (looping, scheduling, monitoring)</li>
+                  <li><br />
+              Common Uses: simulations, autonomous systems, control systems</li>
+            </ul>
+
+            <img class = "fragment fade-in-then-out" src="img/arch-blackboard-layered.png" width="50%" />
+
+          </div>
+
+          <br />
+          <ol  class="cite">
+              <li>Blackboard: https://towardsdatascience.com/10-common-software-architectural-patterns-in-a-nutshell-a0b47a1e9013</li>
+              <li>Layered: https://users.encs.concordia.ca/~gregb/home/PDF/soen6461_blackboard_arch.pdf</li>
+            </ol>
+        </section>
+
+        <section>
+          <h3>Blackboard Pattern: Safety System</h3>
+          <div class="r-stack">
+            <img class = "fragment" src="img/arch-blackboard-safety.jpg" width="70%" />
+            <img class = "fragment" src="img/arch-blackboard-safety2.jpg" width="70%" />
+          </div>
+          <br />
+          <ol  class="cite">
+              <li>Safety Example: https://www.sciencedirect.com/science/article/pii/B9780081006429000256</li>
+            </ol>
+        </section>
+
+        <section>
+          <h3>Publisher-Subscriber Pattern</h3>
+          <img src="img/arch-pubsub.png" width="50%" />
+          <p class="cite">https://www.redhat.com/architect/pub-sub-pros-and-cons</p>
+        </section>
+
+        <section>
+          <h3>Mixing Patterns: Autonomy Example</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/arch-blackboard-autonomous.png" width="50%" />
+            <img class = "fragment fade-in-then-out" src="img/arch-blackboard-autonomous2.png" width="70%" />
+            <p class="fragment fade-in-then-out">
+              An experimental combo of blackboard + pub-sub architecture.<br /><br />
+              Autonomy Example: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4913075
+            </p>
+          </div>
+          <br />
+          <ol  class="cite">
+              <li>Autonomy Example: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=4913075</li>
+            </ol>
+        </section>
+
+        <section>
+          <h3>Mixing Patterns: Twitter Read Path</h3>
+          <div class="r-stack">
+            <img class = "fragment fade-in-then-out" src="img/arch-twitter-musktutorial.png" width="70%" />
+
+            <img class = "fragment fade-in-then-out" src="img/arch-twitter-2022.jpg" width="80%" />
+
+            <p class="fragment fade-in-then-out">
+              The intro tutorial diagram details a high-level overview of what happens when you request your timeline. Common to many apps.<br /><br />
+
+              Reality is far more complex: https://blog.twitter.com/engineering/en_us
+            </p>
+          </div>
+
+          <br />
+          <ol  class="cite">
+              <li>Musk Tutorial: https://twitter.com/elonmusk/status/1593899029531803649</li>
+              <li>Digitized Twitter Arch: https://blog.bytebytego.com/p/twitter-architecture-2022-vs-2012</li>
+            </ol>
+        </section>
+
+        <section>
+          <h3>Descriptive Software Diagrams</h3>
+          <ul>
+              <li>Software Structure: component or class diagram</li>
+              <li>Data/Message Flow: data flow diagram, flowchart, state diagra, event diagrams</li>
+              <li>User Action Path: user journey map, use case daigram</li>
+              <li>Data Structure: database diagram, class diagram, data dictionary, ontology</li><br />
+              <li>Things you care about!</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Software Architecture Diagrams</h3>
           <img src="img/architecture-flood.png" />
           <p class="cite"><a href="https://www.edrawsoft.com/software-architecture-example.html">https://www.edrawsoft.com/software-architecture-example.html</a></p>
         </section>
@@ -196,6 +248,23 @@
         </section>
 
         <section>
+          <h3>Connection to Project</h3>
+            <ul class="no-bullets">
+              <li>High-level Architecture Diagram: 
+                <ul class="no-bullets">
+                  <li>Draw a box-arrow diagram overviewing the major components.</li>
+                  <li>If desired: pick a base architectural pattern to riff off.</li>
+                </ul><br />
+              <li>Supplement with diagrams that describe the most interesting piece(s):
+                <ul class="no-bullets">
+                <li>flowchart to show your data pipeline?</li> 
+                <li>mockups of major screens to show user flow?</li>
+                <li>class diagram to show major models/objects?</li>
+                <li>database diagram to show data structure?</li>
+            </ul>
+        </section>
+
+        <section>
           <h3>Essential Difficulties of Software</h3>
           <ul class="no-bullets">
             <li class="fragment" data-fragment-index="1">Complexity<br /></li>
@@ -219,106 +288,6 @@
           <h3>Compounding Difficulties of Software in Agriculture</h3>
           <img src="https://imgs.xkcd.com/comics/here_to_help.png" width = "80%"/><br /><br />
           <p class="cite">https://xkcd.com/1831/, Randall Munroe</p>
-        </section>
-
-        <section data-auto-animate>
-          <h3>Mapping your Pathway</h3>
-
-          <ul class="no-bullets">
-
-            <li>Human-Computer Interaction & Design</li>
-
-            <li>Embedded Systems and IoT</li>
-
-            <li>Computer Vision and Sensing</li>
-
-            <li>Remote Sensing and GIS</li>
-
-            <li>Data Science and Data Modeling</li>
-
-            <li>Machine Learning and AI</li>
-
-            <li>Web Development and Software Engineering</li>
-
-            <li>Ethics, Information Theory, Law</li>
-            
-          </ul>
-        </section>
-
-        <section>
-          <h3>Some course listings</h3>
-
-          <ul class="no-bullets">
-
-            <li><a href="https://polytechnic.purdue.edu/degrees/ux-design">UX Design Courses in Polytechnic</a></li>
-            <li><a href="https://online.purdue.edu/programs/agriculture/spatial-data-science-certificate">Spatial Data Science Certificate</a></li>
-            <li><a href="https://catalog.purdue.edu/preview_program.php?catoid=14&poid=19570">Applications in Data Science Certificate (>just data science courses)</a></li>
-            <li><a href="https://www.purdue.edu/data-science/education/academics.php">Digital Ag Course listing (though titled data science courses)</a></li>
-            <li><a href="https://ag.purdue.edu/digital-ag-resources/data-driven-agriculture-minor/">Data-Driven Ag Minor</a></li><br /> 
-            <li>.. and some courses I've heard about: 
-              <ul>
-                <li>AGRY 333 Data Science for Agriculture -- survey of topics</li>
-                <li>ASM 422: Advances in Crop Production -- QGIS / Precision Ag</li>
-                <li>FNR 498: Ecological Sensors and Data -- sensors!</li>
-                <li>ASM 591: Computer Vision & IoT -- new</li>
-                <li>ABE 651 Environmental Informatics -- python, unix!</li> 
-              </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h6>Spring 2022, ASM 591: <br />Research & Practice in <br />Agricultural Informatics</h6>
-
-          <p class="text-small"> This course will empower you to think critically about the role of digital technologies in food systems and agriculture, and provide a structured experience for you to implement a project of your choosing. We will alternate between two lecture formats over the semester. <span class="red">The first lecture format will be discussion-based meetings where students will review state of the art in research and practice on topics in digital agriculture, and engage in critical assessment of topics such as: data ethics, open source, sensing across scales, algorithmic bias, design justice, etc. </span> The goal is dig into informatics research and consider how it influences the design of technologies for food and agricultural systems. Students will engage in one research/development project in which you either a) write a research article, or b) implement an informatics project in the domain of food systems and agriculture. Thus, <span class="red">the second lecture format will be workshop-style meetings in which students will report on their project process and challenges, provide peer-feedback and review, or simply use the space to get input on their work. </span>Those who took Intro to Ag Informatics (Fall 2021) can build out their previously propose solution, while new students will be invited to put together a short proposal before diving into their implementation. 
-          </p>
-
-          <p class="text-small"><b>TL;DR:</b></p>
-          <ul class="text-small">
-            <li>2 credits = 1 lecture per week</li>
-            <li>Alternate between reading papers/discussion + presenting your project/work for peer review</li>
-            <li>Space to build out your project or write a paper</li>
-            <li>Come workshop your paper/project/idea!</li>
-          </ul>
-
-        </section>
-
-        <section>
-          <h3>Programming Skillz Roadmaps</h3>
-            <a href="https://roadmap.sh/frontend"><img src="img/roadmap-frontend.png" /></a>
-
-          <p class="cite"><a href="https://roadmap.sh/">https://roadmap.sh/</a></p>
-        </section>
-
-        <section>
-          <h3>Programming Skillz Roadmaps</h3>
-            <a href="https://roadmap.sh/backend"><img src="img/roadmap-backend.png" /></a>
-          <p class="cite"><a href="https://roadmap.sh/">https://roadmap.sh/</a></p>
-        </section>
-
-        <section>
-          <h3>Programming Skillz Roadmaps</h3>
-          <a href="https://roadmap.sh/python"><img src="img/roadmap-python.png" /></a>
-          <p class="cite"><a href="https://roadmap.sh/">https://roadmap.sh/</a></p>
-        </section>
-
-
-        <section>
-          <h3>Learning via the Interwebs</h3>
-          <p>Remember: Previous modules have specific resource lists! <br />Here's a few more:</p>
-          <a href="https://www.freecodecamp.org/"><img src="img/freecodecamp.png" /></a>
-        </section>
-
-        <section>
-          <h3>Learning via the Interwebs</h3>
-          <p>Remember: Previous modules have specific resource lists! <br />Here's a few more:</p>
-          <a href="https://www.kaggle.com/learn"><img src="img/kaggle.png" /></a>
-        </section>
-
-        <section>
-          <h3>Learning via the Interwebs</h3>
-          <p>Remember: Previous modules have specific resource lists! <br />Here's a few more:</p>
-          <a href="https://www.coursera.org/specializations/michiganux"><img src="img/michigan-ux.png" /></a>
         </section>
 
         <section>
