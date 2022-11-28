@@ -27,6 +27,10 @@ p, ul{
     color:darkorchid;
 }
 
+.pink{
+    color:deeppink;
+}
+
 .cite{
     position:absolute;
     bottom: 0em;
