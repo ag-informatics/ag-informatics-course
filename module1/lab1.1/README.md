@@ -84,7 +84,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
 To learn more about Github by digging in here:
 - Basics on Git: - https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
 - Visualization of how git works: https://onlywei.github.io/explain-git-with-d3/#commit
-- Full github training module: https://lab.github.com/githubtraining/introduction-to-github
+- Full github training module: https://skills.github.com/
 
 To learn more about HTML and CSS, use these resources:
 - W3Schools HTML Reference: https://www.w3schools.com/tags/default.asp

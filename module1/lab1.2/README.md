@@ -12,7 +12,7 @@ Get familiar with the common components of websites.
 
 1. [Material Components for the Web](https://material.io/components?platform=web): This is a design framework developed by designers at Google used to unify the aesthetic and layout of user interfaces on Google products. It is commonly used by many developers, especially those of Android mobile applications.
 
-2. [Bootstrap Components for Web](https://react-bootstrap.github.io/components/alerts): I chose this one to share since the website actually has visuals for you to look at. [Bootstrap](https://getbootstrap.com/) is a front-end library, originally to help style simple HTML websites, but now written in a variety of languages.
+2. [Bootstrap Components for Web](https://react-bootstrap.github.io/): I chose this one to share since the website actually has visuals for you to look at. [Bootstrap](https://getbootstrap.com/) is a front-end library, originally to help style simple HTML websites, but now written in a variety of languages.
 
 3. [Dribble for Design Inspiration](https://dribbble.com/search): Designers showcase and share their work on this website - one can also use it to find and hire designers. I use the search function to get inspiration. Try search for "food", for example, and see ideas for how folks imagine apps for food delivery, cooking websites, nutrition apps and more. Remember: these are design professionals and aspiring web designers :)
 
@@ -36,7 +36,7 @@ In particular, we will focus on the design of a **Product Availability Page** th
 
 
 ## Create Wireframes
-1. You can use a whiteboarding app like [Miro](miro.com/), layout a fake "web page" in Microsoft Powerpoint or Google Slides, or a wireframing tool like [Balsamiq](https://balsamiq.com/) or [Pencil](https://pencil.evolus.vn/).
+1. You can use a whiteboarding app like [Miro](https://miro.com/), layout a fake "web page" in Microsoft Powerpoint or Google Slides, or a wireframing tool like [Balsamiq](https://balsamiq.com/) or [Pencil](https://pencil.evolus.vn/).
 
 2. Create a mockup of the web page, based on your 3 Crazy8 Sketches, that demonstrates how you would layout your ideal farm product availability.
 
