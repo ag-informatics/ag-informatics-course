@@ -3,10 +3,10 @@
 ## BEFORE THE LAB
 
 **Install Anaconda** 
-Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson/setup.html) provides a helpful installation guide in case you need it. 
+Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson) provides a helpful installation guide in case you need it. 
 
 **PYTHON INTRO/REFRESH!** 
-If you are not familiar with Python, or need a quick refresher, do this 30 minute [Short Introduction to Programming in Python by the Data Carpentry](https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python/index.html).
+If you are not familiar with Python, or need a quick refresher, do this 30 minute [Short Introduction to Programming in Python by the Data Carpentry](https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python).
 
 
 **IMPORTANT TUTORIALS**
@@ -14,21 +14,21 @@ Anaconda automatically installs the Python packages that we will use in our lab.
 
 1. [Jupyter notebook](https://jupyter.org/): An interactive python environment that allows you to run and view code in the browser. Here's a tutorial video on Jupyter Notebooks: 
     - We'll do a quick demo in-class.
-    - **Go through this quick tutorial: https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks/index.html.**
-    - Full documentation: https://jupyter-notebook.readthedocs.io/en/stable/
+    - **Go through this quick [tutorial](https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks).**
+    - Full [documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
 
 
 2. [Numpy](https://numpy.org/): Python package for scientific computing. We're mostly going to use pandas and matplotlib, so the other materials cover what you need to know about numpy.
 
 3. [Pandas](https://pandas.pydata.org/): Python package for data analytics. It's got an R/Matlab style feel to it. 
-    - **Go through this 10 minute introduction to pandas: https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html.**
-    - Full documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html
+    - **Go through this 10 minute [introduction to pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html).**
+    - Full [documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html).
 
 
 4. [Matplotlib](https://matplotlib.org/): Python package for data visualization. 
-    - **Quick start guide for matplotlib: https://www.python-graph-gallery.com/matplotlib/.**
-    - You can consult the Data Carpentry Introduction to Matplotlib: https://datacarpentry.org/python-ecology-lesson/08-putting-it-all-together/index.html. 
-    - Full documentation: https://matplotlib.org/stable/ with some introductory tutorials at: https://matplotlib.org/stable/tutorials/index.html#introductory
+    - **Quick start [guide for matplotlib](https://www.python-graph-gallery.com/matplotlib/).**
+    - You can consult the [Data Carpentry Introduction to Matplotlib](https://datacarpentry.org/python-ecology-lesson/08-putting-it-all-together). 
+    - Full [documentation](https://matplotlib.org/stable/) with some introductory [tutorials](https://matplotlib.org/stable/tutorials/index.html#introductory)
 
 
 ## Copy the Lab Skeleton File into your Repository
@@ -78,8 +78,9 @@ Hurray, you crushed Module 2!
 
 ## Future Learning Pathways 
 
-To learn best practices for Data Organization in Spreadsheets: https://datacarpentry.org/spreadsheet-ecology-lesson/
-To round out your skills in Data Analysis & Visualization in Python: https://datacarpentry.org/python-ecology-lesson/
+To learn best practices for [Data Organization in Spreadsheets](https://datacarpentry.org/spreadsheet-ecology-lesson/)
+
+To round out your skills in [Data Analysis & Visualization in Python](https://datacarpentry.org/python-ecology-lesson/)
 
 
 ## License
