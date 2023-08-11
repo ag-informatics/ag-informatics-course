@@ -76,6 +76,8 @@ GO TO BRIGHTSPACE, submit the link to your repository to your Lab2 folder in you
 
 Hurray, you crushed Module 2!
 
+**Academic Integrity Reminder:** Make sure your lab Github repositories are "private" for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
+
 ## Future Learning Pathways 
 
 To learn best practices for [Data Organization in Spreadsheets](https://datacarpentry.org/spreadsheet-ecology-lesson/)
