@@ -77,27 +77,37 @@ You will create state Profile Webpage that looks similar to the mockup below:
 		- Use CSS header to make your header text "small caps".
 
 2. Create a `<div>` with the ID name "about".  This division should contain a photo of yourself with a description of what you do.
-  a. In your styles.css file, add code to style this section as follows:
+
+    a. In your styles.css file, add code to style this section as follows:
      - Photo has a black border of 2px. 
      - Change the description font and size to one of your choosing.
      
-  b. Include at least 3 hyperlinks to your github repository and any other links you may want to share (e.g., Linked In). 
-  	- Select an "mail" icon from the Noun Project, available publicly here: <a href="https://thenounproject.com/search/?q=mail">https://thenounproject.com/search/?q=mail</a>. Use a "mailto" to activate my default mail client and send an email to you. 
+    b. Include at least 3 hyperlinks to your github repository and any other links you may want to share (e.g., Linked In). 
+  	 - Select an "mail" icon from the Noun Project, available publicly [here](https://thenounproject.com/search/?q=mail). Use a "mailto" to activate my default mail client and send an email to you. 
 
 3. Create a `<div>` with the ID name "work-samples". This division should contain a "flexbox", "table", or "grid" layout consisting of three sub-elements. Each sub-element should contain a placeholder image and some descriptive text of your work. 
+	
 	a. Your styles.css file should contain relevant styling for this section. At minimum:
-		- Change the font style and size.
-		- 
+	- Change the font style and size.
+	
 	b. You must use either an ordered or unordered list element to lay out the description text for each work sample. 
-		- Use CSS to remove the bullet symbols.
-		- Ensure that the text is vertically aligned with the image.
+	- Use CSS to remove the bullet symbols.
+	- Ensure that the text is vertically aligned with the image.
 
 4. Create a `<div>` with the ID name "footer". This division should contain a footer with your name, and the date this page was last updated.
-		- Use CSS to give the footer a solid background color. 
+	- Use CSS to give the footer a solid background color. 
 
 5. Your html and css files should contain the appropriate code to:
+	
 	a. Center your content in the browser.
+	
 	b. Use the correct "veiwport" to make your webpage "responsive", i.e. it should be scale for device size.
+
+**Tips**: There are several resources that you can look for help 
+
+- The CS50 [video on HTML](https://cs50.harvard.edu/web/2020/weeks/0/)
+- Search for entire tutorials (e.g. [HTML](https://www.w3schools.com/html/default.asp) or [CSS](https://www.w3schools.com/css/default.asp) from [W3 School](https://www.w3schools.com/)) or specific questionsS
+- Utilize Generative AIs such as [ChatGPT](https://chat.openai.com/auth/login) or [Bard](https://bard.google.com/)
 
 ## Use Git to submit your labs
 1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
