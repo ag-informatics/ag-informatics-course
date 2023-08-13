@@ -2,23 +2,32 @@
 
 ## BEFORE THE LAB
 
-Watch the CS50 video on HTML: https://cs50.harvard.edu/web/2020/weeks/0/
-
-Watch the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/. We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
+Watch the CS50 [video on Git](https://cs50.harvard.edu/web/2020/weeks/1/). We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
 - `git clone "url"` to clone a remote repository to your local machine
 - `git pull` to pull changes to a remote repository
 - `git init` to initialize a repository
-- `git add .` to add all (".") changes here to my local version of the repository.
+- `git add .` to add all (".") changes here to my local version of the repository
 - `git commit -m "message here"` to commit all your changes with a message
-- `git push` to send all my local changes to the remote repository.
+- `git push` to send all my local changes to the remote repository
 
-Setup Github:
-- If you haven't already, create an account on www.github.com. If you already have a GitHub account, feel free to use it. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
-- Install github on your computer using this tutorial: https://github.com/git-guides/install-git
+#### Setup Git and Github:
+- If you haven't already, create an account on [GitHub](https://www.github.com). If you already have a GitHub account, feel free to use it. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
+- Install github on your computer using this [tutorial](https://github.com/git-guides/install-git).
+Git vs GitHub
+
+#### Setup Visual Studio Code (optional but highly recommended)
+You are welcome to choose any editors or IDEs that you prefer. But we recommend using Visual Studio Code. It is an open-source multi-platform code editors (it means you can use with no cost and it is available in various platform e.g. Windows, Mac, or Linux). To install, check this [website](https://code.visualstudio.com/).
+
+
+## What are Git and GitHub? 
+
+**Git** is a version control system that will keep tracking changes of your code. There are other version control systems, for example, [Subversion (SVN)](https://subversion.apache.org/) or [Mercurial](https://www.mercurial-scm.org/). However, Git is the most popular choice as it is easy to use and supported by many cloud source code hosting platforms. 
+
+**GitHub** is a cloud platform to host your source code that using Git. It not only host your code, but also has multiple features for colaborating among developers, such as issues, discussions, or project boards. There are other platforms e.g. [GitLab](https://about.gitlab.com/why-gitlab/) or [Bitbucket](https://bitbucket.org/product). But GitHub is the most popular choice.  
 
 ## Use Git to access class materials (we'll do this in-class too!)
 
-1. Clone this repository using `git clone https://github.com/ag-informatics/ag-informatics-course'` You can view the repository URL here: 
+1. Clone this repository using `git clone https://github.com/ag-informatics/ag-informatics-course` You can view the repository URL here: 
 	
 ![Clone Repo](img/git1.png)
 
