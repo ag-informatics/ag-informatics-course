@@ -27,11 +27,25 @@ You are welcome to choose any editors or IDEs that you prefer. But we recommend 
 
 ## Use Git to access class materials (we'll do this in-class too!)
 
-1. Clone this repository using `git clone https://github.com/ag-informatics/ag-informatics-course` You can view the repository URL here: 
+1. Open the terminal
+	- For Windows: Search for `command prompt` or windows key + r then type cmd.
+	- For Mac: Search for `terminal`.
+	- For Linux: Search for `terminal` or ctrl + alt + t.
+
+2. Navigate to the folder that you want to keep the class material repository. Use command `pwd` to check your current directory. Then use `cmd "folder_name"` to enter the folder or `cmd ..` to exit the folder. 
+
++ Tip: You can type a first few later of folder's name then press `tab` on your keyboard for autocompletion (the system will type the rest of the name automatically).
+
++ Tip 2: For Windows, you can use Windows Explorer to navigate to the directory that you want then type `cmd` on directory bar (where it shows the directory hierarchy).
+
+3. Clone this repository using `git clone https://github.com/ag-informatics/ag-informatics-course`. You can view the repository URL by cliking on the green "Code" button. This command will clone the code from GitHub to your local repository while still linking with the cloud. Therefore, you can use another git command to update the clone folder. 
+
++ Note: You can download source code as a ZIP file. But it will be only a snapshot of the code at the moment you download. You will not be able to use any git commands in ZIP download repositories.
 	
 ![Clone Repo](img/git1.png)
 
-2. Every week, I will update this repository with new things. You can update your local repository by `git pull` the changes from the web. When you navigate to the folder containing the repository on your local machine, you will be able to see the changes.
+
+4. Every week, I will update this repository with new things. You can update your local repository by `git pull` the changes from the web. When you navigate to the folder containing the repository on your local machine, you will be able to see the changes.
 
 ## Introduction to HTML and CSS
 
