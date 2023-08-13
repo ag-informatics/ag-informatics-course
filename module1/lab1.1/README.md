@@ -109,16 +109,16 @@ You will create state Profile Webpage that looks similar to the mockup below:
 - Search for entire tutorials (e.g. [HTML](https://www.w3schools.com/html/default.asp) or [CSS](https://www.w3schools.com/css/default.asp) from [W3 School](https://www.w3schools.com/)) or specific questionsS
 - Utilize Generative AIs such as [ChatGPT](https://chat.openai.com/auth/login) or [Bard](https://bard.google.com/)
 
-## Use Git to submit your labs
-1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
-	- MAKE SURE THIS REPOSITORY IS "PRIVATE". See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
-	- Add @sudokita (Ankita, Instructor) and @StevenDoylePurdue
- (Steve, TA) as collaborators on your repository so that we can access your work and grade it.
-	- I expect to see an appropriate number of distinct "commits" in your repository history per lab (i.e., >5 commits for lab 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
+## Use Git to Submit Your Labs
+It is a good practice that you commit after you make significant progress. It will help preventing bugs and if it happens, you can revert to the previous working version at anytime. I expect to see an appropriate number of distinct "commits" in your repository history per lab (i.e., >5 commits for lab 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
 
-2. For this module's lab, place the folder containing your HTML code, "Lab1" into this repository. This will be the first part of your submission next week! You should see something like the screenshot below:
+To make a commit, open a terminal and navigate to the repository directory (the same method as you did when you clone the repository). Or you can use VS Code built-in terminal by clicking on "Terminal" on the top panel and then "New Terminal" (or ctrl + shift + `). If you use VS Code built-in terminal, you should be in the repository directory by default. 
 
-	![Lab1 Repo](img/lab1.png)
+Using command `git status`, you will see a list of files that have changed from the latest commit. You will need to select file(s) you want to track in this commit by `git add filename1 filename2 ...` (or you can add one file at a time or `git add .` to add all files). Then commit by `git commit -m "message here"`. At this point, the commit is recorded in your local machine. To update your cloud repository on GitHub, use command `git push`. You can make multiple commits locally or discard commits before you push to GitHub.
+
+**note**: You might need to tell Git who is making commit by `git config user.name "your github username` and `git config user.email "your email"`. 
+
+Alternatively, VS Code has a feature to make commits and push. Check "Source Control" tab on the left panel (or ctrl + shift + g). You should be able to see a list of files that have changed (`git status`). You can click on "+" to add file(s) (`git add`). Write the commit message then click "commit" (`git commit`). Then you will see an option to sync your repository with GitHub (`git push`).
 
 ## Future Learning Pathways 
 
