@@ -2,7 +2,7 @@
 
 ## BEFORE THE LAB
 
-Watch the CS50 [video on Git](https://cs50.harvard.edu/web/2020/weeks/1/). We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
+Watch the CS50 [video on HTML](https://cs50.harvard.edu/web/2020/weeks/0/). THen, watch the CS50 [video on Git](https://cs50.harvard.edu/web/2020/weeks/1/). We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
 - `git clone "url"` to clone a remote repository to your local machine
 - `git pull` to pull changes to a remote repository
 - `git init` to initialize a repository
@@ -16,7 +16,7 @@ Watch the CS50 [video on Git](https://cs50.harvard.edu/web/2020/weeks/1/). We wi
 Git vs GitHub
 
 #### Setup Visual Studio Code (optional but highly recommended)
-You are welcome to choose any editors or IDEs that you prefer. But we recommend using Visual Studio Code. It is an open-source multi-platform code editors (it means you can use with no cost and it is available in various platform e.g. Windows, Mac, or Linux). To install, check this [website](https://code.visualstudio.com/).
+You are welcome to choose any editors or IDEs that you prefer. But we recommend using Visual Studio Code. It is an open-source multi-platform code editors (it means you can use with no cost and it is available in various platform e.g. Windows, Mac, or Linux). To install, check this [website](https://code.visualstudio.com/). From now, we will call Visaul Studio Code as "VS Code". 
 
 
 ## What are Git and GitHub? 
@@ -44,18 +44,26 @@ You are welcome to choose any editors or IDEs that you prefer. But we recommend 
 	
 ![Clone Repo](img/git1.png)
 
-
 4. Every week, I will update this repository with new things. You can update your local repository by `git pull` the changes from the web. When you navigate to the folder containing the repository on your local machine, you will be able to see the changes.
+
+## Create Your First Repository
+In this module, you will create your profile page and host it on GitHub. So, first step is creating a new repository. You should be able to see a green "New" button in your "Repositories" tab on GitHub or you can click [here](https://github.com/new). For this lab, you have freedom to name your repository (you can always change it) and make this repository **<u>public</u>**. 
+
+**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 2 and the remaining of the class, the repository must be private.
+
+Next Clone the repository to your local machine as you did in the [previous section](./README.md/#use-git-to-access-class-materials-well-do-this-in-class-too). Then you can choose File -> Open Folder in VS Code. Another option is using intregrated GitHub feature in VS Code. Click on the "Source Control" tab on the left panel (or ctrl + shift + g), then you will see an option to Clone Repository. You can either copy repository URL or allow VS Code to access your GitHub profile by clicking on "Clone from GitHub". You will need to go though the authentication processes. At the end, you will see a list of all repositories in your GitHub account. Choose the one that you just created. 
 
 ## Introduction to HTML and CSS
 
 In this lab, you will create a basic webpage to demonstrate your understanding of HTML. 
 
 **File Structure** 
-- Create a folder titled "Lab1". 
-- In this folder create a file called "profile.html". You will be making a basic web page to showcase your work.
+- Create a file called "profile.html". You will be making a basic web page to showcase your work.
 - Create a file called "styles.css". This will contain all the CSS for your webpage. Make sure you link it in the "head" section of your profile.html web page.
 - Create a folder called "img", this will contain any images that you use on the webpage.
+
+### Preview Your Webpage
+You can open your HTML file on your prefer web brower (such as Chrome). Another option is using VS Code extension to render HTML webpage. You can install extension by clicking on "Extensions" on the left panel (or ctrl + shift + x). Searach for "Live Preview" by Microsoft. To open preview, first you will need to open VS Code command palette by press ctrl + shift + p then type "Live Preview: Show Preview". Alternatively, you can right click on the HTML file and choose "show preview" option. 
 
 ### Mockup
 You will create state Profile Webpage that looks similar to the mockup below:
