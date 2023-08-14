@@ -69,7 +69,7 @@ In particular, we will focus on the design of a **Product Availability Page** th
 
 4. Under the "My Solution" heading, provide a 1 paragraph description of your solution, and why you chose to lay out the information in the way you did.
 
-Note: the storyboard and wireframes are not going to be graded based on artistic quality - that doesn't matter. You will be graded on attempting the design exercises and putting together a **logcial flow of information**.
+**Note**: the storyboard and wireframes are not going to be graded based on artistic quality - that doesn't matter. You will be graded on attempting the design exercises and putting together a **logcial flow of information**.
 
 ## How to Submit your Lab
 Make sure all your work for this week is inside the "Lab1" folder within your repository titled "YOURNAME-ASM591-Labs". Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website.
@@ -84,9 +84,9 @@ Hurray, you rocked Module 1!
 
 
 # Future Learning Pathways
-Whiteboard Challenges: https://medium.com/tradecraft-traction/the-beginners-guide-to-the-whiteboard-challenge-538289536a72 Learn how more ways to do design challenges. Try this out using the next link.
+[Whiteboard Challenges](https://medium.com/tradecraft-traction/the-beginners-guide-to-the-whiteboard-challenge-538289536a72): Learn how more ways to do design challenges. Try this out using the next link.
 
-Design prompt generator: https://designercize.com/. This is a fun tool that randomly generates design prompts that you can use to practice design skills.
+[Design prompt generator](https://designercize.com/): This is a fun tool that randomly generates design prompts that you can use to practice design skills.
 
 
 
