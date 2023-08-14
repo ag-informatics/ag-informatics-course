@@ -58,8 +58,8 @@ Next Clone the repository to your local machine as you did in the [previous sect
 In this lab, you will create a basic webpage to demonstrate your understanding of HTML. 
 
 **File Structure** 
-- Create a file called "profile.html". You will be making a basic web page to showcase your work.
-- Create a file called "styles.css". This will contain all the CSS for your webpage. Make sure you link it in the "head" section of your profile.html web page.
+- Create a file called "index.html". You will be making a basic web page to showcase your work.
+- Create a file called "styles.css". This will contain all the CSS for your webpage. Make sure you link it in the "head" section of your index.html web page.
 - Create a folder called "img", this will contain any images that you use on the webpage.
 
 ### Preview Your Webpage
@@ -108,6 +108,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
 - The CS50 [video on HTML](https://cs50.harvard.edu/web/2020/weeks/0/)
 - Search for entire tutorials (e.g. [HTML](https://www.w3schools.com/html/default.asp) or [CSS](https://www.w3schools.com/css/default.asp) from [W3 School](https://www.w3schools.com/)) or specific questionsS
 - Utilize Generative AIs such as [ChatGPT](https://chat.openai.com/auth/login) or [Bard](https://bard.google.com/)
+- See [Future Learning](./README.md/#future-learning-pathways)
 
 ## Use Git to Submit Your Labs
 It is a good practice that you commit after you make significant progress. It will help preventing bugs and if it happens, you can revert to the previous working version at anytime. I expect to see an appropriate number of distinct "commits" in your repository history per lab (i.e., >5 commits for lab 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
@@ -120,16 +121,32 @@ Using command `git status`, you will see a list of files that have changed from 
 
 Alternatively, VS Code has a feature to make commits and push. Check "Source Control" tab on the left panel (or ctrl + shift + g). You should be able to see a list of files that have changed (`git status`). You can click on "+" to add file(s) (`git add`). Write the commit message then click "commit" (`git commit`). Then you will see an option to sync your repository with GitHub (`git push`).
 
+## Hosting Webpage on GitHub
+
+GitHub allows you to host static webpages from your repositories. We are going to host your profile webpage in this way. Follow the instructions below:
+
+![deploy-on-github](./img/github-page.png)
+
+1. Click "Settings" tab on your repository
+2. Look for a tab "Pages" on the left panel
+3. Select "Deploy from a branch" option
+4. Choose "main" branch and `/(root)` folder
+5. You should see your website URL in a minute
+
+Now you have your own personal webpage to share to the world!
+
+**Note**: There are multiple options to deploy GitHub pages. In this lab, we deploy from a branch "main". GitHub will look for file `index.html` in root folder. You can choose to deploy from different branches or other folders. 
+
 ## Future Learning Pathways 
 
 To learn more about Github by digging in here:
-- Basics on Git: - https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
-- Visualization of how git works: https://onlywei.github.io/explain-git-with-d3/#commit
-- Full github training module: https://skills.github.com/
+- [Basics on Git](https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository)
+- [Visualization of how git works](https://onlywei.github.io/explain-git-with-d3/#commit)
+- [Full github training module](https://skills.github.com/)
 
 To learn more about HTML and CSS, use these resources:
-- W3Schools HTML Reference: https://www.w3schools.com/tags/default.asp
-- Mozilla Foundation HTML References: https://developer.mozilla.org/en-US/docs/Web/HTML 
+- [W3Schools HTML Reference](https://www.w3schools.com/tags/default.asp)
+- [Mozilla Foundation HTML References](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
