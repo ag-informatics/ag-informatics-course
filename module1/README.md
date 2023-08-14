@@ -20,7 +20,7 @@ Lab 1.1 will walk you through installing software that you will need to use for 
 
 Make sure you complete both Lab 1.1 and Lab 1.2 before submission.
 
-**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 2 and remaining of the class, the repository must be private. 
+**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 1.2 and remaining of the class, the repository must be private. 
 
 ## Quiz
 

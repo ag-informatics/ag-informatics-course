@@ -49,7 +49,7 @@ You are welcome to choose any editors or IDEs that you prefer. But we recommend 
 ## Create Your First Repository
 In this module, you will create your profile page and host it on GitHub. So, first step is creating a new repository. You should be able to see a green "New" button in your "Repositories" tab on GitHub or you can click [here](https://github.com/new). For this lab, you have freedom to name your repository (you can always change it) and make this repository **<u>public</u>**. 
 
-**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 2 and the remaining of the class, the repository must be private.
+**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 1.2 and the remaining of the class, the repository must be private.
 
 Next Clone the repository to your local machine as you did in the [previous section](./README.md/#use-git-to-access-class-materials-well-do-this-in-class-too). Then you can choose File -> Open Folder in VS Code. Another option is using intregrated GitHub feature in VS Code. Click on the "Source Control" tab on the left panel (or ctrl + shift + g), then you will see an option to Clone Repository. You can either copy repository URL or allow VS Code to access your GitHub profile by clicking on "Clone from GitHub". You will need to go though the authentication processes. At the end, you will see a list of all repositories in your GitHub account. Choose the one that you just created. 
 
