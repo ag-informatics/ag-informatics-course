@@ -32,6 +32,12 @@ Anaconda automatically installs the Python packages that we will use in our lab.
 
 
 ## Copy the Lab Skeleton File into your Repository
+Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
+	
+- MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
+- Add @sudokita (Ankita, Instructor) and @StevenDoylePurdue
+ (Steve, TA) as collaborators on your repository so that we can access your work and grade it.
+
 You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "lab2" folder inside it. It will contain this README.md file and a **"lab2-skeleton.ipynb" file** This file contains the instructions for your lab. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here". 
 
 Let's move this file into your repository for you to use:
