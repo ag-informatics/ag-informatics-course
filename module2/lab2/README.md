@@ -5,6 +5,30 @@
 **Install Anaconda** 
 Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson) provides a helpful installation guide in case you need it. 
 
+Anaconda is a completed bundle, however, it is take a lot of space in your computer. If you prefer a leaner one, you can choose [miniconda](https://docs.conda.io/en/latest/miniconda.html) instead. Miniconda will only install `conda` system in your machince which is a Python package manager. It won't come with tools such as Jupyter Notebook out of the book. However, VS Code has a Jupyter notebook extenstion that works perfectly with Notebook files. In this case, you will need to install `Jupyter` extension in VS Code which you can search in "Extensions" tab on the left panel or (ctrl + shift + x).
+
+After you install Anaconda or Miniconda, you will be able to use `conda` command in your terminal. You will need to create a new Python environment for this lab. A Python environment is a sandbox of Python and its packages where you have power to choose their versions. You can create multiple environments that suits your projects (and they all can run in the same machine). For this lab, we will need to use these Python packages: `Numpy`, `Pandas`, and `Matplotlib`. 
+
+1. Create a new enviroment. "-n" is telling that the following word is the "name" of the new environment. 
+```bash
+conda create -n asm591
+```
+
+2. You can check that you have created a new environemnt by 
+``` bash
+conda env list
+```
+
+3. Next, you will activate the newly created enviroment. After running this command, you will see that the name of environment has been changed (from base to asm591).
+``` bash
+conda activate asm591
+```
+
+4. Now, we are going to install Python packages. 
+``` bash
+conda install numpy pandas matplotlib
+```
+
 **PYTHON INTRO/REFRESH!** 
 If you are not familiar with Python, or need a quick refresher, do this 30 minute [Short Introduction to Programming in Python by the Data Carpentry](https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python).
 
