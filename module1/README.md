@@ -4,23 +4,22 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 1.1 [in-person]: [link](http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.1.html) 
+- Lecture 1.1 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.1.html
    - Additionally, watch the following videos before the next class.
-      - Watch in detail the CS50 video on [HTML and CSS](https://cs50.harvard.edu/web/2020/weeks/0/)
-      - Skim through the CS50 video on [Git](https://cs50.harvard.edu/web/2020/weeks/1/)
-- Lecture 1.2 [in-person]: [link](http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.2.html)
-- Lecture 1.3 [in-person]: [link](http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.3.html)
-- Lecture 1.4 [in-person]: Case Study: [link](http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.4.html)
+      - Watch in detail the CS50 video on HTML and CSS: https://cs50.harvard.edu/web/2020/weeks/0/
+      - Skim through the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/
+- Lecture 1.2 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.2.html
+- Lecture 1.3 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.3.html
+- Lecture 1.4 [in-person]: Case Study: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.4.html
 
 ## Labs
 
-Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders. Navigate to "lab1.1" to begin the lab for Module 1, Week 1. Make sure you watch the videos prior to coming to the lab.
+Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders. Navigate to "lab1" to begin the lab for Module 1. Make sure you watch the videos prior to coming to the lab.
 
-Lab 1.1 will walk you through installing software that you will need to use for this class and how to use Git and GitHub. In lab 1.2, you will create your personal website using HTML and CSS, then publish it on GitHub. 
+Lab 1 will walk you through installing software that you will need to use for this class and how to use Git and GitHub. You will create your personal website using HTML and CSS, then publish it on GitHub. 
 
-Make sure you complete both Lab 1.1 and Lab 1.2 before submission.
 
-**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 1.2 and remaining of the class, the repository must be private. 
+**Academic Integrity Reminder:** This is only lab that your Github repository is public. For lab 2 and remaining of the class, the repository must be private. 
 
 ## Quiz
 
