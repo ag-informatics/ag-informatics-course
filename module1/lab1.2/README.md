@@ -16,8 +16,7 @@ In this week's lab, you will conduct a brief design exercise, given your knowled
 
 1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
 	- MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
-	- Add @sudokita (Ankita, Instructor) and @StevenDoylePurdue
- (Steve, TA) as collaborators on your repository so that we can access your work and grade it.
+	- Add @sudokita (Ankita, Instructor) and @StevenDoylePurdue (Steve, TA) as collaborators on your repository so that we can access your work and grade it.
 	- I expect to see an appropriate number of distinct "commits" in your repository history per lab, with appropriate comments, demonstrating that you have been working on your project over a period of time.
 
 2. For this lab, place the folder "Lab1" into this repository. You should see something like the screenshot below:
