@@ -2,7 +2,7 @@
 
 ## BEFORE THE LAB
 
-Watch the CS50 [video on HTML](https://cs50.harvard.edu/web/2020/weeks/0/). THen, watch the CS50 [video on Git](https://cs50.harvard.edu/web/2020/weeks/1/). We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
+Watch the CS50 video on HTML: https://cs50.harvard.edu/web/2020/weeks/0/. Then, watch the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/. We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
 - `git clone "url"` to clone a remote repository to your local machine
 - `git pull` to pull changes to a remote repository
 - `git init` to initialize a repository
@@ -11,12 +11,11 @@ Watch the CS50 [video on HTML](https://cs50.harvard.edu/web/2020/weeks/0/). THen
 - `git push` to send all my local changes to the remote repository
 
 #### Setup Git and Github:
-- If you haven't already, create an account on [GitHub](https://www.github.com). If you already have a GitHub account, feel free to use it. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
-- Install github on your computer using this [tutorial](https://github.com/git-guides/install-git).
-Git vs GitHub
+- If you haven't already, create an account on GitHub: https://www.github.com. If you already have a GitHub account, feel free to use it. We will be using github to share our code with each other - You'll recieve your labs this way, and I will expect you to submit your labs this way too.
+- Install github on your computer using this tutorial: https://github.com/git-guides/install-git.
 
-#### Setup Visual Studio Code (optional but highly recommended)
-You are welcome to choose any editors or IDEs that you prefer. But we recommend using Visual Studio Code. It is an open-source multi-platform code editors (it means you can use with no cost and it is available in various platform e.g. Windows, Mac, or Linux). To install, check this [website](https://code.visualstudio.com/). From now, we will call Visaul Studio Code as "VS Code". 
+#### Setup Visual Studio Code
+ Visual Studio Code is an open-source multi-platform code editor. It means you can use with no cost and it is available in various platform e.g. Windows, Mac, or Linux. To install, check this website: https://code.visualstudio.com. From now, we will call Visaul Studio Code as "VS Code". 
 
 
 ## What are Git and GitHub? 
@@ -25,7 +24,30 @@ You are welcome to choose any editors or IDEs that you prefer. But we recommend 
 
 **GitHub** is a cloud platform to host your source code that using Git. It not only host your code, but also has multiple features for colaborating among developers, such as issues, discussions, or project boards. There are other platforms e.g. [GitLab](https://about.gitlab.com/why-gitlab/) or [Bitbucket](https://bitbucket.org/product). But GitHub is the most popular choice.  
 
-## Use Git to access class materials (we'll do this in-class too!)
+## Use Git to access class materials
+
+The class material is avialable on GitHub. You will need to clone it. You have two options: 
+
+### Using VS code and GitHub intregration
+
+1. Click on the "Source Control" tab on the left panel (or ctrl + shift + g),
+
+![vscode-clone-1](./img/vscode-clone1.png)
+
+2. Click "CLone Repository". You will see a box appear in the middle top of the screen. 
+
+3. Place this URL: `https://github.com/ag-informatics/ag-informatics-course`
+
+4. VS Code will ask you for a location to keep the class material foler. 
+
+5. Open the folder
+
+6. If you check the "Source Control" tab again, you will see either
+
+    - A list of files that you make changes locally.
+	- Option to sync changes with GitHub. You can download the course update by clicking this. 
+
+### Using Git command line
 
 1. Open the terminal
 	- For Windows: Search for `command prompt` or windows key + r then type cmd.
