@@ -18,11 +18,19 @@ Watch the CS50 video on HTML: https://cs50.harvard.edu/web/2020/weeks/0/. Then, 
  Visual Studio Code is an open-source multi-platform code editor. It means you can use with no cost and it is available in various platform e.g. Windows, Mac, or Linux. To install, check this website: https://code.visualstudio.com. From now, we will call Visaul Studio Code as "VS Code". 
 
 
-## What are Git and GitHub? 
+## What are Git and GitHub? Why should you use it? 
 
 **Git** is a version control system that will keep tracking changes of your code. There are other version control systems, for example, [Subversion (SVN)](https://subversion.apache.org/) or [Mercurial](https://www.mercurial-scm.org/). However, Git is the most popular choice as it is easy to use and supported by many cloud source code hosting platforms. 
 
 **GitHub** is a cloud platform to host your source code that using Git. It not only host your code, but also has multiple features for colaborating among developers, such as issues, discussions, or project boards. There are other platforms e.g. [GitLab](https://about.gitlab.com/why-gitlab/) or [Bitbucket](https://bitbucket.org/product). But GitHub is the most popular choice.  
+
+With Git, you will no longer need to create a multiple files as back up. You can see a full history of your develment. In each commit, you will see the timestamp, comments, and changes line by line. You will be able to reactivate to any commits at anytime. 
+
+Branching is also a powerful feature of Git. By default, your repository has a "main" branch. You can create branches from the main branch or any branches. You (or your team) will add new code or features to branches instead of the main branches. Until the point that you feel that the new features are ready (usually after testing and review), you can create a **pull request** to merge your branch back to the main branch. This procedure will ensure that your main branch is always clean and contain a functional code. 
+
+GitHub helps to synchonize your code between your machices. You can work on your code during the lab on department machine. As long as you push your code into GitHub, you can get your code on your personal machines as well. Moreover, if you work on team projects, your colleagues will also be able to see your chances. With features like issues tracking, discussion, code security alart etc, Git and GitHub becomes common tools that you should use add them into your toolbox. 
+
+**Note** GitHub could be your online coding portfolio/resume. There is a high chance that the potention employers will look at your GitHub. It is a good idea to have one and know how to use it. 
 
 ## Use Git to access class materials
 
@@ -34,7 +42,7 @@ The class material is avialable on GitHub. You will need to clone it. You have t
 
 ![vscode-clone-1](./img/vscode-clone1.png)
 
-2. Click "CLone Repository". You will see a box appear in the middle top of the screen. 
+2. Click "Clone Repository". You will see a box appear in the middle top of the screen. 
 
 3. Place this URL: `https://github.com/ag-informatics/ag-informatics-course`
 
