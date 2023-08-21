@@ -1,21 +1,27 @@
 # Module 1, Lab 1, Part 2
 
-<!-- By this point you should have a github repository titled "YOURNAME-ASM591-Labs", containing one folder titled "Lab1", inside which there are 2 files (profile.html, styles.css) and one folder (img) containing any images. The image below shows the contents of my example lab1 repository!
-
-	![Lab1](img/lab1-contents.png) -->
-
 In this week's lab, you will conduct a brief design exercise, given your knowledge of what is possible using HTML and CSS.
 
 ## BEFORE THE LAB
 
-Get familiar with the common components of websites. 
+#### Get familiar with the common components of websites. 
 
 1. [Material Components for the Web](https://material.io/components?platform=web): This is a design framework developed by designers at Google used to unify the aesthetic and layout of user interfaces on Google products. It is commonly used by many developers, especially those of Android mobile applications.
 
-2. [Bootstrap Components for Web](https://react-bootstrap.github.io/components/alerts): I chose this one to share since the website actually has visuals for you to look at. [Bootstrap](https://getbootstrap.com/) is a front-end library, originally to help style simple HTML websites, but now written in a variety of languages.
+2. [Bootstrap Components for Web](https://react-bootstrap.github.io/): I chose this one to share since the website actually has visuals for you to look at. [Bootstrap](https://getbootstrap.com/) is a front-end library, originally to help style simple HTML websites, but now written in a variety of languages.
 
 3. [Dribble for Design Inspiration](https://dribbble.com/search): Designers showcase and share their work on this website - one can also use it to find and hire designers. I use the search function to get inspiration. Try search for "food", for example, and see ideas for how folks imagine apps for food delivery, cooking websites, nutrition apps and more. Remember: these are design professionals and aspiring web designers :)
 
+#### Create a Submission Repository
+
+1. Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
+	- MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
+	- Add @sudokita (Ankita, Instructor) and @StevenDoylePurdue (Steve, TA) as collaborators on your repository so that we can access your work and grade it.
+	- I expect to see an appropriate number of distinct "commits" in your repository history per lab, with appropriate comments, demonstrating that you have been working on your project over a period of time.
+
+2. For this lab, place the folder "Lab1" into this repository. You should see something like the screenshot below:
+
+	![Lab1 Repo](img/lab1.png)
 
 <!-- ## Lab Content Here -->
 
@@ -26,7 +32,7 @@ In particular, we will focus on the design of a **Product Availability Page** th
 
 ## Brainstorming!
 
-1. Watch the video to learn how to use the Crazy 8s Process: https://www.youtube.com/watch?v=UXOLJy0E7Pg. Given that we are designing a website, you are welcome to reduce the number of squares to 4. If this is your first time doing this sort of thing, feel free to give yourself 2x or 3x the amount of time recommended. Ultimately, you will want to set a short timer otherwise you may get stuck overthinking details in this brainstorming phase.
+1. Watch the video to learn [how to use the Crazy 8s Process](https://www.youtube.com/watch?v=UXOLJy0E7Pg). Given that we are designing a website, you are welcome to reduce the number of squares to 4. If this is your first time doing this sort of thing, feel free to give yourself 2x or 3x the amount of time recommended. Ultimately, you will want to set a short timer otherwise you may get stuck overthinking details in this brainstorming phase.
 
 2. I suggest practicing the Crazy8s method to layout parts of your web page several times to warm up your pen and brain! Don't worry about how it looks, it's not your drawing skill that matters, but the logical layout of information does. Other suggestions:
 	- Consider creating an actual "storyboard" in your first couple of attempts, it will help you think through the actual process you want the user to go through as they first arrive at the website, look for products, and ultimately buy them.
@@ -36,7 +42,7 @@ In particular, we will focus on the design of a **Product Availability Page** th
 
 
 ## Create Wireframes
-1. You can use a whiteboarding app like [Miro](miro.com/), layout a fake "web page" in Microsoft Powerpoint or Google Slides, or a wireframing tool like [Balsamiq](https://balsamiq.com/) or [Pencil](https://pencil.evolus.vn/).
+1. You can use a whiteboarding app like [Miro](https://miro.com/), layout a fake "web page" in Microsoft Powerpoint or Google Slides, or a wireframing tool like [Balsamiq](https://balsamiq.com/) or [Pencil](https://pencil.evolus.vn/).
 
 2. Create a mockup of the web page, based on your 3 Crazy8 Sketches, that demonstrates how you would layout your ideal farm product availability.
 
@@ -62,7 +68,7 @@ In particular, we will focus on the design of a **Product Availability Page** th
 
 4. Under the "My Solution" heading, provide a 1 paragraph description of your solution, and why you chose to lay out the information in the way you did.
 
-Note: the storyboard and wireframes are not going to be graded based on artistic quality - that doesn't matter. You will be graded on attempting the design exercises and putting together a **logcial flow of information**.
+**Note**: the storyboard and wireframes are not going to be graded based on artistic quality - that doesn't matter. You will be graded on attempting the design exercises and putting together a **logcial flow of information**.
 
 ## How to Submit your Lab
 Make sure all your work for this week is inside the "Lab1" folder within your repository titled "YOURNAME-ASM591-Labs". Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website.
@@ -77,9 +83,9 @@ Hurray, you rocked Module 1!
 
 
 # Future Learning Pathways
-Whiteboard Challenges: https://medium.com/tradecraft-traction/the-beginners-guide-to-the-whiteboard-challenge-538289536a72 Learn how more ways to do design challenges. Try this out using the next link.
+[Whiteboard Challenges](https://medium.com/tradecraft-traction/the-beginners-guide-to-the-whiteboard-challenge-538289536a72): Learn how more ways to do design challenges. Try this out using the next link.
 
-Design prompt generator: https://designercize.com/. This is a fun tool that randomly generates design prompts that you can use to practice design skills.
+[Design prompt generator](https://designercize.com/): This is a fun tool that randomly generates design prompts that you can use to practice design skills.
 
 
 
