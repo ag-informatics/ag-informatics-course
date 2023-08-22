@@ -100,7 +100,7 @@ Module | Weeks | What's due?
 
 All parts of the **Project** description and submission instructions are available on Github. Each of the three parts will be evaluated based on a high-level rubric to be provided with the project description. -->
 
-**Late Policy:** You can have three "late days" where you submit work one business day late with no questions asked. You can use these for quizzes, labs, and projects part 1 & 2. After that, you will be penalised 5% per day late. *The moment you have any issues, please contact me, and we can discuss options.*
+**Late Policy:** You can have three "late days" where you submit work one weekday late with no questions asked. You can use these for quizzes, labs, and projects part 1 & 2. After that, you will be penalised 5% per day late. *The moment you have any issues, please contact me, and we can discuss options. See attendance policy for details*
 
 Assessment | Description | Due Dates | Weight
 -----|-----|----- |----- 
@@ -171,9 +171,9 @@ In the event of a major campus emergency, course requirements, deadlines and gra
 A link to Purdue’s Information on [Emergency Preparation and Planning](https://www.purdue.edu/ehps/emergency-preparedness/) is located on our Brightspace under “University Policies and Statements.” This website covers topics such as Severe Weather Guidance, Emergency Plans, and a place to sign up for the Emergency Warning Notification System. I encourage you to download and review the [Emergency Preparedness for Classrooms document](https://www.purdue.edu/ehps/emergency-preparedness/docs/EPforClassrooms.pdf).
 
 The first day of class, I will review the Emergency Preparedness plan for our specific classroom, following Purdue’s required [Emergency Preparedness Briefing](https://www.purdue.edu/ehps/emergency-preparedness/docs/emergency-preparedness-classrooms.doc). Please make note of items like:
-•	The location to where we will proceed after evacuating the building if we hear a fire alarm.
-•	The location of our Shelter in Place in the event of a tornado warning.
-•	The location of our Shelter in Place in the event of an active threat such as a shooting.
+- The location to where we will proceed after evacuating the building if we hear a fire alarm.
+- The location of our Shelter in Place in the event of a tornado warning.
+- The location of our Shelter in Place in the event of an active threat such as a shooting.
 
 ## Mental Health and Wellness Statement
 If you find yourself beginning to feel some stress, anxiety and/or feeling slightly overwhelmed, try [WellTrack](https://purdue.welltrack.com/). Sign in and find information and tools at your fingertips, available to you at any time. 
