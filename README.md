@@ -40,9 +40,7 @@ Who are we and how are we here to support your learning?
 
 **Steven Doyle** is the Teaching Assistant (TA) for this course. He will lead all labs, grade all submitted materials, and will be available in-person for technical support, troubleshooting for code, and discussion of individual assignment grades.
 
-**Thiraway "Tam" Bureetees** is providing course content support. He is working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be most active in the FORUM, so if you need help finding a resource, post on github in Q&A.
-
-Steven Doyle, Thirawat (Tam) Bureetees
+**Thirawat "Tam" Bureetees** is providing course content support. He is working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be most active in the FORUM, so if you need help finding a resource, post on github in Q&A.
 
 Call me | slack | github | email | ask me about
 -----|-----|-----|-----|-----
@@ -52,11 +50,13 @@ Tam (he/his) | @Tam Bureetes | @tame0001 | N/A | finding resources
 
 ## Logistics
 **Lectures:** ABE 1164. Tue & Thurs @ 11.30-12.20pm
+
 **Labs:** ABE 2098. Thursdays, 1.30pm - 3.20pm
 
-Course credit hours: 3
-CRN: 25712 (Lecture), 25713 (Lab)
-Instructional Modality: Face-to-Face
+**Other:**
+- Course credit hours: 3
+- CRN: 25712 (Lecture), 25713 (Lab)
+- Instructional Modality: Face-to-Face
 
 # Course Resources
 **GET MATERIALS:** This GITHUB repository will contain **all course module content**, inclduing lectures, labs, and other materials** 
