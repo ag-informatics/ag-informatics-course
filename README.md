@@ -44,7 +44,7 @@ Who are we and how are we here to support your learning?
 
 Call me | slack | github | email | ask me about
 -----|-----|-----|-----|-----
-Ankita (she/her) | @sudokita | @sudokita | ankita@purdue.edu | anything re: course!
+Ankita (she/her) | @ankita | @sudokita | ankita@purdue.edu | anything re: course!
 Steve (he/his) | @Steven Doyle | @StevenDoylePurdue | doyle110@purdue.edu | labs & grades
 Tam (he/his) | @Tam Bureetes | @tame0001 | N/A | finding resources
 
