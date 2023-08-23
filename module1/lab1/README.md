@@ -2,7 +2,6 @@
 
 ## BEFORE THE LAB
 
-
 Watch the CS50 video on HTML: https://cs50.harvard.edu/web/2020/weeks/0/. Then, watch the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/. We will not be using Git as comprehensively as introduced in this video, but you will need to understand how to use the following commands at minimum:
 
 - `git clone "url"` to clone a remote repository to your local machine
