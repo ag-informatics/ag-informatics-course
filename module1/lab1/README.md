@@ -1,4 +1,4 @@
-# Module 1, Lab 1, Part 1
+# Module 1, Lab 1
 
 ## BEFORE THE LAB
 
@@ -156,7 +156,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
 
 ## Use Git to Submit Your Labs
 
-It is a good practice that you commit after you make significant progress. It will help preventing bugs and if it happens, you can revert to the previous working version at anytime. I expect to see an appropriate number of distinct "commits" in your repository history per lab (i.e., >5 commits for lab 1.1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
+It is a good practice that you commit after you make significant progress. It will help preventing bugs and if it happens, you can revert to the previous working version at anytime. I expect to see an appropriate number of distinct "commits" in your repository history per lab (i.e., >5 commits for lab 1 alone), with appropriate comments, demonstrating that you have been working on your project over a period of time.
 
 VS Code has a feature to make commits and push. Check "Source Control" tab on the left panel (or ctrl + shift + g). You should be able to see a list of files that have changed (`git status`). You can click on "+" to add file(s) (`git add`). Write the commit message then click "commit" (`git commit`). Then you will see an option to sync your repository with GitHub (`git push`).
 
