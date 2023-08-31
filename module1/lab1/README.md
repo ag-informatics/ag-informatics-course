@@ -109,11 +109,15 @@ You can open your HTML file on your prefer web browser (such as Chrome). Another
 
 ### Mockup
 
-You will create state Profile Webpage that looks similar to the mockup below:
+You will create a static Profile Webpage that looks similar to the mockup below:
 
 ![Ankita Mockup](img/mockup.jpg)
 
-1. Create a `<div>` with the ID name "header". This division should contain introduction header text, e.g., "Hi! I'm Ankita". - Give the header a minimum height (e.g., 40px). - Center the text within the header division. - Change the font style and size to something that is different from the rest of the page. - Use CSS header to make your header text "small caps".
+1. Create a `<div>` with the ID name "header". This division should contain introduction header text, e.g., "Hi! I'm Ankita".
+   - Give the header a minimum height (e.g., 40px).
+   - Center the text within the header division.
+   - Change the font style and size to something that is different from the rest of the page.
+   - Use CSS header to make your header text "small caps".
 
 2. Create a `<div>` with the ID name "about". This division should contain a photo of yourself with a description of what you do.
 
@@ -124,7 +128,7 @@ You will create state Profile Webpage that looks similar to the mockup below:
 
    b. Include at least 3 hyperlinks to your GitHub repository and any other links you may want to share (e.g., Linked In).
 
-   - Select an "mail" icon from the Noun Project, available publicly [here](https://thenounproject.com/search/?q=mail). Use a "mailto" to activate my default mail client and send an email to you.
+   - Select an "mail" icon from the Noun Project, available publicly [here](https://thenounproject.com/search/icons/?q=mail). Use a "mailto" to activate my default mail client and send an email to you.
 
 3. Create a `<div>` with the ID name "work-samples". This division should contain a "flexbox", "table", or "grid" layout consisting of three sub-elements. Each sub-element should contain a placeholder image and some descriptive text of your work.
 
