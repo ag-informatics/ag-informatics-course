@@ -20,7 +20,7 @@
 
 # Introduction to Agricultural Informatics
 
-We will overview current and emerging digital technologies with applications in agriculture and food systems. This course is a gentle introduction computing concepts to students across the College of Agriculture. Through eight 2-week modules with hands-on lab projects you will incrementally build your programming skills, comfort with finding, using, and customizing digital tools, and designing digital systems. These You will gain a practical understanding of digital technologies, including learning technical vocabulary, evaluating technology trends, and building your ability to debate opportunities and challenges presented by emerging technologies. You will gain design thinking skills to engage in human-centered design of software, to be able to matching people and their problems with the appripriate technological solutions. This course will equip you with basic computational, design and software development skills for data-driven careers in your primary area of expertise.
+We will overview current and emerging digital technologies with applications in agriculture and food systems. This course is a gentle introduction computing concepts to students across the College of Agriculture. Through seven 2-week modules with hands-on lab projects you will incrementally build your programming skills, comfort with finding, using, and customizing digital tools, and designing digital systems. These You will gain a practical understanding of digital technologies, including learning technical vocabulary, evaluating technology trends, and building your ability to debate opportunities and challenges presented by emerging technologies. You will gain design thinking skills to engage in human-centered design of software, to be able to matching people and their problems with the appripriate technological solutions. This course will equip you with basic computational, design and software development skills for data-driven careers in your primary area of expertise.
 
 <!-- We will overview current and emerging technologies used in digital agriculture. You will be engaged in learning technology fundamentals (languages, concepts, methods), through seven 2-week projects. These hands-on exercises will allow you to gain a practical understanding of the technology itself, review research and development trends, and debate opportunities and challenges presented by each technology. This course will equip you with basic computational thinking and software development skills for Agricultural Informatics careers. -->
 
@@ -78,7 +78,7 @@ This github repository will contain links to all slides, labs, etc. I will relea
 
 
 # Course Structure & Schedule
-This course is divided into eight 2 week modules. Each module consists of 4 lectures, 1 lab assignment that you work on over 2 lab sessions, and 1 quiz that you do online. As the course progresses, you can click on each module below to view materials. **Specific due dates are all on Brightspace. Submissions are required via Brightspace**
+This course is divided into seven 2 week modules. Each module consists of 4 lectures, 1 lab assignment that you work on over 2 lab sessions, and 1 quiz that you do online. As the course progresses, you can click on each module below to view materials. **Specific due dates are all on Brightspace. Submissions are required via Brightspace**
 
 Module | Weeks | What's due?
 -----|-----|-----
@@ -89,7 +89,7 @@ Module | Weeks | What's due?
 [5 - User Interfaces]() | Week 9 & 10 | Quiz 5, Submit Lab 4, Submit Project Part 2 
 [6 - Geometric Processing]() | Week 11 & 12 | Quiz 6, Submit Lab 5
 [7 - Future of Ag Tech]() | Week 13 & 14 | Quiz 7, Submit Lab 6
-[8 - Learning Pathways]() | Week 15 & 16 | Submit Lab 7, Submit Project Part 3
+[8 - Wrap Up]() | Week 15 & 16 | Submit Lab 7, Present + Submit Project Part 3
 
 
 ## Course Assessments
