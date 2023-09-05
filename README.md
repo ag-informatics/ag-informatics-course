@@ -83,7 +83,7 @@ This course is divided into seven 2 week modules. Each module consists of 4 lect
 Module | Weeks | What's due?
 -----|-----|-----
 [1 - Web Design & Dev](https://github.com/ag-informatics/ag-informatics-course/tree/main/module1) | Week 1 & 2 | Quiz 1
-[2 - Data Exploration]() | Week 3 & 4 | Quiz 2, Submit Lab 1
+[2 - Data Exploration](https://github.com/ag-informatics/ag-informatics-course/tree/main/module2) | Week 3 & 4 | Quiz 2, Submit Lab 1
 [3 - Web Applications]() | Week 5 & 6 | Quiz 3, Submit Lab 2, Submit Project Part 1
 [4 - Data Management]() | Week 7 & 8 | Quiz 4, Submit Lab 3
 [5 - User Interfaces]() | Week 9 & 10 | Quiz 5, Submit Lab 4, Submit Project Part 2 
