@@ -4,7 +4,7 @@
 
 ### Install Anaconda or Miniconda
 
-You must install Anaconda or Miniconda. If you have already installed either of them, you can skip this part and start on [Create new enviroment](./README.md/#create-new-enviroment). If you have not install any of them, we recommend you install Miniconda.
+You must install Anaconda or Miniconda. If you have already installed either of them, you can skip this part and start on [Create new environment](#create-new-environment). If you have not install any of them, we recommend you install Miniconda.
 
 #### Miniconda
 Anaconda is a completed bundle, however, it is take a lot of space in your computer. [Miniconda](https://docs.conda.io/en/latest/miniconda.html) will only install `conda` system in your machince which is a Python package manager. It won't come with tools such as Jupyter Notebook out of the book. However, VS Code has a Jupyter notebook extenstion that works perfectly with Notebook files. In this case, you will need to install `Jupyter` extension in VS Code which you can search in "Extensions" tab on the left panel or (ctrl + shift + x).
@@ -16,19 +16,19 @@ Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebo
 
 After you install Anaconda or Miniconda, you will be able to use `conda` command in your terminal. You will need to create a new Python environment for this lab. A Python environment is a sandbox of Python and its packages where you have power to choose their versions. You can create multiple environments that suits your projects (and they all can run in the same machine). For this lab, we will need to use these Python packages: `Numpy`, `Pandas`, `Matplotlib`, `Requests`, and `Jupyter`. Open the terminal and follow these steps.
 
-1. Create a new enviroment. "-n" is telling that the following word is the "name" of the new environment.
+1. Create a new environment. "-n" is telling that the following word is the "name" of the new environment.
 
 ```bash
 conda create -n asm591
 ```
 
-2. You can check that you have created a new environemnt by
+2. You can check that you have created a new environment by
 
 ```bash
 conda env list
 ```
 
-3. Next, you will activate the newly created enviroment. After running this command, you will see that the name of environment has been changed (from base to asm591).
+3. Next, you will activate the newly created environment. After running this command, you will see that the name of environment has been changed (from base to asm591).
 
 ```bash
 conda activate asm591
@@ -40,13 +40,13 @@ conda activate asm591
 conda install numpy pandas matplotlib requests jupyter
 ```
 
-### Activate your enviroment
+### Activate your environment
 
 Now, you have a new environment for this lab. However, you must activate this environment before you can execute the notebook. 
 
 #### If you use VS Code and Jupyter extensions
-- Click on "select kernel" on the top right corner. You will only see this button when you open jupyter notebook file. 
-- If you hve not select any environment, when you run the notebook for the first time, VS Code will ask you to select the environment you want to activate.
+- Click on "select kernel" on the top right corner. You will only see this button when you open a jupyter notebook file. 
+- If you have not select any environment, when you run the notebook for the first time, VS Code will ask you to select the environment you want to activate.
 
 ![vscode0](./img/vscode-0.png)
 
@@ -91,11 +91,11 @@ You should have previously cloned the class repository. Navigate to the "ag-info
 
 Let's move this file into your repository for you to use:
 
-1. Copy the "lab2" into your existing github repository titled "YOURNAME-ASM591-Labs".
+1. Copy the "lab2" into your existing GitHub repository titled "YOURNAME-ASM591-Labs".
 2. Rename "lab2-skeleton.ipnyb" to "lab2-YOURNAME.ipnyb". **THIS IS THE FILE YOU WILL BE WORKING IN**
 3. Replace the README.md file with your own.
 4. Git add, commit, and push so that your repository now contains these items.
-5. View your new Jupyter Notebook in your github repository to confirm everything is in the right place. It should look like the image below.
+5. View your new Jupyter Notebook in your GitHub repository to confirm everything is in the right place. It should look like the image below.
 
 ![Lab2-contents](img/lab2-contents.png)
 
@@ -134,9 +134,9 @@ Let's move this file into your repository for you to use:
 
 ## How to Submit your Lab
 
-Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website. Also remember, you should have a commit history with at least 5 commits to demostrate ongoing effort (don't just commit it all 5 mins before it's due!).
+Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the GitHub website. Also remember, you should have a commit history with at least 5 commits to demonstrate ongoing effort (don't just commit it all 5 mins before it's due!).
 
-Once you have successfully completed all tasks for this lab, your lab2 folder should look like this in your github repository:
+Once you have successfully completed all tasks for this lab, your lab2 folder should look like this in your GitHub repository:
 
 ![Lab2 Contents](img/lab2-contents-done.png)
 
@@ -144,7 +144,7 @@ GO TO BRIGHTSPACE, submit the link to your repository to your Lab2 folder in you
 
 Hurray, you crushed Module 2!
 
-**Academic Integrity Reminder:** Make sure your lab Github repositories are **"private"** for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
+**Academic Integrity Reminder:** Make sure your lab GitHub repositories are **"private"** for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissible, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
 
 ## Future Learning Pathways
 
