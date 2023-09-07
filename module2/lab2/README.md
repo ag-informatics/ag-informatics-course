@@ -46,7 +46,7 @@ Now, you have a new environment for this lab. However, you must activate this en
 
 #### If you use VS Code and Jupyter extensions
 - Click on "select kernel" on the top right corner. You will only see this button when you open a jupyter notebook file. 
-- If you have not select any environment, when you run the notebook for the first time, VS Code will ask you to select the environment you want to activate.
+- If you have not selected any environment, when you run the notebook for the first time, VS Code will ask you to select the environment you want to activate.
 
 ![vscode0](./img/vscode-0.png)
 
