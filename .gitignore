@@ -8,3 +8,4 @@
 #ignore visual paradigm backup files
 *.vpp.bak*
 *.vpp.*
+__pycache__

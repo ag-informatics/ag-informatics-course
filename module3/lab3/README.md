@@ -1,16 +1,24 @@
 # Module 3, Lab 3
 
 ## BEFORE THE LAB
-[Django](https://www.djangoproject.com/) is a python web framework that allows you to quickly develop web applications. This entire lab is loosely based on a set of introductory Django tutorials, also available [here](https://docs.djangoproject.com/en/3.2/intro/tutorial01/). You're going to need a working installation of Python, the package manager 'pip', and finally, Django. 
+[Django](https://www.djangoproject.com/) is a python web framework that allows you to quickly develop web applications. This entire lab is loosely based on a set of introductory Django tutorials, also available [here](https://docs.djangoproject.com/en/4.1/intro/tutorial01/). You're going to need a working installation of Python, the package manager 'pip', and finally, Django. 
 
 ### Install Django via Anaconda
-A package manager is a tool that keeps a running list of all the packages associated with a particular language on your computer. You can use it to install, update, and remove different types of packages, or libraries. In the past, we had used Anaconda, a package manager with a nice user interface. This module, we'll use the `conda` command in the terminal to use the Anaconda package manager. (Note: ['pip'](https://pip.pypa.io/en/stable/) is a popular package manager for python, but since we started with Anaconda we'll stick with it. If you use pip, then follow [these instructions](https://docs.djangoproject.com/en/3.2/topics/install/#installing-an-official-release-with-pip) instead).
+A package manager is a tool that keeps a running list of all the packages associated with a particular language on your computer. You can use it to install, update, and remove different types of packages, or libraries. In the past, we had used Anaconda, a package manager with a nice user interface. This module, we'll use the `conda` command in the terminal to use the Anaconda package manager. (Note: ['pip'](https://pip.pypa.io/en/stable/) is a popular package manager for python, but since we started with Anaconda we'll stick with it. If you use pip, then follow [these instructions](https://docs.djangoproject.com/en/4.1/topics/install/#installing-an-official-release-with-pip) instead).
 
-1. Open your terminal, and run the following command to install the 'django' package.
+1. Open your terminal, activate the environment that you created in the previous lab. You should see `(asm591)` in front of the latest line of your terminal. 
+
+``` bash
+conda activate asm591
+```
+
+If you are using VS Code built-in terminal, you can start with `Python: select interpreter`. Choose the environment then restart the VS Code, built-in terminal. VS Code will activate environment automatically. 
+
+2. Run the following command to install the 'django' package.
 
 `conda install -c anaconda django`
 
-2. Verify that python can see Django. In your terminal, type `python` to enter the python shell. Your terminal prompt will change to ">>>". If you haven't used this interface before, play around. You can run python commands just like we did in the Jupyter Notebook last week! Now you can import django and check the version installed by typing the following code in:
+2. Verify that python can see Django. In your terminal, type `python` to enter the python shell. Your terminal prompt will change to ">>>". If you haven't used this interface before, play around. You can run python commands just like we did in the Jupyter Notebook last week! Now you can import django and check the version installed by typing the following code in. You should see version 4.1 as an output.
 
 ```python
 import django
@@ -23,9 +31,6 @@ Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/
 
 This tutorial covers some of the things we will do in this lab, plus a few extra things. I strongly recommend following along with the video as going through these concepts a couple of times will help you make sense of the framework and how the different files and components fit together.
 
-### Do you have code editor?
-
-If not, I recommend either [VS Code](https://code.visualstudio.com/) or [Sublime Text](https://www.sublimetext.com/).
 
 ## 1. Creating a skeleton web application
 > This section is a customized version of [part 1 of this Django tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/).
@@ -64,8 +69,8 @@ System check identified no issues (0 silenced).
 You have unapplied migrations; your app may not work properly until they are applied.
 Run 'python manage.py migrate' to apply them.
 
-September 17, 2021 - 15:50:53
-Django version 3.2, using settings 'lab3.settings'
+September 04, 2023 - 15:50:53
+Django version 4.1, using settings 'lab3.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
