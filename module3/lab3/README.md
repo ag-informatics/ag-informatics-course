@@ -16,7 +16,9 @@ If you are using VS Code built-in terminal, you can start with `Python: select i
 
 2. Run the following command to install the 'django' package.
 
-`conda install -c anaconda django`
+```
+conda install -c anaconda django
+```
 
 2. Verify that python can see Django. In your terminal, type `python` to enter the python shell. Your terminal prompt will change to ">>>". If you haven't used this interface before, play around. You can run python commands just like we did in the Jupyter Notebook last week! Now you can import django and check the version installed by typing the following code in. You should see version 4.1 as an output.
 
@@ -33,13 +35,15 @@ This tutorial covers some of the things we will do in this lab, plus a few extra
 
 
 ## 1. Creating a skeleton web application
-> This section is a customized version of [part 1 of this Django tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial01/).
+> This section is a customized version of [part 1 of this Django tutorial](https://docs.djangoproject.com/en/4.1/intro/tutorial01/).
 
 ### Create a 'lab3' project
 
 Open your terminal! Navigate to the place (using the `cd` command) where you would like to create your project. (In my examples, I have a "Code" folder that I put all my labs inside). We'll create a skeleton project called 'lab3'. You will upload everything inside this folder as part of your lab submission!
 
-`django-admin startproject lab3`
+```
+django-admin startproject lab3
+```
 
 The `django-admin` is our main command line tool for adminstrative tasks. We'll use this a fair bit in cojunction with other commands as you will see later. This first command automatically create a set of files that are your core project skeleton:
 ```
@@ -57,9 +61,11 @@ These files determine the way in which your python is "run". For now, we won't w
 
 First, let's check that our project 'lab3' works. Run the following command:
 
-`python manage.py runserver`
+```
+python manage.py runserver
+```
 
-The first part, `python`, tells the terminal that we're about to run a python python file, in this case, we're running the python file `manage.py`.**[manage.py](https://docs.djangoproject.com/en/3.2/ref/django-admin/)** is itself a python-based command-line tool that can be used to run the django web server, manage the database, and range of other things. We pass the argument `runserver` to tell manage.py, that we'd like to activate the code required to... run the server!
+The first part, `python`, tells the terminal that we're about to run a python python file, in this case, we're running the python file `manage.py`. **[manage.py](https://docs.djangoproject.com/en/4.1/ref/django-admin/)** is itself a python-based command-line tool that can be used to run the django web server, manage the database, and range of other things. We pass the argument `runserver` to tell manage.py, that we'd like to activate the code required to... run the server!
 
 ```
 Performing system checks...
@@ -139,7 +145,7 @@ urlpatterns = [
 ]
 ```
 
-This file will be used to tell the server where different files are located. Django works by using a [URL dispatcher](https://docs.djangoproject.com/en/3.2/topics/http/urls/), a tool that tells the webserver how different URLs map to python functions (written inside views.py). So every time someone makes an HTTP request in the browser (by navigating to a URL), Django will point them to the correct python function that renders the appropriate web page, that is, the 'view'.
+This file will be used to tell the server where different files are located. Django works by using a [URL dispatcher](https://docs.djangoproject.com/en/4.1/topics/http/urls/), a tool that tells the webserver how different URLs map to python functions (written inside views.py). So every time someone makes an HTTP request in the browser (by navigating to a URL), Django will point them to the correct python function that renders the appropriate web page, that is, the "**view**".
 
 In this instance, we're pointing the server to the `index` function as specified inside the file 'views.py'. We now need to point the root URLconf file at the project level to this application.
 
@@ -161,11 +167,11 @@ If you closed it, start the server back up using `python manage.py runserver`.
 If you go to the URL: http://127.0.0.1:8000/farmnotes in your browser, you should see message saying "Hello, world! You're at the farmnotes index, or 'home' page.". Congrats! Technically, you've got a working Django web app. 
 
 ## 2. Creating the data model
-> This section is a customized version of [part 2 of this Django tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial02/).
+> This section is a customized version of [part 2 of this Django tutorial](https://docs.djangoproject.com/en/4.1/intro/tutorial02/).
 
-Now that we have a basic web application, let's create a structure to allow us to store and manage data. We'll dig into databases more closely in the next module, but we will cover the python side of data management in this module. 
+Now that we have a basic web application, let's create a structure to allow us to store and manage data. 
 
-In Django, a MODEL describes the structure of your data, as well as your database. Since models are written in python, we are essentially creating python OBJECTS, or CLASSESS, that Django processes and converts into the database itself. This means we don't actually leave python, even though we are in effect creating the model of a datbase.
+In Django, a MODEL describes the structure of your data, as well as your database. Since models are written in python, we are essentially creating python OBJECTS, or CLASSESS, that Django processes and converts into the database itself. This means we don't actually leave python, even though we are in effect creating the model of a database.
 
 ### Create models to represent Fields and Observations.
 
@@ -407,7 +413,7 @@ Right now, our code's a little simplistic. For example, it doesn't check to see 
 
 
 ### Real Views & HTML Templates!
-Django uses [templates](https://docs.djangoproject.com/en/3.2/topics/templates/) to separate the design of the user interface from Python that manages the conversation between the front and back-end.
+Django uses [templates](https://docs.djangoproject.com/en/4.1/topics/templates/) to separate the design of the user interface from Python that manages the conversation between the front and back-end.
 
 Insdie your create a folder called **'templates'** inside the **'farmnotes'** app folder. Becuase of how Djangos template loader functionality works, you'll have to create another folder inside **'templates'** that is the name of the app. Inside THAT you wil put your actual templates, in this case, create a file called **'index.html'**. Your folder structure will look something like this:
 
@@ -447,7 +453,7 @@ Confirm that your template path is: **'farmnotes/templates/farmnotes/index.html'
 
 ```
 Some things to note:
-1. The `{% %}` are the syntax for 'tags' in the Django template language ([here's a quick reference for it](https://docs.djangoproject.com/en/3.2/ref/templates/language/). It allows us to perform some logic e.g., loops to iterate through a list, like shown above in `for field in latest fields`. 
+1. The `{% %}` are the syntax for 'tags' in the Django template language ([here's a quick reference for it](https://docs.djangoproject.com/en/4.1/ref/templates/language/). It allows us to perform some logic e.g., loops to iterate through a list, like shown above in `for field in latest fields`. 
 
 2. We can also use variables in our template. Consider the line `{{ field.field_name }}`. Anything inside `{{ }}` is a variable. In this case, we're calling the variable `field`, and specifically accessing the attribute `field_name`.
 
@@ -465,7 +471,7 @@ def index(request):
     context = {'latest_fields': latest_fields}
     return render(request, 'farmnotes/index.html', context)
 ```
-We use the function `render()`, a [Django shortcut function](https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/#django.shortcuts.render). It has three arguments:
+We use the function `render()`, a [Django shortcut function](https://docs.djangoproject.com/en/4.1/topics/http/shortcuts/#django.shortcuts.render). It has three arguments:
     - `request` which is the HTTP request object that was passed into the `index(request)` function in the first place.
     - the name of the template that we want to render, in this case `'farmnotes/index.html'`.
     - and an optional third argument: a dictionary referencing the object that we want to pass to the template. This allows us to pass the object `'lastest_fields'` from this view to the template as shown in the previous code block. That's how come we could use the argument `{% if latest_fields %}` in the **'index.html'** file. 
@@ -509,7 +515,7 @@ Now you will practice what you've learned, and create the corresponding **'notes
 
 1. The file will be placed in **'farmnotes/templates/farmnotes/notes.html'**. 
 
-2. Similar to what we did in the **'index.html'**, you will need to iterate through the list of observations. However, given that we are passing the `field` object, we want to iterated through a set of all the observations related to a field, so you're going to need to use this `_set` helper. This concept is called [following a relationship 'backward'](https://docs.djangoproject.com/en/3.2/topics/db/queries/#following-relationships-backward).
+2. Similar to what we did in the **'index.html'**, you will need to iterate through the list of observations. However, given that we are passing the `field` object, we want to iterated through a set of all the observations related to a field, so you're going to need to use this `_set` helper. This concept is called [following a relationship 'backward'](https://docs.djangoproject.com/en/4.1/topics/db/queries/#following-relationships-backward).
 
 3. Your final code will be approximately the same length as **'index.html'**, so if you find yourself writing much more, think simple, or ask us :)
 
@@ -608,7 +614,7 @@ Mozilla server-side programming overview: https://developer.mozilla.org/en-US/do
 
 Mozilla Django overview: https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django
 
-Full Django documentation (with tutorials!): https://docs.djangoproject.com/en/3.2/
+Full Django documentation (with tutorials!): https://docs.djangoproject.com/en/4.1/
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
