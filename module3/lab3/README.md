@@ -177,7 +177,7 @@ In Django, a MODEL describes the structure of your data, as well as your databas
 
 >Creating the models is your first major knowledge check for this lab. I don't give you the answer but expect you to be able to convert the diagram to code given what we covered in class and in the associated review materials.
 
-Open the **'models.py'**. Create two classes, one titled "Field" and one titled "Observation", based on the class diagram below.
+Open the **'models.py'**. Create two classes, one titled "Field" and one titled "Observation", based on the class diagram below. The model classes are "child" classes of `models.Model`.
 
 **farmnotes/models.py**
 
@@ -200,8 +200,6 @@ OBSERVATION_TYPES = [
 
 #class definitions below
 ```
-
-
 
 Now, let's make sure that we register our **'farmnotes'** app with the **'lab3'** project. Navigate to the **'lab3/lab3/settings.py'**. In the section titled #Application definition, insert the line marked in the code below:
 
@@ -234,9 +232,9 @@ Next, run:
 
 `python manage.py migrate`
 
-Django will now actually alter your databse as instructed by your model: creating, editing, and deleting things as necessary. This is like the Django equivalent of `git push`-- it actually makes the changes you desire. 
+Django will now actually alter your databse as instructed by your model: creating, editing, and deleting things as necessary. This is like the Django equivalent of `git push` -- it actually makes the changes you desire. 
 
-If you made a mistake in your original model, just change it, run the `makemigrations` command to tell Django to make the changes, and run `migrate` to actually push the changes to the database. We'll dig into models more in the next module, but for now remember:
+If you made a mistake in your original model, just change it, run the `makemigrations` command to tell Django to make the changes, and run `migrate` to actually push the changes to the database. Remember:
 
 1. Edit your models in the file **'models.py'**
 2. Run `python manage.py makemigrations farmnotes` to create the migration for the changes.
@@ -312,6 +310,8 @@ Inside your `Observation` class add the following code at the end:
 ```
 
 Try to run `Field.objects.all()` inside your app's shell (remember: `python manage.py shell`). You should now get a nice little list that includes the field name. Play around with creating and deleting objects inside your database via the shell!
+
+Note: To exit from the shell mode, type `exit()`.
 
 ### The Django Admin Portal
 
