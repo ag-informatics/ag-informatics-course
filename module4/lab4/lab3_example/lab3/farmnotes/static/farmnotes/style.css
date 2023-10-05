@@ -1,0 +1,18 @@
+body {
+  background-image: url('/static/farmnotes/images/moroccan-flower.png');
+  text-align: center;
+  align-items: center;
+  font-size:  3vw;
+  padding:  1vw;
+}
+header {
+  background:  white;
+  text-align: center;
+  font-size:  2vw;
+  padding:  1vw;
+}
+div {
+  width:  100%;
+  height: auto;
+  background:  white;
+}

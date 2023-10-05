@@ -3,7 +3,7 @@
 ## BEFORE THE LAB
 
 ### Tutorial Video
-Watch the CS50 video on SQL, Models, and Migrations: https://docs.djangoproject.com/en/3.2/howto/initial-data/
+Watch the CS50 video on SQL, Models, and Migrations: https://docs.djangoproject.com/en/4.1/howto/initial-data/
 
 ### UML Modeling Tool
 We'll be making little class diagrams. you can try:
@@ -39,28 +39,25 @@ The farm manager wants a web application in which all her historical field data 
 2. Who are the primary users, and what will each of them need to be able to do.
 
 ## 2. Designing the Data Model
-Start by **downloading our sample ACRE dataset** from this [Google Drive link](https://drive.google.com/file/d/1BTGd8bA3fo_nk5AQ-qZ-eYrHMY_clr17/view?usp=sharing). Do NOT put this file in your repository. It is large, so just download onto your computer so that you can view it.
+Start by look at [data](./data/) folder. You will see a comma seperated value files (.csv). The file will contains the operation log in a form of table. This is going to be the initial data we will use in the web application.
 
 Explore the sample ACRE dataset: design a data model that considers logical groupings of data entities into Django `classes` and attributes. 
 
-Consider the first data entry for 2018 in the logbook image previously shown that reads: "*3-15-19 Coop spread 200# Urea on wheat*". This entry tells us that on 3-15-19, work was done by the "Co-op". They spread 200 pounds of Urea on the wheat planted in Field 70.  (Fun fact: I initially thought the work was done by a person named "coop", until Rachel told me that refers to the co-op that they contract out the work too. #contextualdata)
+Consider the first row, the operation data was April 24, 2022. Even used Hagie STS12 to spray 2-4D round up on field 200.
 
 Thus, we can glean the following data from the entry:
-  - Field number: 70
-  - Date of operation: 3-15-18
-  - Worker: Co-op
-  - What was done: Spreading of a material
-    - Which material: Urea
-    - What amount? 200 pounds
+  - Field number: 200
+  - Date of operation: 4-24-2022
+  - Worker: Evan
+  - What was done: Spraying 2-4D
 
-Based on this data sample, your task is to create a data model for the ACRE production farm operations data set. 
+Take a look on more data sample and find the connection. Your task is to create a data model for the ACRE production farm operations data set. 
 
-You will draw a simplified UML class diagram as we have previously done in class that represents your proposed application based on this dataset (you should have installed whatever tool you chose before the lab began). Focus on the design of the *data model*, that is, the components of the class diagram that represent the data itself. This diagram will determine what classes you will need to create in your Django app for this lab.
+You will draw a simplified UML class diagram as we have previously done in class that represents your proposed application based on this dataset. Focus on the design of the *data model*, that is, the components of the class diagram that represent the data itself. This diagram will determine what classes you will need to create in your Django app for this lab.
 
 Your data model should have the following:
-1. Consist of at least 3 classes. 
-    - Each class must have at least 3 attributes. 
-    - For any attribute that is a "look up" list (e.g., a choice from a fixed set of options like soil type), you must specify the lookup list.
+1. Consist of at least 5 classes. 
+    - For any attribute that is a "look up" list (e.g., a choice from a fixed set of options like operations), you must specify the lookup list.
     - Each class must have a primary key.
     - If you know what functions you may need to write, feel free to specify them. These are optional for now.
 2. There must be a relationship between your classes. 
@@ -121,13 +118,11 @@ First, implement your models in the **'models.py'**. Create a couple of test dat
 
 Next, you will need to bulk import some of the data into your application. 
 
-In Django, a ["fixture" file](https://docs.djangoproject.com/en/3.2/howto/initial-data/) can be used to provide initial data to a model. For example, let's say you have a spreadsheet and want to import that data into your Django app, doing it manually would take a long time. Ideally, you'd write a python script to convert the spreadsheet into a "fixture" file, that is a specially marked up data file, that Django then reads to know how and where to put the data.
+In Django, a ["fixture" file](https://docs.djangoproject.com/en/4.1/howto/initial-data/) can be used to provide initial data to a model. For example, let's say you have a spreadsheet and want to import that data into your Django app, doing it manually would take a long time. Ideally, you'd write a python script to convert the spreadsheet into a "fixture" file, that is a specially marked up data file, that Django then reads to know how and where to put the data.
 
 In your Django app, create a folder called **'fixtures'** and place it in the app directory (so it should be in the same location as **'models.py'**).  Create a file called "acre-data.json"
 
-In this JSON ["fixture" file](https://docs.djangoproject.com/en/3.2/howto/initial-data/), create the structure shown below. In the first code block I have provided an template. The second code block is an example. BE CAREFUL: the commas, colons, {} and [] brackets are all important! Missing one, can cause the whole thing to break. You can use (this JSON file validation tool)[https://jsonlint.com/] to check to see if your JSON vile is correctly structured.
-
-I do NOT expect you to digitize the entire ACRE sample dataset. Instead, pick 10 REAL data entries from the sample. Create 10 entries in this JSON fixture file those from the ACRE dataset so that we can bulk import some historical data into the app database. 
+In this JSON ["fixture" file](https://docs.djangoproject.com/en/4.1/howto/initial-data/), create the structure shown below. In the first code block I have provided an template. The second code block is an example. BE CAREFUL: the commas, colons, {} and [] brackets are all important! Missing one, can cause the whole thing to break. You can use (this JSON file validation tool)[https://jsonlint.com/] to check to see if your JSON vile is correctly structured.
 
 ```JSON
 [
@@ -208,9 +203,9 @@ Holy moly, this was a curly one. You did it!
 
 ## Future Learning Pathways
 
-Learn more about django models and databases: https://docs.djangoproject.com/en/3.2/topics/db/#
+Learn more about django models and databases: https://docs.djangoproject.com/en/4.1/topics/db/#
 
-Specifically about SQL queries in Django: https://docs.djangoproject.com/en/3.2/topics/db/sql/
+Specifically about SQL queries in Django: https://docs.djangoproject.com/en/4.1/topics/db/sql/
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
