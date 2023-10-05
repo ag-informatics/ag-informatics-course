@@ -120,41 +120,9 @@ Next, you will need to bulk import some of the data into your application.
 
 In Django, a ["fixture" file](https://docs.djangoproject.com/en/4.1/howto/initial-data/) can be used to provide initial data to a model. For example, let's say you have a spreadsheet and want to import that data into your Django app, doing it manually would take a long time. Ideally, you'd write a python script to convert the spreadsheet into a "fixture" file, that is a specially marked up data file, that Django then reads to know how and where to put the data.
 
-In your Django app, create a folder called **'fixtures'** and place it in the app directory (so it should be in the same location as **'models.py'**).  Create a file called "acre-data.json"
+In your Django app, create a folder called **'fixtures'** and place it in the app directory (so it should be in the same location as **'models.py'**).  
 
-In this JSON ["fixture" file](https://docs.djangoproject.com/en/4.1/howto/initial-data/), create the structure shown below. In the first code block I have provided an template. The second code block is an example. BE CAREFUL: the commas, colons, {} and [] brackets are all important! Missing one, can cause the whole thing to break. You can use (this JSON file validation tool)[https://jsonlint.com/] to check to see if your JSON vile is correctly structured.
-
-```JSON
-[
-  {
-    "model": "myapp.classname",
-    "pk": 1,
-    "fields": {
-      "attribute_name1": "Value",
-      "attribute_name2": "Value"
-    }
-  },
-  {
-    "model": "myapp.field",
-    "pk": 2,
-    "fields": {
-      "field_id": "32",
-      "field_name": "Corner"
-    }
-  }
-]
-
-```
-
-Open your terminal and run the command:
-
-```python
-  python manage.py loaddata acre-data.json
-
-```
-Once you have run this command, open your Django app's admin dashboard. Your 10 entries should now appear in your database!
-
-> IMAGE: Take a screenshot of your database with 10 entries with the filename **'sample-data'** inside your **'lab4/images'** folder. Note, we will be testing your fixtures file when grading so it should match :)
+We will stop here for lab 4, part 1. Part 2 will be uploaded shortly and will focus on guiding you through the steps for batch importation of csv data into json fixture files.
 
 ## 5. Create Views for Data Exploration
 
