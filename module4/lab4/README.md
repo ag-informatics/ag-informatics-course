@@ -153,6 +153,8 @@ Open your terminal and run the command:
 ```
 Once you have run this command, open your Django app's admin dashboard. Your data should now appear in your database!
 
+Please see this [guide](./data/loaddata-guide.ipynb) for how to create fixture files.
+
 You might have multiple fixture files or have multiple versions of them. In some cases, you will build a couple of classes then adding more later. You can always reset your database by removing `migrations` folder in `acrelog` and `db.sqlite3`. You can create a new database by running migration again. As long as you create fixture files corectly, the import data process should cost only a few commands.
 
 
