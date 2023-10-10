@@ -56,7 +56,7 @@ Take a look on more data sample and find the connection. Your task is to create 
 You will draw a simplified UML class diagram as we have previously done in class that represents your proposed application based on this dataset. Focus on the design of the *data model*, that is, the components of the class diagram that represent the data itself. This diagram will determine what classes you will need to create in your Django app for this lab.
 
 Your data model should have the following:
-1. Consist of at least 5 classes. 
+1. Consist of at least 4 classes. 
     - For any attribute that is a "look up" list (e.g., a choice from a fixed set of options like operations), you must specify the lookup list.
     - Each class must have a primary key.
     - If you know what functions you may need to write, feel free to specify them. These are optional for now.
@@ -120,9 +120,43 @@ Next, you will need to bulk import some of the data into your application.
 
 In Django, a ["fixture" file](https://docs.djangoproject.com/en/4.1/howto/initial-data/) can be used to provide initial data to a model. For example, let's say you have a spreadsheet and want to import that data into your Django app, doing it manually would take a long time. Ideally, you'd write a python script to convert the spreadsheet into a "fixture" file, that is a specially marked up data file, that Django then reads to know how and where to put the data.
 
-In your Django app, create a folder called **'fixtures'** and place it in the app directory (so it should be in the same location as **'models.py'**).  
+In your Django app, create a folder called **'fixtures'** and place it in the app directory (so it should be in the same location as **'models.py'**).
 
-We will stop here for lab 4, part 1. Part 2 will be uploaded shortly and will focus on guiding you through the steps for batch importation of csv data into json fixture files.
+In this JSON ["fixture" file](https://docs.djangoproject.com/en/4.1/howto/initial-data/), create the structure shown below. In the first code block I have provided an template. The second code block is an example. BE CAREFUL: the commas, colons, {} and [] brackets are all important! Missing one, can cause the whole thing to break. You can use (this JSON file validation tool)[https://jsonlint.com/] to check to see if your JSON vile is correctly structured.
+
+```JSON
+[
+  {
+    "model": "myapp.classname",
+    "pk": 1,
+    "fields": {
+      "attribute_name1": "Value",
+      "attribute_name2": "Value"
+    }
+  },
+  {
+    "model": "myapp.field",
+    "pk": 2,
+    "fields": {
+      "field_id": "32",
+      "field_name": "Corner"
+    }
+  }
+]
+
+```
+
+Open your terminal and run the command:
+
+```python
+  python manage.py loaddata acre-data.json
+```
+Once you have run this command, open your Django app's admin dashboard. Your data should now appear in your database!
+
+Please see this [guide](./data/loaddata-guide.ipynb) for how to create fixture files.
+
+You might have multiple fixture files or have multiple versions of them. In some cases, you will build a couple of classes then adding more later. You can always reset your database by removing `migrations` folder in `acrelog` and `db.sqlite3`. You can create a new database by running migration again. As long as you create fixture files corectly, the import data process should cost only a few commands.
+
 
 ## 5. Create Views for Data Exploration
 
