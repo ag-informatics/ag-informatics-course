@@ -1,6 +1,19 @@
 # Module 5, Lab 5
 
 ## Before the Lab
+
+### Design Notes
+BEFORE THE LAB
+
+Get familiar with the common components of websites.
+
+1. **Material Components for the Web**: This is a design framework developed by designers at Google used to unify the aesthetic and layout of user interfaces on Google products. It is commonly used by many developers, especially those of Android mobile applications.
+
+2. **Bootstrap Components for Web:** I chose this one to share since the website actually has visuals for you to look at. Bootstrap is a front-end library, originally to help style simple HTML websites, but now written in a variety of languages. **We will be using this framework so make sure you do this!!**
+
+3. **Dribble for Design Inspiration:** Designers showcase and share their work on this website - one can also use it to find and hire designers. I use the search function to get inspiration. Try search for "food", for example, and see ideas for how folks imagine apps for food delivery, cooking websites, nutrition apps and more. Remember: these are design professionals and aspiring web designers :)
+
+### Django Notes
 Make sure you are familiar with the following concepts before you begin this section:
 
 1. How to use the [`extends`](https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#std:templatetag-extends) tag in Django. 
@@ -19,24 +32,43 @@ You will be submitting a few different things. Create a folder called **'lab5'**
 
 ```
 lab5/
-  paper-prototype/
+  prototypes/   # includes the brainstorming sketch, paper prototype, and digital mockup
   ACRE/         # Copy over your previous project, you'll be building on it.
   README.md
 ```
 
-## Part 1: Paper Prototpying
-You will create a paper prototype of a new feature you'd like to test out for the ACRE Farm Management App you built in Module 4. You will need to "run" your prototype with 1-2 other people and have them provide feedback - i.e. some "lite" user testing on your prototype. As you are watching people "use" your prototype, make notes so that you can answer a questions listed below in your README.MD file
+## Part 1: Brainstorming!
+You will create prototype of a new feature you'd like to test out for the ACRE Farm Management App you built in Module 4. First, let's brainstorm some possible solutions in sketches. Note: the storyboard and wireframes are not going to be graded based on artistic quality - that doesn't matter. You will be graded on attempting the design exercises and putting together a logcial flow of information.
+
+1. Watch the video to learn how to use the Crazy 8s Process: [https://www.youtube.com/watch?v=UXOLJy0E7Pg.](https://www.youtube.com/watch?v=UXOLJy0E7Pg.) Given that we are designing a simple web app, you are welcome to reduce the number of squares to 4. If this is your first time doing this sort of thing, feel free to give yourself 2x or 3x the amount of time recommended. Ultimately, you will want to set a short timer otherwise you may get stuck overthinking details in this brainstorming phase.
+    
+2. I suggest practicing the Crazy8s method to layout parts of your web page several times to warm up your pen and brain! Don't worry about how it looks, it's not your drawing skill that matters, but the logical layout of information does. Other suggestions:
+   * Consider creating an actual "storyboard" in your first couple of attempts, it will help you think through the actual process you want the user to go through as they first arrive at the website, look for products, and ultimately buy them.
+   * Consider breaking up your website into several parts and using each of the squares so you're not packing the whole page into one area, but imagining how the user would digest different parts of the site as they move through.
+
+3. You will submit 3 of your Crazy8 Sketches that represent your favourite versions. Take a photo of your sketches, title them "solution-sketch1" and so on. Place it in your "prototypes" folder and make sure you desrcibe your sketches in your README.MD file under a heading "Brainstorming" (i.e. what do they show?).
+
+## Part 2: Paper Prototyping
+You will create a paper prototype of a new feature you'd like to test out for the ACRE Farm Management App you built in Module 4. You will need to "run" your prototype with 1-2 other people and have them provide feedback - i.e. some "lite" user testing on your prototype. As you are watching people "use" your prototype, make notes so that you can answer a questions listed below in your README.MD file.
 
 > In your README.MD file, create a heading called "Paper Prototype User Feedback", and describe, in brief:
 > - Where did users get stuck?
 > - Where did users seem to gain the most value (joy, usefulness, or something else)?
 > - What are three things you would improve on your app?
 
-Revise your prototype based on the feedback you receive.
+Insert the images of your paper prototype in the README file so that we can see what you created.
 
-Next, create a a short (<3 minute) video of your paper prototype. Remember the example show in class, [here's the link again](https://www.youtube.com/watch?v=GrV2SZuRPv0). **Upload the video to brightspace with your final submission.**
+## Part 3: Digital Prototyping
+Revise your prototype based on the feedback you receive. Once you've reeived feedback on your paper prototype, you will create a mockup of your the new feature you are designing. 
 
-## Part 2: Boostrapify your Django app
+Using [MIRO](https://miro.com/app/) as shown in class, create a mockup of the feature that demonstrates how you would layout your ideal farm product availability. These should be based on your brainstorm sketches from the prev section.
+
+Save your solution as a PDF titled "solution-mockup" and place it in your Lab1 folder. Save your work to your Github Repository.
+
+
+Next, create a a short (<3 minute) video of your digital prototype in Miro. Remember the example show in class, [here's the link again](https://www.youtube.com/watch?v=GrV2SZuRPv0). **Upload the video to brightspace with your final submission.**
+
+## Part 4: Boostrapify your Django app
 As shown in class, link the boostrap framework to your Django app, using the BootstrapCDN. [Instructions here.]https://getbootstrap.com/docs/4.3/getting-started/introduction/
 
 In the previous module, you had implemented the ACRE Farm Management app. Now, upgrade each of your views as follows.
@@ -65,9 +97,8 @@ Currently, you have at least 3 views represented via **'index.html'** and **'fie
 
 3. At least 2 [buttons](https://getbootstrap.com/docs/4.3/components/buttons/) for major actions, e.g. "Add a Log Entry", or a button group (https://getbootstrap.com/docs/4.3/components/button-group/).
 
-
 ### Secret Sauce
-During your paper-prototyping, you may have come up with some radical ideas to improve your app. I'm going to ask you to implement a SINGLE VIEW to capture some of what your proposed idea was. **Do not make major changes to your model.**
+During your previous prototyping activity, you may have come up with some radical ideas to improve your app. I'm going to ask you to implement a SINGLE VIEW to capture some of what your proposed idea was. **Do not make major changes to your model.**
 
 Unless you are ABSOLUTELY confident you can implement this 1-view idea within the lab timeframe, I suggest you discuss your proposed implementation idea with Ankita or Aanis to ensure you're not committing to too much :)
 
@@ -81,10 +112,10 @@ Your final lab submission should contain the following files:
 ```
 lab5/
   README.md                   <-- you should have all the pieces described in lab here
-  paper-prototpye/            <-- however many images you want to upload of your paper prototype
+  prototpyes/                 <-- images of your brainstorm sketches (3), paper prototype (however many you need to show us all the things), and your mockup.
     image1.png
     imageX.png
-    video.format              <-- if it's not too big, upload your video here too in whatever format. Otherwise, just upload to Brightspace
+    README.md                 <--- Explanation of your design process.
   acre/                       <-- your Django project
     manage.py
     acre/                     
