@@ -6,12 +6,12 @@ Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 5.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.1.html
 - Lecture 5.2 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.2.html
+- Lecture 5.3 [in-person]: Guest Lecturer: Dr. Wesley Moss on Engineering Design, Pt I
+- Lecture 5.4 [in-person]: Guest Lecturer: Dr. Wesley Moss, Pt II
 
 ## Project
 
 Project Part 2, Proposed Approach out now! Here is the [project information](../project/Project-part2.pdf).
-
-**Project Part 2 is due: 10/24/2021**
 
 
 ## Labs

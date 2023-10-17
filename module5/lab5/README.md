@@ -25,7 +25,7 @@ lab5/
 ```
 
 ## Part 1: Paper Prototpying
-During Lecture 5.3 (Tuesday, Oct 26), you will bring a paper prototype of a new feature you'd like to test out for the ACRE Farm Management App you built in Module 4. I will provide feedback and you will do some "lite" user testing on your prototype. As you are watching people "use" your prototype, make notes so that you can answer a questions listed below in your README.MD file
+You will create a paper prototype of a new feature you'd like to test out for the ACRE Farm Management App you built in Module 4. You will need to "run" your prototype with 1-2 other people and have them provide feedback - i.e. some "lite" user testing on your prototype. As you are watching people "use" your prototype, make notes so that you can answer a questions listed below in your README.MD file
 
 > In your README.MD file, create a heading called "Paper Prototype User Feedback", and describe, in brief:
 > - Where did users get stuck?
