@@ -84,11 +84,11 @@ Module | Weeks | What's due?
 -----|-----|-----
 [1 - Web Design & Dev](https://github.com/ag-informatics/ag-informatics-course/tree/main/module1) | Week 1 & 2 | Quiz 1
 [2 - Data Exploration](https://github.com/ag-informatics/ag-informatics-course/tree/main/module2) | Week 3 & 4 | Quiz 2, Submit Lab 1
-[3 - Web Applications]() | Week 5 & 6 | Quiz 3, Submit Lab 2, Submit Project Part 1
-[4 - Data Management]() | Week 7 & 8 | Quiz 4, Submit Lab 3
-[5 - User Interfaces]() | Week 9 & 10 | Quiz 5, Submit Lab 4, Submit Project Part 2 
-[6 - Geometric Processing]() | Week 11 & 12 | Quiz 6, Submit Lab 5
-[7 - Future of Ag Tech]() | Week 13 & 14 | Quiz 7, Submit Lab 6
+[3 - Web Applications](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3) | Week 5 & 6 | Quiz 3, Submit Lab 2, Submit Project Part 1
+[4 - Data Management](https://github.com/ag-informatics/ag-informatics-course/tree/main/module4) | Week 7 & 8 | Quiz 4, Submit Lab 3
+[5 - User Interfaces](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5) | Week 9 & 10 | Quiz 5, Submit Lab 4, Submit Project Part 2 
+[6 - Geometric Processing](https://github.com/ag-informatics/ag-informatics-course/tree/main/module6) | Week 11 & 12 | Quiz 6, Submit Lab 5
+[7 - Future of Ag Tech](https://github.com/ag-informatics/ag-informatics-course/tree/main/module7) | Week 13 & 14 | Quiz 7, Submit Lab 6
 [8 - Wrap Up]() | Week 15 & 16 | Submit Lab 7, Present + Submit Project Part 3
 
 
