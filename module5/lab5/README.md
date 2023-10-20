@@ -16,13 +16,13 @@ Get familiar with the common components of websites.
 ### Django Notes
 Make sure you are familiar with the following concepts before you begin this section:
 
-1. How to use the [`extends`](https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#std:templatetag-extends) tag in Django. 
+1. How to use the [`extends`](https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#std:templatetag-extends) tag in Django. 
    - If you are not familiar with these, revisit the [CS50 video from last module](https://github.com/ag-informatics/ag-informatics-course/tree/main/module4), as it contains an example of how to use the `extends` tag at least.
-   - Note, there is also an [`include`](https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#std:templatetag-include) tag that does similar things, but in a slightly different manner.
+   - Note, there is also an [`include`](https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#std:templatetag-include) tag that does similar things, but in a slightly different manner.
    - [Here's a helpful discussion](https://stackoverflow.com/questions/2863695/include-vs-extends-in-django-templates) on the difference between the two.
 
 2. We briefly discussed the Bootstrap framework in class. Make sure you are comfortable with the concept of different components in Bootstrap.
-   - In particular, review the [Bootstrap container](https://getbootstrap.com/docs/4.3/layout/overview/), the different [components](https://getbootstrap.com/docs/4.3/components/alerts/), and at least know what the [basic changes being made to your basic elements](https://getbootstrap.com/docs/4.3/content/reboot/). 
+   - In particular, review the [Bootstrap container](https://getbootstrap.com/docs/5.3/layout/containers/), the different [components](https://getbootstrap.com/docs/5.3/components/alerts/), and at least know what the [basic changes being made to your basic elements](https://getbootstrap.com/docs/5.3/content/reboot/). 
 
 3. I gave a quick demo of how to integrate Boostrap into a Django app, and my code is [available here, in this module's folder](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5/bootstrap-demo). The video is on Brightspace if you'd like to review.
    - Here's a good tutorial on Django + Bootstrap if you are stuck: https://www.ordinarycoders.com/django-bootstrap
@@ -69,7 +69,7 @@ Save your solution as a PDF titled "solution-mockup" and place it in your Lab1 f
 Next, create a a short (<3 minute) video of your digital prototype in Miro. Remember the example show in class, [here's the link again](https://www.youtube.com/watch?v=GrV2SZuRPv0). **Upload the video to brightspace with your final submission.**
 
 ## Part 4: Boostrapify your Django app
-As shown in class, link the boostrap framework to your Django app, using the BootstrapCDN. [Instructions here.]https://getbootstrap.com/docs/4.3/getting-started/introduction/
+As shown in class, link the boostrap framework to your Django app, using the BootstrapCDN. [Instructions here](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
 
 In the previous module, you had implemented the ACRE Farm Management app. Now, upgrade each of your views as follows.
 
@@ -82,20 +82,20 @@ Create a file called "skeleton.html", and make sure you include the follwoing:
 
 1. The title of your app, in a striking font. Include a "logo" for the app, by using a relevan icon from the [Noun Project](https://thenounproject.com/).
 
-2. A Boostrap [Navigation Bar](https://getbootstrap.com/docs/4.3/components/navbar/) that contains static links to each of your views. 
+2. A Boostrap [Navigation Bar](https://getbootstrap.com/docs/5.3/components/navbar/) that contains static links to each of your views. 
 
-3. A [**Container**](https://getbootstrap.com/docs/4.3/layout/overview/) based layout that should work well for all your views. Your dynamic content will be inserted in this "body" area of your skeleton.
+3. A [**Container**](https://getbootstrap.com/docs/5.3/layout/containers/) based layout that should work well for all your views. Your dynamic content will be inserted in this "body" area of your skeleton.
 
 4. A footer that contains YOUR NAME and the date the page was last updated.
 
 ### Bootstrap Components
 Currently, you have at least 3 views represented via **'index.html'** and **'fields.html'**, and your to-be-created **'secretsauce.html'** template. You must use the following Bootstrap components anywhere on your app:
 
-1. [Cards](https://getbootstrap.com/docs/4.3/components/card/)
+1. [Cards](https://getbootstrap.com/docs/5.3/components/card/)
 
-2. Any of the [Collapse](https://getbootstrap.com/docs/4.3/components/collapse/) classes. For example, you can combine this with Cards to create an [Accordion](https://getbootstrap.com/docs/4.3/components/collapse/#accordion-example)
+2. Any of the [Collapse](https://getbootstrap.com/docs/5.3/components/collapse/) classes. For example, you can combine this with Cards to create an [Accordion](https://getbootstrap.com/docs/5.3/components/collapse/#accordion-example)
 
-3. At least 2 [buttons](https://getbootstrap.com/docs/4.3/components/buttons/) for major actions, e.g. "Add a Log Entry", or a button group (https://getbootstrap.com/docs/4.3/components/button-group/).
+3. At least 2 [buttons](https://getbootstrap.com/docs/5.3/components/buttons/) for major actions, e.g. "Add a Log Entry", or a [button group](https://getbootstrap.com/docs/5.3/components/button-group/).
 
 ### Secret Sauce
 During your previous prototyping activity, you may have come up with some radical ideas to improve your app. I'm going to ask you to implement a SINGLE VIEW to capture some of what your proposed idea was. **Do not make major changes to your model.**
