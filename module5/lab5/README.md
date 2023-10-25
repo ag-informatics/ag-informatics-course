@@ -100,7 +100,7 @@ Currently, you have at least 3 views represented via **'index.html'** and **'fie
 ### Secret Sauce
 During your previous prototyping activity, you may have come up with some radical ideas to improve your app. I'm going to ask you to implement a SINGLE VIEW to capture some of what your proposed idea was. **Do not make major changes to your model.**
 
-Unless you are ABSOLUTELY confident you can implement this 1-view idea within the lab timeframe, I suggest you discuss your proposed implementation idea with Ankita or Aanis to ensure you're not committing to too much :)
+Unless you are ABSOLUTELY confident you can implement this 1-view idea within the lab timeframe, I suggest you discuss your proposed implementation idea with Ankita or Steve to ensure you're not committing to too much :)
 
 Your view and the resulting template should have the title **'secret-sauce'**. 
 

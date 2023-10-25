@@ -1,9 +1,13 @@
 # Module 6, Lab 6
 
 ## Before the Lab
-In this lab, we will be using the python libraries *shapely* and *pyproj*. You will need to install them in your python environment in order to complete this lab.
+We need to install new packages for this lab. Install packages could take time. It is highly suggest that you do before the lab. 
 
-If you are using Anaconda, you can do this with the Environment page in Anaconda. However, you made need to make sure you are using at least Python 3.8. If not create a new Environment and install your applications and libraries into it.
+```bash
+conda activate asm591
+conda install pyarrow
+conda install -c conda-forge geopandas
+```
 
 ### Copy the Lab Skeleton File into your Repository
 
