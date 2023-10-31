@@ -9,27 +9,66 @@ conda install pyarrow
 conda install -c conda-forge geopandas
 ```
 
-### Copy the Lab Skeleton File into your Repository
+### Leaflet
 
-This lab is similar to Lab 2 - We will be using a Jupyter notebook to complete this lab. So, the first step is to copy the notebook into your repository. Just like in lab 2, follow these steps:
+In this lab, we will use Leaflet as a map tool. Leaflet is an open-source interactive map library. It is written in JavaScript. Therefore, it can be used in web platform including Django. More information about Leaflet and documents is here: https://leafletjs.com/index.html.
 
-Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module6", with a "lab6" folder inside it. It will contain this README.md file and a "Lab6-Skeleton.ipynb" file This file contains the instructions for your lab. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here".
+### Lab Submission Folder Structure
+You will be submitting a few different things. Create a folder called **'lab5'**. Create a subfolder called **'paper-protoype'** and copy over your previous lab 5.
 
-Let's move this file into your repository for you to use:
+```
+lab6/
+  ACRE/         # Copy over your previous project, you'll be building on it.
+  README.md
+```
+## Embed Leaflet map in Django
+As Leaflef is a JavaScript library, we will need to create a javascript file for it. In Django, Javascript files (and also stylesheets like .css files) will be kept in `static` folder in your application. Let's create a `map.js` file in `static` folder and copy the following script.
 
-1. Copy the "lab6" into your existing github repository titled "YOURNAME-ASM591-Labs".
-2. Rename "Lab6-Skeleton.ipynb" to "Lab6-YOURNAME.ipnyb". THIS IS THE FILE YOU WILL BE WORKING IN
-3. Replace the README.md file with your own.
-4. Git add, commit, and push so that your repository now contains these items.
-5. View your new Jupyter Notebook in your github repository to confirm everything is in the right place.
+```javascript
+const copy =
+  "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+const layer = L.tileLayer(url, { attribution: copy });
+const map = L.map("map", { layers: [layer] });
+```
 
-## Open your Jupyter Notebook
+Next, we will import Leaflet script to our html page by adding the script below into the head section of your templete file (.html). 
 
-1. Run Jupyterlabs or Jupyter Notebook from Anaconda.
-2. Open the file Lab6-YOURNAME.ipnyb
-3. Follow the directions in the lab.
+```html
+<head>
+...
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin=""></script>
+...
+</head>
+```
 
-**NOTE**: Part 1 is just a script to make sure you have correctly setup your libraries to work with geometric data. If it does not run correctly, talk to your lab instructor for troubleshooting. *Hint: The programming in the test script provides a useful example of many of the commands to use in the rest of the lab. Use it as a starting place for your own code as necessary.*
+The last step is to include our `map.js` into the template file. First we will need to tell Django to load `static` folder by adding the following line to the first line of your templete file.
+```html
+{% load static %}   <-- add this line
+<!DOCTYPE html>
+<html lang="en">
+```
+
+Then add the folling script in the body part where you want to display the map.
+
+```html
+<body>
+  ...
+  <div id="map"></div>
+  <script src="{% static 'map.js' %}" defer></script>
+  ...
+</body>
+```
+
+## Display ACRE map
+You will see `acre_geometry.parquet` file in the data folder. Parquet file (.parquet) is a compress file (like zip file). In side, you will see the geometry of fields in ACRE. You can use `geopandas` to read this file by `read_parquet("filename.parquet")`. 
+
+Your task is 
+- Process ACRE geometry into .geojson file 
+- create a new page call `map` in your navigation bar. 
+- The map page will show a map of ACRE with field's boundaries. 
+- When click on the field, the map will show a marker that show brief summary of the latest operation on that field and a link to view the full detail of that view. 
 
 ## Submitting your work
 Make sure to save your notebook code after completing all the steps. Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website. Also remember, you should have a commit history with at least 5 commits to demostrate ongoing effort (don't just commit it all 5 mins before it's due!).
@@ -37,6 +76,14 @@ Make sure to save your notebook code after completing all the steps. Remember to
 GO TO BRIGHTSPACE, submit the link to your repository. You are done!
 
 ## Future Learning Pathways 
+Check the lecture from previous iterations of this course
+
+- Lecture 6.1: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.1.html
+- Lecture 6.2: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.2.html
+- Lecture 6.3: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.3.html
+
+You can work on `exercise.ipynp`. This is optional but recommend. 
+
 The [Shapely documentation](https://shapely.readthedocs.io/en/stable/manual.html) is actually an excellent place to explore geometric operations. You can learn more than you ever thought possible about boundaries, geometric objects and how to work with them. **Really!** It has been well written! It is less code documentation and more of an introduction to the basics of geometry. If you are in Precision Agriculture, or another field in which geometry is important, you really should understand the issues it discusses. For example, a line may "contain" a point, but it doesn't "cross" the point. Also, lines that "touch" do not "overlap" and lines that "overlap" do not "touch." We are not very precise when we discuss these ideas, but programming requires a degree of precision that can be very useful to understand. The documentation makes sure to mention these gotchas between how we think and talk about geometry.
 
 ## License
