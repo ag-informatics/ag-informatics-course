@@ -22,7 +22,50 @@ lab6/
   README.md
 ```
 ## Embed Leaflet map in Django
-As Leaflef is a JavaScript library, we will need to create a javascript file for it. In Django, Javascript files (and also stylesheets like .css files) will be kept in `static` folder in your application. Let's create a `map.js` file in `static` folder and copy the following script.
+First, we will import Leaflet script to our html page by adding the script below into the head section of your templete file (.html). 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  ...
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin=""></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'map.css' %}" />
+    <script src="{% static 'map.js' %}" defer></script>
+  ...
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
+There are 4 scripts that we import here. The fisrt two are Leaflet's stylesheet and JavaScript modules. There two keep all functionalities for runing Leaflet. 
+
+```html
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin=""/>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin=""></script>
+```
+
+Another two scripts are `map.css` and `map.js` which are our custom style sheet and JavaScript that we will create next. 
+
+```html
+<link rel="stylesheet" type="text/css" href="{% static 'map.css' %}" />
+<script src="{% static 'map.js' %}" defer></script>
+```
+
+Note that we import with `static` in front of the custom script. In Django, Javascript and stylesheets files will be kept in `static` folder in your application. We also need to tell Django that we will use `static` folder by adding one line at the top of html file as below.
+
+```html
+{% load static %}   <-- add this line
+<!DOCTYPE html>
+<html lang="en">
+...
+</html>
+```
+
+Let's create a static folder in your application folder. Then create `map.js` and `map.css`. Copy the following code in `map.js`
 
 ```javascript
 const copy =
@@ -30,43 +73,66 @@ const copy =
 const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const layer = L.tileLayer(url, { attribution: copy });
 const map = L.map("map", { layers: [layer] });
+
+map.fitBounds([
+  [40.470060621973026, -86.99269856365936], // Somewhere in ACRE
+  // You can add more coordinates
+]);
 ```
 
-Next, we will import Leaflet script to our html page by adding the script below into the head section of your templete file (.html). 
+We will be using OpenStreetMap layer. So, ther first line is to declear the source of our data. The second line is the URL of the default OpenStreetMap. There are many more options that you can use from [here](https://leaflet-extras.github.io/leaflet-providers/preview/). The third line will load the layer from providing URL. Then the forth line will put that layer into our map.
 
-```html
-<head>
-...
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin=""></script>
-...
-</head>
+One last thing for the JavaScript file is to choose the default view. That is when `map.fitBounds()` comes to play. You can pass coordinate or a list of coordinates that the map will show when you reload it.
+
+Next is the stylesheet. Open `map.css` and copy the following code. For now, we will display `body` tag with 100% screen height. Then the tag with id=`map` will also be 100% of height and width. You can change this configuration later.
+```css
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+#map {
+  height: 100%;
+  width: 100%;
+}
 ```
 
-The last step is to include our `map.js` into the template file. First we will need to tell Django to load `static` folder by adding the following line to the first line of your templete file.
-```html
-{% load static %}   <-- add this line
-<!DOCTYPE html>
-<html lang="en">
-```
-
-Then add the folling script in the body part where you want to display the map.
+Now, we are ready to show the map. Get back into html file, then add the following line into the body part.
 
 ```html
 <body>
   ...
-  <div id="map"></div>
-  <script src="{% static 'map.js' %}" defer></script>
+  <div id="map"></div> <-- add this line
   ...
 </body>
 ```
 
+Lastly, you will need to config `url.py` and `views.py` to point to the template file we just created.
+
+```python
+# views.py
+from django.shortcuts import render
+
+def render_map(request):
+    return render(request, "map.html")
+```
+
+```python
+# url.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("", views.render_map, name="index"),
+]
+```
+
 ## Display ACRE map
-You will see `acre_geometry.parquet` file in the data folder. Parquet file (.parquet) is a compress file (like zip file). In side, you will see the geometry of fields in ACRE. You can use `geopandas` to read this file by `read_parquet("filename.parquet")`. 
+You will see `acre_geometry.parquet` file in the data folder. Parquet file (.parquet) is a compress file (like zip file). Inside, you will see the geometry of fields in ACRE. You can use `geopandas` to read this file by `read_parquet("filename.parquet")`. 
 
 Your task is 
 - Process ACRE geometry into .geojson file 
-- create a new page call `map` in your navigation bar. 
+- Create a new page call `map` in your navigation bar. 
 - The map page will show a map of ACRE with field's boundaries. 
 - When click on the field, the map will show a marker that show brief summary of the latest operation on that field and a link to view the full detail of that view. 
 
@@ -82,7 +148,7 @@ Check the lecture from previous iterations of this course
 - Lecture 6.2: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.2.html
 - Lecture 6.3: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.3.html
 
-You can work on `exercise.ipynp`. This is optional but recommend. 
+You can work on `exercise.ipynp`. This is optional but highly recommend. 
 
 The [Shapely documentation](https://shapely.readthedocs.io/en/stable/manual.html) is actually an excellent place to explore geometric operations. You can learn more than you ever thought possible about boundaries, geometric objects and how to work with them. **Really!** It has been well written! It is less code documentation and more of an introduction to the basics of geometry. If you are in Precision Agriculture, or another field in which geometry is important, you really should understand the issues it discusses. For example, a line may "contain" a point, but it doesn't "cross" the point. Also, lines that "touch" do not "overlap" and lines that "overlap" do not "touch." We are not very precise when we discuss these ideas, but programming requires a degree of precision that can be very useful to understand. The documentation makes sure to mention these gotchas between how we think and talk about geometry.
 
