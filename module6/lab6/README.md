@@ -21,7 +21,7 @@ lab6/
   ACRE/         # Copy over your previous project, you'll be building on it.
   README.md
 ```
-## Embed Leaflet map in Django
+## Embed Leaflet Map in Django
 First, we will import Leaflet script to our html page by adding the script below into the head section of your templete file (.html). 
 
 ```html
@@ -126,15 +126,66 @@ urlpatterns = [
     path("", views.render_map, name="index"),
 ]
 ```
+## Putting Features on the Map
+Leaflet allows us to modify the map freely. One of the common things to put into the map is a marker. Techically speaking, a marker is a point (geometric object) on the map. To add a marker, first add the following line into `map.js`.
+
+```javascript
+let marker = L.marker([40.470060621973026, -86.99269856365936]).addTo(map);
+```
+
+The code above creates a marker object on the coordinate that we provide. Then we add that marker to the map that we create earlier. You should see a marker after you refresh the map. 
+
+Next, let's add a popup box when we click on that marker. We can do that by adding more functionality at the end of the marker object we created previously. Refresh the page and try to click on the marker. 
+
+```javascript
+let marker = L.marker([40.470060621973026, -86.99269856365936])
+  .addTo(map)
+  .bindPopup("This is a popup");
+```
+
+We can also create a marker in Python side. Open `view.py` then modify `render_map` function as below.
+
+```python
+import geojson
+import shapely.geometry as geo
+
+def render_map(request):
+    point = geo.Point(([40.470060621973026, -86.99269856365936]))
+    marker = geojson.Feature(geometry=point, properties={"message": "Hello World"})
+    data = geojson.FeatureCollection(marker)
+    return render(request, "map.html", {"data": data})
+```
+
+First, we import `geojson` and `shapely.geometry`. We will use `shapely.geometry` to create geometry objects. In this case, we want to create a marker which is a point. Then we create a geoJSON feature object by passing the geometry and properties. The properties parameter accepts a dictionary. Therefore, you can have multiple key-value properties. Next, we wrap the marker into geoJSON feature collection. GeoJSON feature collection is a list of geoJSON feature. You can pass a list of geoJSON feature. However, in this example, we only pass one marker. Lastly, we return the render page with additional information back to HTML side. 
+
+Open `map.html` file and modify as below. We interpolate date from Django by wrapping it with double curly brackets. Then we give HTML a clue that this is a JSON data. Lastly, we name this data "data_geojson" for HTML and JavaScript side. 
+```html
+<body>
+  {{ data|json_script:"data_geojson" }}
+  <div id="map"></div>
+</body>
+```
+Next we need to process the geoJSON data in JavaScript file. Open `map.js` then add the code below. First, we parse the data from HTML. As the data is in geoJSON format, we can use Leaflet built-in function to display all features in the geoJSON feature collection. We can also bind a popup box with message that we want to show. In this case, it is a `message` properties that we embed from Python side (`view.py`). Finally, we add the feature to the map. 
+
+```javascript
+const data = JSON.parse(document.getElementById("data_geojson").textContent);
+
+let feature = L.geoJSON(data.features)
+  .bindPopup(function (layer) {
+    return layer.feature.properties.message;
+  })
+  .addTo(map);
+```
+
+You can add multiple geometry objects into one geoJSON feature collection. The objects could be points, lines, or polygons. The most of the data processing will be done in `view.py`. Whatever data you embed into rendering process will be passed to HTML and JavaScript side for display into the map. 
 
 ## Display ACRE map
 You will see `acre_geometry.parquet` file in the data folder. Parquet file (.parquet) is a compress file (like zip file). Inside, you will see the geometry of fields in ACRE. You can use `geopandas` to read this file by `read_parquet("filename.parquet")`. 
 
 Your task is 
-- Process ACRE geometry into .geojson file 
-- Create a new page call `map` in your navigation bar. 
+- Create a new page call "map" in your navigation bar. 
 - The map page will show a map of ACRE with field's boundaries. 
-- When click on the field, the map will show a marker that show brief summary of the latest operation on that field and a link to view the full detail of that view. 
+- When click on the field, the map will show a popup that show brief summary of the latest operation on that field and a link to view the full detail of that field. 
 
 ## Submitting your work
 Make sure to save your notebook code after completing all the steps. Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website. Also remember, you should have a commit history with at least 5 commits to demostrate ongoing effort (don't just commit it all 5 mins before it's due!).
