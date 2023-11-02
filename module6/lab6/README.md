@@ -29,10 +29,18 @@ First, we will import Leaflet script to our html page by adding the script below
 <html lang="en">
   <head>
   ...
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin=""></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'map.css' %}" />
-    <script src="{% static 'map.js' %}" defer></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/leaflet/dist/leaflet.css"
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet/dist/leaflet.js"
+      crossorigin=""
+    ></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet-map.css' %}" />
+    <script src="{% static 'leaflet-map.js' %}" defer></script>
   ...
   </head>
   <body>
@@ -44,15 +52,24 @@ First, we will import Leaflet script to our html page by adding the script below
 There are 4 scripts that we import here. The fisrt two are Leaflet's stylesheet and JavaScript modules. There two keep all functionalities for runing Leaflet. 
 
 ```html
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" crossorigin=""/>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js" crossorigin=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/leaflet/dist/leaflet.css"
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet/dist/leaflet.js"
+      crossorigin=""
+    ></script>
 ```
 
-Another two scripts are `map.css` and `map.js` which are our custom style sheet and JavaScript that we will create next. 
+Another two scripts are `leaflet-map.css` and `leaflet-map.js` which are our custom style sheet and JavaScript that we will create later. 
 
 ```html
-<link rel="stylesheet" type="text/css" href="{% static 'map.css' %}" />
-<script src="{% static 'map.js' %}" defer></script>
+<link rel="stylesheet" type="text/css" href="{% static 'leaflet-map.css' %}" />
+<script src="{% static 'leaflet-map.js' %}" defer></script>
 ```
 
 Note that we import with `static` in front of the custom script. In Django, Javascript and stylesheets files will be kept in `static` folder in your application. We also need to tell Django that we will use `static` folder by adding one line at the top of html file as below.
@@ -65,7 +82,7 @@ Note that we import with `static` in front of the custom script. In Django, Java
 </html>
 ```
 
-Let's create a static folder in your application folder. Then create `map.js` and `map.css`. Copy the following code in `map.js`
+Let's create a static folder in your application folder. Then create `leaflet-map.js` and `leaflet-map.css`. Copy the following code in `leaflet-map.js`
 
 ```javascript
 const copy =
@@ -84,7 +101,7 @@ We will be using OpenStreetMap layer. So, ther first line is to declear the sour
 
 One last thing for the JavaScript file is to choose the default view. That is when `map.fitBounds()` comes to play. You can pass coordinate or a list of coordinates that the map will show when you reload it.
 
-Next is the stylesheet. Open `map.css` and copy the following code. For now, we will display `body` tag with 100% screen height. Then the tag with id=`map` will also be 100% of height and width. You can change this configuration later.
+Next is the stylesheet. Open `leaflet-map.css` and copy the following code. For now, we will display `body` tag with 100% screen height. Then the tag with id=`map` will also be 100% of height and width. You can change this configuration later.
 ```css
 html,
 body {
@@ -114,7 +131,7 @@ Lastly, you will need to config `url.py` and `views.py` to point to the template
 from django.shortcuts import render
 
 def render_map(request):
-    return render(request, "map.html")
+    return render(request, "index.html")
 ```
 
 ```python
@@ -127,7 +144,7 @@ urlpatterns = [
 ]
 ```
 ## Putting Features on the Map
-Leaflet allows us to modify the map freely. One of the common things to put into the map is a marker. Techically speaking, a marker is a point (geometric object) on the map. To add a marker, first add the following line into `map.js`.
+Leaflet allows us to modify the map freely. One of the common things to put into the map is a marker. Techically speaking, a marker is a point (geometric object) on the map. To add a marker, first add the following line into `leaflet-map.js`.
 
 ```javascript
 let marker = L.marker([40.470060621973026, -86.99269856365936]).addTo(map);
@@ -150,22 +167,22 @@ import geojson
 import shapely.geometry as geo
 
 def render_map(request):
-    point = geo.Point(([40.470060621973026, -86.99269856365936]))
+    point = geo.Point(([-86.99269856365936, 40.470060621973026]))
     marker = geojson.Feature(geometry=point, properties={"message": "Hello World"})
     data = geojson.FeatureCollection(marker)
-    return render(request, "map.html", {"data": data})
+    return render(request, "index.html", {"data": data})
 ```
 
 First, we import `geojson` and `shapely.geometry`. We will use `shapely.geometry` to create geometry objects. In this case, we want to create a marker which is a point. Then we create a geoJSON feature object by passing the geometry and properties. The properties parameter accepts a dictionary. Therefore, you can have multiple key-value properties. Next, we wrap the marker into geoJSON feature collection. GeoJSON feature collection is a list of geoJSON feature. You can pass a list of geoJSON feature. However, in this example, we only pass one marker. Lastly, we return the render page with additional information back to HTML side. 
 
-Open `map.html` file and modify as below. We interpolate date from Django by wrapping it with double curly brackets. Then we give HTML a clue that this is a JSON data. Lastly, we name this data "data_geojson" for HTML and JavaScript side. 
+Open `index.html` file and modify as below. We interpolate date from Django by wrapping it with double curly brackets. Then we give HTML a clue that this is a JSON data. Lastly, we name this data "data_geojson" for HTML and JavaScript side. 
 ```html
 <body>
   {{ data|json_script:"data_geojson" }}
   <div id="map"></div>
 </body>
 ```
-Next we need to process the geoJSON data in JavaScript file. Open `map.js` then add the code below. First, we parse the data from HTML. As the data is in geoJSON format, we can use Leaflet built-in function to display all features in the geoJSON feature collection. We can also bind a popup box with message that we want to show. In this case, it is a `message` properties that we embed from Python side (`view.py`). Finally, we add the feature to the map. 
+Next we need to process the geoJSON data in JavaScript file. Open `leaflet-map.js` then add the code below. First, we parse the data from HTML. As the data is in geoJSON format, we can use Leaflet built-in function to display all features in the geoJSON feature collection. We can also bind a popup box with message that we want to show. In this case, it is a `message` properties that we embed from Python side (`view.py`). Finally, we add the feature to the map. 
 
 ```javascript
 const data = JSON.parse(document.getElementById("data_geojson").textContent);
