@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Leaflet Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/leaflet/dist/leaflet.css"
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet/dist/leaflet.js"
+      crossorigin=""
+    ></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'leaflet-map.css' %}" />
+    <script src="{% static 'leaflet-map.js' %}" defer></script>
+  </head>
+  <body>
+    {{ data|json_script:"data_geojson" }}
+    <div id="map"></div>
+  </body>
+</html>
