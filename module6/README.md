@@ -6,10 +6,9 @@ Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 6.1: https://tame0001.github.io/presentations/asm591-lecture6.1.html
 - Lecture 6.2: https://tame0001.github.io/presentations/asm591-lecture6.2.html
-
-<!-- - Lecture 6.1 [live web lecture]: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.1.html
-- Lecture 6.2 [live web lecture]: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.2.html
-- Lecture 6.3 [live web lecture]: www.aginformaticslab.org/ag-informatics-course/module6/lecture6.3.html -->
+- Lecture 6.3 & 6.4 will be a combination of:
+    - Finishing up data management: http://www.aginformaticslab.org/ag-informatics-course/module4/Lecture4.1.html#/14
+    - Bringing the architecture lecture forward: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.3.html
 
 ## Labs
 
