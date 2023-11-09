@@ -1,13 +1,39 @@
 # Module 6, Lab 6
 
 ## Before the Lab
-We need to install new packages for this lab. Install packages could take time. It is highly suggest that you do before the lab. 
+We need to install new packages for this lab. Install packages could take time. It is highly suggest that you do before the lab.
 
 ```bash
 conda activate asm591
+conda install -c conda-forge geopandas
 conda install pyarrow
+
+```
+It may be possible that these packages will have difficulty being installed in the environment you have been using for previous labs. If this is the case, you will need to create a new environment. To do so, follow these steps:
+1. Go to the base environment, either by deactivating your asm591 environment or by restarting your miniconda prompt.
+2. Create a new environment by typing the following (replace the name with one of your choosing):
+```bash
+conda create --name example_name
+```
+3. Activate your new environment.
+4. Set the channel priorities to favor Conda Forge installation:
+```bash
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+```
+5. Install geopandas:
+```bash
 conda install -c conda-forge geopandas
 ```
+6. Then, install django:
+```bash
+conda install django
+```
+7. Then, install pyarrow:
+```bash
+conda install pyarrow
+```
+Once these are installed, you should be able to complete lab 6 with this environment. If you are still having trouble with the package installation, please let us know ASAP.
 
 ### Leaflet
 

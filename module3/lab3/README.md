@@ -17,7 +17,7 @@ If you are using VS Code built-in terminal, you can start with `Python: select i
 2. Run the following command to install the 'django' package.
 
 ```
-conda install -c anaconda django
+conda install django
 ```
 
 2. Verify that python can see Django. In your terminal, type `python` to enter the python shell. Your terminal prompt will change to ">>>". If you haven't used this interface before, play around. You can run python commands just like we did in the Jupyter Notebook last week! Now you can import django and check the version installed by typing the following code in. You should see version 4.1 as an output.
