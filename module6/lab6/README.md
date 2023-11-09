@@ -110,7 +110,7 @@ body {
 }
 #map {
   height: 100%;
-  width: 80vh;
+  width: 80vw;
 }
 ```
 
