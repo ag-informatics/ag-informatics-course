@@ -1,0 +1,61 @@
+{% extends './skeleton.html' %} {% block content %}
+
+<div class="row" style="margin: 10px">
+  <div class="col"><h2>Worklog for field {{field.name}}</h2></div>
+  <div class="col" style="text-align: right">
+    <a href="/acrelog"><button class="btn btn-success">Back to home</button></a>
+  </div>
+</div>
+
+<div
+  class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4"
+  style="margin-bottom: 10px"
+>
+  {% for operation in operations %}
+  <div class="col">
+    <div class="card text-center" style="width: 18rem">
+      <div class="card-header"><h5>{{ operation.date }}</h5></div>
+      <div class="card-body">
+        <h5 class="card-title">{{ operation.operation_type | title }}</h5>
+        <p class="card-text">By {{ operation.operator}}</p>
+
+        <button
+          class="btn {{ operation.is_more_detail }}"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#{{ operation.tag_id }}"
+          aria-expanded="false"
+        >
+          Show detail
+        </button>
+
+        <div class="collapse" id="{{ operation.tag_id }}" style="margin: 3px">
+          {% if operation.note %}
+          <div class="card-header">Note</div>
+          <div class="card card-body">{{ operation.note }}</div>
+          {% endif %} {% if operation.tool %}
+          <div class="card-header">Tool</div>
+          <div class="card card-body">{{ operation.tool }}</div>
+          {% endif %} {% if operation.seed %}
+          <div class="card-header">Seed</div>
+          <div class="card card-body">{{ operation.seed }}</div>
+          {% if operation.seed_rate %}
+          <div class="card card-body">
+            Rate = {{ operation.seed_rate }} (seeds/ac)
+          </div>
+          {% endif %} {% endif %} {% if operation.fertillizer %}
+          <div class="card-header">Fertillizer</div>
+          <div class="card card-body">{{ operation.fertillizer }}</div>
+          {% if operation.fertiliizer_rate %}
+          <div class="card card-body">
+            Rate = {{ operation.fertiliizer_rate }} (lb/ac)
+          </div>
+          {% endif %} {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
