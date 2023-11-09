@@ -1,0 +1,41 @@
+{% extends './skeleton.html' %} {% block content %}
+<div style="margin: 10px; text-align: right">
+  <span style="margin: 10px">Order by</span>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <a href="/acrelog/order_by/name/"
+      ><button type="button" class="btn btn-primary">Field Name</button></a
+    >
+    <a href="/acrelog/order_by/time/"
+      ><button type="button" class="btn btn-primary">Date</button></a
+    >
+  </div>
+</div>
+
+<table class="table table-hover align-middle" style="text-align: center">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Field name</th>
+      <th scope="col">Latest Operation</th>
+      <th scope="col">Date</th>
+      <th scope="col">Detail</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    {% for operation in operations %}
+    <tr>
+      <td>{{ operation.location.name }}</td>
+      <td>{{ operation.operation_type | title }}</td>
+      <td>{{ operation.date | date }}</td>
+      <td>
+        <button type="button" class="btn btn-dark btn-link">
+          <a href="/acrelog/{{ operation.location.id }}" class="link-success"
+            >Click</a
+          >
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
