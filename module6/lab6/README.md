@@ -7,6 +7,7 @@ We need to install new packages for this lab. Install packages could take time. 
 conda activate asm591
 conda install -c conda-forge geopandas
 conda install pyarrow
+conda install geojson
 
 ```
 It may be possible that these packages will have difficulty being installed in the environment you have been using for previous labs. If this is the case, you will need to create a new environment. To do so, follow these steps:
@@ -32,6 +33,10 @@ conda install django
 7. Then, install pyarrow:
 ```bash
 conda install pyarrow
+```
+8. Then, install geojson:
+```bash
+conda install geojson
 ```
 Once these are installed, you should be able to complete lab 6 with this environment. If you are still having trouble with the package installation, please let us know ASAP.
 
