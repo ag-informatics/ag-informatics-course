@@ -4,17 +4,15 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 7.1 [in-person]: Cards with Humanity Game
-- Lecture 7.2 [in-person]: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.2.html
-- Lecture 7.3 [in-person]: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.3.html
-- Lecture 7.4 [in-person]: Mini-lecture after presentations on Thursday: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.4.html
+- Lecture 7.1 [in-person]: Speculating Agricultural Futures: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.2.html
+- Lecture 7.2 [in-person]: Cards with Humanity
+- Lecture 7.3 [in-person]: Mini-lecture after presentations on Thursday: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.4.html
+
+- Note: Week 15 will be presentations, I'll randomly assign everyone a timeslot between the Tue & Thursday lecture times (Nov 28 & Nov 30). Project part 3 full report is due in Week 16 during quiet week and there is no exam!
 
 ## Labs
 
-Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders.
-
-Academic Integrity Reminder: Make sure your lab Github repositories are "private" for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
-
+No more labs!
 
 ## Quiz
 
