@@ -12,7 +12,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 ## Labs
 
-No more labs!
+No more labs! If you're curious, I used to have a machine learning lab but it is a mostly a demo at this point. It's in the lab 7 folder.
 
 ## Quiz
 
