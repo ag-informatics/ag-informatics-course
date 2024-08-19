@@ -42,18 +42,15 @@ Who are we and how are we here to support your learning?
 
 **Ankita Raturi** is an asst. professor in Agricultural and Biological Engineering, and is the primary instructor of this course. She has designed this course, will deliver lectures, and is available for technical and general support for any aspect of the course.
 
-**Steven Doyle** is the Teaching Assistant (TA) for this course. He will lead all labs, grade all submitted materials, and will be available in-person for technical support, troubleshooting for code, and discussion of individual assignment grades.
-
-**Thirawat "Tam" Bureetees** is providing course content support. He is working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be most active in the FORUM, so if you need help finding a resource, post on Github in Q&A.
+**Thirawat "Tam" Bureetees** is the Teaching Assistant (TA) for this course. He will lead all labs, grade all submitted materials, and will be available in-person for technical support, troubleshooting for code, and discussion of individual assignment grades. He is also working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be active in the FORUM, so if you need help finding a resource, post on Github in Q&A.
 
 Call me | slack | github | email | ask me about
 -----|-----|-----|-----|-----
 Ankita (she/her) | @ankita | @sudokita | ankita@purdue.edu | anything re: course!
-Steve (he/his) | @Steven Doyle | @StevenDoylePurdue | doyle110@purdue.edu | labs & grades
-Tam (he/his) | @Tam Bureetes | @tame0001 | N/A | finding resources
+Tam (he/his) | @Tam Bureetes | @tame0001 | tbureete@purdue.edu | labs & grades
 
 ## Logistics
-**Lectures:** ABE 1164. Tue & Thurs @ 11.30-12.20pm
+**Lectures:** ABE 1164. Tue & Thurs @ 10.30-11.20pm
 
 **Labs:** ABE 2098. Thursdays, 1.30pm - 3.20pm
 
