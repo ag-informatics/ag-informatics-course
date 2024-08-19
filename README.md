@@ -44,10 +44,10 @@ Who are we and how are we here to support your learning?
 
 **Thirawat "Tam" Bureetees** is the Teaching Assistant (TA) for this course. He will lead all labs, grade all submitted materials, and will be available in-person for technical support, troubleshooting for code, and discussion of individual assignment grades. He is also working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be active in the FORUM, so if you need help finding a resource, post on Github in Q&A.
 
-Call me | slack | github | email | ask me about
------|-----|-----|-----|-----
-Ankita (she/her) | @ankita | @sudokita | ankita@purdue.edu | anything re: course!
-Tam (he/his) | @Tam Bureetes | @tame0001 | tbureete@purdue.edu | labs & grades
+Call me | github | email | ask me about
+-----|-----|-----|-----
+Ankita (she/her) | @sudokita | ankita@purdue.edu | anything re: course!
+Tam (he/his) | @tame0001 | tbureete@purdue.edu | labs & grades
 
 ## Logistics
 **Lectures:** ABE 1164. Tue & Thurs @ 10.30-11.20pm
@@ -65,17 +65,15 @@ This Github repository will contain links to all slides, labs, etc. I will relea
 
 **SUBMIT WORK & GET GRADES:** Use BRIGHTSPACE to submit all labs, quizzes, and projects. You can view all **submission deadlines**, view rubrics, and get your grades via Brightspace.
 
-**COURSE CHAT** [Join the Slack Channel](https://join.slack.com/t/learn-ag-informatics/shared_invite/zt-tnsofjro-QbFiz2j4k2C_1MbwxEZrQA). For quick, everyday discussion, use the course slack channel (#fall2023) to chat with the instructors and students. 
-
-**COURSE DISCUSSION & FEEDBACK** We're going to try out the [Github discussion forum feature](https://github.com/ag-informatics/ag-informatics-course/discussions) for more public/open discussion regarding the course. This forum is specific to our course only, but will be publicly visible for past and future students.
-- General: For discussion on general topics related to ag informatics, sharing resources with the community, and other banter, use the [General](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/general) forum section.
-- Q&A: Looking for a specific resource or help with a bug? Post in the [Q&A](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/q-a) section.
+**COURSE DISCUSSION** We'll be using the [Github discussion forum feature](https://github.com/ag-informatics/ag-informatics-course/discussions) for more public/open discussion regarding the course. This forum is specific to our course only, but will be publicly visible for past and future students. 
+- General: For discussion on general topics related to ag informatics, sharing resources with the community, and other banter, use the [General](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/general) forum section. Use also for quick, everyday questions about the course (where is X resource). Course announcements will be posted here too. 
+- Troubleshooting: Got a bug? Stuck on a lab assignment? Looking for a specific resource or help with a bug? Post in the [Troubleshooting](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/troubleshooting) section.
 - Ideas: Have an idea for future improvements to the course? Post in the [Ideas](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/ideas) section.
 - Show & Tell: Did something cool you'd like to share with us? Post in the [Show & Tell](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/show-and-tell) section.
 
-**MEET for 1-1 SUPPORT** You can request office hour appointments, i.e., a consultation for support with the instructor, Ankita, and the TA, Steve.
-- Want to meet for course support? Send us a **Slack direct message** for quick questions and to request meeting appointments. In case we can't meet in person, we will use Zoom for a video-call meeting. We will try to provide in-person appointments within 2 working days of your request. We aim to respond to slack messages in approx 1 working day and provide meetings within 2 working days.
-- Grades, personal matters, and long/complex communication? Use email, for grades, personal matters, and other matters influenced by [FERPA policies](https://slack.com/trust/compliance/ferpa-compliance). If in doubt, contact us via email/in-person. Put **[ASM 591 AGINF]** in the email "SUBJECT" for better indexing. Reserve use of email for long and/or complex communications. We aim to respond to emails in less than 3 working days.
+**MEET for 1-1 SUPPORT** You can request an appointment in lieu of office hours, i.e., a consultation for support with the instructor and TA. Put **[ASM 532 AGINF]** in the email "SUBJECT" for better indexing.
+- Want to meet for course support? Email **Tam AND Ankita** to request meeting appointments. In case we can't meet in person, we will use Zoom for a video-call meeting. We aim to respond to email in approx. 1 working day and provide meetings within 2 working days.
+- Grades, personal matters, and long/complex communication? Use email, for grades, personal matters, and other matters influenced by [FERPA policies](https://slack.com/trust/compliance/ferpa-compliance). If in doubt, contact us via email/in-person. Reserve use of email for long and/or complex communications. We aim to respond to these emails in less than 3 working days.
 
 
 # Course Structure & Schedule
@@ -84,40 +82,33 @@ This course is divided into seven 2 week modules. Each module consists of 4 lect
 Module | Weeks | What's due?
 -----|-----|-----
 [1 - Web Design & Dev](https://github.com/ag-informatics/ag-informatics-course/tree/main/module1) | Week 1 & 2 | Quiz 1
-[2 - Data Exploration](https://github.com/ag-informatics/ag-informatics-course/tree/main/module2) | Week 3 & 4 | Quiz 2, Submit Lab 1
-[3 - Web Applications](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3) | Week 5 & 6 | Quiz 3, Submit Lab 2, Submit Project Part 1
-[4 - Data Management](https://github.com/ag-informatics/ag-informatics-course/tree/main/module4) | Week 7 & 8 | Quiz 4, Submit Lab 3
-[5 - User Interfaces](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5) | Week 9 & 10 | Quiz 5, Submit Lab 4, Submit Project Part 2 
-[6 - Geometric Processing](https://github.com/ag-informatics/ag-informatics-course/tree/main/module6) | Week 11 & 12 | Quiz 6, Submit Lab 5
-[7 - Future of Ag Tech](https://github.com/ag-informatics/ag-informatics-course/tree/main/module7) | Week 13 & 14 | Quiz 7, Submit Lab 6
+[2 - Data Exploration] | Week 3 & 4 | Quiz 2, Submit Lab 1
+[3 - Web Applications] | Week 5 & 6 | Quiz 3, Submit Lab 2, Submit Project Part 1
+[4 - Data Management]| Week 7 & 8 | Quiz 4, Submit Lab 3
+[5 - User Interfaces] | Week 9 & 10 | Quiz 5, Submit Lab 4, Submit Project Part 2 
+[6 - Geospatial Data] | Week 11 & 12 | Quiz 6, Submit Lab 5
+[7 - Future of Ag Tech] | Week 13 & 14 | Quiz 7, Submit Lab 6
 [8 - Wrap Up]() | Week 15 & 16 | Submit Lab 7, Present + Submit Project Part 3
 
 
 ## Course Assessments
-
-<!-- **7 Quizzes, due every other Monday @ 5pm starting Week 2** Available on Brightspace. Quizzes are multiple choice/short answer, and will be auto graded. These are intended to serve as "participation" checks, and hopefully help you evaluate how you're coping with the course. 
-
-**7 Labs due every other Monday @ 5pm starting Week 3** Available on Github. Each lab is due at the start of the next 2 week module. Each lab will come with submission instructions, but I will generally expect a timestamp of no later than 5pm the day it is due. There will be a 5 hour no-penalty grace period in case you have technical difficulties with submission. 
-
-All parts of the **Project** description and submission instructions are available on Github. Each of the three parts will be evaluated based on a high-level rubric to be provided with the project description. -->
-
 **Late Policy:** You can have three "late days" where you submit work one weekday late with no questions asked. You can use these for quizzes, labs, and projects part 1 & 2. After that, you will be penalized 5% per day late. *The moment you have any issues, please contact me, and we can discuss options. See attendance policy for details*
 
-Assessment | Description | Due Dates | Weight
------|-----|----- |----- 
-Quizzes | Available on Brightspace. Quizzes are multiple choice/short answer, and will be auto graded. These are intended to serve as "participation" checks, and hopefully help you evaluate how you're coping with the course. | Due Monday @ 11.59pm in Week 2, 4, 6, 8, 10, 12, 14 | 5% total, (your lowest score is dropped)
-Labs | Available in each module on Github. Each lab is due at the start of the next 2 week module. Each lab will come with submission instructions, but I will generally expect a timestamp of no later than 5pm the day it is due. There will be a 5 hour no-penalty grace period in case you have technical difficulties with submission. | Due Monday @ 11.59pm in Week 3, 5, 7, 9, 11, 13, 15 | 5% x 5 labs, Lab 4 & 5 are 10%
-[Project Part 1](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3) | Concept motivation: select 3 papers and write a combined reflection on an agricultural informatics problem | Due Week 6, Friday @ 11.59pm | 5%
-[Project Part 2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part2.pdf) | Concept proposal: a short proposal of a research/development concept | Due Week 10, Friday @ 11.59pm | 15%
-[Project Part 3.1](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part3.pdf) | Concept presentation of your proposed approach/solution in class during lecture and lab time. | Week 15/16: in class + lab presentation | 10%
-[Project Part 3.2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part3.pdf) | Concept write-up to be submitted online | Due Week 16, Monday @ 11.59pm | 20% 
+Assessment | Description | Weight
+-----|-----|----- 
+Quizzes | Available on Brightspace. Quizzes are multiple choice/short answer, and will be auto graded. These are intended to serve as "participation" checks, and hopefully help you evaluate how you're coping with the course. | 5% across , (your lowest score is dropped)
+Labs | Available on Github. Each lab is due at the start of the next 2 week module. Each lab will come with submission instructions, but I will generally expect a timestamp of no later than the day it is due. There will be a 5 hour no-penalty grace period in case you have technical difficulties with submission. | 4 Labs x 5%, Lab 4 & 5 are 10%
+[Project Part 1](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3) | Concept motivation: select 3 papers and write a combined reflection on an agricultural informatics problem | 5%
+[Project Part 2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part2.pdf) | Available on Github, submit via Brightspace. Concept proposal: a short proposal of a research/development concept | 15%
+[Project Part 3.1](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part3.pdf) | Available on Github, submit via Brightspace. Concept presentation of your proposed approach/solution in class during lecture and lab time. | 10%
+[Project Part 3.2](https://github.com/ag-informatics/ag-informatics-course/blob/main/project/Project-part3.pdf) | Available on Github, submit via Brightspace. Concept write-up of your final project. | 20% 
 
 ## Course Feedback & Evaluation
-This is the third offering of this "special topics" course, which means components are actively under development and there may be bugs! I would love to hear about your experience, get feedback on the course materials, and generally learn more about where and how this course fails/succeeds to meet your needs. No need to wait till the end!
+While this is the fourth offering of this course,components are actively under refinement and there may be bugs! I would love to hear about your experience, get feedback on the course materials, and generally learn more about where and how this course fails/succeeds to meet your needs. No need to wait till the end!
 
 **Reporting issues and ideas in Github**: Found a bug in the code, slides, syllabus, or other materials? [Submit an "issue"](https://github.com/ag-informatics/course/issues) to this repository! Have a suggestion for how to improve this course? [Submit a discussion "idea"](https://github.com/ag-informatics/ag-informatics-course/discussions/categories/ideas). Alternatively, send a message slack or come chat.
 
-**Course Evaluation**: We have an external evaluator who will reach out to your during the course if you are interested in improving contributing to our research on how to make this course better. I also encourage you to submit the standard course evaluation form as well. This will be very helpful in helping refine and revise this course to deliver a better student experience!
+**Course Evaluation**: I encourage you to submit the standard course evaluation form as well. This will be very helpful in helping refine and revise this course to deliver a better student experience!
 
 # Support & Policies
 
