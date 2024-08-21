@@ -4,13 +4,13 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 1.1 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.1.html
+- Lecture 1.1 [in-person]: https://ag-informatics.github.io/ag-informatics-course/module1/lecture1.1.html
   - Additionally, watch the following videos before the next class.
     - Watch in detail the CS50 video on HTML and CSS: https://cs50.harvard.edu/web/2020/weeks/0/
     - Skim through the CS50 video on Git: https://cs50.harvard.edu/web/2020/weeks/1/
-- Lecture 1.2 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.2.html
-- Lecture 1.3 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.3.html
-- Lecture 1.4 [in-person]: Case Study: http://www.aginformaticslab.org/ag-informatics-course/module1/lecture1.4.html
+- Lecture 1.2 [in-person]: https://ag-informatics.github.io/ag-informatics-course/module1/lecture1.2.html
+- Lecture 1.3 [in-person]: https://ag-informatics.github.io/ag-informatics-course/module1/lecture1.3.html
+- Lecture 1.4 [in-person]: Case Study: https://ag-informatics.github.io/ag-informatics-course/module1/lecture1.4.html
 
 ## Labs
 
