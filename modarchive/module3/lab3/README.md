@@ -472,7 +472,7 @@ Confirm that your template path is: **'farmnotes/templates/farmnotes/index.html'
 
 Some things to note:
 
-1. The `{% ..... %}` are the syntax for 'tags' in the Django template language ([here's a quick reference for it](https://docs.djangoproject.com/en/4.1/ref/templates/language/). It allows us to perform some logic e.g., loops to iterate through a list, like shown above in `for field in latest fields`.
+1. The `{% %}` are the syntax for 'tags' in the Django template language ([here's a quick reference for it](https://docs.djangoproject.com/en/4.1/ref/templates/language/). It allows us to perform some logic e.g., loops to iterate through a list, like shown above in `for field in latest fields`.
 
 2. We can also use variables in our template. Consider the line `{{ field.field_name }}`. Anything inside `{{ }}` is a variable. In this case, we're calling the variable `field`, and specifically accessing the attribute `field_name`.
 
