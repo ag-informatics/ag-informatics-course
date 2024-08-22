@@ -114,6 +114,7 @@ You will create a static Profile Webpage that looks similar to the mockup below:
 ![Ankita Mockup](img/mockup.jpg)
 
 1. Create a `<div>` with the ID name "header". This division should contain introduction header text, e.g., "Hi! I'm Ankita".
+
    - Give the header a minimum height (e.g., 40px).
    - Center the text within the header division.
    - Change the font style and size to something that is different from the rest of the page.
