@@ -169,7 +169,7 @@ Alternatively, open a terminal and navigate to the repository directory (the sam
 
 Using command `git status`, you will see a list of files that have changed from the latest commit. You will need to select file(s) you want to track in this commit by `git add filename1 filename2 ...` (or you can add one file at a time or `git add .` to add all files). Then commit by `git commit -m "message here"`. At this point, the commit is recorded in your local machine. To update your cloud repository on GitHub, use command `git push`. You can make multiple commits locally or discard commits before you push to GitHub.
 
-**note**: You might need to tell Git who is making commit by `git config user.name "your GitHub username` and `git config user.email "your email"`.
+**note**: You might need to tell Git who is making commit by `git config user.name "your GitHub username"` and `git config user.email "your email"`.
 
 ## Hosting Webpage on GitHub
 
@@ -186,6 +186,13 @@ GitHub allows you to host static webpages from your repositories. We are going t
 Now you have your own personal webpage to share to the world!
 
 **Note**: There are multiple options to deploy GitHub pages. In this lab, we deploy from a branch "main". GitHub will look for file `index.html` in root folder. You can choose to deploy from different branches or other folders.
+
+## How to Submit your Lab
+
+First, make sure that you regularly commit working code to your Github repository. The instructors will not only look at your final result, but also your entire commit history. To make the submission, go the assignment tab on BrightSpace. You will need two put to links as your submission.
+
+1. URL to your GitHub repository
+2. URL to your profile page
 
 ## Future Learning Pathways
 
