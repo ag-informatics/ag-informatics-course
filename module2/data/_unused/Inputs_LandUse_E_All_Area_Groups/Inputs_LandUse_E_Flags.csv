@@ -1,0 +1,8 @@
+Flag,Description
+A,Aggregate; may include official; semi-official; estimated or calculated data
+F,FAO estimate
+Fc,Calculated data
+Fm,Manual Estimation
+I,Country data reported by International Organizations where the country is a member (Semi-official) - WTO; EU; UNSD; etc.
+Q,Official data reported on FAO Questionnaires from countries
+W,Data reported on country official publications or web sites (Official) or trade country files

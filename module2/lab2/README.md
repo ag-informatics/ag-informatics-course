@@ -2,14 +2,18 @@
 
 ## BEFORE THE LAB
 
-### Install Anaconda or Miniconda
+### Python virtual environment.
+
+Software is evolving constantly. Python, for example, release a new version annually. New versions come with new features, in the same time, some existing features will be deprecated or removed. This nature of software development applies to over 100,000 Python's libraries.
 
 You must install Anaconda or Miniconda. If you have already installed either of them, you can skip this part and start on [Create new environment](#create-new-environment). If you have not install any of them, we recommend you install Miniconda.
 
 #### Miniconda
-Anaconda is a completed bundle, however, it is take a lot of space in your computer. [Miniconda](https://docs.conda.io/en/latest/miniconda.html) will only install `conda` system in your machince which is a Python package manager. It won't come with tools such as Jupyter Notebook out of the book. However, VS Code has a Jupyter notebook extenstion that works perfectly with Notebook files. In this case, you will need to install `Jupyter` extension in VS Code which you can search in "Extensions" tab on the left panel or (ctrl + shift + x).
+
+Anaconda is a completed bundle, however, it is take a lot of space in your computer. [Miniconda](https://docs.conda.io/en/latest/miniconda.html) will only install `conda` system in your machine which is a Python package manager. It won't come with tools such as Jupyter Notebook out of the book. However, VS Code has a Jupyter notebook extension that works perfectly with Notebook files. In this case, you will need to install `Jupyter` extension in VS Code which you can search in "Extensions" tab on the left panel or (ctrl + shift + x).
 
 #### Anaconda
+
 Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson) provides a helpful installation guide in case you need it.
 
 ### Create new environment
@@ -42,21 +46,25 @@ conda install numpy pandas matplotlib requests jupyter
 
 ### Activate your environment
 
-Now, you have a new environment for this lab. However, you must activate this environment before you can execute the notebook. 
+Now, you have a new environment for this lab. However, you must activate this environment before you can execute the notebook.
 
 #### If you use VS Code and Jupyter extensions
-- Click on "select kernel" on the top right corner. You will only see this button when you open a jupyter notebook file. 
+
+- Click on "select kernel" on the top right corner. You will only see this button when you open a jupyter notebook file.
 - If you have not selected any environment, when you run the notebook for the first time, VS Code will ask you to select the environment you want to activate.
 
 ![vscode0](./img/vscode-0.png)
 
 #### If you use Jupyter that comes with Anaconda
-Check the "kernel" tab then you can select your environments. 
+
+Check the "kernel" tab then you can select your environments.
 
 ### PYTHON INTRO/REFRESH!
+
 If you are not familiar with Python, or need a quick refresher, do this 30 minute Short Introduction to Programming in Python by the Data Carpentry: https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python.
 
 ### IMPORTANT TUTORIALS
+
 Anaconda automatically installs the Python packages that we will use in our lab. Here are some basic tutorials for each of them:
 
 1. [Jupyter notebook](https://jupyter.org/): An interactive python environment that allows you to run and view code in the browser. Here's a tutorial video on Jupyter Notebooks:
@@ -73,6 +81,7 @@ Anaconda automatically installs the Python packages that we will use in our lab.
    - Full documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html.
 
 4. [Matplotlib](https://matplotlib.org/): Python package for data visualization.
+
    - **Quick start guide for matplotlib: https://www.python-graph-gallery.com/matplotlib/.**
    - You can consult the Data Carpentry Introduction to Matplotlib: https://datacarpentry.org/python-ecology-lesson/08-putting-it-all-together.
    - Full documentation: https://matplotlib.org/stable/ with some introductory tutorials: https://matplotlib.org/stable/tutorials/index.html#introductory.
@@ -92,7 +101,7 @@ You should have previously cloned the class repository. Navigate to the "ag-info
 Let's move this file into your repository for you to use:
 
 1. Copy the "lab2" into your existing GitHub repository titled "YOURNAME-ASM591-Labs".
-2. Rename "lab2-skeleton.ipnyb" to "lab2-YOURNAME.ipnyb". **THIS IS THE FILE YOU WILL BE WORKING IN**
+2. Rename "lab2-skeleton.ipynb" to "lab2-YOURNAME.ipynb". **THIS IS THE FILE YOU WILL BE WORKING IN**
 3. Replace the README.md file with your own.
 4. Git add, commit, and push so that your repository now contains these items.
 5. View your new Jupyter Notebook in your GitHub repository to confirm everything is in the right place. It should look like the image below.
@@ -100,7 +109,8 @@ Let's move this file into your repository for you to use:
 ![Lab2-contents](img/lab2-contents.png)
 
 ## Open your Jupyter Notebook With VS Code
-1. Open Jupyter Notebook file (lab2-YOURNAME.ipnyb) in the VS Code. (Make sure you already install the extension)
+
+1. Open Jupyter Notebook file (lab2-YOURNAME.ipynb) in the VS Code. (Make sure you already install the extension)
 
 2. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below. Click on mark sign on the right when you finish editing.
 
@@ -116,7 +126,7 @@ Let's move this file into your repository for you to use:
 
 1. Open Anaconda Navigator.
 
-2. Launch Jupyter Notebooks. A window will open in your browser that allows you to navigate to your repository folder > lab2. Click on "lab2-YOURNAME.ipnyb" and it will open in the a new tab.
+2. Launch Jupyter Notebooks. A window will open in your browser that allows you to navigate to your repository folder > lab2. Click on "lab2-YOURNAME.ipynb" and it will open in the a new tab.
 
 3. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below.
 
