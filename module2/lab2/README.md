@@ -4,19 +4,58 @@
 
 ### Python virtual environment.
 
-Software is evolving constantly. Python, for example, release a new version annually. New versions come with new features, in the same time, some existing features will be deprecated or removed. This nature of software development applies to over 100,000 Python's libraries.
+Software is evolving constantly. Python, for example, release a new version annually. New versions come with new features, in the same time, some existing features will be changed, deprecated, or removed. This nature of software development applies to over 100,000 Python's libraries. This can cause incompatible issues between Python and other libraries that required to run the code. For example.
 
-You must install Anaconda or Miniconda. If you have already installed either of them, you can skip this part and start on [Create new environment](#create-new-environment). If you have not install any of them, we recommend you install Miniconda.
+- You try to run the code that you (or your colleague who graduated and left) wrote a few years ago.
+- You try to run your code on another machine like high performance computer.
 
-#### Miniconda
+To prevent this issue, it is highly recommend to create virtual environments and record a list of required libraries. Therefore, you can be sure that you have a set of correct libraries whenever you need to run the code again. There are 2 main methods to create Python virtual environment.
 
-Anaconda is a completed bundle, however, it is take a lot of space in your computer. [Miniconda](https://docs.conda.io/en/latest/miniconda.html) will only install `conda` system in your machine which is a Python package manager. It won't come with tools such as Jupyter Notebook out of the book. However, VS Code has a Jupyter notebook extension that works perfectly with Notebook files. In this case, you will need to install `Jupyter` extension in VS Code which you can search in "Extensions" tab on the left panel or (ctrl + shift + x).
+1. Built-in virtual environment creator (venv)
+2. Anaconda (or miniconda)
 
-#### Anaconda
+[Anaconda](https://www.anaconda.com/) is known for as a completed bundle for data science work. It comes with IDEs, such as, Jupyter Notebook or Spider. [Miniconda](https://docs.anaconda.com/miniconda/) is a minimal version of Anaconda. It is only a package manager without any IDEs. Anaconda (and miniconda) will create global virtual environments that accessible throughout your system. This is helpful if you would like to use the same environment for multiple projects. However, anaconda can be slow, especially when that environment has several libraries.
 
-Anaconda is an all-in-one Python installer that downloads Python, Jupyter Notebooks, and a host of Python tools and packages. It serves as a unified Python installation, reducing the burden of package management and setting up your development environment. [The Data Carpentry](https://datacarpentry.org/python-ecology-lesson) provides a helpful installation guide in case you need it.
+Venv (virtual environment) takes different approach. It will create a local virtual environment to specific project. Therefore, it works really fast.
 
-### Create new environment
+In this lab, we recommend using venv. If you have not install Python before, follow below guide to install Python 3.12 (or Python 3.9 or newer).
+
+- For Windows users, you can install Python by Microsoft Store or download from https://www.python.org/downloads/windows/
+- For Mac users, download the installer from here https://www.python.org/downloads/macos/
+- For Linux users, in most of the case, Python is installed by default. If your distro does not have Python, you can install by sources from here https://www.python.org/downloads/source/
+
+### Create New Environment with venv
+
+1. create a new file name `requirements.txt`. Then copy and paste following text
+
+```text
+numpy==2.1.*
+pandas==2.2.*
+matplotlib==3.9.*
+Requests==2.32.*
+Jupyter==1.1.1
+```
+
+2. Open command palette in VS code (View -> Command Palette). Then type `Python: Create environment`
+3. Choose `venv`
+4. Choose Python version (if you have multiple versions, choose the latest one)
+5. Select `requirements.txt` as we created in the step 1 as dependency.
+
+VS code will create a new virtual environment in `.venv` folder and install all libraries that we need. If you want to do this process manually, following these command
+
+```bash
+# for Linux and MacOS.
+# for Winders change python3 to py or python
+python3 -m venv .venv
+# for Linux and MacOS.
+source .venv/bin/activate
+# for Windows use -> .venv\Script\activate
+pip install -r requirements.txt
+```
+
+As .venv could be generated easily and it is machine specific, it is a good practice NOT to add it into GitHub. To do so, create a file name `.gitignore`, then add `.venv` into that file.
+
+### Create New Environment with Conda
 
 After you install Anaconda or Miniconda, you will be able to use `conda` command in your terminal. You will need to create a new Python environment for this lab. A Python environment is a sandbox of Python and its packages where you have power to choose their versions. You can create multiple environments that suits your projects (and they all can run in the same machine). For this lab, we will need to use these Python packages: `Numpy`, `Pandas`, `Matplotlib`, `Requests`, and `Jupyter`. Open the terminal and follow these steps.
 
@@ -93,8 +132,8 @@ Anaconda automatically installs the Python packages that we will use in our lab.
 Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
 
 - MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
-- Add @sudokita (Ankita, Instructor) and @StevenDoylePurdue
-  (Steve, TA) as collaborators on your repository so that we can access your work and grade it.
+- Add @sudokita (Ankita, Instructor) and @tame0001
+  (Tam, TA) as collaborators on your repository so that we can access your work and grade it.
 
 You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "lab2" folder inside it. It will contain this README.md file and a **"lab2-skeleton.ipynb" file** This file contains the instructions for your lab. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here".
 
