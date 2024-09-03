@@ -9,3 +9,4 @@
 *.vpp.bak*
 *.vpp.*
 __pycache__
+.venv/
