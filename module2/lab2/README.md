@@ -118,7 +118,8 @@ numpy==2.1.*
 pandas==2.2.*
 matplotlib==3.9.*
 Requests==2.32.*
-Jupyter==1.1.1
+Jupyter==1.1.*
+yfinance==0.2.*
 ```
 
 2. Open command palette in VS code (View -> Command Palette). Then type `Python: Create environment`
