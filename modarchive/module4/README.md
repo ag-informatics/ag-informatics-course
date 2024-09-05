@@ -1,19 +1,13 @@
-# Module 4: Data Management
+# Module 3: Web Applications
 
 ## Lecture Slides / Notes
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 4.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module4/Lecture4.1.html.
-  - Follow along with the CS50 video on SQL, Models, and Migrations: https://cs50.harvard.edu/web/2020/weeks/4/
-  - Note, the video comes with accompanying notes that you can refer to instead: https://cs50.harvard.edu/web/2020/notes/4/
-- Lecture 4.2 [in-person]: NOTE A QUICK SWITCH:
-  - Oct 5 (lecture time): will be lab time instead
-  - Oct 5 (lab time): FIELD TRIP TO ACRE!
-- Lecture 4.3 [no class]: Oct 10 is October Break.
-- Lecture 4.4 [in-person]: TBD
-
-<!-- - watch this video to learn more about how a research farm in the UK, Rothamstead Research uses a range of tools, from github to FarmOS to manage their agricultural research proejcts and data: https://www.youtube.com/watch?v=pa32Ll3DPj8 -->
+- Lecture 3.1 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.1.html
+  -  Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/. This tutorial covers some of the things we will do in this lab, plus a few extra things.
+- Lecture 3.2 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.2.html
+- Lecture 3.3 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.3.html
  
 ## Labs
 

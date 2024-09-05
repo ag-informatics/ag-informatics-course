@@ -27,378 +27,335 @@
 
           <img src="img/axilab-logo.png" width="200px" />
           <h3>Introduction to Ag Informatics</h3>
-          Module 3, Lecture 1 <br />
-          Ankita Raturi, ankita@purdue.edu<br />
+          Module 4, Lecture 1 <br />
+          Ankita Raturi, ankita@purdue.edu</p>
         </section>
  
 
         <section>
           <h3>Outline for Today</h3>
           <ul>
-            <li>Introducting Dynamic Web Apps</li>
-            <li>A little bit about Web Frameworks, esp. Django</li>
-            <li>From procedural to Object Oriented Programming (OOP)</li>
-            <li>OOP in Python</li>
+            <li>Data modeling</li>
+            <li>Managing sensitive data</li>
+            <li>The open data ecosystem</li>
           </ul>
         </section>
 
-
         <section>
-          <h3>Static Websites</h3>
-          <img src="img/web-response.png" />
+          <h3>A Data Lifecycle</h3>
+          <div>
+            <img src="img/diagram-data-lifecycle.jpg" width="70%" />
+            </div>
         </section>
 
         <section>
-          <h3>Dynamic Sites?</h3>
-          <p>"[C]an generate and return content based on the specific request URL and data (rather than always returning the same hard-coded file for a particular URL)."</p>
-          <br /><br />
-          <p class="cite">https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview</p>
+          <h3>Data Modeling</h3>
+          <p>Decide what needs to be represented!</p>
+          <p>Determine the correct data type for different kinds of data.</p>
+          <p>Identify the right data structure to pool together related items.</p>
+          <p>Develop the right process to manage your data as a whole.</p>
         </section>
 
         <section>
-          <h3>Dynamic sites</h3>
-          <h4>(Web Apps)</h4>
-          <h4>use 'server-side' code to...</h4>
-           <ul>
-              <li> Store, structure, and deliver data (e.g., search engine)</li>
-              <li> Notify user on status (e.g., calendar notifications) </li>
-              <li> Provide controlled access to content (e.g., email)</li>
-              <li> Data analysis to provide user recommendations (e.g., netflix)</li>
-              <li> Provide customized user experiences ("Hello {{ person_name }}!)"</li>
-              <li>...and much more!</li> 
+          <h3>Example: Cover Crop Data</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrops-book.jpg" width="40%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-phz.jpg" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-soil.png" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-usda.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-chart.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-smartmix.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-midwest-old.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-dataverification.png" width="70%" />
+          </div>
+        </section>
+
+        <section>
+          <h3>Spreadsheets / CSVs</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrop-sample-before.png" />
+            <img class="fragment" src="img/covercrop-sample.png" />
+          </div>
+          <p class="text-small"><a href="https://datacarpentry.org/spreadsheet-ecology-lesson/">Learn more about structuring spreadsheets</a></p>
+        </section>
+
+        <section>
+          <h3>Metadata & Documentation</h3>
+          <p>Data Dictionary:</p>
+          <img src="img/covercrop-datadict.png" />
+
+          <p>Data / Code Documentation Tools<br />
+          <a href="https://readthedocs.org/">https://readthedocs.org/</a></p>
+        </section>
+
+        <section>
+          <h3>JSON</h3>
+
+          "Serialize" a data model.
+
+          <pre><code data-trim>
+            [{ 
+              "Cover Crop Name": "Barley, Spring",
+              "Scientific Name": "Hordeum vulgare",
+              "Drought Tolerance": 4,
+              "Shade Tolerance": 2,
+              "Flood Tolerance": 2,
+              "Low Fertility Tolerance": 4,
+              "Salinity Tolerance": 3,
+              "Winter Survival": ["Seldom"],
+              "Active Growth Period": ["Spring", "Summer"],
+              "Duration": ["Annual"],
+              "Shape & Orientation": ["Erect"],
+              "Notes: Basic Agronomics": "Dry matter highly dependent on planting and termination date and precipitation....",
+            }]  
+          </code></pre>
+          
+          <p><a href="https://github.com/ag-informatics/covercrops/blob/master/src/shared/crop-data.json">Cover Crop Data in JSON</a></p>
+
+          <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">Learn more about JSON</a></p>
+        </section>
+
+        <section>
+          <h3>The Cover Crop Data in Action</h3>
+          <img src="img/covercrop-tool.png" />
+
+          <p class="text-small">Built a Javascript-based web app. <br />Uses the airtable API (where we have spreadsheets) to pull live data (still being curated). <br />Data is restructured and stored as JSON files.<br />To be continued....</p>
+        </section>
+
+        <section>
+          <h3>Structuring your data: Python</h3>
+
+          <ul class="no-bullets">
+          <li><b>Data types:</b> int, float, String, etc. </li>
+          <li><b>Data structures:</b>
+            <ul class="no-bullets">
+              <li>Lists (array): [1, 2, 3, 4, 5]</li>
+              <li>Tuples: ([1, 2, 3], 55, "what?")</li>
+              <li>Dictionaries: {'key': value, 'bobby': 42, 'noddy': 54}</li>
+              <li>Pandas' DataFrames.</li>
             </ul>
-        </section>
-
-        <section>
-          <h3>Server-Side Programming</h3>
-          <img src="img/web-application-dynamic.png" />
-          <p class="text-small">"Requests for dynamic resources are instead forwarded (2) to server-side code (shown in the diagram as a Web Application). For "dynamic requests" the server interprets the request, reads required information from the database (3), combines the retrieved data with HTML templates (4), and sends back a response containing the generated HTML (5,6)."</p>
-
-          <br />
-          <p class="cite"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction">Mozilla, Intro to the server side, https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction</a></p>
-        </section>
-
-        <section>
-          <h3>A Simplified Web App Architecture</h3>
-          <img src="img/web-application.png" width ="50%" />
-          <br /><br />
-          <p class="cite">Pettit, 2001, White paper: Anatomy of a Web Application: Security Considerations. <a href="https://www.cgisecurity.com/lib/Web_Server.pdf">https://www.cgisecurity.com/lib/Web_Server.pdf</a></p>
-        </section>
-
-        <section>
-          <h3>Web Frameworks</h3>
-          <p><span class="red">Django (python)</span>. Flask (python).  Drupal (php). Express (javascript). Spring (java). ASP.NET. Ruby on Rails (ruby)</p> 
-          <ul>
-            <li>Handle HTTP requests and responses</li>
-            <li>Manage access to data (in request, in database)</li>
-            <li>Render data in dyanmic user interfaces</li>
-            <li>...provide a skeleton and toolbox to build web apps!</li>
+          </li><br /><br />
+          <li class="fragment">Object-oriented models in Python and
+            <br />data models in Django using <b>Classes</b> (as prev. discussed).</li>
           </ul>
         </section>
 
-        <section>
-          <h3>Django</h3>
-          <ul>
-            <li>Easy(ish) to learn: esp. since we've already started python</li>
-            <li>Batteries included: lots of good defaults (web security, caching, shortcuts)</li>
-            <li><a href="https://docs.djangoproject.com/en/3.2/">Excellent documentation.</a></li>
-            <li>Built to scale </li>
-            <li>Portable - runs on Windows, Linux, and Mac OS X.</li>
-            <li>Good for rapid prototyping!</li>
-          </ul>
-        </section>
 
         <section>
-          <h3>Built with Django?</h3>
-          <div class="r-stack">
-              <img class="fragment fade-in-then-out" src="img/django-insta.png" width="70%" />
-              <img class="fragment fade-in-then-out" src="img/django-spotify.png" width="70%" />
-              <img class="fragment" src="img/django-robinhood.png" width="50%" />
-          </div>
-          <p class="text-small"><a href="https://instagram-engineering.com/types-for-python-http-apis-an-instagram-story-d3c3a207fdb7">Instagram</a> | <a href="https://engineering.atspotify.com/2013/03/20/how-we-use-python-at-spotify/">Spotify</a> | <a href="https://boards.greenhouse.io/robinhood/jobs/2357305?t=gh_src=&gh_jid=2357305">Robinhood</a></p>
-        </section>
-
-        <section>
-          <h3>What's used in AgTech?</h3>
-          <ul>
-            <li>Farmlogs/Bushel (<a href="https://www.paycomonline.net/v4/ats/web.php/jobs/ViewJobDetails?job=64902&clientkey=484ED2188E091C199C755AB75A7B7C68">backend software engineer</a>)</li>
-            <li>Granular (<a href="https://boards.greenhouse.io/granular/jobs/3308097">software engineer - python </a>)</li>
-            <li>AcreTrader (<a href="https://acretrader.breezy.hr/p/2a76e7fc1bd3-senior-python-developer">python software engineer</a>)</li>
-            <li>FarmOS (<a href="https://github.com/farmOS/farmOS">open source drupal</a>)</li>
-           <li>USDA (<a href="https://www.usajobs.gov/Search/Results?l=&l=&d=AG&k=python&wma=15509&p=1">ARS & NASS positions</a>)  </li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Django for Rapid Prototyping</h3>
-          <img src="img/cctool-umd-prototype.png" width="80%" />
-          <ul class="text-small">
-            <li>Used to create an early prototype of a cover crop decision support platform for Northeast Cover Crop Council + USDA ARS</li>
-            <li>Quick prototype = 6 undergrad CS students x 3 months</li>
-            <li>Focus on proof of concept for converting an excel tool to online web app</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>Structure of a Django Application</h3>
-          <img src="img/basic-django.png" width="60%" />
-          <h4 class="fragment"><span class="red">Need to know: Object Oriented Programming in Python!</span></h4>
-        </section>
-
-
-        <section>
-          <h4>Previously...</h4>
-          <h3>Procedural Programming</h3>
-          <pre><code data-trim data-line-numbers="1-2|3-5|6,7|8,9">
-            import pandas as pd
-            ...
-            dirty_CORN = pd.read_csv('dirty-cornprices.csv')
-            dirty_CORN.dropna(how='all', axis=1, inplace=True)
-            ...
-            dirty_CORN.to_csv('clean-cornprices.csv')
-            ...
-            plt.plot(clean_CORN['Year'], clean_CORN['Value'])
-            plt.show()
-          </code></pre>
-
-          <br />
+          <h3>Databases</h3>
           <div class="container">
             <div class="col">
-              <p>PROS</p>
+              <h6>Relational (SQL)</h6>
               <ul>
-                <li>Linear batch-processing</li>
-                <li>Straightforward logic flow</li>
+                  <li>All records have a unique identified, a column in the table deemed the PRIMARY KEY </li>
+                  <li>Tables are linked based on a lookup "column", known as a FOREIGN KEY</li>
+                  <li>Three relationship types: 
+                    <ul class="no-bullets text-small">
+                      <li>one-one: one book can have one ISBN (id number)</li>
+                      <li>one-many: one book can be borrowed many times </li>
+                      <li>many-many: many books can be borrowed by many people</li>
               </ul>
             </div>
             <div class="col">
-              <p>CONS</p>
-              <ul>
-                <li>Can't reuse code</li>
-                <li>Can't support dynamic logic flow</li>
-              </ul>
+              <img src="img/db-relational.png" />
+              <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models">Django Example</a></p>
+            
             </div>
+            
           </div>
+        </section>
 
-          <br /><br />
-          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p> 
+                <section>
+          <h3>Databases</h3>
+
+              <h6>Non-Relational (NoSQL)</h6>
+              <img src="img/db-nosql.png">
+              <p class="text-small">Key-Value e.g., <a href="https://redis.io/">redis</a>. 
+                Document e.g., <a href="https://www.mongodb.com/">MongoDB</a>.
+                Columnar e.g., <a href="https://cassandra.apache.org/_/index.html">Apache Cassandra</a>
+                Graph e.g., <a href="https://neo4j.com/">Neo4J</a>
+              </p>
+              
+            <p class="text-small"><a href="https://azure.microsoft.com/en-us/overview/nosql-database/">Learn more about NoSQL dbs.</a></p>
         </section>
 
         <section>
-            <h3>Functional Programming</h3>
-            <pre><code data-trim data-line-numbers="1-2|3-5">
-            def greet():
-              print ("Hello World!")
+          <h3>Django + SQLite </h3>
+          <pre><code data-trim data-noescape><script type="text/template">
+            sqlite3 <database_name>
 
-            def greet(name):
-              print ("Hello " + name)
-          </code></pre>
+            .tables
 
-          <br />
-          <p><ul>
-            <li>Logical groups of actions can be bundled into a function()</li>
-            <li>Functions can have inputs AKA arguments, e.g. "name".</li><br />
-            <li>You've imported functions from libraries, e.g., <a href="https://github.com/pandas-dev/pandas/blob/v1.3.3/pandas/core/algorithms.py#L328-L433">pandas.unique()</a></li>
-          </ul>
-          </p>
+            SELECT * FROM <table_name>;
 
-          <br /><br />
-          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p>          
+            SELECT * FROM <table_name> WHERE <condition>;
+            
+          </script></code></pre>
         </section>
 
         <section>
-            <h3>Functional Programming</h3>
-            <p>Function with variable number of arguments (*args)</p>
-            <pre><code data-trim data-line-numbers>
-            def greet(*args):
-                for name in names:
-                  print(f"Hello {name}")
-          </code></pre>
+          <h3>Django + JSON </h3>
 
-          <br />
-          <ul>
-            <li>"*args" is variable length <a href="https://www.w3schools.com/python/python_tuples.asp">tuple</a> of arguments.</li>
-            <li>You can also send in keyword arguments (kwargs) and a variable number of keyword arguments (**kwrags)</li>
-            <li>Use of a <a href="https://www.w3schools.com/python/ref_string_format.asp">formatted string</li>
-          </ul>
+          <p>Create <a href="https://docs.djangoproject.com/en/3.2/howto/initial-data/">Django fixtures</a>, that is, an "annotated" JSON file:
+          <pre><code data-trim data-noescape><script type="text/template">
+          [
+            {
+              "model":"cropexplorer.crop",
+              "pk":"1",
+              "fields": {
+                "crop_name": "Millet, Japanese",
+                "crop_scientific_name": "Echinochloa esculenta",
+                "cover_crop_group": "Grass",
+                "family_common_name": "Grass family",
+                "family_scientific_name": "Poaceae",
+                "zone_inclusion": "Zone 6,Zone 5,Zone 4",
+                "crop_description": "Summer annual grass. Can grow in flooded soils and standing water. Adapted to soil with pH as low as 4.5. Prone to premature flowering if seeded late summer. Very responsive to nitrogen. Good smother crop at high seeding rate but may become weed if allowed to go to seed. Mix with cowpeas, soybeans to create a diverse summer mixture. Shorter, finer-stemmed, lower-biomass option compared to sorghum-sudangrass or pearl millet. Does not mow-kill as well and may mature faster\\/reseed more easily than foxtail millet. ",
+                "heat_tolerance": 5,
+                "shade_tolerance": 1
+              }
+            }
+          ]
+          </script></code></pre></p>
 
-
-          <br /><br />
-          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p>  
+          <p>Bulk Load the data!
+          <pre><code data-trim data-noescape><script type="text/template">
+            manage.py loaddata <fixture_file_name>
+          </script></code></pre></p>
         </section>
 
+
         <section>
-            <h3>Functional Programming</h3>
-            <p>Function can have outputs, aka a "return" value</p>
-           
-          <pre><code data-trim data-line-numbers=1-3|1-5>
-            def ac_to_sqft(value):
-              answer = value*43560
-              return answer
+          <h3>Sensitivity of Data</h3>
+          <ul class="no-bullets">
+            <li><b>Private:</b> Some Farmer Data, Proprietary Data, Human Subjects Research Data</li><br />
+            <li><b>Protected:</b> Same as above, but can be released in certain ways (e.g., de-identified, aggregated, shared with certain people)</li><br />
+            <li><b>Public:</b> Publicly funded research data, "Generic" data e.g., general plant data, "utility" data e.g., weather, can also include protected data e.g., deidentified data. </li>
+        </ul>
+        </section>
 
-            sqft = ac_to_sqft(15)
-          </code></pre>
-
-          <br />
-          <div class="container">
-            <div class="col">
-              <p >PROS</p>
-              <ul>
-                <li>Can reuse code!</li>
-              </ul>
+         <section>
+          <h3>Research Data Perspective</h3>
+            <div class="r-stack">
+              <img src="img/sensitivity-iu1.png" width="70%" /> 
+              <img class = "fragment" src="img/sensitivity-iu2.png" width="70%"  /> 
             </div>
-            <div class="col">
-              <p>CONS</p>
-              <ul>
-                <li>Still a linear program flow</li>
-              </ul>
-            </div>
-          </div>
-
-          <br /><br />
-          <p class="cite">Quick reference on <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a></p>
-        </section>
-
-        <section>
-        <h3>Object-Oriented Programming (OOP)</h3>
-          <p>Modeling involves representing the real world through <span class="red">abstractions</span> to aid in reflection, analysis, and prediction.</p>
-              <img src ="img/photo-StateIV.png" width="28%" />
-              <img src ="img/photo-StateVII.png" width="25%" />
-              <img src ="img/photo-StateXIV.png" width="25%" />
-          <br /><br />
-          <p class="cite">img src: Estate of Pablo Picasso / Artists Rights Society (ARS), New York</p>
-        </section>
-
-        <section>
-        <h3>Principle #1 of OOP: Abstraction</h3>
-          <p>OOP use abstractions known as <span class="red">objects.</span></p>
-          <div class="r-stack">
-            <img class="fragment fade-in-then-out" src ="img/oop-abstraction.png" width="50%" />
-            <img class="fragment" src ="img/oop-object.png" />
-          </div>
-
-          </section>
-
-        <section>
-          <h3>Objects</h3>
-          <img src ="img/oop-object-field.png" width ="25%" />
-          <div class="container">
-            <div class="col">
-              <ul>
-                <li><b>Attributes</b> (Nouns)</li>
-                <li>A variable inside an object</li>
-                <li>Attributes have a type</li>
-                <li>Accessed: field.location
-              </ul>
-            </div>
-            <div class="col">
-              <ul>
-                <li><b>Methods</b> (Verbs)</li>
-                <li>A function inside an object</li>
-                <li>Optional input/output.</li>
-                <li>Run: field.plant(crop)</li>
-              </ul>
-            </div>
-          </div>
-
-        </section>
-
-        <section>
-          <h3>Objects in Python</h3>
-
-          <p>Classes are used to represent objects</p>
-          <pre><code data-trim data-line-numbers>
-            class Animal:
-              animal_type = cow
-              name = Bessy
-              age = 10
-              breed = Holstein
-          </code></pre>
-
-          <p>Class = Animal. Object = this_specific_animal_instance</p>
-          <p>"Constructors" can be used to instantiate an object. __init__().</p>
-          <p class="red fragment"><b>Let's try to create a more abstract, reusable class.</b></p>
-        </section>
-
-        <section>
-          <h3>Principle #2 of OOP: Inheritance.</h3>
-          <div class="r-stack">
-            <img class="fragment fade-in-then-out" src="img/oop-heirarchy.png" width="30%" />
-            <img class="fragment" src="img/oop-animal-heirarchy.png" width="50%" />
-          </div>
-
-          <p>Objects have relationships!</p>
-          <p class="red fragment"><b>Let's try to create a heirarchy of reusable classes</b></p>
-          <br />
-          <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis & Design.</p>
-        </section>
-
-        <section>
-          <h3>Composition & Association</h3>
-          <img src="img/oop-car.png" />
-           <br />
-          <p class="cite">img src: Visual Paradigm, Tool Examples 2021.</p>
-        </section>
-
-        <section>
-            <h3>Principle #3 of OOP: Encapsulation</h3>
-            <img src="img/oop-encapsulation.png" width = "50%" />
-            <p>Objects have a notion of "self".</p>
-            <p class="red fragment"><b>Let's write a few methods</b></p>
             <br />
-            <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis & Design.</p>
-        </section>
-
-
-        <section>
-          <h3>Principle #3 of OOP: Polymorphism</h3>
-          <img src="img/oop-animal-polymorphism.png" width="50%" />
-          <p class="red fragment"><b>Let's make our classes behave differently depending on what they are</b></p>
+            <p class="cite">IU Data Management 2021, https://datamanagement.iu.edu/types-of-data/classifications.php</p>
         </section>
 
         <section>
-          <h3>Methods as an Object Interface</h3>
-          <img src="img/oop-interfaces.png" width="50%" />
-          <p>Interface with: a library, a module, an application.<br /><br>An Application Programming Interface (API!)</p>
+          <div class = "r-stack">
+            <img src="img/farmer-perspectives1.png" />
+            <img class = "fragment" src="img/farmer-perspectives2.png" />
+          </div>
+
           <br />
-          <p class="cite">https://medium.com/practicum-by-yandex/introduction-to-object-oriented-programming-34cc3b7ab582</p>
+          <p class="cite">Slattery et al., 2021, https://www.trustinfood.com/wp-content/uploads/2021/05/Farmer-Perspectives-on-Data-2021.pdf</p>
         </section>
 
         <section>
-          <h3>OOP, in short</h3>
-          <p>Model your system as objects</p>
-          <ul>
-            <li>Identify classes.</li>
-            <li>Identify attributes (nouns).</li>
-            <li>Outline methods (verbs).</li>
-            <li>Create associations & other relationships</li>
-          </ul>
+          <h3>Practicing Trust with Data</h6>
+           <div class="container">
+            <div class="col">
+              <h6>Privacy</h6>
+              <ul>
+                <li>Protect personal information</li><br />
+                <li>Handle geolocation information with sensitivity</li><br />
+                <li>Provide granular data access controls</li>
+              </ul>
+            </div>
+
+            <div class="col fragment">  
+              <h6>Agency</h6>
+              <ul>
+                <li>Come to early consensus on data ownership</li><br />
+                <li>Provide situational control over data</li><br />
+                <li>Empower stakeholder voices</li>
+              </ul>
+            </div>
+          </div>
+          <br /><br />
+          <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable Agricultural Research".</p>
         </section>
 
         <section>
-          <h3>Function Design, in short</h3>
-          <pre><code data-trim data-line-numbers=1|2|3|4-8|10-12|1-12>
-            def get_area(width, height):
-              """Get the area of a rectangle.
-              @type width, height: int
-              >>> get_area(2, 5)
-              10
-              >>> get_area(100,42)
-              4200
-              """
+          <h3>Cultivate Trust in your Process</h3>
+           <div class="container">
+            <div class="col">
+              <h6>Transparency</h6>
+              <ul>
+                <li>Be inclusive of stakeholders in the process</li><br />
+                <li>Provide feedback and clarity on the process</li><br />
+                <li>Open source development of tools</li><br />
+                <li>Open access to privacy-preserved data</li>
+              </ul>
+            </div>
 
-              area = width*height
+            <div class="col fragment">  
+              <h6>Accountability</h6>
+              <ul>
+                <li>Uphold the responsbility of protecting data and research stakeholder rights</li><br />
+                <li>Provide traceability of action</li><br />
+                <li>Provide feedback among stakeholders</li>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable Agricultural Research".</p>
+        </section>
 
-              return(area)
-          </code></pre>
+        <section>
+          <h3>Precision Sustainable Agriculture</h3>
+          <p>Managing access to cover crop research data from US farms.</p>
+          <img src="img/psa-datasensitivity.png" />
+          <br />
+          <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable Agricultural Research".</p>
+        </section>
 
-          <ul class="text-small">
-            <li>Write function header</li>
-            <li>Write a little description in the comments</li>
-            <li>Write "type contract", i.e., what is each attribute going to be</li>
-            <li>Write examples expected behavior.</li>
-            <li>Write your function itself!</li>
-            <li>Test it.</li>
-          </ul>
+        <section>
+          <h3>The Open Data Ecosystem</h3>
+          Publish data* on the web.
+          <a href="https://purr.purdue.edu/sharedata"><img src="img/data-purr.png" width="80%" /></a>
+          <p>*with appropriate permissions/protections</p>
+          
+          <br />
+          <p class="cite">https://purr.purdue.edu/sharedata</p>
+        </section>
+
+        <section>
+          <h3>Re-usable Media/Writing/Courses!</h3>
+          <img src="img/course-license.png" width="70%" />
+          <a class="fragment" href="https://creativecommons.org/share-your-work/"><img src="img/creativecommons.png" width="80%" /></a>
+          <p class="cite">https://creativecommons.org/share-your-work/</p>
+          
+        </section>
+
+        <section>
+          <h3>Open Source Software Code</h3>
+          <a href="https://tldrlegal.com/"><img src="img/tldrlegal.png" width="70%" /></a>
+          <p class="cite">https://tldrlegal.com/</p>
+        </section>
+
+        <section>
+          <h3>FAIR DATA</h3>
+          <img src="img/data-fair.png" width="70%" />
+          <p class="cite"><a href="https://www.nature.com/articles/sdata201618">https://www.nature.com/articles/sdata201618</a></p>
+        </section>
+
+        <section>
+          <h3>Data FAIRification process</h3>
+          <img src="img/data-fairification.png" width="80%" />
+          <br /><br />
+          <p class="cite"><a href="https://www.go-fair.org/fair-principles/fairification-process/">https://www.go-fair.org/fair-principles/fairification-process/</a></p>
+        </section>
+
+        <section>
+          <h3>The future is linked data</h3>
+          <img src="img/digital-ag-accenture.png" />
+          <p>Learn more about <a href="https://www.sciencedirect.com/science/article/pii/S0308521X16303754">Big Data in Smart Farming</a></p>
+
+          <br />
+          <p class="cite">https://skyfarms.io/wp-content/uploads/2020/05/2-Accenture-Digital-Agriculture.pdf</p>
         </section>
 
         <section>
