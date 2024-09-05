@@ -33,7 +33,7 @@ Anaconda automatically installs the Python packages that we will use in our lab.
 
 ## Copy the Lab Skeleton File into your Repository
 
-Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
+Create a new repository called "YOURNAME-ASM532-Labs". Mine would be, for example "Ankita-ASM532-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
 
 - MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
 - Add @sudokita (Ankita, Instructor) and @tame0001
@@ -43,7 +43,7 @@ You should have previously cloned the class repository. Navigate to the "ag-info
 
 Let's move this file into your repository for you to use:
 
-1. Copy the "lab2" into your existing GitHub repository titled "YOURNAME-ASM591-Labs".
+1. Copy the "lab2" into your existing GitHub repository titled "YOURNAME-ASM532-Labs".
 2. Rename "lab2-skeleton.ipynb" to "lab2-YOURNAME.ipynb". **THIS IS THE FILE YOU WILL BE WORKING IN**
 3. Replace the README.md file with your own.
 4. Git add, commit, and push so that your repository now contains these items.
@@ -148,7 +148,7 @@ After you install Anaconda or Miniconda, you will be able to use `conda` command
 1. Create a new environment. "-n" is telling that the following word is the "name" of the new environment.
 
 ```bash
-conda create -n asm591
+conda create -n asm532
 ```
 
 2. You can check that you have created a new environment by
@@ -157,10 +157,10 @@ conda create -n asm591
 conda env list
 ```
 
-3. Next, you will activate the newly created environment. After running this command, you will see that the name of environment has been changed (from base to asm591).
+3. Next, you will activate the newly created environment. After running this command, you will see that the name of environment has been changed (from base to asm532).
 
 ```bash
-conda activate asm591
+conda activate asm532
 ```
 
 4. Now, we are going to install Python packages.
