@@ -2,6 +2,91 @@
 
 ## BEFORE THE LAB
 
+### PYTHON INTRO/REFRESH!
+
+If you are not familiar with Python, or need a quick refresher, do this 30 minute Short Introduction to Programming in Python by the Data Carpentry: https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python.
+
+### IMPORTANT TUTORIALS
+
+Anaconda automatically installs the Python packages that we will use in our lab. Here are some basic tutorials for each of them:
+
+1. [Jupyter notebook](https://jupyter.org/): An interactive python environment that allows you to run and view code in the browser. Here's a tutorial video on Jupyter Notebooks:
+
+   - We'll do a quick demo in-class.
+   - **Go through this quick tutorial: https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks.**
+   - Full documentation: https://jupyter-notebook.readthedocs.io/en/stable/.
+
+2. [Numpy](https://numpy.org/): Python package for scientific computing. We're mostly going to use pandas and matplotlib, so the other materials cover what you need to know about numpy.
+
+3. [Pandas](https://pandas.pydata.org/): Python package for data analytics. It's got an R/Matlab style feel to it.
+
+   - **Go through this 10 minute introduction to pandas: https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html.**
+   - Full documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html.
+
+4. [Matplotlib](https://matplotlib.org/): Python package for data visualization.
+
+   - **Quick start guide for matplotlib: https://www.python-graph-gallery.com/matplotlib/.**
+   - You can consult the Data Carpentry Introduction to Matplotlib: https://datacarpentry.org/python-ecology-lesson/08-putting-it-all-together.
+   - Full documentation: https://matplotlib.org/stable/ with some introductory tutorials: https://matplotlib.org/stable/tutorials/index.html#introductory.
+
+5. [Requests](https://requests.readthedocs.io/en/latest/): Python package to make HTTP requests. We will use only one function for this lab. Read "Make a Request" from this tutorial: https://requests.readthedocs.io/en/latest/user/quickstart/.
+
+## Copy the Lab Skeleton File into your Repository
+
+Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
+
+- MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
+- Add @sudokita (Ankita, Instructor) and @tame0001
+  (Tam, TA) as collaborators on your repository so that we can access your work and grade it.
+
+You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "lab2" folder inside it. It will contain this README.md file and a **"lab2-skeleton.ipynb" file** This file contains the instructions for your lab. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here".
+
+Let's move this file into your repository for you to use:
+
+1. Copy the "lab2" into your existing GitHub repository titled "YOURNAME-ASM591-Labs".
+2. Rename "lab2-skeleton.ipynb" to "lab2-YOURNAME.ipynb". **THIS IS THE FILE YOU WILL BE WORKING IN**
+3. Replace the README.md file with your own.
+4. Git add, commit, and push so that your repository now contains these items.
+5. View your new Jupyter Notebook in your GitHub repository to confirm everything is in the right place. It should look like the image below.
+
+![Lab2-contents](img/lab2-contents.png)
+
+### Open your Jupyter Notebook With VS Code
+
+1. Open Jupyter Notebook file (lab2-YOURNAME.ipynb) in the VS Code. (Make sure you already install the extension)
+
+2. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below. Click on mark sign on the right when you finish editing.
+
+![vscode1](./img/vscode-1.png)
+
+3. From here on, follow the instructions in the notebook itself. The image below describes how you can interact with a Jupyter Notebook block:
+
+![vscode2](./img/vscode-2.png)
+
+4. Complete the entire set of tasks in the notebook. You will have two weeks to complete the entire thing.
+
+### Open your Jupyter Notebook With Anaconda
+
+Note. You may skip this section if you choose to use VS code. More explanation about option that you have is in the next section.
+
+1. Open Anaconda Navigator.
+
+2. Launch Jupyter Notebooks. A window will open in your browser that allows you to navigate to your repository folder > lab2. Click on "lab2-YOURNAME.ipynb" and it will open in the a new tab.
+
+3. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below.
+
+![Lab2-edit1](img/lab2-edit1.png)
+
+4. Click on the ">Run" button. This will execute that code block and render it as Markdown again. It will look like the image below. You've just successfully edited your first block!
+
+![Lab2-edit1](img/lab2-edit2.png)
+
+5. From here on, follow the instructions in the notebook itself. The image below describes how you can interact with a Jupyter Notebook block:
+
+![Lab2-block](img/lab2-block.jpg)
+
+6. Complete the entire set of tasks in the notebook. You will have two weeks to complete the entire thing.
+
 ### Python virtual environment.
 
 Software is evolving constantly. Python, for example, release a new version annually. New versions come with new features, in the same time, some existing features will be changed, deprecated, or removed. This nature of software development applies to over 100,000 Python's libraries. This can cause incompatible issues between Python and other libraries that required to run the code. For example.
@@ -18,7 +103,7 @@ To prevent this issue, it is highly recommend to create virtual environments and
 
 Venv (virtual environment) takes different approach. It will create a local virtual environment to specific project. Therefore, it works really fast.
 
-In this lab, we recommend using venv. If you have not install Python before, follow below guide to install Python 3.12 (or Python 3.9 or newer).
+In this lab, we recommend using venv. The VS Code has a built-in function that makes using venv very easy. But first, if you have not install Python before, follow below guide to install Python 3.12 (or Python 3.9 or newer).
 
 - For Windows users, you can install Python by Microsoft Store or download from https://www.python.org/downloads/windows/
 - For Mac users, download the installer from here https://www.python.org/downloads/macos/
@@ -97,89 +182,6 @@ Now, you have a new environment for this lab. However, you must activate this en
 #### If you use Jupyter that comes with Anaconda
 
 Check the "kernel" tab then you can select your environments.
-
-### PYTHON INTRO/REFRESH!
-
-If you are not familiar with Python, or need a quick refresher, do this 30 minute Short Introduction to Programming in Python by the Data Carpentry: https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python.
-
-### IMPORTANT TUTORIALS
-
-Anaconda automatically installs the Python packages that we will use in our lab. Here are some basic tutorials for each of them:
-
-1. [Jupyter notebook](https://jupyter.org/): An interactive python environment that allows you to run and view code in the browser. Here's a tutorial video on Jupyter Notebooks:
-
-   - We'll do a quick demo in-class.
-   - **Go through this quick tutorial: https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks.**
-   - Full documentation: https://jupyter-notebook.readthedocs.io/en/stable/.
-
-2. [Numpy](https://numpy.org/): Python package for scientific computing. We're mostly going to use pandas and matplotlib, so the other materials cover what you need to know about numpy.
-
-3. [Pandas](https://pandas.pydata.org/): Python package for data analytics. It's got an R/Matlab style feel to it.
-
-   - **Go through this 10 minute introduction to pandas: https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html.**
-   - Full documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/index.html.
-
-4. [Matplotlib](https://matplotlib.org/): Python package for data visualization.
-
-   - **Quick start guide for matplotlib: https://www.python-graph-gallery.com/matplotlib/.**
-   - You can consult the Data Carpentry Introduction to Matplotlib: https://datacarpentry.org/python-ecology-lesson/08-putting-it-all-together.
-   - Full documentation: https://matplotlib.org/stable/ with some introductory tutorials: https://matplotlib.org/stable/tutorials/index.html#introductory.
-
-5. [Requests](https://requests.readthedocs.io/en/latest/): Python package to make HTTP requests. We will use only one function for this lab. Read "Make a Request" from this tutorial: https://requests.readthedocs.io/en/latest/user/quickstart/.
-
-## Copy the Lab Skeleton File into your Repository
-
-Create a new repository called "YOURNAME-ASM591-Labs". Mine would be, for example "Ankita-ASM591-Labs". You will create a subfolder for your lab submissions. If you have trouble contact me ASAP.
-
-- MAKE SURE THIS REPOSITORY IS **"PRIVATE"**. See [Academic Integrity Statement](https://github.com/ag-informatics/ag-informatics-course#academic-integrity) in syllabus.
-- Add @sudokita (Ankita, Instructor) and @tame0001
-  (Tam, TA) as collaborators on your repository so that we can access your work and grade it.
-
-You should have previously cloned the class repository. Navigate to the "ag-informatics-course" repository folder on your computer. Use the command "git pull" to download all the new changes. You should now have a folder titled "module2", with a "lab2" folder inside it. It will contain this README.md file and a **"lab2-skeleton.ipynb" file** This file contains the instructions for your lab. You will use it like a "worksheet", filling in the blanks wherever it prompts you with "Enter code here".
-
-Let's move this file into your repository for you to use:
-
-1. Copy the "lab2" into your existing GitHub repository titled "YOURNAME-ASM591-Labs".
-2. Rename "lab2-skeleton.ipynb" to "lab2-YOURNAME.ipynb". **THIS IS THE FILE YOU WILL BE WORKING IN**
-3. Replace the README.md file with your own.
-4. Git add, commit, and push so that your repository now contains these items.
-5. View your new Jupyter Notebook in your GitHub repository to confirm everything is in the right place. It should look like the image below.
-
-![Lab2-contents](img/lab2-contents.png)
-
-## Open your Jupyter Notebook With VS Code
-
-1. Open Jupyter Notebook file (lab2-YOURNAME.ipynb) in the VS Code. (Make sure you already install the extension)
-
-2. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below. Click on mark sign on the right when you finish editing.
-
-![vscode1](./img/vscode-1.png)
-
-3. From here on, follow the instructions in the notebook itself. The image below describes how you can interact with a Jupyter Notebook block:
-
-![vscode2](./img/vscode-2.png)
-
-4. Complete the entire set of tasks in the notebook. You will have two weeks to complete the entire thing.
-
-## Open your Jupyter Notebook With Anaconda
-
-1. Open Anaconda Navigator.
-
-2. Launch Jupyter Notebooks. A window will open in your browser that allows you to navigate to your repository folder > lab2. Click on "lab2-YOURNAME.ipynb" and it will open in the a new tab.
-
-3. Double click on the first block. The text color will turn blue, which indicates your editing that block. Add your name to the block as shown in the diagram below.
-
-![Lab2-edit1](img/lab2-edit1.png)
-
-4. Click on the ">Run" button. This will execute that code block and render it as Markdown again. It will look like the image below. You've just successfully edited your first block!
-
-![Lab2-edit1](img/lab2-edit2.png)
-
-5. From here on, follow the instructions in the notebook itself. The image below describes how you can interact with a Jupyter Notebook block:
-
-![Lab2-block](img/lab2-block.jpg)
-
-6. Complete the entire set of tasks in the notebook. You will have two weeks to complete the entire thing.
 
 ## How to Submit your Lab
 
