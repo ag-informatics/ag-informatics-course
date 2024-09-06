@@ -44,7 +44,7 @@ Who are we and how are we here to support your learning?
 
 **Ankita Raturi** is an asst. professor in Agricultural and Biological Engineering, and is the primary instructor of this course. She has designed this course, will deliver lectures, and is available for technical and general support for any aspect of the course.
 
-**Thirawat "Tam" Bureetees** is the Teaching Assistant (TA) for this course. He will lead all labs, grade all submitted materials, and will be available in-person for technical support, troubleshooting for code, and discussion of individual assignment grades. He is also working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be active in the FORUM, so if you need help finding a resource, post on Github in Q&A.
+**Thirawat "Tam" Bureetes** is the Teaching Assistant (TA) for this course. He will lead all labs, grade all submitted materials, and will be available in-person for technical support, troubleshooting for code, and discussion of individual assignment grades. He is also working with Ankita to update labs and technical content and will be available online if you are looking for specific resources. He will be active in the FORUM, so if you need help finding a resource, post on Github in Q&A.
 
 | Call me          | github    | email               | ask me about         |
 | ---------------- | --------- | ------------------- | -------------------- |
@@ -89,9 +89,9 @@ This course is divided into seven 2 week modules. Each module consists of 4 lect
 | Module                                                                                            | Weeks        | What's due?                                   |
 | ------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------------- |
 | [1 - Web Design & Dev](https://github.com/ag-informatics/ag-informatics-course/tree/main/module1) | Week 1 & 2   | Quiz 1                                        |
-| [2 - Data Exploration]                                                                            | Week 3 & 4   | Quiz 2, Submit Lab 1                          |
-| [3 - Web Applications]                                                                            | Week 5 & 6   | Quiz 3, Submit Lab 2, Submit Project Part 1   |
-| [4 - Data Management]                                                                             | Week 7 & 8   | Quiz 4, Submit Lab 3                          |
+| [2 - Data Exploration](https://github.com/ag-informatics/ag-informatics-course/tree/main/module2) | Week 3 & 4   | Quiz 2, Submit Lab 1                          |
+| [3 - Data Modeling](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3)    | Week 5 & 6   | Quiz 3, Submit Lab 2, Submit Project Part 1   |
+| [4 - Web Application]                                                                             | Week 7 & 8   | Quiz 4, Submit Lab 3                          |
 | [5 - User Interfaces]                                                                             | Week 9 & 10  | Quiz 5, Submit Lab 4, Submit Project Part 2   |
 | [6 - Geospatial Data]                                                                             | Week 11 & 12 | Quiz 6, Submit Lab 5                          |
 | [7 - Future of Ag Tech]                                                                           | Week 13 & 14 | Quiz 7, Submit Lab 6                          |
