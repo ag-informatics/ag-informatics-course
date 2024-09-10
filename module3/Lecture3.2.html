@@ -35,27 +35,28 @@
         <section>
           <h3>Outline for Today</h3>
           <ul>
-            <li>Introducing Dynamic Web Apps</li>
-            <li>A little bit about Web Frameworks, esp. Django</li>
+            <!-- <li>Introducing Dynamic Web Apps</li> -->
+            <!-- <li>A little bit about Web Frameworks, esp. Django</li> -->
+            <li>Data modeling</li>
             <li>From procedural to Object Oriented Programming (OOP)</li>
             <li>OOP in Python</li>
           </ul>
         </section>
 
 
-        <section>
+        <!-- <section>
           <h3>Static Websites</h3>
           <img src="img/web-response.png" />
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Dynamic Sites?</h3>
           <p>"[C]an generate and return content based on the specific request URL and data (rather than always returning the same hard-coded file for a particular URL)."</p>
           <br /><br />
           <p class="cite">https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Client-Server_overview</p>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Dynamic sites</h3>
           <h4>(Web Apps)</h4>
           <h4>use 'server-side' code to...</h4>
@@ -67,25 +68,25 @@
               <li> Provide customized user experiences ("Hello {{ person_name }}!)"</li>
               <li>...and much more!</li> 
             </ul>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Server-Side Programming</h3>
           <img src="img/web-application-dynamic.png" />
           <p class="text-small">"Requests for dynamic resources are instead forwarded (2) to server-side code (shown in the diagram as a Web Application). For "dynamic requests" the server interprets the request, reads required information from the database (3), combines the retrieved data with HTML templates (4), and sends back a response containing the generated HTML (5,6)."</p>
 
           <br />
           <p class="cite"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction">Mozilla, Intro to the server side, https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Introduction</a></p>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>A Simplified Web App Architecture</h3>
           <img src="img/web-application.png" width ="50%" />
           <br /><br />
           <p class="cite">Pettit, 2001, White paper: Anatomy of a Web Application: Security Considerations. <a href="https://www.cgisecurity.com/lib/Web_Server.pdf">https://www.cgisecurity.com/lib/Web_Server.pdf</a></p>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Web Frameworks</h3>
           <p><span class="red">Django (python)</span>. Flask (python).  Drupal (php). Express (javascript). Spring (java). ASP.NET. Ruby on Rails (ruby)</p> 
           <ul>
@@ -94,9 +95,9 @@
             <li>Render data in dyanmic user interfaces</li>
             <li>...provide a skeleton and toolbox to build web apps!</li>
           </ul>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Django</h3>
           <ul>
             <li>Easy(ish) to learn: esp. since we've already started python</li>
@@ -106,9 +107,9 @@
             <li>Portable - runs on Windows, Linux, and Mac OS X.</li>
             <li>Good for rapid prototyping!</li>
           </ul>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Built with Django?</h3>
           <div class="r-stack">
               <img class="fragment fade-in-then-out" src="img/django-insta.png" width="70%" />
@@ -116,9 +117,9 @@
               <img class="fragment" src="img/django-robinhood.png" width="50%" />
           </div>
           <p class="text-small"><a href="https://instagram-engineering.com/types-for-python-http-apis-an-instagram-story-d3c3a207fdb7">Instagram</a> | <a href="https://engineering.atspotify.com/2013/03/20/how-we-use-python-at-spotify/">Spotify</a> | <a href="https://boards.greenhouse.io/robinhood/jobs/2357305?t=gh_src=&gh_jid=2357305">Robinhood</a></p>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>What's used in AgTech?</h3>
           <ul>
             <li>Farmlogs/Bushel (<a href="https://www.paycomonline.net/v4/ats/web.php/jobs/ViewJobDetails?job=64902&clientkey=484ED2188E091C199C755AB75A7B7C68">backend software engineer</a>)</li>
@@ -127,9 +128,9 @@
             <li>FarmOS (<a href="https://github.com/farmOS/farmOS">open source drupal</a>)</li>
            <li>USDA (<a href="https://www.usajobs.gov/Search/Results?l=&l=&d=AG&k=python&wma=15509&p=1">ARS & NASS positions</a>)  </li>
           </ul>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Django for Rapid Prototyping</h3>
           <img src="img/cctool-umd-prototype.png" width="80%" />
           <ul class="text-small">
@@ -137,13 +138,146 @@
             <li>Quick prototype = 6 undergrad CS students x 3 months</li>
             <li>Focus on proof of concept for converting an excel tool to online web app</li>
           </ul>
-        </section>
+        </section> -->
 
-        <section>
+        <!-- <section>
           <h3>Structure of a Django Application</h3>
           <img src="img/basic-django.png" width="60%" />
           <h4 class="fragment"><span class="red">Need to know: Object Oriented Programming in Python!</span></h4>
+        </section> -->
+
+        <section>
+          <h3>Data Modeling</h3>
+          <p>Decide what needs to be represented!</p>
+          <p>Determine the correct data type for different kinds of data.</p>
+          <p>Identify the right data structure to pool together related items.</p>
+          <p>Develop the right process to manage your data as a whole.</p>
         </section>
+
+        <section>
+          <h3>Example: Cover Crop Data</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrops-book.jpg" width="40%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-phz.jpg" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-soil.png" width="70%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-usda.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-chart.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-smartmix.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-midwest-old.png" width="80%" />
+            <img class="fragment fade-in-then-out" src="img/covercrop-dataverification.png" width="70%" />
+          </div>
+        </section>
+
+        <section>
+          <h3>Spreadsheets / CSVs</h3>
+          <div class="r-stack">
+            <img class="fragment fade-in-then-out" src="img/covercrop-sample-before.png" />
+            <img class="fragment" src="img/covercrop-sample.png" />
+          </div>
+          <p class="text-small"><a href="https://datacarpentry.org/spreadsheet-ecology-lesson/">Learn more about structuring spreadsheets</a></p>
+        </section>
+
+        <section>
+          <h3>Metadata & Documentation</h3>
+          <p>Data Dictionary:</p>
+          <img src="img/covercrop-datadict.png" />
+
+          <p>Data / Code Documentation Tools<br />
+          <a href="https://readthedocs.org/">https://readthedocs.org/</a></p>
+        </section>
+
+        <section>
+          <h3>JSON</h3>
+
+          "Serialize" a data model.
+
+          <pre><code data-trim>
+            [{ 
+              "Cover Crop Name": "Barley, Spring",
+              "Scientific Name": "Hordeum vulgare",
+              "Drought Tolerance": 4,
+              "Shade Tolerance": 2,
+              "Flood Tolerance": 2,
+              "Low Fertility Tolerance": 4,
+              "Salinity Tolerance": 3,
+              "Winter Survival": ["Seldom"],
+              "Active Growth Period": ["Spring", "Summer"],
+              "Duration": ["Annual"],
+              "Shape & Orientation": ["Erect"],
+              "Notes: Basic Agronomics": "Dry matter highly dependent on planting and termination date and precipitation....",
+            }]  
+          </code></pre>
+          
+          <p><a href="https://github.com/ag-informatics/covercrops/blob/master/src/shared/crop-data.json">Cover Crop Data in JSON</a></p>
+
+          <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">Learn more about JSON</a></p>
+        </section>
+
+        <section>
+          <h3>The Cover Crop Data in Action</h3>
+          <img src="img/covercrop-tool.png" />
+
+          <p class="text-small">Built a Javascript-based web app. <br />Uses the airtable API (where we have spreadsheets) to pull live data (still being curated). <br />Data is restructured and stored as JSON files.<br />To be continued....</p>
+        </section>
+
+        <!-- <section>
+          <h3>Structuring your data: Python</h3>
+
+          <ul class="no-bullets">
+          <li><b>Data types:</b> int, float, String, etc. </li>
+          <li><b>Data structures:</b>
+            <ul class="no-bullets">
+              <li>Lists (array): [1, 2, 3, 4, 5]</li>
+              <li>Tuples: ([1, 2, 3], 55, "what?")</li>
+              <li>Dictionaries: {'key': value, 'bobby': 42, 'noddy': 54}</li>
+              <li>Pandas' DataFrames.</li>
+            </ul>
+          </li><br /><br />
+          <li class="fragment">Object-oriented models in Python and
+            <br />data models in Django using <b>Classes</b> (as prev. discussed).</li>
+          </ul>
+        </section> -->
+
+
+        <!-- <section>
+          <h3>Databases</h3>
+          <div class="container">
+            <div class="col">
+              <h6>Relational (SQL)</h6>
+              <ul>
+                  <li>All records have a unique identified, a column in the table deemed the PRIMARY KEY </li>
+                  <li>Tables are linked based on a lookup "column", known as a FOREIGN KEY</li>
+                  <li>Three relationship types: 
+                    <ul class="no-bullets text-small">
+                      <li>one-one: one book can have one ISBN (id number)</li>
+                      <li>one-many: one book can be borrowed many times </li>
+                      <li>many-many: many books can be borrowed by many people</li>
+                    </ul>
+              </ul>
+            </div>
+            <div class="col">
+              <img src="img/db-relational.png" />
+              <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models">Django Example</a></p>
+            
+            </div>
+            
+          </div>
+        </section> -->
+
+        <!-- <section>
+          <h3>Databases</h3>
+
+              <h6>Non-Relational (NoSQL)</h6>
+              <img src="img/db-nosql.png">
+              <p class="text-small">Key-Value e.g., <a href="https://redis.io/">redis</a>. 
+                Document e.g., <a href="https://www.mongodb.com/">MongoDB</a>.
+                Columnar e.g., <a href="https://cassandra.apache.org/_/index.html">Apache Cassandra</a>
+                Graph e.g., <a href="https://neo4j.com/">Neo4J</a>
+              </p>
+              
+            <p class="text-small"><a href="https://azure.microsoft.com/en-us/overview/nosql-database/">Learn more about NoSQL dbs.</a></p>
+        </section> -->
+
 <!-- TODO: OOP section -->
 
         <section>

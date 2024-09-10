@@ -35,7 +35,9 @@
         <section>
           <h3>Outline for Today</h3>
           <ul>
-            <li>Data modeling</li>
+            <li>The data life cycle</li>
+            <!-- <li>Data life cycle: understand, plan, acquire.</li> -->
+            <!-- <li>Data modeling</li> -->
             <li>Managing sensitive data</li>
             <li>The open data ecosystem</li>
           </ul>
@@ -43,144 +45,62 @@
 
         <section>
           <h3>A Data Lifecycle</h3>
-          <div>
+          <div class="r-stack">
             <img src="img/diagram-data-lifecycle.jpg" width="70%" />
-            </div>
-        </section>
-
-        <section>
-          <h3>Data Modeling</h3>
-          <p>Decide what needs to be represented!</p>
-          <p>Determine the correct data type for different kinds of data.</p>
-          <p>Identify the right data structure to pool together related items.</p>
-          <p>Develop the right process to manage your data as a whole.</p>
-        </section>
-
-        <section>
-          <h3>Example: Cover Crop Data</h3>
-          <div class="r-stack">
-            <img class="fragment fade-in-then-out" src="img/covercrops-book.jpg" width="40%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-phz.jpg" width="70%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-soil.png" width="70%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-usda.png" width="80%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-chart.png" width="80%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-smartmix.png" width="80%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-midwest-old.png" width="80%" />
-            <img class="fragment fade-in-then-out" src="img/covercrop-dataverification.png" width="70%" />
+            <img class = "fragment" src="img/diagram-data-lifecycle-tuesday.jpg" width="70%" />
           </div>
         </section>
 
-        <section>
-          <h3>Spreadsheets / CSVs</h3>
-          <div class="r-stack">
-            <img class="fragment fade-in-then-out" src="img/covercrop-sample-before.png" />
-            <img class="fragment" src="img/covercrop-sample.png" />
-          </div>
-          <p class="text-small"><a href="https://datacarpentry.org/spreadsheet-ecology-lesson/">Learn more about structuring spreadsheets</a></p>
-        </section>
+
 
         <section>
-          <h3>Metadata & Documentation</h3>
-          <p>Data Dictionary:</p>
-          <img src="img/covercrop-datadict.png" />
-
-          <p>Data / Code Documentation Tools<br />
-          <a href="https://readthedocs.org/">https://readthedocs.org/</a></p>
-        </section>
-
-        <section>
-          <h3>JSON</h3>
-
-          "Serialize" a data model.
-
-          <pre><code data-trim>
-            [{ 
-              "Cover Crop Name": "Barley, Spring",
-              "Scientific Name": "Hordeum vulgare",
-              "Drought Tolerance": 4,
-              "Shade Tolerance": 2,
-              "Flood Tolerance": 2,
-              "Low Fertility Tolerance": 4,
-              "Salinity Tolerance": 3,
-              "Winter Survival": ["Seldom"],
-              "Active Growth Period": ["Spring", "Summer"],
-              "Duration": ["Annual"],
-              "Shape & Orientation": ["Erect"],
-              "Notes: Basic Agronomics": "Dry matter highly dependent on planting and termination date and precipitation....",
-            }]  
-          </code></pre>
-          
-          <p><a href="https://github.com/ag-informatics/covercrops/blob/master/src/shared/crop-data.json">Cover Crop Data in JSON</a></p>
-
-          <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">Learn more about JSON</a></p>
-        </section>
-
-        <section>
-          <h3>The Cover Crop Data in Action</h3>
-          <img src="img/covercrop-tool.png" />
-
-          <p class="text-small">Built a Javascript-based web app. <br />Uses the airtable API (where we have spreadsheets) to pull live data (still being curated). <br />Data is restructured and stored as JSON files.<br />To be continued....</p>
-        </section>
-
-        <section>
-          <h3>Structuring your data: Python</h3>
-
+          <h3>1. Understand</h3>
+          <h6>Mapping the problem space</h6>
           <ul class="no-bullets">
-          <li><b>Data types:</b> int, float, String, etc. </li>
-          <li><b>Data structures:</b>
-            <ul class="no-bullets">
-              <li>Lists (array): [1, 2, 3, 4, 5]</li>
-              <li>Tuples: ([1, 2, 3], 55, "what?")</li>
-              <li>Dictionaries: {'key': value, 'bobby': 42, 'noddy': 54}</li>
-              <li>Pandas' DataFrames.</li>
-            </ul>
-          </li><br /><br />
-          <li class="fragment">Object-oriented models in Python and
-            <br />data models in Django using <b>Classes</b> (as prev. discussed).</li>
+            <li>What is the problem/question?</li><br />
+            <li>What is the goal?</li><br />
+            <li>Who are the actors? What are their needs?</li><br />
+            <li>What data are required?</li>
           </ul>
         </section>
 
+        <section>
+          <h3>2. Plan</h3>
+          <h6>Mapping the solution space</h6>
+          <ul class="no-bullets">
+            <li>How will data be collected/acquired?</li><br />
+            <li>How will you process and analyze it?</li><br />
+            <li>How will the data be used and/or shared?</li><br />
+            <li>How will you handle documentation, data management, quality control?</li>
+          </ul>
+        </section>
 
         <section>
-          <h3>Databases</h3>
-          <div class="container">
-            <div class="col">
-              <h6>Relational (SQL)</h6>
-              <ul>
-                  <li>All records have a unique identified, a column in the table deemed the PRIMARY KEY </li>
-                  <li>Tables are linked based on a lookup "column", known as a FOREIGN KEY</li>
-                  <li>Three relationship types: 
-                    <ul class="no-bullets text-small">
-                      <li>one-one: one book can have one ISBN (id number)</li>
-                      <li>one-many: one book can be borrowed many times </li>
-                      <li>many-many: many books can be borrowed by many people</li>
-                    </ul>
-              </ul>
-            </div>
-            <div class="col">
-              <img src="img/db-relational.png" />
-              <p class="text-small"><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Models">Django Example</a></p>
-            
-            </div>
-            
-          </div>
+          <h3>3. Acquire</h3>
+          <h6>Getting the data you need.</h6><br />
+
+          <ul class="no-bullets">
+          <li><b>BYO Data:</b> Collect the data from the world via, e.g., interviews, sensors, samples!</li><br />
+
+          <li><b>Using Private/Protected Data:</b> Data sharing agreement with data owners, get permissions/access to secure data.</li><br />
+
+          <li><b>Using Public Data:</b> Available on the internet.</li><br />
+        </ul>
         </section>
 
-                <section>
-          <h3>Databases</h3>
+        <section>
+          <h3>4. Process</h3>
+          <b>Clean, structure, prep the data for use.</b><br /><br />
 
-              <h6>Non-Relational (NoSQL)</h6>
-              <img src="img/db-nosql.png">
-              <p class="text-small">Key-Value e.g., <a href="https://redis.io/">redis</a>. 
-                Document e.g., <a href="https://www.mongodb.com/">MongoDB</a>.
-                Columnar e.g., <a href="https://cassandra.apache.org/_/index.html">Apache Cassandra</a>
-                Graph e.g., <a href="https://neo4j.com/">Neo4J</a>
-              </p>
-              
-            <p class="text-small"><a href="https://azure.microsoft.com/en-us/overview/nosql-database/">Learn more about NoSQL dbs.</a></p>
+          <h3>5. Analyze</h3>
+          <b>Convert data to information.</b><br /><br />
+
+          <h3>6. Use / Share</h3>
+          <b>Informing action!</b><br /><br />
         </section>
+
 <!-- TODO: Need review -->
-        <section>
+        <!-- <section>
           <h3>Django + SQLite </h3>
           <pre><code data-trim data-noescape><script type="text/template">
             sqlite3 <database_name>
@@ -192,9 +112,9 @@
             SELECT * FROM <table_name> WHERE <condition>;
             
           </script></code></pre>
-        </section>
+        </section> -->
 <!-- TODO: Need review -->
-        <section>
+        <!-- <section>
           <h3>Django + JSON </h3>
 
           <p>Create <a href="https://docs.djangoproject.com/en/3.2/howto/initial-data/">Django fixtures</a>, that is, an "annotated" JSON file:
@@ -222,27 +142,7 @@
           <pre><code data-trim data-noescape><script type="text/template">
             manage.py loaddata <fixture_file_name>
           </script></code></pre></p>
-        </section>
-
-
-        <section>
-          <h3>Sensitivity of Data</h3>
-          <ul class="no-bullets">
-            <li><b>Private:</b> Some Farmer Data, Proprietary Data, Human Subjects Research Data</li><br />
-            <li><b>Protected:</b> Same as above, but can be released in certain ways (e.g., de-identified, aggregated, shared with certain people)</li><br />
-            <li><b>Public:</b> Publicly funded research data, "Generic" data e.g., general plant data, "utility" data e.g., weather, can also include protected data e.g., deidentified data. </li>
-        </ul>
-        </section>
-
-         <section>
-          <h3>Research Data Perspective</h3>
-            <div class="r-stack">
-              <img src="img/sensitivity-iu1.png" width="70%" /> 
-              <img class = "fragment" src="img/sensitivity-iu2.png" width="70%"  /> 
-            </div>
-            <br />
-            <p class="cite">IU Data Management 2021, https://datamanagement.iu.edu/types-of-data/classifications.php</p>
-        </section>
+        </section> -->
 
         <section>
           <div class = "r-stack">
@@ -295,7 +195,7 @@
             <div class="col fragment">  
               <h6>Accountability</h6>
               <ul>
-                <li>Uphold the responsbility of protecting data and research stakeholder rights</li><br />
+                <li>Uphold the responsibility of protecting data and research stakeholder rights</li><br />
                 <li>Provide traceability of action</li><br />
                 <li>Provide feedback among stakeholders</li>
               </ul>
@@ -314,6 +214,25 @@
         </section>
 
         <section>
+          <h3>Sensitivity of Data</h3>
+          <ul class="no-bullets">
+            <li><b>Private:</b> Some Farmer Data, Proprietary Data, Human Subjects Research Data</li><br />
+            <li><b>Protected:</b> Same as above, but can be released in certain ways (e.g., de-identified, aggregated, shared with certain people)</li><br />
+            <li><b>Public:</b> Publicly funded research data, "Generic" data e.g., general plant data, "utility" data e.g., weather, can also include protected data e.g., deidentified data. </li>
+        </ul>
+        </section>
+
+         <section>
+          <h3>Research Data Perspective</h3>
+            <div class="r-stack">
+              <img src="img/sensitivity-iu1.png" width="70%" /> 
+              <img class = "fragment" src="img/sensitivity-iu2.png" width="70%"  /> 
+            </div>
+            <br />
+            <p class="cite">IU Data Management 2021, https://datamanagement.iu.edu/types-of-data/classifications.php</p>
+        </section>
+
+        <section>
           <h3>The Open Data Ecosystem</h3>
           Publish data* on the web.
           <a href="https://purr.purdue.edu/sharedata"><img src="img/data-purr.png" width="80%" /></a>
@@ -321,6 +240,40 @@
           
           <br />
           <p class="cite">https://purr.purdue.edu/sharedata</p>
+        </section>
+
+        <section>
+          <h3>Some Public Data Sources</h3>
+          
+          <ul>
+            <li><b>US Food & Ag: </b><a href="https://www.nass.usda.gov/">USDA Statistical Service</a>, <a href="https://data.nal.usda.gov/">US Ag Data Commons</a></li>
+
+            <li><b>GLobal Food & Ag: </b><a href="http://www.fao.org/faostat/en/">FAO Global Food & Ag Data</a>, <a href="https://bigdata.cgiar.org/">CGIAR Global Ag Data</a></li>
+            
+            <li><b>Soils: </b><a href = "https://sdmdataaccess.nrcs.usda.gov/">US Soil Survey</a>, <a href="http://africasoils.net/">Africa Soil Info Service</a></li>
+
+            <li><b>Climate & Earth: </b><a href="https://www.ncdc.noaa.gov/cdo-web/">NOAA Climate Data</a>, <a href="https://www.usgs.gov/products/data-and-tools/data-and-tools-topics/water">USGS Water Data</a></li>
+
+            <li><b>Imagery: </b><a href="https://neo.sci.gsfc.nasa.gov/">NASA Earth Observations</a></li>
+
+            <li><b>Plants: </b><a href="https://plants.sc.egov.usda.gov/home">USDA PLANTS Database</a></li>
+
+            <li><b>Geospatial Data: </b><a href="https://www.usgs.gov/products/maps/gis-data">USGS GIS Data</a><a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/water/watersheds/dataset/?cid=nrcs143_021630">NRCS Watershed Boundaries</a>, <a href="https://gdg.sc.egov.usda.gov/">Geospatial Data Gateway</a></li>
+
+
+            <li><b>Economic: </b><a href="https://www.ers.usda.gov/data-products/">USDA Economic Research Service</a><a href="https://data.worldbank.org/">World Bank</a></li>
+
+            <li><b>Health & Nutrition: </b><a href="https://www.fns.usda.gov/data-research">USDA Food & Nutrition Service Data</a>, <a href="https://www.who.int/data/gho">WHO PUblic Health Data</a></li>
+
+          </ul>
+          
+          <p>What other types of data do look for?</p>
+        </section>
+
+        <section>
+          <h3>Assessing Data Quality</h3>
+          <img src="img/data-quality.png" width="40%" /><br />
+          <p class="cite">Pipino et al. 2002, https://dl.acm.org/doi/pdf/10.1145/505248.506010</p>
         </section>
 
         <section>
