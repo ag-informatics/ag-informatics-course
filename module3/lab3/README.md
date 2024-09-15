@@ -6,6 +6,16 @@ In this lab, we will use two new software. To save time, please following sectio
 
 ### SQLite
 
+If you are using MacOS, SQLite should have been installed by default. To verify installation, open terminal and type `sqlite3`. You should see the prompt showing the version number.
+
+For Windows users, go to [https://www.sqlite.org/download.html](https://www.sqlite.org/download.html), scroll down to "Precompiled Binaries for Windows" and download `sqlite-tools-win-x64-xxx.zip`. Extract the zip file and you will see `sqlite3.exe`, this is your sqlite command tool. You can either double-click or execute through terminal (PowerShell).
+
+For Linux users, you can install sqlite3 your OS package management. For example, if you are using Debian or Ubuntu family, run the following command
+
+```
+sudo apt install sqlite3
+```
+
 ### DBeaver
 
 ## Harvest Moon
