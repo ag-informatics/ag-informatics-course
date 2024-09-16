@@ -1,4 +1,4 @@
-# Module 3: Web Applications
+# Module 3: Data Model
 
 ## Lecture Slides / Notes
 
@@ -15,7 +15,7 @@ Source code for the slides is in this folder. The slides are live here:
 
 Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders.
 
-<!-- Lab this week is on the lighter side so that you have time to work on your project. -->
+Lab this week is on the lighter side so that you have time to work on your project.
 
 Academic Integrity Reminder: Make sure your lab Github repositories are "private" for the duration of the course, to prevent others from simply copying your code. I trust that you will work independently, and will evaluate your work based on your "commit" history (i.e., you should NOT just commit the ENTIRE lab 5 minutes before the deadline). In general, writing code with the help of the internet is permissable, i.e., you can ask questions on Stack Overflow, discuss the problems with each other on Slack. Ultimately, I have a policy in which I trust that you are doing the right thing, unless I see evidence to the contrary.
 
