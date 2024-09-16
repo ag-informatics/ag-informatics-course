@@ -10,6 +10,7 @@
     "Miniconda",
     "Numpy",
     "Raturi",
+    "sqlalchemy",
     "sudokita",
     "venv",
     "YOURNAME"

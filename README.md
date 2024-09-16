@@ -1,5 +1,4 @@
-![axilab nd purdue Logo](https://aginformaticslab.org/assets/axilab-logo.png){height=200px}
-
+<img src="https://aginformaticslab.org/assets/axilab-logo.png" height="200px">
 <!-- LICENSE -->
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]

@@ -10,3 +10,4 @@
 *.vpp.*
 __pycache__
 .venv/
+modarchive/revealjs

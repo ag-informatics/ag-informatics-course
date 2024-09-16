@@ -30,9 +30,9 @@ lab3            <-- new folder for this lab
 README.md       <-- optional
 ```
 
-## Farm Management Software
+## Farm Management application
 
-We are going to create a basic version of farm management software by the end of this class. Each lab in module 3-6 will introduce you to new concepts that you will need to build the software. In this lab (module 3), we will start with the fundamental element: data model. However, farm is complicated and diverse. Thus, we will limit the complexity of the farm that we are going to build software for in this lab. The lab 3 farm is inspired by the classic farm simulation game ["Harvest Moon: Back to the nature"](https://en.wikipedia.org/wiki/Harvest_Moon:_Back_to_Nature) (Released in 1999)
+We are going to create a basic version of farm management application by the end of this class. Each lab in module 3-6 will introduce you to new concepts that you will need to build the application. In this lab (module 3), we will start with the fundamental element: data model. However, farm is complicated and diverse. Thus, we will limit the complexity of the farm that we are going to build application for in this lab. The lab 3 farm is inspired by the classic farm simulation game ["Harvest Moon: Back to the nature"](https://en.wikipedia.org/wiki/Harvest_Moon:_Back_to_Nature) (Released in 1999)
 
 ![Harvest Moon](https://upload.wikimedia.org/wikipedia/en/b/bf/Harvest_Moon_Back_to_Nature.jpg)
 
@@ -40,7 +40,7 @@ We are going to create a basic version of farm management software by the end of
 
 In the game, you are given a farmland from your grandfather. The farm was not in a good condition. Your job is restore the farm operation. Since, you have to work on the entire farm alone, there will be too many things to remember. For example, which crops do you grow and how many of each? So, let's start with designing the crop tracking database. In the farm, you will divide the land into multiple plots. In each plot, we will record following information
 
-- plot number
+- plot name
 - length
 - width
 - planted date
@@ -52,6 +52,8 @@ Each plot will have only 1 crop. But one crop can by planted in many plots. Ther
 - crop name
 - maturity date
 - note
+
+<!-- ERD -->
 
 Therefore, our data model will have two tables. Now, it is time to create them.
 
@@ -79,27 +81,61 @@ insert into crops (crop_name, maturity_date)
 values (carrot, 70);
 ```
 
-The command above will insert a row to table `crops` with two column `crop_name` with value "carrot" and `maturity_date` with value 70. Note that, you don't need to add value to column `crop_id` as it is a primary key. So, this column is managed by the database engine. You don't need to specify value for `note` column as it is optional (it does not have `not null` constrain).
+The command above will insert a row to table `crops` with two column `crop_name` with value "carrot" and `maturity_date` with value 70. Note that, you don't need to add value to column `crop_id` as it is a primary key. So, this column is managed by the database engine. You don't need to specify value for `note` column as it is optional (it does not have `not null` constraint).
 
 7. You can type `select * from crops;`. This time, you will see a row as return value.
-8. Your task is to insert at least 4 more rows into crops table. You can choose any crops you want. You don't need to worry about researching for accurate maturity date. Any reasonable numbers will be accepted. At least 2 rows must have values in `note` column. Record your inserts command in `insert_crop.txt`.
+8. Your task is to insert at least 4 more rows into crops table. You can choose any crops you want. You don't need to worry about researching for accurate maturity date. Any reasonable numbers will be accepted. At least 2 rows must have values in `note` column. Record your insert commands in `insert_plots.txt`.
 
-<!-- ERD -->
+We created crop table. Next, we will create plot table. As mentioned earlier, we will link crop table and plot table together using foreign key. Foreign key is one of the key principle of any relational databases. It helps to links multiple tables together, reduces duplicates information, improves query efficiency etc. Please take a look in this [tutorial](https://learnsql.com/blog/why-use-foreign-key-in-sql/) for more explanation and example. You task is to create plot table. Here is the some help.
 
-<!-- Field -->
-<!-- Animal -->
+1. We need to enable foreign key functionality by typing this command `PRAGMA foreign_keys = ON;`
+2. Next, use the code snippet below to create table. The snippet is not completed yet. You will need to fill missing parts indicating by "????".
 
-<!-- Python & SQLite -->
-<!-- Create, insert, query with SQL verify with SQLite-->
-<!-- SQLalchemy & SQLite -->
+```
+create table plots (                                    <-- create a new table name "plots"
+    ???                                                 <-- the first column should be the primary key (plot_id)
+    ???                                                 <-- next is plot name
+    ???                                                 <-- create column for length, width, planted_date, and note (use data type integer for plant_date column)
+    crop_id integer not null                            <-- this column will be the foreign key to crop table
+    foreign key (crop_id) references crops (crop_id)    <-- enforce foreign key constraint
+);
+```
+
+You can check if plot table is created successfully or not by using command `.tables`. This command will list all tables. Now, we are going to insert a new row to the plot table.
+
+```
+insert into plots (plot_name, length, width, planted_date, crop_id)
+values ('north plot', 20, 5, '2024-05-15', 1);
+```
+
+The above command will create a new plot name "north plot" with dimension of 20x5. The plot has carrot that planted on May 15, 2024. Like inserting to crop table, you don't need to specify plot_id, as it is the primary key and will be automatically managed by the database engine. The note column is optional. Planted_date column must follow `yyyy-mm-dd` format. Lastly, from crop table, you know that crop_id = 1 is carrot. Your task is to insert at least 9 more rows into plot plot table. At least 5 rows must have value in the `note` column. Record your insert commands in `insert_plots.txt`.
+
+Hint: you can view data in the plots table by `select * from plots;`.
+
+## Python and SQLite
+
+So far, the commands that you used to create tables and insert rows were in the language SQL. This is a powerful and useful language. You can use this language with other SQL databases (eg. PostgreSQL, MySQL, Oracle). But as you may notice, it is not the most user-friendly language to use. In this section, we will use Python to interact with the database. first, copy `Lab3-skeleton.ipynb` and `data_model.py` from class repo -> module3 -> lab3 into your submission folder. Then rename it to `Lab3-yourname.ipynb`. Next open the Jupiter notebook file (.ipynb) and activate the kernel that you used in the lab 2 (it should be ".venv"). From now, you will follow the instructions in the Jupiter notebook.
+
+<!-- Animal. Provide db file. Write data model with concept of inheritance with chicken, cows, sheep -->
 
 ## How to Submit your Lab
+
+Remember to use the git commands "add", "commit", and finally "push" to add your files, commit the changes with a comment, and push the changes to the Github website. Also remember, you should have a commit history with at least 5 commits to demonstrate ongoing effort (don't just commit it all 5 mins before it's due!).
+
+You will submit your entire lab3 folder that contains all the code. Your file structure should look like this:
 
 ```
 lab3/
     crop_record.db          <-- The database for crops and plots table
-    insert_crop.txt         <-- Commands that you used for inserting rows into crops table
+    insert_plots.txt        <-- Commands that you used for inserting rows into crops table
+    insert_crops.txt        <-- Commands that you used for inserting rows into plots table
+    Lab3-yourname.ipynb     <-- Copy lab3-skeleton and change the name
+    data_model.py           <-- Your data model
 ```
+
+GO TO BRIGHTSPACE, submit the link to your repository to your Lab3 folder in your repository. You are now done!
+
+Huzzah, Module 3 has been conquered!
 
 ## License
 
