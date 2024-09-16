@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ASM 591 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css">
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <div class="footer">
+          ankita@purdue.edu
+        </div>
+        <section>
+
+          <img src="img/axilab-logo.png" width="200px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 3, Lecture 2 <br />
+          Ankita Raturi, ankita@purdue.edu<br /></p>
+        </section>
+ 
+
+        <section>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Django!</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h3>Create a Project</h3>
+          <pre><code>
+              django-admin startproject market    
+
+              cd market
+              ls -al
+              cat manage.py
+
+              python manage.py runserver
+          </code></pre>
+
+          <p>Navigate to http://127.0.0.1:8000/</p>
+        </section>
+
+        <section>
+          <h3>Create a skeleton app</h3>
+          <pre><code>
+               python manage.py startapp farmstand
+
+                  # G=color, a=show . files, l=in long from
+               ls -Gal 
+               cd farmstand
+
+                  # CTRL+R (search recent commands)
+                python manage.py runserver
+          </code></pre>
+          <p>Navigate to http://127.0.0.1:8000/farmstand/</p>
+          <p>pen folder in editor</p>
+        </section>
+
+        <section>
+          <h3>Structure of a Django Application</h3>
+          <img src="img/basic-django.png" width="60%" />
+        </section>
+
+        <section>
+          <h3>Register the appllication</h3>
+          <p>In market/settings.py, we add:</p>
+          <pre><code>
+            INSTALLED_APPS = [
+              'farmstand.apps.FarmstandConfig', 
+              # corresponds to /farmstand/apps.py
+              .
+              .
+              .
+            ]
+          </code></pre>
+
+          <p>Note: let's just keep the default database "db.sqlite3" for now. We'll think about this next time :)</p>
+        </section>
+
+        <section>
+          <h3>Two levels of URL Mapping</h3>
+
+          <p>Project level: <b>market/market/URLS.py</b></p>
+          <pre><code>
+            urlpatterns = [
+                path('farmstand/', include('farmstand.urls')),
+                path('admin/', admin.site.urls),
+            ]
+          </code></pre>
+
+          <p>App level. Create new file:<b>market/farmstand/URLS.py</b></p>
+          <pre><code>
+            from django.urls import path
+            from . import views
+
+            urlpatterns = [
+                path('', views.index, name='index'),
+            ]
+
+          </code></pre>
+        </section>
+
+        <section>
+          <h3>Create views.index</h3>
+          
+          <p><b>farmstand/views.py</b></p>
+          <pre><code>
+            from django.http import HttpResponse
+
+            def index(request):
+                return HttpResponse("Hello, world! You're at the index, or 'home' page.")
+          </code></pre>
+          <p>Navigate to http://127.0.0.1:8000/farmstand/</p>
+        </section>
+
+        <section>
+          <h3>Create a model</h3>
+
+          <ul>
+            <li>Models = classes = objects. </li>
+            <li>Fields = attributes = nouns. </li>
+            <li>Methods = verbs.</li>
+          </ul>
+
+
+          <p>References</p>
+          <ul class="text-small">
+            <li>Model basics: https://docs.djangoproject.com/en/3.2/topics/db/models/</li>
+            <li>Model field types: https://docs.djangoproject.com/en/3.2/ref/models/fields/</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Create a View</h3>
+          <ul>
+            <li>Method will pull data from model.</li>
+            <li>Method will render template.</li>
+            <li>URLs.py will route view method -> template.</li>
+          </ul>
+
+          <p>References</p>
+          <ul class="text-small">
+            <li>How to a write a veiw function: https://docs.djangoproject.com/en/3.2/topics/http/views/</li>
+            <li>View shortcuts: https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Create a Template</h3>
+          <ul>
+            <li>Template presents your data in HTML.</li>
+            <li>Works just like any other HTML page. Can attach CSS!</li>
+            <li>Template uses variables passed from the view function of the same name.</li>
+          </ul>
+
+          <p>References</p>
+          <ul class="text-small">
+            <li>Template: https://docs.djangoproject.com/en/3.2/topics/templates/</li>
+            <li>Some helpful structures.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class = "no-bullets text-small">
+            <li><b>Attribution Recommendation: <span class="red">Introduction to Agricultural Informatics Course", Ankita Raturi, Purdue University, 2021. Available at <a href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>. Licensed by <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">CC BY-NC-SA 4.0.</a></span></b></li>
+          <img src = "https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">This course is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. This is a human-readable summary of (and not a substitute for) the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">license</a>. Official translations of this license are available in other languages.</p>
+
+          <p class="text-small align-left">You are free to:</p>
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</li>
+            </ul>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: 'c/t',
+        autoAnimateDuration:0.5,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      });
+    </script>
+  </body>
+</html>

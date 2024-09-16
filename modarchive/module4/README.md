@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 # Module 4: Web Application
+=======
+# Module 3: Web Applications
+>>>>>>> main
 
 ## Lecture Slides / Notes
 
 Source code for the slides is in this folder. The slides are live here:
 
+<<<<<<< HEAD
  <!-- - Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/. This tutorial covers some of the things we will do in this lab, plus a few extra things.  -->
 
 - Lecture 4.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module4/Lecture4.1.html.
@@ -17,6 +22,13 @@ Source code for the slides is in this folder. The slides are live here:
 
 <!-- - watch this video to learn more about how a research farm in the UK, Rothamstead Research uses a range of tools, from github to FarmOS to manage their agricultural research proejcts and data: https://www.youtube.com/watch?v=pa32Ll3DPj8 -->
 
+=======
+- Lecture 3.1 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.1.html
+  -  Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/. This tutorial covers some of the things we will do in this lab, plus a few extra things.
+- Lecture 3.2 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.2.html
+- Lecture 3.3 [in-person]: http://www.aginformaticslab.org/ag-informatics-course/module3/Lecture3.3.html
+ 
+>>>>>>> main
 ## Labs
 
 Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders.
