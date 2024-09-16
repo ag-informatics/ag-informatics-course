@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from typing import List, Optional
-from datetime import date
+from datetime import date, timedelta
 
 
 # Create a base class for our models (tables)
@@ -18,7 +18,7 @@ class Crop(Base):
     note: Mapped[Optional[str]]  # A nullable column
 
     # Leave the line below commented until the instruction in Jupyter notebook asks you to uncomment it
-    plots: Mapped[List["Plot"]] = relationship(back_populates="crop")
+    # plots: Mapped[List["Plot"]] = relationship(back_populates="crop")
 
     def __repr__(
         self,
@@ -36,10 +36,13 @@ class Plot(Base):
     # complete the model
 
     # Leave the line below commented until the instruction in Jupyter notebook asks you to uncomment it
-    crop: Mapped["Crop"] = relationship(back_populates="plots")
+    # crop: Mapped["Crop"] = relationship(back_populates="plots")
 
     def __repr__(self):
         return f"{self.crop.crop_name}"  # complete the string representation
 
-    # def expected_harvest_date(self):
-    #     return self.planted_date + timedelta(days=self.crop.maturity_date)
+    def expected_harvest_date(self):
+        # Hint, you can use the timedelta function to add days to a date.
+        # For example, to add 5 days to a date you can do: date + timedelta(days=5)
+        excepted_date = # complete the code
+        return f"Plot {self.plot_id} - Expected to harvest {self.crop.crop_name} on: {excepted_date}"
