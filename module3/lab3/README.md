@@ -32,13 +32,7 @@ README.md       <-- optional
 
 ## Farm Management application
 
-We are going to create a basic version of farm management application by the end of this class. Each lab in module 3-6 will introduce you to new concepts that you will need to build the application. In this lab (module 3), we will start with the fundamental element: data model. However, farm is complicated and diverse. Thus, we will limit the complexity of the farm that we are going to build application for in this lab. The lab 3 farm is inspired by the classic farm simulation game ["Harvest Moon: Back to the nature"](https://en.wikipedia.org/wiki/Harvest_Moon:_Back_to_Nature) (Released in 1999)
-
-![Harvest Moon](https://upload.wikimedia.org/wikipedia/en/b/bf/Harvest_Moon_Back_to_Nature.jpg)
-
-<!-- Basic element -->
-
-In the game, you are given a farmland from your grandfather. The farm was not in a good condition. Your job is restore the farm operation. Since, you have to work on the entire farm alone, there will be too many things to remember. For example, which crops do you grow and how many of each? So, let's start with designing the crop tracking database. In the farm, you will divide the land into multiple plots. In each plot, we will record following information
+We are going to create a basic version of farm management application by the end of this class. Each lab in module 3-6 will introduce you to new concepts that you will need to build the application. In this lab (module 3), we will start with the fundamental element: data model. However, farm is complicated and diverse. Thus, we will limit the complexity of the farm that we are going to build application for in this lab. The lab 3 farm is basic farm with empty land. Since, you plan to grow variety of crops, there will be too many things to remember. For example, which crops do you grow and how many of each? So, let's start with designing the crop tracking database. In the farm, you will divide the land into multiple plots. In each plot, we will record following information
 
 - plot name
 - length
@@ -53,9 +47,9 @@ Each plot will have only 1 crop. But one crop can by planted in many plots. Ther
 - maturity date
 - note
 
-<!-- ERD -->
+Therefore, our data model will have two tables. The Entity Relationship Diagram is below. Now, it is time to create them.
 
-Therefore, our data model will have two tables. Now, it is time to create them.
+![alt text](img/crop_record_erd.png)
 
 1. We need to create a new database. Starting by activate sqlite engine (as installed in the [section above](#sqlite))
 2. Type `.open [path-to-lab3]/crop_record.db`. You can optionally add `path-to-lab3` (e.g. `.open D:/class/Tam-ASM532-Labs/lab3/crop_record.db`). Otherwise, you can just ignore path (just type `.open crop_record.db`). It will create a new database file in your terminal current location. (or open the database file, if you created earlier).
@@ -115,8 +109,6 @@ Hint: you can view data in the plots table by `select * from plots;`.
 ## Python and SQLite
 
 So far, the commands that you used to create tables and insert rows were in the language SQL. This is a powerful and useful language. You can use this language with other SQL databases (eg. PostgreSQL, MySQL, Oracle). But as you may notice, it is not the most user-friendly language to use. In this section, we will use Python to interact with the database. first, copy `Lab3-skeleton.ipynb` and `data_model.py` from class repo -> module3 -> lab3 into your submission folder. Then rename it to `Lab3-yourname.ipynb`. Next open the Jupiter notebook file (.ipynb) and activate the kernel that you used in the lab 2 (it should be ".venv"). From now, you will follow the instructions in the Jupiter notebook.
-
-<!-- Animal. Provide db file. Write data model with concept of inheritance with chicken, cows, sheep -->
 
 ## How to Submit your Lab
 
