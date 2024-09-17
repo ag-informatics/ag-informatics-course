@@ -1,14 +1,9 @@
-<<<<<<< HEAD:module3/README.md
 # Module 3: Data Model
-=======
-# Module 4: Data Management
->>>>>>> main:modarchive/module3/README.md
 
 ## Lecture Slides / Notes
 
 Source code for the slides is in this folder. The slides are live here:
 
-<<<<<<< HEAD:module3/README.md
 - Lecture 3.1 [in-person]: https://ag-informatics.github.io/ag-informatics-course/module3/Lecture3.1.html
 - Lecture 3.2 [in-person]: https://ag-informatics.github.io/ag-informatics-course/module3/Lecture3.2.html
 - Lecture 3.3 [in-person]: https://ag-informatics.github.io/ag-informatics-course/module3/Lecture3.3.html
@@ -16,19 +11,6 @@ Source code for the slides is in this folder. The slides are live here:
   - Sep 26 (lecture time): will be lab time instead
   - Sep 26 (lab time): FIELD TRIP TO Purdue student farm!
 
-=======
-- Lecture 4.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module4/Lecture4.1.html.
-  - Follow along with the CS50 video on SQL, Models, and Migrations: https://cs50.harvard.edu/web/2020/weeks/4/
-  - Note, the video comes with accompanying notes that you can refer to instead: https://cs50.harvard.edu/web/2020/notes/4/
-- Lecture 4.2 [in-person]: NOTE A QUICK SWITCH:
-  - Oct 5 (lecture time): will be lab time instead
-  - Oct 5 (lab time): FIELD TRIP TO ACRE!
-- Lecture 4.3 [no class]: Oct 10 is October Break.
-- Lecture 4.4 [in-person]: TBD
-
-<!-- - watch this video to learn more about how a research farm in the UK, Rothamstead Research uses a range of tools, from github to FarmOS to manage their agricultural research proejcts and data: https://www.youtube.com/watch?v=pa32Ll3DPj8 -->
- 
->>>>>>> main:modarchive/module3/README.md
 ## Labs
 
 Instructions for the Labs, including submission instructions, can be found inside the lab sub-folders.
