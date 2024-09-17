@@ -39,7 +39,7 @@ class Plot(Base):
     # crop: Mapped["Crop"] = relationship(back_populates="plots")
 
     def __repr__(self):
-        return f"{self.crop.crop_name}"  # complete the string representation
+        return # complete the string representation
 
     def expected_harvest_date(self):
         # Hint, you can use the timedelta function to add days to a date.
