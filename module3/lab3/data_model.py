@@ -39,10 +39,10 @@ class Plot(Base):
     # crop: Mapped["Crop"] = relationship(back_populates="plots")
 
     def __repr__(self):
-        return # complete the string representation
+        return  # complete the string representation
 
     def expected_harvest_date(self):
         # Hint, you can use the timedelta function to add days to a date.
         # For example, to add 5 days to a date you can do: date + timedelta(days=5)
-        excepted_date = # complete the code
+        excepted_date = 0  # complete the code (0 is just a placeholder, you will need to calculate the expected date)
         return f"Plot {self.plot_id} - Expected to harvest {self.crop.crop_name} on: {excepted_date}"
