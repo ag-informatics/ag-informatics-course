@@ -72,7 +72,7 @@ Now, if you type `.tables` you should see one table as a return value since we j
 
 ```
 insert into crops (crop_name, maturity_date)
-values (carrot, 70);
+values ('carrot', 70);
 ```
 
 The command above will insert a row to table `crops` with two column `crop_name` with value "carrot" and `maturity_date` with value 70. Note that, you don't need to add value to column `crop_id` as it is a primary key. So, this column is managed by the database engine. You don't need to specify value for `note` column as it is optional (it does not have `not null` constraint).
