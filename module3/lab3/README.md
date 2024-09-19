@@ -78,7 +78,7 @@ values ('carrot', 70);
 The command above will insert a row to table `crops` with two column `crop_name` with value "carrot" and `maturity_date` with value 70. Note that, you don't need to add value to column `crop_id` as it is a primary key. So, this column is managed by the database engine. You don't need to specify value for `note` column as it is optional (it does not have `not null` constraint).
 
 7. You can type `select * from crops;`. This time, you will see a row as return value.
-8. Your task is to insert at least 4 more rows into crops table. You can choose any crops you want. You don't need to worry about researching for accurate maturity date. Any reasonable numbers will be accepted. At least 2 rows must have values in `note` column. Record your insert commands in `insert_plots.txt`.
+8. Your task is to insert at least 4 more rows into crops table. You can choose any crops you want. You don't need to worry about researching for accurate maturity date. Any reasonable numbers will be accepted. At least 2 rows must have values in `note` column. Record your insert commands in `insert_crops.txt`.
 
 We created crop table. Next, we will create plot table. As mentioned earlier, we will link crop table and plot table together using foreign key. Foreign key is one of the key principle of any relational databases. It helps to links multiple tables together, reduces duplicates information, improves query efficiency etc. Please take a look in this [tutorial](https://learnsql.com/blog/why-use-foreign-key-in-sql/) for more explanation and example. You task is to create plot table. Here is the some help.
 
@@ -119,8 +119,8 @@ You will submit your entire lab3 folder that contains all the code. Your file st
 ```
 lab3/
     crop_record.db          <-- The database for crops and plots table
-    insert_plots.txt        <-- Commands that you used for inserting rows into crops table
-    insert_crops.txt        <-- Commands that you used for inserting rows into plots table
+    insert_crops.txt        <-- Commands that you used for inserting rows into crops table
+    insert_plots.txt        <-- Commands that you used for inserting rows into plots table
     Lab3-yourname.ipynb     <-- Copy lab3-skeleton and change the name
     data_model.py           <-- Your data model
 ```
