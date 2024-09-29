@@ -9,6 +9,8 @@ Watch following tutorials:
 - Introduction to Django: https://cs50.harvard.edu/web/2020/weeks/3/.
 - SQL, Models, and Migrations: https://cs50.harvard.edu/web/2020/weeks/4/
 
+Then visit the [django-example](../django-example/) folder (under module4 folder). You will find Django installation instructions and example projects. It is highly recommend to finish installation and follow the tutorials before start working on this lab.
+
 ### UML Modeling Tool
 
 We'll be making little class diagrams. you can try:
