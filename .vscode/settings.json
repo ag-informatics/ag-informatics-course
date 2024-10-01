@@ -1,18 +1,28 @@
 {
   "cSpell.words": [
+    "acrelog",
     "Ankita",
     "BRIGHTSPACE",
+    "dataframe",
     "distro",
+    "endfor",
+    "farmnotes",
     "farmstand",
     "flexbox",
     "ipynb",
+    "makemigrations",
     "Matplotlib",
     "Miniconda",
+    "myapp",
     "Numpy",
     "Raturi",
+    "runserver",
     "sqlalchemy",
+    "startapp",
     "sudokita",
+    "urlpatterns",
     "venv",
+    "webserver",
     "yfinance",
     "YOURNAME"
   ]

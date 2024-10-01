@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Farmnotes App</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'farmnotes/style.css' %}"
+    />
+  </head>
+
+  <body>
+    <div>
+      <h1>{{ field.field_name }}</h1>
+      <h2>Observations:</h2>
+      <ul>
+        {% for observation in field.observation_set.all %}
+        <li>
+          <a href="/farmnotes/{{ field.id }}/{{ observation.id }}/"
+            >{{ observation.observation_title }}</a
+          >
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
