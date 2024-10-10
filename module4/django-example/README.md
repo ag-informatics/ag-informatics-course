@@ -217,7 +217,13 @@ Now, let's make sure that we register our **'farmnotes'** app with the **'myapp'
 INSTALLED_APPS = [
     'farmnotes.apps.FarmnotesConfig',     ### ADD THIS LINE! Don't forget the comma :)
     'django.contrib.admin',
+    ...
+    ...
+    ...
+  ]
 ```
+
+There is a `INSTALLED_APPS` already. You DO NOT need to create. You only need to add one line into that list.
 
 Once you are done, save the file and open your terminal. Make sure you are inside your Django 'myapp' project folder. Run the following command:
 
@@ -591,7 +597,7 @@ def observation(request, field_id, observation_id):
     return render(request, 'farmnotes/observation.html',{'observation': observation})
 ```
 
-**'farmnotes/templates/farmnotes/notes.html'**.
+**'farmnotes/templates/farmnotes/observation.html'**.
 
 ```html
 <!DOCTYPE html>
