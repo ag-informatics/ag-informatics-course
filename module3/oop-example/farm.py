@@ -48,6 +48,7 @@ class Dodo(Animal):
 class Goat(Animal):
 	def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
 		super().__init__(name, birth_year, birth_month, birth_day, weight)
+
 		self.breed = breed
 		goat_secret_name = "secret goaty goat"
 		self.goat_secret_name = "secret goaty goat"
@@ -79,6 +80,7 @@ bessy.details()
 # MAKE EDITS?
 # import importlib
 # importlib.reload(animals)
+
 #tell them this is dangerous because of variable scopes
 
 

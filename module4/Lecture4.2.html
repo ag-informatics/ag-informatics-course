@@ -174,6 +174,50 @@
           </ul>
         </section>
 
+                <section>
+          <h3>Django + SQLite </h3>
+          <pre><code data-trim data-noescape><script type="text/template">
+            sqlite3 <database_name>
+
+            .tables
+
+            SELECT * FROM <table_name>;
+
+            SELECT * FROM <table_name> WHERE <condition>;
+            
+          </script></code></pre>
+        </section>
+
+        <section>
+          <h3>Django + JSON </h3>
+
+          <p>Create <a href="https://docs.djangoproject.com/en/3.2/howto/initial-data/">Django fixtures</a>, that is, an "annotated" JSON file:
+          <pre><code data-trim data-noescape><script type="text/template">
+          [
+            {
+              "model":"cropexplorer.crop",
+              "pk":"1",
+              "fields": {
+                "crop_name": "Millet, Japanese",
+                "crop_scientific_name": "Echinochloa esculenta",
+                "cover_crop_group": "Grass",
+                "family_common_name": "Grass family",
+                "family_scientific_name": "Poaceae",
+                "zone_inclusion": "Zone 6,Zone 5,Zone 4",
+                "crop_description": "Summer annual grass. Can grow in flooded soils and standing water. Adapted to soil with pH as low as 4.5. Prone to premature flowering if seeded late summer. Very responsive to nitrogen. Good smother crop at high seeding rate but may become weed if allowed to go to seed. Mix with cowpeas, soybeans to create a diverse summer mixture. Shorter, finer-stemmed, lower-biomass option compared to sorghum-sudangrass or pearl millet. Does not mow-kill as well and may mature faster\\/reseed more easily than foxtail millet. ",
+                "heat_tolerance": 5,
+                "shade_tolerance": 1
+              }
+            }
+          ]
+          </script></code></pre></p>
+
+          <p>Bulk Load the data!
+          <pre><code data-trim data-noescape><script type="text/template">
+            manage.py loaddata <fixture_file_name>
+          </script></code></pre></p>
+        </section>
+
         <section>
           <h3>Questions?</h3>
         </section>
