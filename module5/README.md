@@ -5,9 +5,9 @@
 Source code for the slides is in this folder. The slides are live here:
 
 - Lecture 5.1 [in-person]: [www.aginformaticslab.org/ag-informatics-course/module5/](https://ag-informatics.github.io/ag-informatics-course/module4/Lecture5.1.html)
-- Lecture 5.2 [in-person]: Prototyping activity, prep for Project Part II
+- Lecture 5.2 [in-person]: Prototyping activity, Parts 1 & 2 of Lab
 - Lecture 5.3 [in-person]: [www.aginformaticslab.org/ag-informatics-course/module5/](https://ag-informatics.github.io/ag-informatics-course/module4/Lecture5.2.html)
-- Lecture 5.4 [in-person]: Bootstrap demo
+- Lecture 5.4 [in-person]: Miro/Figma demo, Bootstrap demo
 
 ## Project
 
