@@ -127,7 +127,7 @@ Start the server and visit http://127.0.0.1:8000/acrelog to confirm that you hav
 
 First, implement your models in the **'models.py'**. Create a couple of test data entries through either the Django API or the admin dashboard as we previously did in class.
 
-> IMAGE UPLOAD: Take a screenshot of your admin dashboard showing that you have successfully created a few data entries in your application. Upload with the filename **'test-data'** inside your **'lab4/images'** folder.
+> IMAGE UPLOAD: Take a screenshot of your admin dashboard showing that you have successfully created a few data entries in your application. Upload with the filename **'sample-data.png'** inside your **'lab4/images'** folder.
 
 Next, you will need to bulk import some of the data into your application.
 
