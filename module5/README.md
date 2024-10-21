@@ -4,9 +4,9 @@
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 5.1 [in-person]: Content preview from HCAI course (what is design, design process) + [https://ag-informatics.github.io/ag-informatics-course/module5/Lecture5.1.html](https://ag-informatics.github.io/ag-informatics-course/module5/Lecture5.1.html)
+- Lecture 5.1 [in-person]: Content preview from HCAI course (what is design, design process) + [https://ag-informatics.github.io/ag-informatics-course/module5/lecture5.1.html](https://ag-informatics.github.io/ag-informatics-course/module5/lecture5.1.html)
 - Lecture 5.2 [in-person]: Prototyping activity, Parts 1 & 2 of Lab
-- Lecture 5.3 [in-person]: Continue w/ design process in action: [https://ag-informatics.github.io/ag-informatics-course/module5/Lecture5.2.html](https://ag-informatics.github.io/ag-informatics-course/module5/Lecture5.2.html)
+- Lecture 5.3 [in-person]: Continue w/ design process in action: [https://ag-informatics.github.io/ag-informatics-course/module5/lecture5.2.html](https://ag-informatics.github.io/ag-informatics-course/module5/lecture5.2.html)
 - Lecture 5.4 [in-person]: Miro/Figma demo, Bootstrap demo
 
 ## Project
