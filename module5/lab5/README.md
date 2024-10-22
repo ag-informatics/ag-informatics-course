@@ -48,24 +48,14 @@ You will create prototype of a new feature you'd like to test out for the ACRE F
 
 3. You will submit 3 of your Crazy8 Sketches that represent your favourite versions. Take a photo of your sketches, title them "solution-lofi-sketch1" and so on. Place it in your "prototypes" folder and make sure you desrcibe your sketches in your README.MD file under a heading "Brainstorming" (i.e. what do they show?).
 
-## Part 2: Paper Prototyping - Will start this as an class activity
-You will create a paper prototype of a new feature you'd like to test out for the ACRE Farm Management App you built in Module 4. You will need to "run" your prototype with 1-2 other people and have them provide feedback - i.e. some "lite" user testing on your prototype. As you are watching people "use" your prototype, make notes so that you can answer a questions listed below in your README.MD file.
-
-> In your README.MD file, create a heading called "Paper Prototype User Feedback", and describe, in brief:
-> - Where did users get stuck?
-> - Where did users seem to gain the most value (joy, usefulness, or something else)?
-> - What are three things you would improve on your app?
-
-Save your an image "solution-midfi-prototype". Place it in your "prototypes" folder and make sure you desrcibe your sketches in your README.MD file under a heading "Paper Prototyping" (i.e. what do they show?)
-
-## Part 3: Digital Prototyping
-Revise your prototype based on the feedback you receive. Once you've reeived feedback on your paper prototype, you will create a mockup of your the new feature you are designing. 
+## Part 2: Digital Prototyping
+Next you will create a mockup of your the new feature you are designing. 
 
 Using [MIRO](https://miro.com/app/) as shown in class, create a mockup of the feature that demonstrates how you would layout your ideal farm product availability. These should be based on your brainstorm sketches from the prev section.
 
 Save your solution as an image titled "solution-hifi-prototype". Place it in your "prototypes" folder and make sure you desrcibe your sketches in your README.MD file under a heading "Brainstorming" (i.e. what do they show?)
 
-## Part 4: Boostrapify your Django app
+## Part 3: Boostrapify your Django app
 As shown in class, link the boostrap framework to your Django app, using the BootstrapCDN. [Instructions here](https://getbootstrap.com/docs/5.3/getting-started/introduction/).
 
 In the previous module, you had implemented the ACRE Farm Management app. Now, upgrade each of your views as follows.
