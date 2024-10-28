@@ -7,11 +7,11 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>ASM 591 Intro to Ag Informatics</title>
+    <title>ASM 532 Intro to Ag Informatics</title>
 
-    <link rel="stylesheet" href="revealjs/dist/reset.css" />
-    <link rel="stylesheet" href="revealjs/dist/reveal.css" />
-    <link rel="stylesheet" href="revealjs/dist/theme/white.css" />
+    <link rel="stylesheet" href="../revealjs/dist/reset.css" />
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css" />
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css" />
 
     <!-- Font awesome is required for the chalkboard plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -33,20 +33,19 @@
     />
 
     <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="revealjs/plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" />
     <!-- Ankita's theme overrides-->
-    <link rel="stylesheet" href="asm591-styles.css" />
+    <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <div class="footer">tbureete@purdue.edu</div>
         <section>
-          <img src="img/axilab-logo.png" width="200px" />
+          <img src="img/axilab-logo.png" width="400px" />
           <h3>Introduction to Ag Informatics</h3>
           Module 6, Lecture 1 <br />
           Tam Bureetes, tbureete@purdue.edu<br />
-          <span>Fall 2023</span>
         </section>
 
         <section>
@@ -63,7 +62,7 @@
           </ul>
         </section>
 
-        <section>
+        <!-- <section>
           <aside class="notes">
             Hand-on lecture. Code together. Need install new packages. First,
             activate conda environment. Then install packages.
@@ -74,7 +73,7 @@ conda install pyarrow
 conda install -c conda-forge geopandas
         </code></pre>
           <p>You can find commands in module 6 -> lab 6</p>
-        </section>
+        </section> -->
 
         <section>
           <h3>Spatial Data & Geographic Information System</h3>
@@ -82,7 +81,12 @@ conda install -c conda-forge geopandas
             <div class="col" style="flex: 1">
               Tools
               <ul>
-                <li>ArcGIS, QGIS, Google Earth</li>
+                <li>
+                  Software Suite<br />
+                  e.g. <a href="https://earth.google.com/web">Google Earth</a>,
+                  <a href="https://www.arcgis.com/">ArcGIS</a>,
+                  <a href="https://www.qgis.org/">QGIS</a>
+                </li>
                 <li>Google Map, MapBox</li>
                 <li>Python</li>
               </ul>
@@ -509,15 +513,15 @@ polygon.contains(line_b)</code></pre>
       </div>
     </div>
 
-    <script src="revealjs/dist/reveal.js"></script>
-    <script src="revealjs/plugin/notes/notes.js"></script>
-    <script src="revealjs/plugin/markdown/markdown.js"></script>
-    <script src="revealjs/plugin/highlight/highlight.js"></script>
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
 
     <script>
       // More info about initialization & config:
-      // - https://revealjs.com/initialization/
-      // - https://revealjs.com/config/
+      // - https://../revealjs.com/initialization/
+      // - https://../revealjs.com/config/
       Reveal.initialize({
         hash: true,
         slideNumber: "c/t",
@@ -538,7 +542,7 @@ polygon.contains(line_b)</code></pre>
           ],
         },
 
-        // Learn about plugins: https://revealjs.com/plugins/
+        // Learn about plugins: https://../revealjs.com/plugins/
         plugins: [
           RevealMarkdown,
           RevealHighlight,
