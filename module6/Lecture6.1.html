@@ -36,7 +36,19 @@
     <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" />
     <!-- Ankita's theme overrides-->
     <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
   </head>
+
   <body>
     <div class="reveal">
       <div class="slides">
@@ -63,14 +75,183 @@
         </section>
 
         <section>
-          <h3>Why Spatial Data?</h3>
+          <h3>Recap</h3>
+          <table style="font-size: xx-large">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Operation</th>
+                <th>Operator</th>
+                <th>Power Unit</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2024-04-24</td>
+                <td>Spread/Spray</td>
+                <td>Evan</td>
+                <td>Hagie STS12</td>
+                <td>200</td>
+              </tr>
+              <tr>
+                <td>2024-04-27</td>
+                <td>Spread/Spray</td>
+                <td>Bryan</td>
+                <td>Hagie STS12</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>2024-04-27</td>
+                <td>Spread/Spray</td>
+                <td>Bryan</td>
+                <td>Hagie STS12</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Field 200</h3>
           <div class="container" style="display: flex">
-            <div class="col" style="flex: 1">What</div>
-            <div class="col" style="flex: 1">When</div>
-            <div class="col" style="flex: 1">Who</div>
-            <div class="col" style="flex: 1">How</div>
-            <div class="col" style="flex: 1"><bold>Where</bold></div>
+            <div class="col" style="flex: 1; align-self: center">
+              <div>
+                <p>Lat = 40.47693586173173</p>
+                <p>Lon = -87.01022508566594</p>
+              </div>
+              <div class="fragment fade-up" data-fragment-index="2">
+                <p>
+                  <a href="https://alerts.weather.gov/?reset=true"
+                    >Weather Alert</a
+                  >
+                </p>
+                <p>
+                  <a
+                    href="https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx"
+                    >Soil Map</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div
+              class="col fragment fade-right"
+              style="flex: 1"
+              data-fragment-index="1"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d12139.632405677008!2d-87.02216850870914!3d40.47729804695199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDI4JzM3LjAiTiA4N8KwMDAnMzYuOCJX!5e0!3m2!1sen!2sus!4v1730311320410!5m2!1sen!2sus"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
+        </section>
+
+        <section>
+          <div id="map" style="height: 480px"></div>
+          <script>
+            var map = L.map("map");
+            L.tileLayer(
+              "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}",
+              {
+                maxZoom: 16,
+                attribution:
+                  'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>',
+              }
+            ).addTo(map);
+            var polygon = L.polygon([
+              [40.479073594994766, -87.01519731610385],
+              [40.47906535250878, -87.01344453085406],
+              [40.47902749232352, -87.01040074213331],
+              [40.48262821094381, -87.01045283764194],
+              [40.48266572762508, -87.0067805324312],
+              [40.4826623434674, -87.00612763809484],
+              [40.482654682828965, -87.00570075195671],
+              [40.48206322606684, -87.00569177516063],
+              [40.48099536795946, -87.00568914225815],
+              [40.47980802402337, -87.00566346824145],
+              [40.47923574377181, -87.00565833311543],
+              [40.478899218518364, -87.00564676543743],
+              [40.478459407089204, -87.0056382995292],
+              [40.478077097481304, -87.00563874025187],
+              [40.47764270410897, -87.00563778983567],
+              [40.47713627353933, -87.00562531319513],
+              [40.47686034469901, -87.00562418016884],
+              [40.47584702570178, -87.00561075005693],
+              [40.47559478597536, -87.00573714377292],
+              [40.475494935200295, -87.00589209364982],
+              [40.475437932091104, -87.00632314259552],
+              [40.47543551331324, -87.00635187758829],
+              [40.4753708968014, -87.00633439281837],
+              [40.475081989732416, -87.00631397190264],
+              [40.47462973363539, -87.00628096812872],
+              [40.474264036358754, -87.0062670202922],
+              [40.47388371261245, -87.00625468552734],
+              [40.473488759200244, -87.0062391752516],
+              [40.473092597447085, -87.00623962833089],
+              [40.473013377867005, -87.00625887306228],
+              [40.47292198783933, -87.00630686281804],
+              [40.472887921822085, -87.00640426839631],
+              [40.47289045844318, -87.00655270974794],
+              [40.472885777326326, -87.0068464112031],
+              [40.47290313448892, -87.0072885319828],
+              [40.472910662013064, -87.00761414322716],
+              [40.472921903767286, -87.00802913621551],
+              [40.47292819678373, -87.00833399872447],
+              [40.47293576053252, -87.00872026484733],
+              [40.47295902574293, -87.00888304908176],
+              [40.47297743539944, -87.00907776231494],
+              [40.47298000950468, -87.00929005099769],
+              [40.47297766352093, -87.00943370948426],
+              [40.47297901597783, -87.00964280716342],
+              [40.47298274505159, -87.00975613164657],
+              [40.47297672538236, -87.00987425529686],
+              [40.472984125285315, -87.01000992227202],
+              [40.47299761881544, -87.01014398648387],
+              [40.473018278584014, -87.01028498357525],
+              [40.47299722978466, -87.01028477080422],
+              [40.47285333502087, -87.01032261774634],
+              [40.471320590039824, -87.01030543269366],
+              [40.47107594028902, -87.01032454272449],
+              [40.47088341267795, -87.01029126603079],
+              [40.47087316080719, -87.01042436142347],
+              [40.470887071290136, -87.01062961201401],
+              [40.47089920071644, -87.01074238226914],
+              [40.470861295359505, -87.01073114475759],
+              [40.47080076115737, -87.01034774716682],
+              [40.47079384064229, -87.0103003857321],
+              [40.47062503103279, -87.0103163582111],
+              [40.47051824104978, -87.0103390304136],
+              [40.47052517578231, -87.0104089481854],
+              [40.47052522272038, -87.01048338472347],
+              [40.470644443759866, -87.01105393741629],
+              [40.47086561617925, -87.01213867544162],
+              [40.47100208308976, -87.01275432928172],
+              [40.47119038290571, -87.01362933461839],
+              [40.47123702751818, -87.01385034283824],
+              [40.471330327599176, -87.01431266131523],
+              [40.471408045658926, -87.01464642294367],
+              [40.471449512362284, -87.0148539037291],
+              [40.471477116149124, -87.01492380195769],
+              [40.471501254586414, -87.01495986845298],
+              [40.47157708847492, -87.0150229508432],
+              [40.471711471069064, -87.01504988299891],
+              [40.4737045965896, -87.0150839562031],
+              [40.47552201935048, -87.01513174408655],
+              [40.47677956790663, -87.01515754197543],
+              [40.47865727565386, -87.01519399333532],
+              [40.479073594994766, -87.01519731610385],
+            ])
+              .bindPopup("field 200")
+              .addTo(map);
+            map.fitBounds(polygon.getBounds());
+            map.setZoom(14);
+          </script>
         </section>
 
         <section>
@@ -89,7 +270,30 @@
                   <a href="https://www.google.com/maps">Google Map</a>,
                   <a href="https://www.mapbox.com/">MapBox</a>
                 </li>
-                <li>Software Library <br /></li>
+                <li>
+                  Software Library <br />
+                  <ul>
+                    <li>
+                      Python:
+                      <a
+                        href="https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/a-quick-tour-of-arcpy.htm"
+                        >ArcPy</a
+                      >,
+                      <a href="https://shapely.readthedocs.io/en/stable/"
+                        >Shapely</a
+                      >
+                      <a href="https://geopandas.org/en/stable/">GeoPandas</a>
+                    </li>
+                    <li>
+                      JavaScript: <a href="https://leafletjs.com/">LeafLet</a>
+                    </li>
+                    <li>PHP: <a href="https://geophp.net/">GeoPHP</a></li>
+                    <li>
+                      <a href="https://www.nickeubank.com/gis-in-r/">R</a>
+                    </li>
+                    <li>Rust: <a href="https://georust.org/">GeoRust</a></li>
+                  </ul>
+                </li>
               </ul>
             </div>
             <div class="col" style="flex: 1">
@@ -99,49 +303,76 @@
         </section>
 
         <section data-auto-animate>
-          <h3>Geometry fundamental element</h3>
+          <h3>Geometry fundamental elements</h3>
         </section>
 
         <section data-auto-animate>
-          <h3>Geometry fundamental element</h3>
+          <h3>Geometry fundamental elements</h3>
           <h3>Point</h3>
-          <svg width="600" height="200">
-            <circle
-              cx="300"
-              cy="100"
-              r="10"
-              stroke="green"
-              stroke-width="4"
-              fill="yellow"
-            />
-          </svg>
+          <div style="display: flex">
+            <div class="col" style="flex: 1" data-id="polygon">
+              <svg width="600" height="200">
+                <circle
+                  cx="300"
+                  cy="100"
+                  r="10"
+                  stroke="green"
+                  stroke-width="4"
+                  fill="yellow"
+                />
+              </svg>
+            </div>
+            <div class="col" style="flex: 1">
+              <h6>Properties</h6>
+              <p>Coordinates</p>
+            </div>
+          </div>
         </section>
 
         <section data-auto-animate>
-          <h3>Geometry fundamental element</h3>
+          <h3>Geometry fundamental elements</h3>
           <h3>Line</h3>
-          <svg width="600" height="200">
-            <rect
-              x="15"
-              y="100"
-              rx="10"
-              ry="10"
-              width="570"
-              height="10"
-              style="fill: yellow; stroke: green; stroke-width: 4"
-            />
-          </svg>
+          <div style="display: flex">
+            <div class="col" style="flex: 1">
+              <svg width="600" height="200">
+                <rect
+                  x="15"
+                  y="100"
+                  rx="10"
+                  ry="10"
+                  width="570"
+                  height="10"
+                  style="fill: yellow; stroke: green; stroke-width: 4"
+                />
+              </svg>
+            </div>
+            <div class="col" style="flex: 1">
+              <h6>Properties</h6>
+              <p>Coordinates</p>
+              <p>Length</p>
+            </div>
+          </div>
         </section>
 
         <section data-auto-animate>
-          <h3>Geometry fundamental element</h3>
+          <h3>Geometry fundamental elements</h3>
           <h3>Polygon</h3>
-          <svg width="300" height="200">
-            <polygon
-              points="200,10 280,198 100,100 10,150 10,120"
-              style="fill: yellow; stroke: green; stroke-width: 4"
-            />
-          </svg>
+          <div style="display: flex">
+            <div class="col" style="flex: 1">
+              <svg width="300" height="200">
+                <polygon
+                  points="200,10 280,198 100,100 10,150 10,120"
+                  style="fill: yellow; stroke: green; stroke-width: 4"
+                />
+              </svg>
+            </div>
+            <div class="col" style="flex: 1">
+              <h6>Properties</h6>
+              <p>Coordinates</p>
+              <p>Length</p>
+              <p>Area</p>
+            </div>
+          </div>
         </section>
 
         <section><h3>Geometry in action</h3></section>
@@ -193,7 +424,7 @@
             Manipulation and analysis of geometric objects in the Cartesian
             plane
           </p>
-          <a href="https://shapely.readthedocs.io/en/stable/index.ht"
+          <a href="https://shapely.readthedocs.io/en/stable/index.html"
             ><span class="text-small">docs</span></a
           >
         </section>
