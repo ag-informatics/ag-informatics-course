@@ -444,29 +444,14 @@
         </section>
 
         <section>
-          <aside class="notes">
-            Switch to terminal and create demo objects
-          </aside>
-          <pre><code data-line-numbers="1|2|3-4|5-6">import shapely.geometry as geo
-point = geo.Point(0, 0)
-line = geo.LineString([[0, 0], [1, 0]])
-line.length
-polygon = geo.Polygon(((0, 0), (0, 1), (1, 1), (1, 0)))
-polygon.area
-          </code></pre>
-        </section>
-
-        <section>
-          <aside class="notes">Keep using terminal</aside>
-          <pre><code data-line-numbers="1-3|4-7|8-9">point_a = geo.Point(0, 0)
-point_b = geo.Point(10, 5)
-point_a.distance(point_b)
-line_a = geo.LineString([[0, 0], [10, 0]])
-line_b = geo.LineString([[5, -5], [5, 5]])
-line_a.intersects(line_b)
-line_a.intersection(line_b)
-polygon.contains(point_a)
-polygon.contains(line_b)</code></pre>
+          <h3>Live Demo</h3>
+          <p>
+            Check out this
+            <a
+              href="https://github.com/ag-informatics/ag-informatics-course/blob/main/module6/live-demo.ipynb"
+              >Jupiter Notebook</a
+            >
+          </p>
         </section>
 
         <section>
