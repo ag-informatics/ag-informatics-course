@@ -777,29 +777,8 @@
         slideNumber: "c/t",
         autoAnimateDuration: 0.5,
 
-        customcontrols: {
-          controls: [
-            {
-              icon: '<i class="fa fa-pen-square"></i>',
-              title: "Toggle chalkboard (B)",
-              action: "RevealChalkboard.toggleChalkboard();",
-            },
-            {
-              icon: '<i class="fa fa-pen"></i>',
-              title: "Toggle notes canvas (C)",
-              action: "RevealChalkboard.toggleNotesCanvas();",
-            },
-          ],
-        },
-
         // Learn about plugins: https://../revealjs.com/plugins/
-        plugins: [
-          RevealMarkdown,
-          RevealHighlight,
-          RevealNotes,
-          RevealChalkboard,
-          RevealCustomControls,
-        ],
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       });
     </script>
   </body>

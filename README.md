@@ -92,7 +92,7 @@ This course is divided into seven 2 week modules. Each module consists of 4 lect
 | [3 - Data Modeling](https://github.com/ag-informatics/ag-informatics-course/tree/main/module3)    | Week 5 & 6   | Quiz 3, Submit Lab 2, Submit Project Part 1   |
 | [4 - Web Application](https://github.com/ag-informatics/ag-informatics-course/tree/main/module4)  | Week 7 & 8   | Quiz 4, Submit Lab 3                          |
 | [5 - User Interfaces](https://github.com/ag-informatics/ag-informatics-course/tree/main/module5)  | Week 9 & 10  | Quiz 5, Submit Lab 4, Submit Project Part 2   |
-| [6 - Geospatial Data]                                                                             | Week 11 & 12 | Quiz 6, Submit Lab 5                          |
+| [6 - Geospatial Data](https://github.com/ag-informatics/ag-informatics-course/tree/main/module6)  | Week 11 & 12 | Quiz 6, Submit Lab 5                          |
 | [7 - Future of Ag Tech]                                                                           | Week 13 & 14 | Quiz 7, Submit Lab 6                          |
 | [8 - Wrap Up]()                                                                                   | Week 15 & 16 | Submit Lab 7, Present + Submit Project Part 3 |
 
