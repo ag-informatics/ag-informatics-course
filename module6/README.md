@@ -1,18 +1,14 @@
-# Module 5: User Interfaces
+# Module 6: Geometric Processing
 
 ## Lecture Slides / Notes
 
 Source code for the slides is in this folder. The slides are live here:
 
-- Lecture 5.1 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.1.html
-- Lecture 5.2 [in-person]: www.aginformaticslab.org/ag-informatics-course/module5/lecture5.2.html
-- Lecture 5.3 [in-person]: Guest Lecturer: Dr. Wesley Moss on Engineering Design, Pt I
-- Lecture 5.4 [in-person]: Guest Lecturer: Dr. Wesley Moss, Pt II
-
-## Project
-
-Project Part 2, Proposed Approach out now! Here is the [project information](../project/Project-part2.pdf).
-
+- Lecture 6.1: https://tame0001.github.io/presentations/asm591-lecture6.1.html
+- Lecture 6.2: https://tame0001.github.io/presentations/asm591-lecture6.2.html
+- Lecture 6.3 & 6.4 will be a combination of:
+    - Finishing up data management: http://www.aginformaticslab.org/ag-informatics-course/module4/Lecture4.1.html#/14
+    - Bringing the architecture lecture forward: www.aginformaticslab.org/ag-informatics-course/module7/lecture7.3.html
 
 ## Labs
 
@@ -24,6 +20,7 @@ Academic Integrity Reminder: Make sure your lab Github repositories are "private
 ## Quiz
 
 The quiz for this module is available via Brightspace. 
+
 
 ## License
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
@@ -37,7 +34,4 @@ The quiz for this module is available via Brightspace.
 [cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
 [cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
-  "Introduction to Agricultural Informatics Course" by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-
-
+  "Introduction to Agricultural Informatics Course" by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) with edits by [Joseph Dvorak, University of Kentucky](https://www.engr.uky.edu/directory/dvorak-joseph) is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-nc-sa/4.0/)

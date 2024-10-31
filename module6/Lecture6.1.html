@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>ASM 532 Intro to Ag Informatics</title>
+
+    <link rel="stylesheet" href="../revealjs/dist/reset.css" />
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css" />
+    <link rel="stylesheet" href="../revealjs/dist/theme/white.css" />
+
+    <!-- Font awesome is required for the chalkboard plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/plugin.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/customcontrols/style.css"
+    />
+    <!-- Chalkboard plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/plugin.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js-plugins@latest/chalkboard/style.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" />
+    <!-- Ankita's theme overrides-->
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <div class="footer">tbureete@purdue.edu</div>
+        <section>
+          <img src="img/axilab-logo.png" width="400px" />
+          <h3>Introduction to Ag Informatics</h3>
+          Module 6, Lecture 1 <br />
+          Tam Bureetes, tbureete@purdue.edu<br />
+        </section>
+
+        <section>
+          <aside class="notes">
+            How to deal with spatial data in Python. Next lecture, how to use
+            this data in Django.
+          </aside>
+          <h3>Outline for Today</h3>
+          <ul>
+            <li>Spatial data</li>
+            <li>Introduction to geometry in Python</li>
+            <li>From geometry to spatial data</li>
+            <li style="color: gray">Putting spatial data to map in Django</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Recap</h3>
+          <table style="font-size: xx-large">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Operation</th>
+                <th>Operator</th>
+                <th>Power Unit</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2024-04-24</td>
+                <td>Spread/Spray</td>
+                <td>Evan</td>
+                <td>Hagie STS12</td>
+                <td>200</td>
+              </tr>
+              <tr>
+                <td>2024-04-27</td>
+                <td>Spread/Spray</td>
+                <td>Bryan</td>
+                <td>Hagie STS12</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>2024-04-27</td>
+                <td>Spread/Spray</td>
+                <td>Bryan</td>
+                <td>Hagie STS12</td>
+                <td>5</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3>Field 200</h3>
+          <div class="container" style="display: flex">
+            <div class="col" style="flex: 1; align-self: center">
+              <div>
+                <p>Lat = 40.47693586173173</p>
+                <p>Lon = -87.01022508566594</p>
+              </div>
+              <div class="fragment fade-up" data-fragment-index="2">
+                <p>
+                  <a href="https://alerts.weather.gov/?reset=true"
+                    >Weather Alert</a
+                  >
+                </p>
+                <p>
+                  <a
+                    href="https://websoilsurvey.sc.egov.usda.gov/App/WebSoilSurvey.aspx"
+                    >Soil Map</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div
+              class="col fragment fade-right"
+              style="flex: 1"
+              data-fragment-index="1"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d12139.632405677008!2d-87.02216850870914!3d40.47729804695199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDI4JzM3LjAiTiA4N8KwMDAnMzYuOCJX!5e0!3m2!1sen!2sus!4v1730311320410!5m2!1sen!2sus"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div id="map" style="height: 480px"></div>
+          <script>
+            var map = L.map("map");
+            L.tileLayer(
+              "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}",
+              {
+                maxZoom: 16,
+                attribution:
+                  'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>',
+              }
+            ).addTo(map);
+            var polygon = L.polygon([
+              [40.479073594994766, -87.01519731610385],
+              [40.47906535250878, -87.01344453085406],
+              [40.47902749232352, -87.01040074213331],
+              [40.48262821094381, -87.01045283764194],
+              [40.48266572762508, -87.0067805324312],
+              [40.4826623434674, -87.00612763809484],
+              [40.482654682828965, -87.00570075195671],
+              [40.48206322606684, -87.00569177516063],
+              [40.48099536795946, -87.00568914225815],
+              [40.47980802402337, -87.00566346824145],
+              [40.47923574377181, -87.00565833311543],
+              [40.478899218518364, -87.00564676543743],
+              [40.478459407089204, -87.0056382995292],
+              [40.478077097481304, -87.00563874025187],
+              [40.47764270410897, -87.00563778983567],
+              [40.47713627353933, -87.00562531319513],
+              [40.47686034469901, -87.00562418016884],
+              [40.47584702570178, -87.00561075005693],
+              [40.47559478597536, -87.00573714377292],
+              [40.475494935200295, -87.00589209364982],
+              [40.475437932091104, -87.00632314259552],
+              [40.47543551331324, -87.00635187758829],
+              [40.4753708968014, -87.00633439281837],
+              [40.475081989732416, -87.00631397190264],
+              [40.47462973363539, -87.00628096812872],
+              [40.474264036358754, -87.0062670202922],
+              [40.47388371261245, -87.00625468552734],
+              [40.473488759200244, -87.0062391752516],
+              [40.473092597447085, -87.00623962833089],
+              [40.473013377867005, -87.00625887306228],
+              [40.47292198783933, -87.00630686281804],
+              [40.472887921822085, -87.00640426839631],
+              [40.47289045844318, -87.00655270974794],
+              [40.472885777326326, -87.0068464112031],
+              [40.47290313448892, -87.0072885319828],
+              [40.472910662013064, -87.00761414322716],
+              [40.472921903767286, -87.00802913621551],
+              [40.47292819678373, -87.00833399872447],
+              [40.47293576053252, -87.00872026484733],
+              [40.47295902574293, -87.00888304908176],
+              [40.47297743539944, -87.00907776231494],
+              [40.47298000950468, -87.00929005099769],
+              [40.47297766352093, -87.00943370948426],
+              [40.47297901597783, -87.00964280716342],
+              [40.47298274505159, -87.00975613164657],
+              [40.47297672538236, -87.00987425529686],
+              [40.472984125285315, -87.01000992227202],
+              [40.47299761881544, -87.01014398648387],
+              [40.473018278584014, -87.01028498357525],
+              [40.47299722978466, -87.01028477080422],
+              [40.47285333502087, -87.01032261774634],
+              [40.471320590039824, -87.01030543269366],
+              [40.47107594028902, -87.01032454272449],
+              [40.47088341267795, -87.01029126603079],
+              [40.47087316080719, -87.01042436142347],
+              [40.470887071290136, -87.01062961201401],
+              [40.47089920071644, -87.01074238226914],
+              [40.470861295359505, -87.01073114475759],
+              [40.47080076115737, -87.01034774716682],
+              [40.47079384064229, -87.0103003857321],
+              [40.47062503103279, -87.0103163582111],
+              [40.47051824104978, -87.0103390304136],
+              [40.47052517578231, -87.0104089481854],
+              [40.47052522272038, -87.01048338472347],
+              [40.470644443759866, -87.01105393741629],
+              [40.47086561617925, -87.01213867544162],
+              [40.47100208308976, -87.01275432928172],
+              [40.47119038290571, -87.01362933461839],
+              [40.47123702751818, -87.01385034283824],
+              [40.471330327599176, -87.01431266131523],
+              [40.471408045658926, -87.01464642294367],
+              [40.471449512362284, -87.0148539037291],
+              [40.471477116149124, -87.01492380195769],
+              [40.471501254586414, -87.01495986845298],
+              [40.47157708847492, -87.0150229508432],
+              [40.471711471069064, -87.01504988299891],
+              [40.4737045965896, -87.0150839562031],
+              [40.47552201935048, -87.01513174408655],
+              [40.47677956790663, -87.01515754197543],
+              [40.47865727565386, -87.01519399333532],
+              [40.479073594994766, -87.01519731610385],
+            ])
+              .bindPopup("field 200")
+              .addTo(map);
+            map.fitBounds(polygon.getBounds());
+            map.setZoom(14);
+          </script>
+        </section>
+
+        <section>
+          <h3>Tools</h3>
+          <div class="container" style="display: flex">
+            <div class="col" style="flex: 1">
+              <ul>
+                <li>
+                  Software Suite<br />
+                  e.g. <a href="https://earth.google.com/web">Google Earth</a>,
+                  <a href="https://www.arcgis.com/">ArcGIS</a>,
+                  <a href="https://www.qgis.org/">QGIS</a>
+                </li>
+                <li>
+                  Software as a Service <br />
+                  <a href="https://www.google.com/maps">Google Map</a>,
+                  <a href="https://www.mapbox.com/">MapBox</a>
+                </li>
+                <li>
+                  Software Library <br />
+                  <ul>
+                    <li>
+                      Python:
+                      <a
+                        href="https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/a-quick-tour-of-arcpy.htm"
+                        >ArcPy</a
+                      >,
+                      <a href="https://shapely.readthedocs.io/en/stable/"
+                        >Shapely</a
+                      >
+                      <a href="https://geopandas.org/en/stable/">GeoPandas</a>
+                    </li>
+                    <li>
+                      JavaScript: <a href="https://leafletjs.com/">LeafLet</a>
+                    </li>
+                    <li>PHP: <a href="https://geophp.net/">GeoPHP</a></li>
+                    <li>
+                      <a href="https://www.nickeubank.com/gis-in-r/">R</a>
+                    </li>
+                    <li>Rust: <a href="https://georust.org/">GeoRust</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="col" style="flex: 1">
+              <img src="img/acre.png" alt="ACRE Map" />
+            </div>
+          </div>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Geometry fundamental elements</h3>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Geometry fundamental elements</h3>
+          <h3>Point</h3>
+          <div style="display: flex">
+            <div class="col" style="flex: 1" data-id="polygon">
+              <svg width="600" height="200">
+                <circle
+                  cx="300"
+                  cy="100"
+                  r="10"
+                  stroke="green"
+                  stroke-width="4"
+                  fill="yellow"
+                />
+              </svg>
+            </div>
+            <div class="col" style="flex: 1">
+              <h6>Properties</h6>
+              <p>Coordinates</p>
+            </div>
+          </div>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Geometry fundamental elements</h3>
+          <h3>Line</h3>
+          <div style="display: flex">
+            <div class="col" style="flex: 1">
+              <svg width="600" height="200">
+                <rect
+                  x="15"
+                  y="100"
+                  rx="10"
+                  ry="10"
+                  width="570"
+                  height="10"
+                  style="fill: yellow; stroke: green; stroke-width: 4"
+                />
+              </svg>
+            </div>
+            <div class="col" style="flex: 1">
+              <h6>Properties</h6>
+              <p>Coordinates</p>
+              <p>Length</p>
+            </div>
+          </div>
+        </section>
+
+        <section data-auto-animate>
+          <h3>Geometry fundamental elements</h3>
+          <h3>Polygon</h3>
+          <div style="display: flex">
+            <div class="col" style="flex: 1">
+              <svg width="300" height="200">
+                <polygon
+                  points="200,10 280,198 100,100 10,150 10,120"
+                  style="fill: yellow; stroke: green; stroke-width: 4"
+                />
+              </svg>
+            </div>
+            <div class="col" style="flex: 1">
+              <h6>Properties</h6>
+              <p>Coordinates</p>
+              <p>Length</p>
+              <p>Area</p>
+            </div>
+          </div>
+        </section>
+
+        <section><h3>Geometry in action</h3></section>
+
+        <section>
+          <img
+            src="https://github.com/ag-informatics/ag-informatics-course/blob/main/module2/img/gis-3.png?raw=true"
+            alt=""
+          />
+          <div>
+            <span class="text-small"
+              >Reference: Purdue Introduction to Agricultural Informatics Module
+              2</span
+            >
+          </div>
+        </section>
+
+        <section>
+          <img
+            src="https://github.com/ag-informatics/ag-informatics-course/blob/main/modarchive/module6/img/337px-MAPS.ME_Android_App_v9.4.4_Screenshot_with_Car_Route_Built.jpg?raw=true"
+            alt=""
+            height="480"
+          />
+          <div>
+            <span class="text-small"
+              >Reference: Purdue Introduction to Agricultural Informatics Module
+              6</span
+            >
+          </div>
+        </section>
+
+        <section>
+          <img
+            src="https://github.com/ag-informatics/ag-informatics-course/blob/main/module1/img/design-granular2.png?raw=true"
+            alt=""
+          />
+          <div>
+            <span class="text-small"
+              >Reference: Purdue Introduction to Agricultural Informatics Module
+              1</span
+            >
+          </div>
+        </section>
+
+        <section>
+          <h3>Geometric Object In Python</h3>
+          <h2>Shapely</h2>
+          <p>
+            Manipulation and analysis of geometric objects in the Cartesian
+            plane
+          </p>
+          <a href="https://shapely.readthedocs.io/en/stable/index.html"
+            ><span class="text-small">docs</span></a
+          >
+        </section>
+
+        <section>
+          <img
+            src="https://raw.githubusercontent.com/ag-informatics/ag-informatics-course/main/modarchive/module6/img/ComputerGeneratedRouting.jpg"
+            height="480"
+            alt="Loading"
+          />
+          <div>
+            <span class="text-small"
+              >Reference: Purdue Introduction to Agricultural Informatics Module
+              6</span
+            >
+          </div>
+        </section>
+
+        <section>
+          <h3>Live Demo</h3>
+          <p>
+            Check out this
+            <a
+              href="https://github.com/ag-informatics/ag-informatics-course/blob/main/module6/live-demo.ipynb"
+              >Jupiter Notebook</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h3>From Geometry To GeoSpatial</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <a href="https://geopy.readthedocs.io/en/stable/#">GeoPy</a>
+                </td>
+                <td>Link with map services</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://pysal.org/">PySAL</a>,
+                  <a href="https://residentmario.github.io/geoplot/index.html"
+                    >GeoPlot</a
+                  >
+                </td>
+                <td>Visualize Geospatial data</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/what-is-arcpy-.htm"
+                    >ArcPy</a
+                  >
+                </td>
+                <td>Working with ArcGIS</td>
+              </tr>
+              <tr>
+                <td><a href="https://gdal.org/">GDAL</a></td>
+                <td>Driver for GIS software</td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="https://geopandas.org/en/stable/">GeoPandas</a>
+                </td>
+                <td>Pandas with GeoSpatial functionalities</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>GeoPandas</h2>
+          <div>
+            <span>Pandas + Shapely</span>
+          </div>
+        </section>
+
+        <section>
+          <aside class="notes">Emphasize on geometry column</aside>
+          <span><b>geometry</b> column contains <b>shapely</b> objects</span>
+          <pre><code data-trim>
+            import geopandas as gpd
+            world_df = gpd.read_file(
+                    gpd.datasets.get_path('naturalearth_lowres')
+            )
+        </code></pre>
+          <div>
+            <table style="font-size: large">
+              <thead>
+                <tr style="text-align: center">
+                  <th></th>
+                  <th>pop_est</th>
+                  <th>continent</th>
+                  <th>name</th>
+                  <th>iso_a3</th>
+                  <th>gdp_md_est</th>
+                  <th>geometry</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>0</th>
+                  <td>889953.0</td>
+                  <td>Oceania</td>
+                  <td>Fiji</td>
+                  <td>FJI</td>
+                  <td>5496</td>
+                  <td>MULTIPOLYGON (((180.00000 -16.06713, 180.00000...</td>
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <td>58005463.0</td>
+                  <td>Africa</td>
+                  <td>Tanzania</td>
+                  <td>TZA</td>
+                  <td>63177</td>
+                  <td>POLYGON ((33.90371 -0.95000, 34.07262 -1.05982...</td>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>603253.0</td>
+                  <td>Africa</td>
+                  <td>W. Sahara</td>
+                  <td>ESH</td>
+                  <td>907</td>
+                  <td>POLYGON ((-8.66559 27.65643, -8.66512 27.58948...</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>37589262.0</td>
+                  <td>North America</td>
+                  <td>Canada</td>
+                  <td>CAN</td>
+                  <td>1736425</td>
+                  <td>MULTIPOLYGON (((-122.84000 49.00000, -122.9742...</td>
+                </tr>
+                <tr>
+                  <th>4</th>
+                  <td>328239523.0</td>
+                  <td>North America</td>
+                  <td>United States of America</td>
+                  <td>USA</td>
+                  <td>21433226</td>
+                  <td>MULTIPOLYGON (((-122.84000 49.00000, -120.0000...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <span>Visualize GeoSpatial data</span>
+          <pre><code data-trim>
+                world_df.plot()
+            </code></pre>
+          <img src="img/worldmap.png" alt="world map" />
+        </section>
+
+        <section>
+          <span>Process data using Pandas built-in functions</span>
+          <pre><code data-trim>
+            import numpy as np
+            world_df['log_gdp'] = np.log(world_df['gdp_md_est'])
+            world_df.plot("log_gdp")
+        </code></pre>
+          <img src="img/world_gpd.png" alt="world GDP" />
+        </section>
+
+        <section>
+          <div>
+            <img
+              src="https://storage.googleapis.com/lds-files/videos/countries-map-projection-new.gif"
+              alt="True country area"
+            />
+          </div>
+          <pre><code data-trim>
+            world_df = world_df.to_crs(
+                "+proj=eck4 +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
+            )
+            world_df.area
+        </code></pre>
+          <span class="text-small"
+            >https://www.learndatasci.com/tutorials/geospatial-data-python-geopandas-shapely/</span
+          >
+        </section>
+
+        <section>
+          <aside class="notes">The top three can be open by geopandas</aside>
+          <h3>Common File types</h3>
+          <table>
+            <tbody style="font-size: xx-large">
+              <tr>
+                <td>ShapeFile</td>
+                <td>
+                  <a
+                    href="https://www.esri.com/content/dam/esrisites/sitecore-archive/Files/Pdfs/library/whitepapers/pdfs/shapefile.pdf"
+                    >ESRI standard</a
+                  >. Commonly used by GIS software like ArcGIS etc.
+                </td>
+              </tr>
+              <tr>
+                <td>GeoJSON</td>
+                <td>
+                  JSON-style with standard
+                  <a href="https://geojson.org/">specification</a>for holding
+                  spatial data.
+                </td>
+              </tr>
+              <tr>
+                <td>KML</td>
+                <td>
+                  <a href="https://www.ogc.org/publications/standard/kml/"
+                    >XML format</a
+                  >
+                  with spatial data. Commonly used with Google Earth.
+                </td>
+              </tr>
+              <tr>
+                <td>Geo-Database</td>
+                <td>
+                  Database with spatial data feature e.g.
+                  <a href="https://www.gaia-gis.it/fossil/libspatialite/index"
+                    >SpatiaLite</a
+                  >, <a href="https://postgis.net/">PostGIS</a>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <aside class="notes">Show first 2 links</aside>
+          <h3>Open Data Source</h3>
+          <ul>
+            <li>
+              <a
+                href="https://hub.arcgis.com/datasets/48f9af87daa241c4b267c5931ad3b226/explore?location=41.575643%2C75.588292%2C3.23"
+                >ArcGIS</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://public.opendatasoft.com/explore/dataset/us-county-boundaries/map/?disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name&location=2,40.61349,29.12694&basemap=jawg.light"
+                >Open Data Soft</a
+              >
+            </li>
+            <li><a href="https://www.indianamap.org/">Indiana Map</a></li>
+            <li>
+              <a href="https://www.census.gov/geographies/mapping-files.html"
+                >US Census</a
+              >
+            </li>
+            <li>
+              <a href="https://freegisdata.rtwilson.com/">Free GIS Data</a>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+
+        <section>
+          <h3>License</h3>
+
+          <ul class="no-bullets text-small">
+            <li>
+              <b
+                >Attribution Recommendation:
+                <span class="red"
+                  >Introduction to Agricultural Informatics Course", Tam
+                  Bureetes, Purdue University. Available at
+                  <a
+                    href="https://github.com/ag-informatics/ag-informatics-course"
+                    >https://github.com/ag-informatics/ag-informatics-course</a
+                  >. Licensed by
+                  <a
+                    href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"
+                    >CC BY-NC-SA 4.0.</a
+                  ></span
+                ></b
+              >
+            </li>
+            <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" />
+          </ul>
+
+          <p class="text-small align-left">
+            This course is licensed under a Creative Commons
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"
+              >Attribution-NonCommercial-ShareAlike 4.0 International (CC
+              BY-NC-SA 4.0)</a
+            >
+            license. This is a human-readable summary of (and not a substitute
+            for) the
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode"
+              >license</a
+            >. Official translations of this license are available in other
+            languages.
+          </p>
+
+          <p class="text-small align-left">You are free to:</p>
+          <ul class="text-small">
+            <li>
+              Share — copy and redistribute the material in any medium or format
+            </li>
+            <li>Adapt — remix, transform, and build upon the material</li>
+          </ul>
+
+          <p class="text-small align-left">Under the following terms:</p>
+          <ul class="text-small">
+            <li>
+              Attribution — You must give appropriate credit, provide a link to
+              the license, and indicate if changes were made. You may do so in
+              any reasonable manner, but not in any way that suggests the
+              licensor endorses you or your use.
+            </li>
+            <li>
+              NonCommercial — You may not use the material for commercial
+              purposes.
+            </li>
+            <li>
+              ShareAlike — If you remix, transform, or build upon the material,
+              you must distribute your contributions under the same license as
+              the original.
+            </li>
+            <li>
+              No additional restrictions — You may not apply legal terms or
+              technological measures that legally restrict others from doing
+              anything the license permits.
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/notes/notes.js"></script>
+    <script src="../revealjs/plugin/markdown/markdown.js"></script>
+    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+
+    <script>
+      // More info about initialization & config:
+      // - https://../revealjs.com/initialization/
+      // - https://../revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        slideNumber: "c/t",
+        autoAnimateDuration: 0.5,
+
+        customcontrols: {
+          controls: [
+            {
+              icon: '<i class="fa fa-pen-square"></i>',
+              title: "Toggle chalkboard (B)",
+              action: "RevealChalkboard.toggleChalkboard();",
+            },
+            {
+              icon: '<i class="fa fa-pen"></i>',
+              title: "Toggle notes canvas (C)",
+              action: "RevealChalkboard.toggleNotesCanvas();",
+            },
+          ],
+        },
+
+        // Learn about plugins: https://../revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealChalkboard,
+          RevealCustomControls,
+        ],
+      });
+    </script>
+  </body>
+</html>
