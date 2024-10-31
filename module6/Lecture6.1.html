@@ -581,7 +581,7 @@
           <pre><code data-trim>
                 world_df.plot()
             </code></pre>
-          <img src="img/worldmap.png" alt="worldmap" />
+          <img src="img/worldmap.png" alt="world map" />
         </section>
 
         <section>
@@ -613,6 +613,50 @@
         </section>
 
         <section>
+          <aside class="notes">The top three can be open by geopandas</aside>
+          <h3>Common File types</h3>
+          <table>
+            <tbody style="font-size: xx-large">
+              <tr>
+                <td>ShapeFile</td>
+                <td>
+                  <a
+                    href="https://www.esri.com/content/dam/esrisites/sitecore-archive/Files/Pdfs/library/whitepapers/pdfs/shapefile.pdf"
+                    >ESRI standard</a
+                  >. Commonly used by GIS software like ArcGIS etc.
+                </td>
+              </tr>
+              <tr>
+                <td>GeoJSON</td>
+                <td>
+                  JSON-style with standard
+                  <a href="https://geojson.org/">specification</a>for holding
+                  spatial data.
+                </td>
+              </tr>
+              <tr>
+                <td>KML</td>
+                <td>
+                  <a href="https://www.ogc.org/publications/standard/kml/"
+                    >XML format</a
+                  >
+                  with spatial data. Commonly used with Google Earth.
+                </td>
+              </tr>
+              <tr>
+                <td>Geo-Database</td>
+                <td>
+                  Database with spatial data feature e.g.
+                  <a href="https://www.gaia-gis.it/fossil/libspatialite/index"
+                    >SpatiaLite</a
+                  >, <a href="https://postgis.net/">PostGIS</a>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
           <aside class="notes">Show first 2 links</aside>
           <h3>Open Data Source</h3>
           <ul>
@@ -625,7 +669,7 @@
             <li>
               <a
                 href="https://public.opendatasoft.com/explore/dataset/us-county-boundaries/map/?disjunctive.statefp&disjunctive.countyfp&disjunctive.name&disjunctive.namelsad&disjunctive.stusab&disjunctive.state_name&location=2,40.61349,29.12694&basemap=jawg.light"
-                >Opendatasoft</a
+                >Open Data Soft</a
               >
             </li>
             <li><a href="https://www.indianamap.org/">Indiana Map</a></li>
@@ -637,17 +681,6 @@
             <li>
               <a href="https://freegisdata.rtwilson.com/">Free GIS Data</a>
             </li>
-          </ul>
-        </section>
-
-        <section>
-          <aside class="notes">The top three can be open by geopandas</aside>
-          <h3>Common File types</h3>
-          <ul>
-            <li>ShapeFile (.prj + .dbf + .shp + .shx)</li>
-            <li>GeoJSON</li>
-            <li>KML</li>
-            <li>GeoDatabase</li>
           </ul>
         </section>
 
