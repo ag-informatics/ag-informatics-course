@@ -9,9 +9,18 @@
 
     <title>ASM 591 Intro to Ag Informatics</title>
 
-    <link rel="stylesheet" href="../revealjs/dist/reset.css" />
-    <link rel="stylesheet" href="../revealjs/dist/reveal.css" />
-    <link rel="stylesheet" href="../revealjs/dist/theme/white.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/theme/white.css"
+    />
 
     <!-- Font awesome is required for the chalkboard plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -33,9 +42,24 @@
     />
 
     <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/monokai.css"
+    />
     <!-- Ankita's theme overrides-->
     <link rel="stylesheet" href="../styles.css" />
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
   </head>
   <body>
     <div class="reveal">
@@ -59,30 +83,22 @@
         </section>
 
         <section>
-          <a href="https://leafletjs.com/"><h3>Leaflet</h3></a>
-          <p>
-            an open-source JavaScript library for mobile-friendly interactive
-            maps
-          </p>
-        </section>
-
-        <section>
           <h3>Django Recap</h3>
           <pre><code data-trim>
             # urls.py
             urlpatterns = [
-              path("", views.render_map, name="index"),
+            path("", views.render_map, name="map"),
             ]
           </code></pre>
           <pre><code data-trim>
             # views.py
             def render_map(request):
             message = "Hello World"
-              return render(request, "index.html", {"message": message})
+            return render(request, "map.html", {"message": message})
           </code></pre>
           <pre><code data-trim>
             <script type="text/template">
-              <!-- index.html -->
+              <!-- map.html -->
               <body>
                 {{ message }} 
               </body>
@@ -91,19 +107,94 @@
         </section>
 
         <section>
-          <p>Import Leaflet to template file</p>
-          <pre><code data-trim data-line-numbers="6-11|12-15">
-           &lt;!DOCTYPE html&gt;
+          <h3>Recap Geospatial Tools</h3>
+          <div class="container" style="display: flex">
+            <div class="col" style="flex: 1">
+              <ul>
+                <li>
+                  Software Suite<br />
+                  e.g. <a href="https://earth.google.com/web">Google Earth</a>,
+                  <a href="https://www.arcgis.com/">ArcGIS</a>,
+                  <a href="https://www.qgis.org/">QGIS</a>
+                </li>
+                <li>
+                  Software as a Service <br />
+                  <a href="https://www.google.com/maps">Google Map</a>,
+                  <a href="https://www.mapbox.com/">MapBox</a>
+                </li>
+                <li>
+                  Software Library <br />
+                  <ul>
+                    <li>
+                      Python:
+                      <a
+                        href="https://pro.arcgis.com/en/pro-app/latest/arcpy/get-started/a-quick-tour-of-arcpy.htm"
+                        >ArcPy</a
+                      >,
+                      <a href="https://shapely.readthedocs.io/en/stable/"
+                        >Shapely</a
+                      >
+                      <a href="https://geopandas.org/en/stable/">GeoPandas</a>
+                    </li>
+                    <li class="fragment highlight-red">
+                      JavaScript: <a href="https://leafletjs.com/">LeafLet</a>
+                    </li>
+                    <li>PHP: <a href="https://geophp.net/">GeoPHP</a></li>
+                    <li>
+                      <a href="https://www.nickeubank.com/gis-in-r/">R</a>
+                    </li>
+                    <li>Rust: <a href="https://georust.org/">GeoRust</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="col" style="flex: 1">
+              <img src="img/acre.png" alt="ACRE Map" />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <a href="https://leafletjs.com/"><h3>Leaflet</h3></a>
+          <p>
+            an open-source
+            <span class="fragment highlight-red">JavaScript</span> library for
+            mobile-friendly interactive maps
+          </p>
+        </section>
+
+        <section>
+          <h3>What are website made of?</h3>
+          <div style="display: flex; justify-content: space-between">
+            <div class="col fragment fade-up" style="flex: 1">
+              <img src="img/noun-html-icon.svg" alt="HTML" />
+            </div>
+            <div class="col fragment fade-up" style="flex: 1">
+              <img src="img/noun-css-icon.svg" alt="CSS" />
+            </div>
+            <div class="col fragment fade-up" style="flex: 1">
+              <img src="img/noun-javascript-icon.svg" alt="JavaScript" />
+            </div>
+          </div>
+          <p class="fragment fade-up">What is Django?</p>
+        </section>
+
+        <section data-auto-animate>
+          <h6>Import Leaflet to template file (HTML)</h6>
+          <pre><code data-trim data-line-numbers="1-5|6-12|13-17">
+           &lt;!DOCTYPE html&gt; <!-- This is HTML file -->
             &lt;html lang="en"&gt;
-              &lt;head&gt;
+              &lt;head&gt; <!-- Import other files in the head tag -->
                 &lt;title&gt;Leaflet Map&lt;/title&gt;
                 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-                &lt;link
+                <!-- Import Leaflet stylesheet (.css) -->
+                &lt;link 
                   rel="stylesheet"
                   type="text/css"
                   href="https://unpkg.com/leaflet/dist/leaflet.css"
                   crossorigin=""
                 /&gt;
+                <!-- Import Leaflet JavaScript (.js) -->
                 &lt;script
                   src="https://unpkg.com/leaflet/dist/leaflet.js"
                   crossorigin=""
@@ -117,18 +208,23 @@
         </section>
 
         <section>
-          <p>Create leaflet script and stylesheet</p>
-          <span class="text-small">static/leaflet-map.js</span>
-          <pre><code data-trim data-line-numbers="1-2|3|4|5|6">
+          <h6>Create JavaScript file to control the map</h6>
+          <p>Create a file <span>static/leaflet-map.js</span></p>
+          <pre><code data-trim data-line-numbers="1-3|4-5|6-7|8-9|10-11">
+            // Display copyright sign
             const copy =
               "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+            // Define the URL for the map's background layer
             const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+            // Create a map layer 
             const layer = L.tileLayer(url, { attribution: copy });
+            // Create a map that will show in tag "map" in HTML file
             const map = L.map("map", { layers: [layer] });
+            // Fit the map to the bounds a.k.a. starting location
             map.fitBounds([[40.470060621973026, -86.99269856365936]]);
           </code></pre>
 
-          <span class="text-small">static/leaflet-map.css</span>
+          <!-- <span class="text-small">static/leaflet-map.css</span>
           <pre><code data-trim data-line-numbers="1-3|4-6">
             html, body {
               height: 100%;
@@ -136,42 +232,88 @@
             #map {
               height: 100%;
               width: 100%; }
-        </code></pre>
+        </code></pre> -->
         </section>
 
         <section>
-          <p>Adding map into template file</p>
-          <pre><code data-trim data-line-numbers="1|17|18|21">
-            {% load static %}
-            &lt;!DOCTYPE html&gt;
+          <h6>Import JavaScript file into template file</h6>
+          <pre><code data-trim data-line-numbers="1|7-18|19-20|22-25">
+            {% load static %}  <!-- As we create a JavaScript file in static folder -->
+            &lt;!DOCTYPE html&gt;  <!-- We are back to HTML file -->
             &lt;html lang="en"&gt;
               &lt;head&gt;
                 &lt;title&gt;Leaflet Map&lt;/title&gt;
                 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-                &lt;link
-                  rel="stylesheet"
-                  type="text/css"
-                  href="https://unpkg.com/leaflet/dist/leaflet.css"
-                  crossorigin=""
-                /&gt;
-                &lt;script
-                  src="https://unpkg.com/leaflet/dist/leaflet.js"
-                  crossorigin=""
-                &gt;&lt;/script&gt;
-                &lt;link rel="stylesheet" type="text/css" href="{% static 'leaflet-map.css' %}" /&gt;
-                &lt;script src="{% static 'leaflet-map.js' %}" defer&gt;&lt;/script&gt;
+               <!-- Import Leaflet stylesheet (.css) -->
+               &lt;link 
+               rel="stylesheet"
+               type="text/css"
+               href="https://unpkg.com/leaflet/dist/leaflet.css"
+               crossorigin=""
+              /&gt;
+             <!-- Import Leaflet JavaScript (.js) -->
+              &lt;script
+               src="https://unpkg.com/leaflet/dist/leaflet.js"
+               crossorigin=""
+              &gt;&lt;/script&gt;
+              <!-- Import JavaScript file from previous step -->
+              &lt;script src="{% static 'leaflet-map.js' %}" defer&gt;&lt;/script&gt;
               &lt;/head&gt;
               &lt;body&gt;
-                &lt;div id="map"&gt;&lt;/div&gt;
+              <!-- We will place the map here -->
+                &lt;div id="map" style="width:100%; height:100%"&gt;&lt;/div&gt;
               &lt;/body&gt;
             &lt;/html&gt;
            </code></pre>
         </section>
 
         <section>
-          <p>Adding geometry to the map</p>
-          <span class="text-small">static/leaflet-map.js</span>
-          <pre><code data-trim data-line-numbers="8-9|10">
+          <div id="map" style="height: 480px"></div>
+          <script>
+            const copy =
+              "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+            const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+            const layer = L.tileLayer(url, { attribution: copy });
+            const map = L.map("map", { layers: [layer] });
+            map.fitBounds([[40.470060621973026, -86.99269856365936]]);
+          </script>
+        </section>
+
+        <section>
+          <h5>Adding geometry to the map</h5>
+          <p>static/leaflet-map.js</p>
+          <pre><code data-trim data-line-numbers="8-9">
+            const copy =
+              "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+            const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+            const layer = L.tileLayer(url, { attribution: copy });
+            const map = L.map("map", { layers: [layer] });
+            map.fitBounds([[40.470060621973026, -86.99269856365936]]);
+            // Add a marker to the map (a point)
+            let marker = L.marker([40.470060621973026, -86.99269856365936])
+              .addTo(map)
+          </code></pre>
+        </section>
+
+        <section>
+          <div id="map2" style="height: 480px"></div>
+          <script>
+            const copy2 =
+              "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+            const url2 = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+            const layer2 = L.tileLayer(url2, { attribution: copy2 });
+            const map2 = L.map("map2", { layers: [layer2] });
+            map2.fitBounds([[40.470060621973026, -86.99269856365936]]);
+            let marker = L.marker([
+              40.470060621973026, -86.99269856365936,
+            ]).addTo(map2);
+          </script>
+        </section>
+
+        <section>
+          <h5>Adding geometry to the map</h5>
+          <p>static/leaflet-map.js</p>
+          <pre><code data-trim data-line-numbers="10">
             const copy =
               "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
             const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -181,101 +323,45 @@
 
             let marker = L.marker([40.470060621973026, -86.99269856365936])
               .addTo(map)
-              .bindPopup("This is a popup");
+              .bindPopup("This is a popup"); // Add a popup to the marker
           </code></pre>
         </section>
 
         <section>
-          <p>Adding markers from Django side</p>
-          <span class="text-small">views.py</span>
-          <pre><code data-trim data-line-numbers="1-2|8|9|10|11">
-            import geojson
-            import shapely.geometry as geo
-            from django.shortcuts import render
-
-            # Create your views here.
-
-            def render_map(request):
-                point = geo.Point(([-86.99269856365936, 40.470060621973026]))
-                marker = geojson.Feature(geometry=point, properties={"message": "Hello World"})
-                data = geojson.FeatureCollection(marker)
-                return render(request, "index.html", {"data": data})
-              </code>
-          </pre>
-        </section>
-
-        <section>
-          <p>Passing data to the template file</p>
-          <span class="text-small">index.html</span>
-          <pre><code data-trim data-line-numbers="21">
-            {% load static %}
-            &lt;!DOCTYPE html&gt;
-            &lt;html lang="en"&gt;
-              &lt;head&gt;
-                &lt;title&gt;Leaflet Map&lt;/title&gt;
-                &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-                &lt;link
-                  rel="stylesheet"
-                  type="text/css"
-                  href="https://unpkg.com/leaflet/dist/leaflet.css"
-                  crossorigin=""
-                /&gt;
-                &lt;script
-                  src="https://unpkg.com/leaflet/dist/leaflet.js"
-                  crossorigin=""
-                &gt;&lt;/script&gt;
-                &lt;link rel="stylesheet" type="text/css" href="{% static 'leaflet-map.css' %}" /&gt;
-                &lt;script src="{% static 'leaflet-map.js' %}" defer&gt;&lt;/script&gt;
-              &lt;/head&gt;
-              &lt;body&gt;
-                {{ data|json_script:"data_geojson" }}
-                &lt;div id="map"&gt;&lt;/div&gt;
-              &lt;/body&gt;
-            &lt;/html&gt;
-            </code>
-          </pre>
-        </section>
-
-        <section>
-          <p>Update JavaScript file</p>
-          <span class="text-small">static/leaflet-map.js</span>
-          <pre><code data-trim data-line-numbers="7|8|9-11|12|14">
-            const copy =
+          <div id="map3" style="height: 480px"></div>
+          <script>
+            const copy3 =
               "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
-            const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
-            const layer = L.tileLayer(url, { attribution: copy });
-            const map = L.map("map", { layers: [layer] });
-
-            const data = JSON.parse(document.getElementById("data_geojson").textContent);
-            let feature = L.geoJSON(data.features)
-              .bindPopup(function (layer) {
-                return layer.feature.properties.message;
-              })
-              .addTo(map);
-
-            map.fitBounds(feature.getBounds());
-            </code>
-          </pre>
+            const url3 = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+            const layer3 = L.tileLayer(url3, { attribution: copy3 });
+            const map3 = L.map("map3", { layers: [layer3] });
+            map3.fitBounds([[40.470060621973026, -86.99269856365936]]);
+            let marker2 = L.marker([40.470060621973026, -86.99269856365936])
+              .addTo(map3)
+              .bindPopup("This is a popup");
+          </script>
         </section>
 
         <section>
-          <a href="https://geojson.org/"><h3>GeoJSON</h3></a>
+          <h3>
+            <a href="https://geojson.org/">GeoJSON</a>: Link Django and website
+          </h3>
           <pre><code data-trim data-line-numbers="2|3|4|5-8|9-11|13|14-15|16-24|26-30">
           {
-            "type": "FeatureCollection",
-            "features": [{
-                "type": "Feature",
-                "geometry": {
+            "type": "FeatureCollection", <- This is the top level of GeoJSON
+            "features": [ <- This is an array of features
+                "type": "Feature", <- This is a feature object
+                "geometry": { <- This is the geometry of the feature
                     "type": "Point",
                     "coordinates": [102.0, 0.5]
                 },
-                "properties": {
+                "properties": { <- This is the properties of the feature
                     "prop0": "value0"
                 }
             }, {
-              "type": "Feature",
+              "type": "Feature", <- This is another feature object
               "geometry": {
-                  "type": "Polygon",
+                  "type": "Polygon", <- This time geometry is a polygon
                   "coordinates": [
                       [
                           [100.0, 0.0],
@@ -288,13 +374,94 @@
               },
               "properties": {
                   "prop0": "value0",
-                  "prop1": {
+                  "prop1": { <- properties can be nested
                       "this": "that"
                   }
               }
           }]
-      }
+        }
         </code></pre>
+        </section>
+
+        <section>
+          <h5>Adding markers from Django side</h5>
+          <p>views.py</p>
+          <pre><code data-trim data-line-numbers="1-3|8-9|10-11|12-13|14-15|16">
+            # import libraries
+            import geojson
+            import shapely.geometry as geo
+            from django.shortcuts import render
+
+            # Create your views here.
+
+            # This is the function that will render the map
+            def render_map(request): 
+              # create a point (geometry)
+              point = geo.Point(([-86.99269856365936, 40.470060621973026]))
+              # create a geojson feature 
+              marker = geojson.Feature(geometry=point, properties={"msg": "Hello World"})
+              # add the feature(s) to a feature collection
+              data = geojson.FeatureCollection(marker)
+              return render(request, "map.html", {"data": data})
+              
+          </code></pre>
+        </section>
+
+        <section>
+          <h5>Passing data to the template file</h5>
+          <p>map.html</p>
+          <pre><code data-trim data-line-numbers="20-22">
+            {% load static %}
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang="en"&gt;
+              &lt;head&gt;
+                &lt;title&gt;Leaflet Map&lt;/title&gt;
+                &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+                &lt;link
+                  rel="stylesheet"
+                  type="text/css"
+                  href="https://unpkg.com/leaflet/dist/leaflet.css"
+                  crossorigin=""
+                /&gt;
+                &lt;script
+                  src="https://unpkg.com/leaflet/dist/leaflet.js"
+                  crossorigin=""
+                &gt;&lt;/script&gt;
+                &lt;script src="{% static 'leaflet-map.js' %}" defer&gt;&lt;/script&gt;
+              &lt;/head&gt;
+              &lt;body&gt;
+                <!-- We are telling that "data" is a json type from Django -->
+                <!-- And we will name it "data_geojson" then pass it to the JavaScript  -->
+                {{ data|json_script:"data_geojson" }}
+                &lt;div id="map"&gt;&lt;/div&gt;
+              &lt;/body&gt;
+            &lt;/html&gt;
+            </code>
+          </pre>
+        </section>
+
+        <section>
+          <h5>Update JavaScript file</h5>
+          <p>static/leaflet-map.js</p>
+          <pre><code data-trim data-line-numbers="6-7|8-9|10|11-12|14|16">
+            const copy =
+              "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+            const url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+            const layer = L.tileLayer(url, { attribution: copy });
+            const map = L.map("map", { layers: [layer] });
+            // Parse the data from Django and call it data
+            const data = JSON.parse(document.getElementById("data_geojson").textContent);
+            // create features from the data
+            let features = L.geoJSON(data.features)
+              .bindPopup(function (layer) { // Add a popup to the marker
+                // The popup message is from the properties of the feature
+                return layer.feature.properties.msg;
+              })
+              .addTo(map); // Add the features to the map
+
+            map.fitBounds(feature.getBounds()); // Fit the map to the features
+            </code>
+          </pre>
         </section>
 
         <section>
@@ -376,15 +543,15 @@
       </div>
     </div>
 
-    <script src="../revealjs/dist/reveal.js"></script>
-    <script src="../revealjs/plugin/notes/notes.js"></script>
-    <script src="../revealjs/plugin/markdown/markdown.js"></script>
-    <script src="../revealjs/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.0/plugin/highlight/highlight.js"></script>
 
     <script>
       // More info about initialization & config:
-      // - https://../revealjs.com/initialization/
-      // - https://../revealjs.com/config/
+      // - https://https://cdn.jsdelivr.net/npm/reveal.js@4.6.0.com/initialization/
+      // - https://https://cdn.jsdelivr.net/npm/reveal.js@4.6.0.com/config/
       Reveal.initialize({
         hash: true,
         slideNumber: "c/t",
@@ -405,7 +572,7 @@
           ],
         },
 
-        // Learn about plugins: https://../revealjs.com/plugins/
+        // Learn about plugins: https://https://cdn.jsdelivr.net/npm/reveal.js@4.6.0.com/plugins/
         plugins: [
           RevealMarkdown,
           RevealHighlight,
