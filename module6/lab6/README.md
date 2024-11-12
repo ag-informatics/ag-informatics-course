@@ -167,7 +167,7 @@ Open `map.html` file and modify as below. We interpolate date from Django by wra
 <body>
   <!-- Add the line below -->
   {{ data|json_script:"data_geojson" }}
-  <div id="map" style="height: 100%; width: 100%"></div>
+  <div id="map" style="height: 480px; width: 480px"></div>
 </body>
 ```
 
