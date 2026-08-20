@@ -1,1 +1,0 @@
-Use the same data and models as in lab 4. [Click](../../../../module5/lab5/lab4_example/data/).

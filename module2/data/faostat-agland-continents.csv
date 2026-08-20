@@ -1,6 +1,0 @@
-﻿Domain Code,Domain,Area Code,Area,Element Code,Element,Item Code,Item,Unit,Value,Flag,Flag Description
-"RL","Land Use","5100","Africa","5110","Area","6610","Agricultural land","1000 ha","1080742.46","A","Aggregate, may include official, semi-official, estimated or calculated data"
-"RL","Land Use","5200","Americas","5110","Area","6610","Agricultural land","1000 ha","1136426","A","Aggregate, may include official, semi-official, estimated or calculated data"
-"RL","Land Use","5300","Asia","5110","Area","6610","Agricultural land","1000 ha","1398326","A","Aggregate, may include official, semi-official, estimated or calculated data"
-"RL","Land Use","5400","Europe","5110","Area","6610","Agricultural land","1000 ha","635693.43","A","Aggregate, may include official, semi-official, estimated or calculated data"
-"RL","Land Use","5500","Oceania","5110","Area","6610","Agricultural land","1000 ha","468943.13","A","Aggregate, may include official, semi-official, estimated or calculated data"
