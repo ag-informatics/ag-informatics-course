@@ -23,10 +23,10 @@ Second, I provide quick skills-forward overview of how people engineering softwa
 
 Source code for the slides is in this folder. The slides are live here:
 
-- [Lecture 1.1](TODO link)
-- [Lecture 1.2](TODO link) - Graded in-class activity
-- [Lecture 1.3](TODO link) - Quiz 1
-- [Lecture 1.4](TODO link)
+- [Lecture 1.1](lecture-1.1.html)
+<!-- - [Lecture 1.2]() - Graded in-class activity
+- [Lecture 1.3]() - Quiz 1
+- [Lecture 1.4]() -->
 
 ## Lab
 
