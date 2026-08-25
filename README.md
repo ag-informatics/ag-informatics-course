@@ -53,7 +53,7 @@ These materials support the following types of learning objectives:
 You can jump between publicly released modules available in Fall 2026 below. If you are a Purdue student, please remember: Brightspace holds the correct dates and cadence for you!
 
 --- Fall 2026 - Released Modules:
-* [Module 1: Web Fundamentals](insert link)
+* [Module 1: Web Fundamentals](module-1-web-fundamentals)
 
 --- Coming Soon
 * Module 2: Data Exploration
