@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+        -->
+      <section>
+        <img src="img/m1-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Intro to Ag-Informatics</h1>
+        <p>
+          Module 1 - Web Fundamentals<br />
+          Lecture 1.1 <br /><br />
+          ASM 532, Intro to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+
+      <section>
+        <h2>Lecture Outline</h2>
+        <ul>
+          <li>What is agricultural informatics?</li>
+          <li>Introductions</li>
+          <li>Course overview</li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <section>
+        <img class="r-stretch" src="img/m1-ankita-food-systems.png"
+          alt="A photo collage representing Ankita's sampling across food systems: home meals, farm fieldwork, farmers markets, hand-drawn food-flow diagrams, spices, ocean plastic debris on a plate, and communities working the land — illustrating food systems from individual consumption to global flows." />
+      </section>
+
+      <section>
+        <h2>Intros</h2>
+        <ul>
+          <li>Name</li>
+          <li>Major, degree, department</li>
+          <li>Interests in <span class="green"> (agri, food, eco, ??) x tech</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <img class="r-stretch" src="img/m1-humans-use-data.png"
+          alt="A collage of farmers and researchers using data — reading field notes, filing records, hand-drawn field maps, log sheets, and satellite imagery — captioned 'Humans using data to learn, solve problems, & make decisions.' These images come from Ankita's fieldwork." />
+      </section>
+
+      <section>
+        <h2>Field to fork, knowledge work</h2>
+        <img class="r-stretch" src="img/m1-nrcs-xerces-pollinators.png"
+          alt="Illustrated USDA-NRCS/Xerces Society infographic showing pollinator-friendly farm features on a farm landscape — riparian buffers, snags, fallow fields, hedgerows, natural areas, and gardens — each with a short description of how it supports pollinators." />
+
+        <p class="cite">
+          <a href="https://nrcspad.sc.egov.usda.gov/DistributionCenter/pdf.aspx?productID=954"> USDA-NRCS and Xerces
+            Society</a>
+        </p>
+      </section>
+
+      <section data-background-image="img/m1-study-banana-pano.JPG">
+        <h2>Knowledge Work</h2>
+        <div class="r-hstack overlay">
+          <div>
+            <ul class="no-bullets">
+              <li class="align-right">
+                <h3>Challenges</h3>
+              </li>
+              <li class="align-right">Handling in-field spatial variability</li>
+              <li class="align-right">Identifying weeds & pests</li>
+              <li class="align-right">Improving soil health quality</li>
+              <li class="align-right">Adaptive farm management</li>
+              <li class="align-right">Empowering stakeholders</li>
+              <li class="align-right">Enhancing food security</li>
+            </ul>
+          </div>
+
+          <div>
+            <ul class="no-bullets">
+              <li>
+                <h3>Explorations</h3>
+              </li>
+              <li>by sensing across scales</li>
+              <li>via machine learning</li>
+              <li>through geospatial analytics</li>
+              <li>using realtime, site-specific data</li>
+              <li>with decision-support tools</li>
+              <li>by connecting people through tech</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section data-background-image="img/m1-ghibli-laputa-farm.jpg" data-background-opacity="0.8">
+        <div class="overlay">
+          <h2>Technology gives us the ability <br /> to manage
+            complexity <br /> across scales.</h2>
+          <ul class="text-medium">
+            <li>Reduce the cognitive overload of managing agricultural systems.</li>
+            <li>Trace inefficiencies in data and resource flows.</li>
+            <li>Check for regulatory compliance through automated model checking.</li>
+            <li>Enable sharing of best management practices</li>
+            <li>Identify obfuscated bugs in farms</li>
+          </ul>
+          <p class="cite">Studio Ghibli, Laputa Castle in the Sky, 1986</p>
+        </div>
+      </section>
+
+
+      <section data-background-image="img/m1-pascalcrimson-neo.jpg" data-background-size="30%"
+        data-background-position="bottom">
+        <h2>Teasing apart Technology</h2>
+        <div class="r-hstack">
+          <div>
+            <ul class="no-bullets">
+              <li>
+                <h3>Hardware</h3>
+              </li>
+              <li>Manipulate the world</li>
+              <li>Manipulate reality</li>
+              <li>Physical interactions</li>
+              <li>Augment human action</li>
+            </ul>
+          </div>
+
+          <div>
+            <ul class="no-bullets">
+              <li>
+                <h3>Software</h3>
+              </li>
+              <li>Manipulate information</li>
+              <li>Manipulate models</li>
+              <li>Hypothetical interactions</li>
+              <li>Augment human thought</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fragment blue"> predictive analytics, real-time monitoring, problem diagnosis, decision support, data
+          driven insights, system-level analysis, communication, coordination, and collaboration</p>
+        <p class="cite"><a href="https://www.deviantart.com/pascalcrimson/art/Neo-from-Matrix-599675691">PascalCrimson @
+            DeviantArt, Neo from Matrix, 2016</a></p>
+      </section>
+
+      <section>
+        <h2>Whose digital revolution?</h2>
+        <img src="img/m1-accenture-digitalag.png"
+          alt="Timeline diagram: Past shows the plough (19th century), GMOs (1980s), and GPS-tracked machinery (~2008) with a farmer overwhelmed by disconnected data; Present shows connected weather stations, Doppler forecasts, and plant/UAV sensors feeding into 'Data Insight'; Future shows a fully connected precision-agriculture farm. Captioned 'incremental benefit over previous generation' evolving into 'new growth potential for farmers.'" />
+        <p class="cite"><a
+            href="https://web.archive.org/web/20200309230626/https://www.accenture.com/us-en/insight-accenture-digital-agriculture-solutions">Accenture,
+            2017</a></p>
+      </section>
+
+      <section data-background-image="img/m1-photos-farms-corn.jpeg" data-background-opacity="0.8">
+        <div class="overlay">
+          <h2>Whose digital revolution?</h2>
+          <p class="align-left text-massive">"The smart agricultural economy<br />
+            is perhaps less about supporting land and its stewards<br />
+            than promising future tech and profits”</p>
+
+          <p class="cite"><a href="https://doi.org/10.1007/s10460-021-10244-8">Duncan et al., New but for whom?
+              Discourses of innovation in precisionagriculture.</a></p>
+        </div>
+      </section>
+
+      <section>
+        <h2>A BIG question</h2>
+        <br />
+        <p class="align-left text-massive">How might we<br>
+          <span class="green">reponsibly design</span> and<br>
+          <span class="green">sustainably develop</span><br>
+          <span class="blue">appropriate digital technologies</span> for<br>
+          resilient agricultural, ecological, and food systems?
+        </p>
+      </section>
+
+
+      <section>
+        <h2>Agricultural <span class="pink">Informatics</span></h2>
+
+        <img class="w-10" src="img/m1-icon-plant-data.png"
+          alt="Line icon of a location pin and a small plant seedling over a layered map shape, flanked by two data/note icons — representing geolocated agricultural data." />
+        <div class="r-hstack">
+          <div>
+            <ul class="no-bullets">
+              <li>Design, build, and use</li>
+              <li class="pink">digital technologies</li>
+              <li>to enable</li>
+              <li class="pink">people to...</li>
+            </ul>
+          </div>
+
+          <div class="fragment">
+            <ul class="no-bullets">
+              <li>grow and distribute food,</li>
+              <li>manage natural systems,</li>
+              <li>coordinate and organize work, &</li>
+              <li>strategize for food system resilience.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <h2>Teaching Philosophy</h2>
+        <img src="img/m1-backtothefuture-hoverboard.gif"
+          alt="Animated GIF of Marty McFly riding a hoverboard across water, from Back to the Future Part II." />
+        <p class="cite"><a href="https://giphy.com/gifs/BTTF-ixJI8li5Zn8VfoRgac">Marty McFly in Back to the Future,
+            @BTTF, Giphy</a></p>
+      </section>
+
+      <section>
+        <h2>Continuous Improvement</h2>
+        <div class="r-hstack">
+          <div>
+            <h3>Found a bug?</h3>
+            <img class="w-80" src="img/m1-github-issues.png"
+              alt="Screenshot of the course's GitHub Issues tab, showing a list of open issues reported against the repository, each with a title, number, author, and date opened." />
+          </div>
+          <div>
+            <h3>Ideas? Banter?</h3>
+            <img class="w-80" src="img/m1-github-discussion.png"
+              alt="Screenshot of the course's GitHub Discussions tab, showing example discussion threads and the category list — General, Ideas, Show and tell, Troubleshooting." />
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>What will this course cover?</h2>
+        <br />
+        <!-- the breaks in this slide are deliberate to make space, do not delete -->
+
+        <ul class="no-bullets">
+          <li><span class="green">Start in Brightspace:</span> <br /> All materials listed e.g., course syllabus,
+            schedule, submissions.</li><br />
+
+          <li class="fragment">Follow links to materials:<br /> e.g., lectures and labs in Github<br />
+            <a
+              href="https://github.com/ag-informatics/ag-informatics-course">https://github.com/ag-informatics/ag-informatics-course</a>
+          </li><br />
+
+          <li class="fragment"><span class="pink">Let's check them out...</span></li>
+        </ul>
+      </section>
+
+
+
+
+
+
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if
+                changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

@@ -1,112 +1,200 @@
-img{
-    max-height:100%;
-    max-width:100%;
+/* ===== Design tokens ===== */
+:root {
+    --color-red: crimson;
+    --color-blue: #1565C0;
+    --color-green: #1E7B1E;
+    --color-purple: darkorchid;
+    --color-pink: #C2185B;
+    --color-muted: #3B5169;
 }
 
-p, ul{
-    font-size:xx-large;
+.reveal {
+    --r-heading1-size: 2em;
+    /* was 2.5em */
+    --r-heading2-size: 1.4em;
+    /* was 1.6em */
+    --r-heading3-size: 1.15em;
+    /* was 1.3em */
+    --r-heading-text-transform: none;
+    /* was uppercase — the real fix for long headings */
 }
 
-.text-small{
-    font-size: medium;
-}
-
-.red{
-    color:crimson;
-}
-
-.blue{
-    color:dodgerblue;
-}
-
-.green{
-    color:forestgreen;
-}
-
-.purple{
-    color:darkorchid;
-}
-
-.pink{
-    color:deeppink;
-}
-
-.cite{
-    position:absolute;
-    bottom: 0em;
-    right: 0em;
-    font-size:0.3em;
-    color: lightsteelblue;
+/* ===== Typography ===== */
+p,
+ul {
+    font-size: xx-large;
 }
 
 ul.no-bullets {
-    list-style-type: none; /* Remove bullets */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margins */
-  }
-
-
-.align-right{
-    text-align: right;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.align-left{
+.text-massive {
+    font-size: 40px;
+    font-weight: bolder;
+}
+
+.text-large {
+    font-size: large;
+}
+
+.text-medium {
+    font-size: 24px;
+}
+
+.text-small {
+    font-size: medium;
+}
+
+td {
+    font-size: 0.8em;
+}
+
+/* ===== Color utilities ===== */
+.red {
+    color: var(--color-red);
+}
+
+.blue {
+    color: var(--color-blue);
+}
+
+.green {
+    color: var(--color-green);
+}
+
+.purple {
+    color: var(--color-purple);
+}
+
+.pink {
+    color: var(--color-pink);
+}
+
+.gray {
+    color: var(--color-muted);
+}
+
+/* ===== Layout & positioning ===== */
+.footer {
+    position: absolute;
+    bottom: 0em;
+    left: 0em;
+    font-size: 0.3em;
+    color: var(--color-muted);
+}
+
+.cite {
+    /* In-flow, not absolutely positioned — was position:absolute anchored
+       to bottom-left, but <section> has no fixed height (shrinks to its
+       content), so "bottom" meant "bottom of this slide's own content box,"
+       not "bottom of the slide" — hence needing manual <br> padding to
+       push it down. Left-aligned to match .footer; margin-top gives it
+       breathing room from whatever content precedes it. */
+    display: block;
     text-align: left;
+    margin-top: 1em;
+    font-size: 0.5em;
+    color: var(--color-muted);
+    text-decoration-color: var(--color-muted);
 }
 
-.container{
+.container {
     display: flex;
     flex-flow: row wrap;
 }
 
-.col{
+/* reveal.js's own .r-hstack sets no gap and centers children flush against
+   each other — this restores the even-width, spaced-out columns .container/
+   .col used to give for free. */
+.r-hstack {
+    gap: 4%;
+}
+
+.r-hstack>div {
+    flex: 1;
+}
+
+.col {
     flex-flow: column wrap;
     flex-basis: 100%;
-    flex:1;
+    flex: 1;
 }
 
-td{
-    font-size: 0.8em;
+.card {
+    display: flex;
 }
 
-.card{
-    display:flex;
+.item {
+    height: 100px;
+    width: 100px;
 }
 
-.item{
-    height:100px;
-    width:100px;
-}
-.item-center{
-    flex-grow:1;
+.item-center {
+    flex-grow: 1;
     font-size: medium;
     text-align: left;
 }
 
-.item + .item {
+.item+.item {
     margin-left: 2%;
 }
 
-.box{
+.box {
     margin: auto;
-    padding-left:50px;
+    padding-left: 50px;
     width: 600px;
     text-align: left;
 }
 
-.footer {
-    position:absolute;
-    bottom: 0em;
-    left: 0em;
-    font-size:0.3em;
-    color: lightsteelblue;
-  }
-
-
-@media (min-width: px){
-    
+.align-right {
+    text-align: right;
 }
 
-@media (max-width: px){
-    
+.align-left {
+    text-align: left;
+}
+
+/* ===== Image & media utilities ===== */
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-10 {
+    width: 10%;
+}
+
+.overlay {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.no-border {
+    border-width: 0;
 }

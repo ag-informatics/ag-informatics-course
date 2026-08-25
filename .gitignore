@@ -10,4 +10,16 @@
 *.vpp.*
 __pycache__
 .venv/
-modarchive/revealjs
+
+#ignore local databases
+db.sqlite3
+
+#ignore massive files
+*.pptx
+
+#ignore folders explicitly marked do-not-commit
+archived releases - do not commit/
+ankita reference docs - do not commit/
+
+#ignore local Claude Code settings (machine-specific, not shared config)
+.claude/settings.local.json
