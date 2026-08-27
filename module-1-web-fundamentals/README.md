@@ -26,8 +26,9 @@ Source code for the slides is in this folder. The slides are live here:
 - [Lecture 1.1](lecture-1.1.html)
 - [Lecture 1.2](lecture-1.2.html) - Graded in-class activity
 
-<-- - [Lecture 1.3]() - Quiz 1
-- [Lecture 1.4]() -->
+-- Next week!
+- [Lecture 1.3]() - Quiz 1
+- [Lecture 1.4]()
 
 ## Lab
 
