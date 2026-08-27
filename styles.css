@@ -96,7 +96,7 @@ td {
     display: block;
     text-align: left;
     margin-top: 1em;
-    font-size: 0.5em;
+    font-size: 0.3em;
     color: var(--color-muted);
     text-decoration-color: var(--color-muted);
 }
@@ -161,34 +161,6 @@ td {
 img {
     max-height: 100%;
     max-width: 100%;
-}
-
-.w-80 {
-    width: 80%;
-}
-
-.w-70 {
-    width: 70%;
-}
-
-.w-60 {
-    width: 60%;
-}
-
-.w-50 {
-    width: 50%;
-}
-
-.w-40 {
-    width: 40%;
-}
-
-.w-25 {
-    width: 25%;
-}
-
-.w-10 {
-    width: 10%;
 }
 
 .overlay {
