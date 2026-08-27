@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+        -->
+      <section>
+        <img src="img/m1-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Web Development</h1>
+
+        <p>
+          Module 1 - Web Fundamentals<br />
+          Lecture 1.2 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">A quick skills-forward overview of how people engineer<br /> software that runs on
+          shared digital
+          infrastructure.
+        </p>
+
+        <ol class="fragment text-medium">
+          <li>What is the web and the internet?</li>
+          <li>How do websites work?</li><br />
+
+          <li>How do people design and build web applications?
+            <ul class="text-small no-bullets">
+              <li>Software development tools: Version control, Code editor</li>
+              <li>Languages: HTML & CSS </li>
+              <li>Design methods: Atomic Design</li>
+            </ul>
+          </li><br />
+          <li>Lab 1 + Activity: Website Mockup [30 mins]</li>
+        </ol>
+        <p class="fragment green">Goal: Be able to build a simple website.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+      <section>
+        <h2>What is the Internet?</h2>
+        <div class="fragment blue">
+          <p>Shared digital infrastructure</p>
+          <img src="img/m1-web-internet-map.png" width="80%"
+            alt="World map showing the undersea fiber-optic cable network connecting continents — the physical infrastructure the internet runs on." />
+          <p class="cite">img src, in order: https://www.submarinecablemap.com/; Barrett Lyon,
+            https://www.opte.org/the-internet.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>What is the Internet?</h2>
+        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/DdaElt6oP6w?si=pMB3Eb-lw1ILckiz"
+          title="YouTube video player showing a video titled `The Internet: 1997 - 2021 (1m)`" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </section>
+
+      <section>
+        <h2>World Wide Web = www</h2>
+        <div class="fragment blue">
+          <p>Interconnected, or hyperlinked, content </p>
+          <img class="r-stretch" src="img/m1-web-wiki-chris73.png"
+            alt="Wikipedia's own hyperlink network diagram — a dense web of lines connecting related Wikipedia and reference-site pages, illustrating the web's interconnected, hyperlinked structure." />
+
+          <p class="cite">img src, in order: Chris73, Wikimedia Commons; Euclid Project,
+            https://euclid-project.eu/modules/chapter1.html</p>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>An approx. evolution of the web?</h2>
+        <div class="r-stack">
+          <div class="fragment fade-in-then-out">
+            <img src="img/m1-web-evolution.png" width="80%"
+              alt="Timeline chart 'The Evolution of the Web' plotting value created from 1990 to 2025: Web 1.0 (e-commerce, desktop browsers) with early sites like Amazon and Netscape; Web 2.0 (social networks, mobile, cloud) with Facebook, Airbnb, and Uber; Web 3.0 (AI-driven, decentralized, edge computing) with Bitcoin, Ethereum, and Maker — curving sharply upward toward an unknown '?' at 2025." />
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m1-dixon-read-write-own.png" width="40%"
+              alt="Book cover of 'Read Write Own: Building the Next Era of the Internet' by Chris Dixon, showing a red rectangle rising like a sun over an ocean horizon." />
+          </div>
+
+          <div class="fragment">
+            <img src="img/m1-web4-forasoft.png" width="80%"
+              alt="Diagram 'The four webs: what each era added' — Web 1.0 (Read, human reads, HTML/HTTP/URLs), Web 2.0 (+Write, users post & share, APIs/cloud/JS), Web 3.0 (+Own, users own assets, blockchains/wallets), Web 4.0 (+Delegate, AI agents act for you, LLMs/agents/edge/IoT), captioned 'The web never replaced a layer; it stacked them.'" />
+          </div>
+
+        </div>
+
+        <p class="cite">First to last: <a href="https://www.fabric.vc/writing/what-is-web-3-0-why-it-matters">Evolution
+            of the web;</a> <a href="https://readwriteown.com/#order">Dixon,
+            Read Write Own; </a> <a href="https://readwriteown.com/#order">Forasoft's four webs</a></p>
+      </section>
+
+      <section>
+        <h2>How do websites work?</h2>
+        <p>Watch this later :) </p>
+        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/kBXQZMmiA4s"
+          title="YouTube video player showing a video on how websites work"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <p class="text-small">You can watch the entire series on the <a
+            href="https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7">CodeAI youtube
+            playlist</a></p>
+      </section>
+
+      <section>
+        <h2>The browser as a gateway</h2>
+        <img src="img/m1-web-url.png" width="80%"
+          alt="Illustration titled 'Web Browser' showing a browser address bar containing 'http://example.com', broken into U-R-L (Uniform Resource Locator), flanked by Chrome, Safari, Firefox, and Edge browser icons." />
+        <p class="cite"><a href="https://www.youtube.com/watch?v=kBXQZMmiA4s">CodeAI's Intro to HTTP & HTML</a></p>
+      </section>
+
+      <section>
+        <h2>A URL sends you to an address</h2>
+        <p>Internet Protocol (IP) Address: <span class="blue">93.184.216.34</span></p>
+        <img class="fragment" src="img/m1-web-url-parts.png" width="50%"
+          alt="Diagram labeling the parts of a URL 'http://www.example.com/index.html': protocol (http), sub-domain (www), domain name (example), top-level domain (.com), and resource/file path (/index.html)." />
+        <img class="fragment" src="img/m1-web-url-parts2.png" width="70%"
+          alt="Diagram labeling the parts of a URL with query parameters: 'http://example.com/page.html?source=email&type=free shipping' — the webpage URL, the '?' that starts parameters, each parameter/value pair, and the '&' that separates multiple parameters." />
+        <p class="cite"><a
+            href="https://stackoverflow.com/questions/43183205/how-to-use-get-variable-index-phpcat-about">Stack
+            overflow user: mickmackusa</a></p>
+      </section>
+
+      <section>
+        <h2>How do we get to the address?</h2>
+        <p class="blue">Hyper Text Transfer Protocol</p>
+        <img src="img/m1-web-http.png" width="80%"
+          alt="Illustration captioned 'HTTP: the language used to communicate between web browsers and servers,' showing a server icon connected to a browser icon by a dashed line." />
+        <p class="cite"><a href="https://www.youtube.com/watch?v=kBXQZMmiA4s">CodeAI's Intro to HTTP & HTML</a></p>
+      </section>
+      <section>
+        <h2>An HTTP Request</h2>
+        <img src="img/m1-web-request.png" width="80%"
+          alt="Diagram of an HTTP request: a client device sends 'GET /images/plant.png HTTP/1.1, Host: www.plants.org' to a server, labeled front-end (client) and back-end (server)." />
+        <ul class="no-bullets">
+          <li>GET: request a web page or data </li>
+          <li>POST: submit data</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Server's Response</h2>
+        <img src="img/m1-web-response.png" width="80%"
+          alt="Diagram of an HTTP request/response cycle: the client sends 'GET /images/plant.png HTTP/1.1, Host: www.plants.org' to the server; the server replies with 'HTTP/1.1 200 OK' and the image's binary data." />
+
+        <div class="fragment">
+          <p>Response Types?</p>
+          <ul>
+            <li>200 Ok</li>
+            <li>404 Not Found</li>
+            <li>301/302 Moved Permanently/Temporarily</li>
+            <li>500 Internal Server Error</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Connected Devices</h2>
+        <img src="img/m1-web-devices.png" width="80%"
+          alt="Diagram extending the HTTP request/response cycle to many connected devices — laptops, drones, smartwatches, and farm sensors/tractors — all communicating with servers in the cloud, illustrating the Internet of Things in an agricultural context." />
+      </section>
+
+      <section>
+        <h2><span class="pink">Demo:</span> Inspecting Websites</h2>
+        <ul>
+          <li>Launch firefox</li>
+          <li>Go to the search engine: <a href="https://www.duckduckgo.com">www.duckduckgo.com</a></li>
+          <li>Open Firefox's Network Monitor:
+            <ul class="text-small">
+              <li>CTRL + SHFT + E (windows), or CMD + OPT + E (Mac) </li>
+              <li> In the File Menu, go to Tools > Browser Tools > Web Developer Tools > Network tab</li>
+              <li>Stuck? Visit <a
+                  href="https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor">https://developer.mozilla.org/en-US/docs/Tools/Network_Monitor</a>
+              </li>
+            </ul>
+          </li>
+          <li class="fragment">What do you see?
+            <ul class="text-small">
+              <li class="fragment">Now try: <a href="https://www.google.com">www.google.com</a>.</li>
+              <li class="fragment">Streaming site like: <a href="https://www.youtube.com">www.youtube.com</a></li>
+              <li class="fragment">Learn more about the requests: <a
+                  href="https://docs.google.com/document/d/1ctikDy9v-e_bxvZvgFIE4Di7OUt2usz2V8qvdCpF5Ts/edit?tab=t.0">CodeAI's
+                  U1L13 Resource: HTTP and Abstraction on the Internet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Software Development Toolbox</h2>
+        <ul class="text-medium">
+          <li class="fragment">View and access web content:
+            <ul class="text-medium">
+              <li>Web Browser e.g., <span class="blue">Firefox</span> Chrome, etc.</li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Programming languages to "markup" content:
+            <ul class="text-medium">
+              <li>Structure and place content on a web page: <span class="blue">HTML</span></li>
+              <li>Visually style content: <span class="blue">CSS</span></li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Write and edit code:
+            <ul class="text-medium">
+              <li>Editor or Integrated Development Environment (IDE) e.g., <span class="blue">VS Code</span></li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Store, manage, and track changes via a "repository" or "repo":
+            <ul class="text-medium">
+              <li>Command line utility e.g., <span class="blue">git</span>, svn, etc.</li>
+              <li>Code Hosting Service e.g., <span class="blue">GitHub</span>, Gitlab, etc.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Version Control</h2>
+        <p>Watch this later :) </p>
+        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/w3jLJU7DT5E"
+          title="YouTube video player showing a video on version control basics" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p class="cite"><a href="https://youtu.be/w3jLJU7DT5E">https://youtu.be/w3jLJU7DT5E</a></p>
+      </section>
+
+      <section>
+        <h2>Demo: git + GitHub</h2>
+        <br />
+        <p>Visual git explainer: <br />
+          <a
+            href="https://onlywei.github.io/explain-git-with-d3/#push">https://onlywei.github.io/explain-git-with-d3/#push</a>
+        </p>
+
+        <br />
+        <p>Demo website: <br />
+          <a href="https://github.com/ag-informatics/sudokita.github.io"> my archived grad
+            school website repository - source code</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Your First Web Languages</h2>
+        <div class="r-hstack">
+          <div>
+            <p>HTML: <br />Hyper text markup language</p>
+            <img src="img/m1-lang-html-example.png"
+              alt="Example HTML code: a basic document structure with doctype, html/head/body tags, a page title, an h1 heading 'This is a Heading', and a paragraph 'This is a paragraph.'">
+          </div>
+          <div>
+            <p>CSS: <br /> Cascading Style Sheets</p>
+            <img src="img/m1-lang-css-example.png"
+              alt="Example CSS code: styling rules setting the body's background color to light blue, the h1's text color to white and centered, and the paragraph font to Verdana at 20px.">
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>Demo: HTML/CSS in VS Code</h2>
+        <br />
+        <p>Use these websites as a dictionary or reference:<br />
+        <ul>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements">Mozilla Developers
+              Network</a></li>
+          <li><a href="https://www.w3schools.com/tags/default.asp">W3Schools: tags (per
+              language)</a></li>
+          <li><a href="https://www.w3schools.com/css/css_examples.asp">W3Schools: examples page (per language)</a></li>
+        </ul>
+
+        <p><br />Demo website: <br />
+          <a href="https://ag-informatics.github.io/sudokita.github.io/"> my archived grad
+            school website - live</a>
+        </p>
+
+
+      </section>
+
+
+      <section>
+        <h2>Atomic Design in brief</h2>
+
+        <div class="r-stack">
+          <div class="fragment fade-in-then-out">
+
+            <img src="img/m1-atomic-design-1.png" width="70%"
+              alt="Title slide: 'Atomic Design Methodology, Chapter 2 — Atoms, molecules, organisms, templates, and pages.'" />
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+
+            <img src="img/m1-atomic-design-2.png" width="70%"
+              alt="Chemistry analogy: two hydrogen atoms and one oxygen atom bonding into a water molecule (2H2 + O2 → 2H2O), illustrating how atoms combine into molecules." />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>HTML "Elements"</p>
+            <img src="img/m1-atomic-design-3.png" width="50%"
+              alt="A 'Periodic Table of HTML Elements' — every native HTML tag grouped by category (root, metadata, text-level semantics, grouping content, forms, tabular data, document sections, interactive elements, embedding content), styled like the chemical periodic table." />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m1-atomic-design-4-process.png" width="70%"
+              alt="Icon sequence showing the five Atomic Design stages in order: Atoms, Molecules, Organisms, Templates, Pages." />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>HTML "Atoms"</p>
+            <img src="img/m1-atomic-design-5-atoms.png" width="50%"
+              alt="Three HTML 'atoms' shown separately: a text label ('Search the site'), an input field ('Enter keyword'), and a button ('Search')." />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>HTML "Molecules"</p>
+            <img src="img/m1-atomic-design-6-molecules.png" width="50%"
+              alt="A 'molecule' formed by combining the label, input, and button atoms into a single search bar: 'Search the site' with an 'Enter keyword' field and a 'Search' button." />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>HTML "Organisms"</p>
+            <img src="img/m1-atomic-design-6-organisms.png" width="70%"
+              alt="A navigation-bar 'organism' combining several molecules: a logo placeholder, Home/About/Blog/Contact nav links, and the 'Search the site' search bar molecule, all in one horizontal header bar." />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m1-atomic-design-7-headers.png" width="70%"
+              alt="Collage of real website headers (Yahoo, Facebook, The New York Times, Tumblr, Medium, Google, Twitter, Etsy, Carnegie Mellon University) — each combining a logo, navigation, and search bar into a header 'organism.'" />
+
+
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>HTML "Templates"</p>
+            <img src="img/m1-atomic-design-7-template.png" width="50%"
+              alt="Wireframe 'template' combining a header organism (logo, nav, search) with placeholder content blocks below it — a hero banner, text blocks, and image placeholders — showing structure without real content yet." />
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>HTML "Pages"</p>
+            <img src="img/m1-atomic-design-8-pages.png" width="50%"
+              alt="The same wireframe template filled in with real content — a mountain photo hero image, 'This Is Real Content' heading, article text, and real photos — turning the template into a finished 'page.'" />
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m1-atomic-design-9-full.png" width="70%"
+              alt="Side-by-side recap of all five Atomic Design stages using an Instagram post as the example: atoms (icons), molecules (a photo header bar), organisms (a full post header), templates (the post layout with a placeholder image), and pages (the same layout with a real photo of a bulldog and real caption)." />
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <p>Thinking in Patterns</p>
+            <img src="img/m1-atomic-design-99-patterns.png" width="50%"
+              alt="Screenshot of a pattern library / style guide tool showing a site's reusable design tokens — color palette, font stack, animation timing, and heading styles — organized by Atoms, Molecules, Organisms, Templates, and Pages." />
+          </div>
+        </div>
+        <p class="cite">Brad Frost: Atomic Design <a href="https://atomicdesign.bradfrost.com/chapter-2/">Ch2</a> & <a
+            href="https://atomicdesign.bradfrost.com/chapter-3/">Ch3</a></p>
+
+      </section>
+
+      <section>
+        <h2>Inspecting Websites</h2>
+        <ul>
+          <li>Navigate to <a href="https://example.org">example.org</a></li>
+          <li>Click on <img src="img/m1-web-inspector.png" alt="Firefox DevTools 'Inspector' tab icon and label."
+              style="vertical-align:middle;" /></li>
+          <li>Hover over the text
+            <pre><code data-trim><h1>Example Domain</h1></code></pre>
+          </li>
+          <li class="fragment">What do you see?</li>
+          <li class="fragment">How about: <a href="https://www.purdue.edu">www.purdue.edu</a> ... Let's poke around.
+            <ul class="text-small fragment">
+              <li>What do you think has been used to build the site?</li>
+              <li>Right click on the banner image and click inspect. Can you find the URL for the image?</li>
+              <li>Let's go through the parts of the inspector.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>About the Lab</h2>
+        <p> GOTO: <a
+            href="https://github.com/ag-informatics/ag-informatics-course/tree/main/module-1-web-fundamentals/lab-1">Module
+            1, Lab 1</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>In-Class Activity + Lab 1 prep</h2>
+        <div class="text-medium">
+          <ol>
+            <li>Scope
+              <ul class="text-small">
+                <li>What is the goal of your website?</li>
+                <li>What content do you want to showcase?</li>
+              </ul>
+            </li>
+            <li>Sketch
+              <ul class="text-small">
+                <li>Draw a few single-page layouts</li>
+                <li>Mix and match till you get a page layout that you like</li>
+              </ul>
+            </li>
+            <li>Atomize
+              <ul class="text-small">
+                <li>What are the basic components that you need?</li>
+              </ul>
+            </li>
+            <li> Pseudocode -- <span class="red">submit in-class today!</span>
+              <ul class="text-small">
+                <li>Draw a clean layout</li>
+                <li>In simple language: label the components</li>
+              </ul>
+            </li><br />
+            <li class="fragment"> Refine & Translate -- <span class="red">Continue in Step 5 of the Lab</span>
+              <ul class="text-small">
+                <li>Check your dictionary and cheatsheet</li>
+                <li>For each component: find the respective HTML element</li>
+                <li>For each reusable "aesthetic" choice: find CSS styles </li>
+                <li>Write your code! Tinker, test, refine, test, ship!</li>
+              </ul>
+            </li>
+          </ol>
+
+        </div>
+      </section>
+
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if
+                changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

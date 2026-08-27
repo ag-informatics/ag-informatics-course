@@ -33,9 +33,9 @@ layout: none
 
 These learning materials introduce students to current and emerging digital technologies with applications in agriculture, environment, and food systems. Through a modular hands-on course design, students will incrementally learn user-centered technology design skills, computational thinking skills to evaluate, design, conceptualize, and implement informatics solutions to data-driven challenges. Students will gain programming skills in current software development technology stacks (Python, HTML, CSS, SQL, Django), with an emphasis on web applications. Students will design an informatics solution to problem in their own area of interest. This course supports professional development for students in pursuit of careers in digital product design or data-driven research.
 
-**For students new to computing:** These materials provide digital-novices with a gentle on-ramp to learn digital agriculture skills so that they can better understand how technology works and is built. While you may have a deeper understanding of the unique challenges of your domain, you will learn how to engage in domain-driven **software development**. Through these mateirals, students should will gain the vocabulary and experience to be able to identify advanced courses for more in-depth learning.
+**For students new to computing:** These materials provide digital-novices with a gentle on-ramp to learn digital agriculture skills so that they can better understand how technology works and is built. While you may have a deeper understanding of the unique challenges of your domain, you will learn how to engage in domain-driven **software development**. Through these materials, students will gain the vocabulary and experience to be able to identify advanced courses for more in-depth learning.
 
-**For students with a more significant computing background:** These materials are designed to provide domain-novices with a breadth-first exploration of digital agriculture, so that they can apply their skillls to develop technology for agricultural, environmental, and food systems applications. While you may be comfortable with computational work, you will learn how to engage in **domain-driven** software development. Through these materials, students will be able to identify and develop appropriate software solutions to address agriculture, environment, and food systems research and practice.
+**For students with a more significant computing background:** These materials are designed to provide domain-novices with a breadth-first exploration of digital agriculture, so that they can apply their skills to develop technology for agricultural, environmental, and food systems applications. While you may be comfortable with computational work, you will learn how to engage in **domain-driven** software development. Through these materials, students will be able to identify and develop appropriate software solutions to address agriculture, environment, and food systems research and practice.
 
 ## Learning Objectives
 
@@ -83,7 +83,7 @@ Alternatively, send me an message or come chat.
 
 ## AI Policy (for Learners)
 
-I'm giving edition of this Intro to Ag Informatics the tagline: *"from pseudocode to vibecode"* because of the following notion:
+I'm giving this edition of Intro to Ag Informatics the tagline: *"from pseudocode to vibecode"* because of the following notion:
 
 The purpose of this course is to teach you how to read and write code. I will support you in thinking critically about technology and prepare you to debate what constitutes good digital design practices. But, this course is also designed to teach you about emerging technologies, and that includes, the use of contemporary AI technologies, such as LLMs. Thus, we must thread the needle of responsible AI use carefully.
 
@@ -107,7 +107,7 @@ In all cases, disclose if and how you used AI tools in your work. When in doubt,
 
 ## AI & Technology Use Disclosure (from the Instructor)
 
-This module's foundational design — content, structure, learning objectives, lecture and assignments — was developed by Ankita Raturi between 2021 and 2024, across four offerings of this course. No AI tools are used in foundational course design and development. The process of creating learning materials, whether lectures or assessments, begins with me. This includes 2025+ content.
+Pedagogical design — content, structure, learning objectives, lecture and assignments — was developed by Ankita Raturi between 2021 and 2024, across four offerings of this course. No AI tools are used to make pedagogical design decisions. The process of creating learning materials, whether lectures or assessments, begins with me. This includes 2025+ content.
 
 **In my digitally-mediated course production work, the pedagogical design decisions remain mine.**
 
@@ -119,8 +119,8 @@ In this context, there are many digital tools that I use in course design and de
 * VS Code — primary editor for course production; also what students are taught to use starting in Lab 1.
 * GitHub — hosts and version-controls all course materials; also where students submit their own labs, and where GitHub Pages serves the live slide decks.
 * Airtable — course planning database: weekly schedule, module content inventory, assessment weights, .
-* Claude Code & Cowork — I use the CLI-based coding agent for direct file edits, building small scripts, git issue and repo management, content audits, accessibility fixes, and building templates (like this). Cowork is used for the course structure reviiews and schedule planning work. 
-* Miro — collaborative whiteboarding for course design sketching; also what student use for prototoyping activities.
+* Claude Code & Cowork — I use the CLI-based coding agent for direct file edits, building small scripts, git issue and repo management, content audits, accessibility fixes, and building templates (like this). Cowork is used for the course structure reviews and schedule planning work. 
+* Miro — collaborative whiteboarding for course design sketching; also what student use for prototyping activities.
 * Firefox — primary browser for testing rendered slides and labs.
 * Obsidian — personal notes / knowledge management for course planning.
 * Brightspace — Purdue's LMS; canonical for syllabus, grades, and all official dissemination. All FERPA / student materials in Purdue's systems only.

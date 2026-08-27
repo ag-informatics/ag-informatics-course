@@ -37,6 +37,44 @@ As a reminder, the overarching AI policy is available in the main repository [RE
 
 If you are a Purdue ASM 532 student: Check Brightspace for current instructions, due dates, and other submission details.
 
+## Rubrics
+
+Total: 30 points (5 in-class activity + 5 quiz + 18 lab).
+
+### In-class activity — 5 pts
+
+The mockup resulting from the 30-minute activity on the Lecture 1.2 activity slide.
+
+| Points | Criteria |
+| --- | --- |
+| 0 | Missed |
+| 2 | Incomplete layout — doesn't have to be "right" |
+| 5 | Complete - doesn't have to be "right"! |
+
+### Quiz — 5 pts
+
+Next week: decompose a layout into HTML elements, cheat sheet on-hand.
+
+### Lab 1 — 20 pts
+
+* Git Commits — 4 pts
+* 1 pt for each of 4 commits.
+* Revised layout diagram — 4 pts
+    * Picks up from what was done in lecture — a more correct diagram (i.e., represents realistic layout).
+* Final webpage — 5 or 10 pts 
+
+| Points | Criteria |
+| --- | --- |
+| 0 | Missed or low effort |
+| 5 | Partial webpage - correct but doesn't render, or minimally matches the layout |
+| 10 | Renders like the layout |
+
+### Submission folder structure - 2 pts
+- An `img` folder containing and at least 1 image used in the HTML web page
+- A "validated" CSS file - use the website [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to check your work.
+- A "validated" HTML file — use the website [W3C HTML Validator](https://validator.w3.org/) to check your work.
+
+
 ## References
 
 <!-- TODO: summarize the resources / future-learning-pathways content shared in the slides and in the Airtable base for this module, so students have one place to find it instead of hunting through slide decks.

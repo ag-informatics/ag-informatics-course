@@ -144,13 +144,15 @@ You can open your HTML file in your preferred web browser (such as Chrome). Anot
 
 ### STEP 5: Translate mockup to HTML + CSS
 
-Sketch a static profile webpage that looks similar to the mockup below.
+In [Lecture 1.2's](..\lecture1.2.html) activity, you scoped, sketched, atomized, and pseudocoded a layout for your own portfolio site. This step is where you revise and translate that work into real HTML + CSS.
+
+For example, during the [in-class demo](https://ag-informatics.github.io/sudokita.github.io), I showed you a simple multi-page website that I made in back in grad school. The mockup below can be thought of as a one-page "first draft" of that website. In this lab, you'll make your ONE-PAGE website.
 
 ![Hand-drawn wireframe of a personal portfolio webpage: a "Hi, I'm Ankita" header, a self-portrait sketch next to a title/email/website/social-icon block, a "Here's a sampling of my work" section with three placeholder image-and-text rows, and a footer noting the page's last-updated date.](img/mockup.jpg)
 
-> Your proposed website can be different! This is just an example of a reasonable level of complexity for a beginner profile. You will **not** be graded on how closely you follow this list — it's here to illustrate one way of breaking a design down into buildable pieces, not a checklist to match exactly. We'll practice this kind of mockup-to-layout decomposition together in lecture 1.2.
+> Your own site will be different! The mockup above is just an example of a reasonable level of complexity for a beginner profile — not a template to copy over your own lecture work. You will **not** be graded on how closely you match it; it's here to illustrate one way of breaking a design down into buildable pieces, the same kind of Scope → Sketch → Atomize → Pseudocode → Translate process from Lecture 1.2. 
 
-**For example, one way to break this mockup down:**
+**For example, here's one way this mockup breaks down (compare it to your own Atomize/Pseudocode steps from lecture):**
 
 1. A `<div>` with the ID "header" — for an introduction, e.g., "Hi! I'm Ankita".
    - Ideas: give it a minimum height (e.g., 40px), center the text, use a font style/size different from the rest of the page, or try CSS's "small caps" text transform.
