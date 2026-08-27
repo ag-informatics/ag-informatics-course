@@ -24,8 +24,9 @@ Second, I provide quick skills-forward overview of how people engineering softwa
 Source code for the slides is in this folder. The slides are live here:
 
 - [Lecture 1.1](lecture-1.1.html)
-<!-- - [Lecture 1.2]() - Graded in-class activity
-- [Lecture 1.3]() - Quiz 1
+- [Lecture 1.2](lecture-1.2.html) - Graded in-class activity
+
+<-- - [Lecture 1.3]() - Quiz 1
 - [Lecture 1.4]() -->
 
 ## Lab
@@ -58,7 +59,7 @@ Next week: decompose a layout into HTML elements, cheat sheet on-hand.
 ### Lab 1 — 20 pts
 
 * Git Commits — 4 pts
-* 1 pt for each of 4 commits.
+    * 1 pt for each of 4 commits.
 * Revised layout diagram — 4 pts
     * Picks up from what was done in lecture — a more correct diagram (i.e., represents realistic layout).
 * Final webpage — 5 or 10 pts 
@@ -69,10 +70,10 @@ Next week: decompose a layout into HTML elements, cheat sheet on-hand.
 | 5 | Partial webpage - correct but doesn't render, or minimally matches the layout |
 | 10 | Renders like the layout |
 
-### Submission folder structure - 2 pts
-- An `img` folder containing and at least 1 image used in the HTML web page
-- A "validated" CSS file - use the website [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to check your work.
-- A "validated" HTML file — use the website [W3C HTML Validator](https://validator.w3.org/) to check your work.
+* Submission folder structure - 2 pts
+   * An `img` folder containing and at least 1 image used in the HTML web page
+   * A "validated" CSS file - use the website [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) to check your work.
+   * A "validated" HTML file — use the website [W3C HTML Validator](https://validator.w3.org/) to check your work.
 
 
 ## References
