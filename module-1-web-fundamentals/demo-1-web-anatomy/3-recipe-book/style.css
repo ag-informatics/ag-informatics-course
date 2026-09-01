@@ -1,0 +1,22 @@
+/* This is a comment in CSS */
+
+/* ============================================================
+   STEP 0 — no layout yet
+   ============================================================
+
+   This file is deliberately almost empty.
+
+   Open index.html with this stylesheet attached and you get the
+   browser's own default styling: everything stacked in one column,
+   top to bottom, in the order it appears in the HTML.
+
+   That stacking is called NORMAL FLOW. It is what you get for free.
+   Everything in steps 1 to 4 is us changing our minds about it.
+
+   The only rule below proves the stylesheet is actually connected —
+   if the page font changes, the <link> in index.html is working.
+*/
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+}

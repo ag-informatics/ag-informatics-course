@@ -1,0 +1,208 @@
+<!-- This is a comment in HTML -->
+<!--
+  This is an HTML file.
+  The name of this file is "index.html"
+  "index" is a reserved filename used to indicate which of the pages in a
+  folder is the "home" or starting page.
+
+  DEMO: this file does not change. Only the stylesheet changes.
+  To move through the demo, edit the ONE line marked STEP below:
+
+      style.css        step 0 — no layout yet
+      step-1-box.css   step 1 — the box model
+      step-2-table.css step 2 — the ingredients table
+      step-3-flex.css  step 3 — flexbox: side by side
+      step-4-grid.css  step 4 — grid: the whole page at once
+
+  Same structure, five different styles to play with.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Digital Recipe Book</title>
+
+  <!-- STEP: change this filename to move through the demo -->
+  <link rel="stylesheet" href="step-3-flex.css">
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- ===== HEADER: the banner at the top ===== -->
+    <header>
+      <h1>Hot Pot</h1>
+      <p class="tagline">Slow food, fast code.</p>
+    </header>
+
+    <!-- ===== NAV: links to the rest of the site ===== -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Recipes</a></li>
+        <li><a href="#">Pantry</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- ===== CONTENT: main + aside live inside this wrapper.
+             Step 3 makes this a flex container.
+             Step 4 makes it a grid container. ===== -->
+    <div class="content">
+
+      <!-- ===== MAIN: the content unique to THIS page ===== -->
+      <main>
+        <article class="recipe">
+
+          <h2>Pasta Marinara</h2>
+
+          <img src="img/pasta-marinara.png" width="100%"
+            alt="Looking down into a wide cast iron pot of bright orange-red marinara at a full simmer, with sprigs of rosemary and whole dried red chiles floating on the surface and a wooden spoon resting against the rim." />
+
+          <p class="intro">
+            I started working on this marinara in grad school and refined bulk
+            production later on. There are almost always a few jars in our
+            freezer: we use it as is, cook it down for pizza sauce, or jazz it
+            up with meatballs, olives, or fried eggplant.
+          </p>
+
+          <p>
+            I usually spend a Sunday afternoon with it bubbling on the stove,
+            though it is ready after about an hour. The sauce deepens in colour
+            and flavour over time, so keep it on for as many hours as you can
+            spare.
+          </p>
+          <!-- A TABLE — because ingredients are genuinely tabular data:
+               rows and columns of related values. That is what tables are
+               for. For arranging the PAGE, see steps 3 and 4 instead. -->
+          <table class="ingredients">
+            <caption>Ingredients — serves 6 to 8</caption>
+            <thead>
+              <tr>
+                <th scope="col">Amount</th>
+                <th scope="col">Ingredient</th>
+                <th scope="col">Substitutions &amp; notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>4 &times; 28 oz cans</td>
+                <td>Crushed or whole tomatoes</td>
+                <td>Or the equivalent weight in fresh tomatoes</td>
+              </tr>
+              <tr>
+                <td>1 large red, 1 large yellow</td>
+                <td>Onion, diced</td>
+                <td>Or about 700 g of any chopped onion</td>
+              </tr>
+              <tr>
+                <td>3&ndash;4</td>
+                <td>Carrots, diced</td>
+                <td>About 200 g</td>
+              </tr>
+              <tr>
+                <td>10&ndash;15 cloves</td>
+                <td>Garlic, minced</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>1 tbsp</td>
+                <td>Salt</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>&frac12; tbsp</td>
+                <td>Chili powder</td>
+                <td>Cayenne or paprika, mood dependent</td>
+              </tr>
+              <tr>
+                <td>4 whole</td>
+                <td>Dried red chili</td>
+                <td>Usually &aacute;rbol chiles</td>
+              </tr>
+              <tr>
+                <td>2 sprigs each</td>
+                <td>Dried thyme and rosemary</td>
+                <td>Or 1 tbsp dried mixed herbs</td>
+              </tr>
+              <tr>
+                <td>1 cup</td>
+                <td>Olive oil</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Make it a meal</h3>
+          <ul>
+            <li>Linguine, 80 g dried per person &mdash; or any pasta</li>
+            <li>Parmesan, as you like &mdash; or crushed toasted pine nuts, if non-dairy</li>
+          </ul>
+
+          <!-- AN ORDERED LIST — steps happen in sequence, so <ol>, not <ul>. -->
+          <h3>Make the marinara sauce</h3>
+          <ol>
+            <li>Heat olive oil on medium in a deep pot. When shimmering, add onions and cook till translucent.</li>
+            <li>Add garlic, cook till fragrant.</li>
+            <li>Add carrots, cook till soft.</li>
+            <li>Add tomatoes with their liquid. Add salt, chili, and herbs.</li>
+            <li>Leave to bubble gently on low-medium heat for 1&ndash;3 hours, until deep orange-red and thick. You
+              cannot really overcook it.</li>
+            <li>Set aside, and freeze what you don't use in 2-cup portions.</li>
+          </ol>
+
+          <h3>Cook and assemble the pasta</h3>
+          <ol>
+            <li>Bring water to a boil. Cook the pasta till soft but with a bite, about 8&ndash;9 minutes. Drain.</li>
+            <li>Bring about a cup of marinara per person to a bubble in the empty pot. Add the pasta and any extras.
+              Mix till everything is coated and evenly hot.</li>
+            <li>Serve in bowls, with parmesan or pine nuts.</li>
+          </ol>
+
+        </article>
+      </main>
+
+      <!-- ===== ASIDE: related, but not the main point ===== -->
+      <aside>
+        <h2>At a glance</h2>
+        <dl class="facts">
+          <dt>Serves</dt>
+          <dd>6 to 8</dd>
+          <dt>Prep time</dt>
+          <dd>20 minutes</dd>
+          <dt>Cooking time</dt>
+          <dd>1 to 4 hours</dd>
+        </dl>
+
+        <h2>More recipes</h2>
+        <ul>
+          <li><a href="#">Freezer pizza sauce</a></li>
+          <li><a href="#">Marinara soup</a></li>
+          <li><a href="#">Fried eggplant</a></li>
+        </ul>
+
+        <h2>Sources</h2>
+        <p class="small">
+          Cook's Illustrated (the cast iron pot), Alice Waters (timing and
+          fresh-tomato conversion), Marcella Hazan (tomato sauce with
+          vegetables and oil), and Artie Buco of The Sopranos (finishing the
+          pasta in the sauce).
+        </p>
+      </aside>
+
+    </div>
+
+    <!-- ===== FOOTER: the strip across the bottom ===== -->
+    <footer>
+      <p>Recipe contributor: Ankita &middot; ASM 532 layout demo</p>
+      <p>Code specified by Ankita, demo variations generated with assistance from Anthropic Claude Opuse 5</p>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

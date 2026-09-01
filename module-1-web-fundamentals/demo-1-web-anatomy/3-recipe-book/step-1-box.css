@@ -1,0 +1,70 @@
+/* ============================================================
+   STEP 1 — the box model
+   ============================================================
+
+   Every element is a rectangular box. From the inside out:
+
+        content  ->  padding  ->  border  ->  margin
+
+   padding = space INSIDE the border (pushes the border away from the text)
+   margin  = space OUTSIDE the border (pushes other boxes away)
+
+   DEMO: open DevTools (right-click -> Inspect), select the
+   .recipe article, and look at the box-model diagram in the sidebar.
+   It shows these four layers as coloured bands, live. Hover each band
+   and the browser highlights it on the page.
+*/
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  color: #222;
+
+  /* The browser puts a default margin on <body>. Removing it lets the
+     header sit flush against the edge of the window. */
+  margin: 0;
+}
+
+/* Borders drawn on every region, just so you can SEE the boxes.
+   You would not ship this — it is an x-ray of the page. */
+header,
+nav,
+main,
+aside,
+footer {
+  border: 2px solid #b23;
+}
+
+header {
+  background-color: #f4e6d0;
+  padding: 24px;
+  /* space inside the border */
+}
+
+nav {
+  background-color: #f7f0e4;
+  padding: 12px 50px;
+}
+
+.recipe {
+  /* Try changing these three numbers and watch the box respond. */
+  border: 3px solid #333;
+  padding: 30px;
+  /* between the border and the text */
+  margin: 40px;
+  /* between this box and everything around it */
+
+  /* THE CLASSIC GOTCHA:
+     by default, width applies to the CONTENT only — padding and border
+     get ADDED on top, so a 600px box with 30px padding is really 660px
+     wide. This line makes width mean the whole box instead, which is
+     almost always what you actually wanted. */
+  box-sizing: border-box;
+  max-width: 700px;
+}
+
+footer {
+  background-color: #f4e6d0;
+  padding: 20px 24px;
+  margin-top: 40px;
+}

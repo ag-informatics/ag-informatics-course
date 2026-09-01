@@ -1,0 +1,122 @@
+/* ============================================================
+   STEP 3 — flexbox: things side by side
+   ============================================================
+
+   FLEXBOX LAYS THINGS OUT IN ONE DIRECTION — a row, or a column.
+
+   You put `display: flex` on the CONTAINER, and its direct CHILDREN
+   line up. That is the part people get wrong at first: flex is not
+   something you put on the thing you want to move, it goes on the
+   thing that holds it.
+
+   Two jobs on this page:
+     1. the nav links, which stack vertically by default
+     2. main and aside, which should sit next to each other
+*/
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  color: #222;
+  margin: 0;
+}
+
+header {
+  background-color: #f4e6d0;
+  padding: 24px;
+}
+
+footer {
+  background-color: #f4e6d0;
+  padding: 20px 24px;
+  margin-top: 40px;
+}
+
+/* ---------- job 1: the nav ---------- */
+
+nav {
+  background-color: #f7f0e4;
+  padding: 12px 24px;
+}
+
+nav ul {
+  /* <li> items are block-level, so they stack. Two changes fix it: */
+  list-style-type: none; /* drop the bullets */
+  display: flex; /* lay the children out in a row */
+
+  gap: 30px; /* space BETWEEN the items — no margin maths */
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- job 2: main beside aside ---------- */
+
+.content {
+  display: flex;
+  gap: 40px;
+  padding: 0 40px;
+  align-items: start; /* tops line up; don't stretch the short one */
+}
+
+main {
+  /* flex: 3 and flex: 1 means "share the space 3 to 1".
+     Not fixed pixel widths — proportions. Resize the window and the
+     ratio holds. */
+  flex: 3;
+}
+
+aside {
+  flex: 1;
+  background-color: #f7f0e4;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ---------- carried over from step 2 ---------- */
+
+.recipe {
+  box-sizing: border-box;
+}
+
+.ingredients {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.ingredients caption {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.ingredients th,
+.ingredients td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ingredients thead th {
+  background-color: #3d5a3d;
+  color: #fff;
+}
+
+.ingredients tbody tr:nth-child(even) {
+  background-color: #f5f5f0;
+}
+
+aside .facts dt {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+aside .facts dd {
+  margin-left: 0;
+}
+
+.small {
+  font-size: 0.85em;
+}

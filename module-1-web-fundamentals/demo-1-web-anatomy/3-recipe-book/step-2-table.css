@@ -1,0 +1,93 @@
+/* ============================================================
+   STEP 2 — the table
+   ============================================================
+
+   A <table> is for DATA that has rows and columns. Ingredients,
+   amounts, and substitutions are exactly that, so the recipe uses one.
+
+   Use a table for data, not for page layout — a table tells screen
+   readers "this is a grid of related values," which is true here and
+   would be misleading for a page's structure. Steps 3 and 4 are the
+   tools for layout.
+     https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/table
+     https://www.w3.org/WAI/tutorials/tables/
+
+   Everything from step 1 carries over, plus the table rules below.
+*/
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  color: #222;
+  margin: 0;
+}
+
+header {
+  background-color: #f4e6d0;
+  padding: 24px;
+}
+
+nav {
+  background-color: #f7f0e4;
+  padding: 12px 24px;
+}
+
+.recipe {
+  padding: 30px;
+  margin: 40px;
+  box-sizing: border-box;
+  max-width: 800px;
+}
+
+footer {
+  background-color: #f4e6d0;
+  padding: 20px 24px;
+  margin-top: 40px;
+}
+
+/* ---------- the table itself ---------- */
+
+.ingredients {
+  /* Without this, every cell draws its own border and you get a
+     double line between neighbours. Collapse merges them into one. */
+  border-collapse: collapse;
+
+  width: 100%;
+  margin: 30px 0;
+}
+
+.ingredients caption {
+  /* The caption is the table's own heading. Screen readers announce it
+     before the data, so a reader knows what the table is before they
+     start moving through cells. */
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.ingredients th,
+.ingredients td {
+  border: 1px solid #ccc;
+  padding: 10px 12px; /* cells with no padding are unreadable */
+  text-align: left;
+  vertical-align: top;
+}
+
+.ingredients thead th {
+  background-color: #3d5a3d;
+  color: #fff;
+}
+
+/* Zebra striping — :nth-child(even) selects every second row.
+   This is a readability aid, not decoration: it stops your eye
+   sliding onto the wrong row on a wide table. */
+.ingredients tbody tr:nth-child(even) {
+  background-color: #f5f5f0;
+}
+
+/* Narrow the first column so the amounts do not sprawl. */
+.ingredients td:first-child {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}

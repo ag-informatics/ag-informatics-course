@@ -1,0 +1,159 @@
+/* ============================================================
+   STEP 4 — grid: the whole page at once
+   ============================================================
+
+   FLEXBOX IS ONE DIRECTION. GRID IS TWO — rows AND columns together.
+
+   The payoff is grid-template-areas: you name the regions, then draw
+   the layout in the CSS. Look at the block below and compare it to the
+   wireframe from the lecture. It is the same picture.
+
+   Rule of thumb:
+     flexbox  ->  a row of things (a nav bar, a toolbar, two columns)
+     grid     ->  a whole page, or anything with real rows AND columns
+*/
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  color: #222;
+  margin: 0;
+}
+
+/* ---------- the page as a grid ---------- */
+
+.page {
+  display: grid;
+
+  /* Two columns: the second is a third the width of the first. */
+  grid-template-columns: 3fr 1fr;
+
+  /* THE PICTURE. Each string is a row. Each word is a named area.
+     A name repeated across a row means "span both columns". */
+  grid-template-areas:
+    "header header"
+    "nav    nav"
+    "main   aside"
+    "footer footer";
+
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* .content is only a wrapper we needed for flexbox in step 3.
+   `display: contents` makes the wrapper itself vanish from the layout,
+   so <main> and <aside> become direct children of the grid and can be
+   placed into the named areas above. The HTML never changed — only our
+   mind about it did. */
+.content {
+  display: contents;
+}
+
+/* Now assign each region to its area. */
+header {
+  grid-area: header;
+}
+
+nav {
+  grid-area: nav;
+}
+
+main {
+  grid-area: main;
+}
+
+aside {
+  grid-area: aside;
+}
+
+footer {
+  grid-area: footer;
+}
+
+/* ---------- TRY THIS LIVE ----------
+   Move the sidebar to the left by editing one line — swap the "main
+   aside" row for "aside main" and change the columns to 1fr 3fr.
+   No HTML changes. That is the thing to notice.
+   ----------------------------------- */
+
+/* ---------- region styling ---------- */
+
+header {
+  background-color: #f4e6d0;
+  padding: 24px;
+}
+
+nav {
+  background-color: #f7f0e4;
+  padding: 12px 24px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex; /* still the right tool for a row of links */
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+aside {
+  background-color: #f7f0e4;
+  padding: 20px;
+}
+
+footer {
+  background-color: #f4e6d0;
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.recipe {
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+/* ---------- carried over from step 2 ---------- */
+
+.ingredients {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.ingredients caption {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.ingredients th,
+.ingredients td {
+  border: 1px solid #ccc;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ingredients thead th {
+  background-color: #3d5a3d;
+  color: #fff;
+}
+
+.ingredients tbody tr:nth-child(even) {
+  background-color: #f5f5f0;
+}
+
+aside .facts dt {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+aside .facts dd {
+  margin-left: 0;
+}
+
+.small {
+  font-size: 0.85em;
+}
