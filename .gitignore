@@ -1,5 +1,6 @@
-#ignore ds_store
+#ignore utility files
 .DS_Store
+~$*
 
 #ignore python checkpoints
 .ipynb_checkpoints

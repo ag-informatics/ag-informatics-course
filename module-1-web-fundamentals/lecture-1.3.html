@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m1-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Anatomy of a Website</h1>
+
+        <p>
+          Module 1 - Web Design &amp; Development<br />
+          Lecture 1.3 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ul>
+          <li>Anatomy of a Website</li>
+          <li>HTML Basics</li>
+          <li>CSS Basics</li>
+          <li>The Box Model</li>
+          <li>Complex Layouts</li>
+          <li>Quiz 1: Decomposing a Website</li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- ===================================================================
+           1. ANATOMY OF A WEBSITE — from a site map (macro) to tags (micro)
+           =================================================================== -->
+
+      <section>
+        <h2>Software Anatomy</h2>
+        <img class="r-stretch" src="img/m1-anatomy-software.jpg"
+          alt="A hand-drawn sketch of a web application, annotated in colour. A tilted browser window is outlined in red and labelled &quot;User Interface&quot;; inside it, a map area is outlined in green and labelled &quot;Maps API&quot;, a table of data below it is outlined in purple and labelled &quot;Data layer&quot;, and a login icon in the corner is labelled &quot;User authentication&quot;. A note at the left reads &quot;served on a device&quot;. A cloud above is labelled &quot;hosted on the cloud&quot;, with &quot;cloud&quot; crossed out and replaced by &quot;internet-enabled computer&quot;. At the right, a page of angle-bracket code is labelled &quot;built using source code&quot;, above a smiling laptop and the note &quot;written by humans!&quot;." />
+      </section>
+
+      <!-- Section opener: names the zoom levels students are about to walk down. -->
+      <section>
+        <h2>Anatomy of a Website</h2>
+        <ol>
+          <li>The <span class="blue">site map</span>: how pages connect to each other</li>
+          <li class="fragment">The <span class="blue">web page</span>: how one page is arranged</li>
+          <li class="fragment">The <span class="blue">element</span>: how content is placed</li>
+          <li class="fragment">The <span class="blue">attribute</span>: customizing content</li>
+        </ol>
+        <p class="fragment green">Let's zoom in, then build back out again.</p>
+      </section>
+
+      <!-- MACRO — whole site. Big-image layout: the diagram is the slide. -->
+      <section>
+        <h2>Zoom out: the <span class="blue">site map</span></h2>
+        <p class="text-medium">Consider: what pages exist, and how do you navigate them?</p>
+        <img class="r-stretch" src="img/m1-anatomy-site-map.svg"
+          alt="A site map for a travel website. A Homepage box lists what it links to: a search menu, specials shown on the front page, and links to more special offers, country-specific pages, and the shopping cart. Connectors run from it to four other page boxes — Search results, Country info, Special offers, and a Holiday purchase flow that ends in a shopping cart where you enter an address and pay." />
+        <p class="cite">Diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents">MDN
+            Web Docs, "Structuring documents"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <section>
+        <h2>Zoom in: the <span class="blue">page</span></h2>
+        <p class="text-medium">Consider: what elements exist, and how do you lay them out?</p>
+        <img class="r-stretch" src="img/m1-anatomy-sample-website.png"
+          alt="A rendered sample web page matching the previous wireframe: a large Header title, a pink navigation bar with Home, Our Team, Projects and Contact links plus a search box and Go button, a white main column holding an article heading and two subsections of body text, a pink Related sidebar of links down the right, and a footer reading copyright 2050 by nobody, all rights reversed." />
+        <p class="cite">Diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents">MDN
+            Web Docs, "Structuring documents"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <!-- MESO — one page, as regions. Two-column: wireframe beside the tags
+           that name each region. This is the slide that sets up HTML Basics. -->
+      <section>
+        <h2>Atomize the <span class="blue">page</span></h2>
+        <div class="r-hstack">
+          <div>
+            <img src="img/m1-anatomy-sample-website.png"
+              alt="A rendered sample web page matching the previous wireframe: a large Header title, a pink navigation bar with Home, Our Team, Projects and Contact links plus a search box and Go button, a white main column holding an article heading and two subsections of body text, a pink Related sidebar of links down the right, and a footer reading copyright 2050 by nobody, all rights reversed." />
+          </div>
+          <div>
+            <img src="img/m1-anatomy-site-structure.svg" width="95%"
+              alt="A wireframe of a single web page divided into regions: a header band across the top, a footer band across the bottom, and a middle area split into a wide Main content column with one or two narrow sidebar columns to its right." />
+          </div>
+        </div>
+        <p class="cite">Diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents">MDN
+            Web Docs, "Structuring documents"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <section>
+        <h2>Translate the <span class="blue">page</span> to code</h2>
+        <div class="r-hstack">
+          <div>
+            <img src="img/m1-anatomy-site-structure.svg" width="95%"
+              alt="A wireframe of a single web page divided into regions: a header band across the top, a footer band across the bottom, and a middle area split into a wide Main content column with one or two narrow sidebar columns to its right." />
+          </div>
+          <div class="text-medium align-left">
+            <pre><code data-trim data-line-numbers="1-11| 6"><script type="text/template">
+                <header> title </header>
+
+                <nav> navigation links </nav>
+
+                <main>
+                    <p>my cat is very grumpy</p>
+
+                    <aside> sidebar stuff </aside>   
+                </main>
+
+                <footer> contact info </footer>
+           </script></code></pre>
+            <p class="align-right fragment"><span class="blue">...Enhance!</span></p>
+          </div>
+        </div>
+        <p class="cite">Diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents">MDN
+            Web Docs, "Structuring documents"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <!-- MICRO — one element. Wide, short image, so a contained width beats
+           r-stretch here (r-stretch would leave it small and centred). -->
+      <section>
+        <h2>Zoom in: <span class="blue">HTML elements</span></h2>
+        <img src="img/m1-anatomy-tag-grumpy-cat-small.png" width="85%"
+          alt="A diagram of a single HTML element, paragraph tag, My cat is very grumpy, closing paragraph tag. Labelled brackets mark the opening tag, the closing tag, the content between them, and the whole thing together as the element." />
+        <ul class="text-medium">
+          <li>The <span class="blue">tags</span> = type of element</li>
+          <li>The <span class="blue">content</span> = what's rendered on the web page</li>
+        </ul>
+        <p class="align-right fragment blue">Elements nest!</p>
+        <p class="cite">Diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax">MDN
+            Web Docs, "Basic HTML syntax"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <!-- Very wide, very short image — full width, nothing competing with it. -->
+      <section>
+        <h2>Customize elements via <span class="blue">attributes</span></h2>
+        <img src="img/m1-anatomy-tag-attribute-grumpy-cat-attribute-small.png" width="100%"
+          alt="The same paragraph element with an attribute added: paragraph tag with class equals editor-note, then My cat is very grumpy, then the closing tag. A labelled bracket marks the class equals editor-note portion as the attribute." />
+        <ul class="text-medium">
+          <li><code>class</code> is a reusable attribute. Treat it like a custom tag.</li>
+          <li><code>id</code> is a unique attribute. Use it sparingly.</li>
+          <li>You can call these in CSS to do custom styling.</li>
+        </ul>
+        <div class="fragment">
+          <pre><code data-trim>
+          .editor-note{
+            color: red;
+          }
+        </code></pre>
+        </div>
+        <p class="cite">Diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax">MDN
+            Web Docs, "Basic HTML syntax"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <!-- CSS Basics -->
+      <section>
+        <h2>Browser defaults</h2>
+        <img src="img/m1-css-html-example.png"
+          alt="A screenshot of unstyled HTML as a browser renders it, headed &quot;Browser defaults&quot;. It shows a large bold serif heading, two paragraphs of body text, a purple underlined link reading &quot;Links are highlighted and underlined&quot;, a two-item bulleted list, then a smaller heading &quot;A level 2 heading&quot; followed by the line &quot;You can change all of this with CSS.&quot;" />
+        <p class="cite">Snippets + diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS">MDN
+            Web Docs, "What is CSS?"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <section>
+        <h2>HTML only</h2>
+        <div class="r-hstack">
+          <div class="text-medium">
+            <pre><code data-trim><script type="text/template">
+              <!-- code comment - visible in code only -->
+
+              <h1>CSS is great</h1>
+
+              <p>You can style text.</p>
+
+              <p>And create layouts and special effects.</p>
+            </script></code></pre>
+          </div>
+          <div class="align-left show-border">
+            <!-- code comment - visible in code only -->
+            <h1>CSS is great</h1>
+
+            <p>You can style text.</p>
+
+            <p>And create layouts and special effects.</p>
+          </div>
+        </div>
+        <p class="cite">Snippets + diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS">MDN
+            Web Docs, "What is CSS?"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <section>
+        <h2>HTML + CSS</h2>
+        <div class="r-hstack">
+          <div class="text-medium">
+            <pre><code data-trim><script type="text/template">
+              <h1>CSS is great</h1>
+
+              <p>You can style text.</p>
+
+              <p class="fancy">And create layouts and special effects.</p>
+            </script></code></pre>
+            <div class="fragment">
+              <pre><code data-trim data-line-numbers="3-5 | 7-9 | 11-19">
+              /* css comment */
+
+              h1{
+                color: red;
+              }
+
+              p{
+                background: blue;
+              }
+
+              .fancy{
+                animation: blinker 1s linear infinite;
+              }
+
+              @keyframes blinker {
+                50% {
+                  opacity: 0;
+                }
+              }
+            </code></pre>
+            </div>
+          </div>
+          <div class="align-left show-border fragment">
+            <h1><span class="red">CSS is great</span></h1>
+
+            <p class="blue">You can style text.</p>
+
+            <p class="fancy">And create layouts and special effects.</p>
+          </div>
+        </div>
+        <p class="cite">Snippets + diagram from <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS">MDN
+            Web Docs, "What is CSS?"</a> (CC BY-SA 2.5)</p>
+      </section>
+
+      <!-- Bridge out of the anatomy section, into the demo. -->
+      <section>
+        <h2>Anatomy of a Website</h2>
+        <h3><span class="blue"> site &rarr; page &rarr; element &rarr; attribute</span></h3><br />
+
+        <div class="fragment">
+          <h3>HTML + CSS </h3>
+          <h3>structure + style</h3><br />
+        </div>
+
+        <div class="fragment">
+          <p>Demo: build a website by zooming in and out </p>
+          <p>Quiz: translate drawing to code in 20 minutes</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Demo</h2>
+        <p>Build a digital recipe book.</p>
+      </section>
+
+      <section>
+        <h2>Quiz</h2>
+        <p>20 minutes, paper only. Use your cheatsheet.</p>
+        <p>Work in pairs. Ask us questions!</p>
+        <p>Goal: to gut-check how you're coping with the course.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if
+                changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
