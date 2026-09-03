@@ -1,0 +1,93 @@
+/*
+  QUIZ 1 — Decomposing a Website
+  ASM 532, Lecture 1.3
+
+  In the index.html page: address requirements R1-R10 (structure and content).
+  In the style.css page: address R11-R17 (appearance). 
+*/
+
+
+/* SELECTOR PRACTICE
+       Write the selector that would target each of the following.
+       Just the selector — no rules needed. */
+
+/*  a. every paragraph on the page              -> ______________  */
+/*  b. every element with class "highlight"     -> ______________  */
+/*  c. the element with id "banner"             -> ______________  */
+/*  d. every link inside the nav                -> ______________  */
+/*  e. every cell in the table                  -> ______________  */
+
+
+/* R11 WHOLE PAGE
+Set the font for the whole document, and remove the browser's default margin so your header can sit flush against the edge. */
+
+body {
+  ____________: Georgia, "Times New Roman", serif;
+  margin: ______;
+}
+
+
+/* R12 THE HEADER
+Give it some breathing room INSIDE the box, so "RECIPES" is not jammed against the edge. Which property is that - padding or margin?  */
+
+____________ {
+  ____________: 20px;
+}
+
+
+/* R13 THE NAV
+In the drawing the links run left to right, but <li> items stack
+       vertically by default. Two things to fix: the bullets, and the
+       direction.  */
+
+nav ul {
+  list-style-type: _______________;
+  display: _______________;
+  gap: 20px;
+  ________: 0;
+  /* kill the list's default indent */
+}
+
+/* ...ruled off above and below. */
+nav {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 10px 20px;
+}
+
+
+/* R14 THE BOXED NAV ITEM
+  "random" is drawn inside its own rectangle. Use the class you gave it in index.html. */
+
+.______________ {
+  border: _______________________;
+  padding: 4px 10px;
+}
+
+/* R15  The word LOVE is red and bolder than the words either side.
+        Both come from CSS here, so this rule needs two declarations.
+        Target the class you added in R6. */
+
+_______________ {
+  ____________: red;
+  ____________: bold;
+}
+
+
+/* R16  The "Instructions" heading is blue. */
+
+_______ {
+  color: #1a4f8a;
+}
+
+
+/* R17  THE FOOTER
+        The bottom strip is shaded, and tall enough to be visible even if no text.
+        An empty element collapses to zero height, so it needs one of
+        min-height or padding to occupy space at all. */
+
+________ {
+  _________: red;
+  ________: 30px;
+  /* gives the empty band its height */
+}

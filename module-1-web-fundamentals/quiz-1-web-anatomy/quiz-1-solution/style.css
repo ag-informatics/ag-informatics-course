@@ -1,0 +1,138 @@
+/*
+  QUIZ 1 — Decomposing a Website — WORKED SOLUTION
+  ASM 532, Lecture 1.3
+
+  In the index.html page: address requirements R1-R10 (structure and content).
+  In the style.css page: address R11-R17 (appearance).
+
+  Each rule is preceded by the requirement it satisfies, in order, so this
+  doubles as the marking key. The blanks version is blanked-style.css.
+*/
+
+
+/* SELECTOR PRACTICE — the answers.
+   Every one of these matches something that really exists on the page.
+
+     a. every paragraph on the page          ->  p
+     b. every element with class "highlight" ->  .highlight
+     c. the element with id "banner"         ->  #banner
+     d. every link inside the nav            ->  nav a
+     e. every cell in the table              ->  th, td
+
+   The punctuation is the point:
+     .  means class            (many elements may share one)
+     #  means id               (only one element per page)
+     a space means "inside"    — `nav a` is links INSIDE a nav
+     a comma means "and also"  — `th, td` is both kinds of cell
+*/
+
+
+/* R11  WHOLE PAGE
+        Set the font for the whole document, and remove the browser's default
+        margin so the header can sit flush against the edge. Set on body so
+        everything inherits it. */
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  margin: 0;
+}
+
+
+/* R12  THE HEADER
+        Breathing room INSIDE the box, so "RECIPES" is not jammed against the
+        edge — that is padding. margin would push the box away from its
+        neighbours instead, leaving the text just as tight. */
+
+#banner {
+  padding: 20px;
+}
+
+
+/* R13  THE NAV
+        The links run left to right, but <li> items stack vertically by
+        default. display:flex goes on the CONTAINER — the <ul> — not on the
+        <li>s. gap spaces the children without margin arithmetic. Lists also
+        carry a default left padding, which is the indent. */
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+/* ...ruled off above and below. */
+nav {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  padding: 10px 20px;
+}
+
+
+/* R14  THE BOXED NAV ITEM
+        "random" is drawn inside its own rectangle. The rule targets the
+        class, not the element, so only the link carrying class="random-box"
+        picks it up. */
+
+.random-box {
+  border: 1px solid #333;
+  padding: 4px 10px;
+}
+
+
+/* R15  The word LOVE is red and bolder than the words either side.
+        Both come from CSS here, so the rule needs two declarations. It
+        targets the class added in R6 — the <span> itself carries no styling
+        of its own. */
+
+.highlight {
+  color: red;
+  font-weight: bold;
+}
+
+
+/* R16  The "Instructions" heading is blue.
+        The page has exactly one h3, so the element selector is enough. If
+        more h3s were added later this would want a class instead. */
+
+h3 {
+  color: #1a4f8a;
+}
+
+
+/* R17  THE FOOTER
+        A solid red strip with no text, at a fixed height.
+        An empty element collapses to zero height, so it needs min-height (or
+        padding) to occupy space at all. */
+
+footer {
+  background-color: red;
+  min-height: 30px;
+}
+
+
+/* ---------------------------------------------------------------------------
+   NOT NUMBERED REQUIREMENTS — not asked for in the quiz, but included so the
+   rendered page matches the drawing. Ignore when marking.
+   --------------------------------------------------------------------------- */
+
+table {
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th,
+td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: left;
+}
+
+img {
+  max-width: 100%;
+}
+
+main {
+  padding: 20px;
+}

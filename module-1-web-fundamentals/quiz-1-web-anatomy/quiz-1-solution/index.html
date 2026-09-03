@@ -1,0 +1,112 @@
+<!--
+  QUIZ 1 — Decomposing a Website — WORKED SOLUTION
+  ASM 532, Lecture 1.3
+
+  In the index.html page: address requirements R1-R10 (structure and content).
+  In the style.css page: address R11-R17 (appearance).
+
+  Each section is preceded by the requirement it satisfies, in order, so this
+  doubles as the marking key. The blanks version is blanked-index.html.
+
+  NOTE: img/sandwich.jpg is referenced but not included in this folder — add a
+  photo there, or the image renders as a broken-image icon.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <!-- Give the page a title. It shows in the browser tab. -->
+  <title>Sunbutter Jelly Sandwich — Recipes</title>
+
+  <!-- Link this page to its stylesheet, in the same folder. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- R1  A banner containing the site name "RECIPES" in the LARGEST heading
+           font. The id "banner" will be used in the CSS file (selector
+           practice c). h1 is the largest, and is used once per page. -->
+  <header id="banner">
+    <h1>RECIPES</h1>
+  </header>
+
+  <!-- R2  The navigation row of links to the site's other pages: home,
+           all-recipes, random. An unordered list inside <nav> — a nav really
+           is a list of links, and CSS turns the stack into a row (R13); the
+           HTML does not. "random" gets the class "random-box" for R14. -->
+  <nav>
+    <ul>
+      <li><a href="index.html">home</a></li>
+      <li><a href="all-recipes.html">all-recipes</a></li>
+      <li><a href="random.html" class="random-box">random</a></li>
+    </ul>
+  </nav>
+
+  <!-- R3  A main content area holding the whole recipe, R4 through R9.
+           <main> is for the content unique to THIS page. One per page. -->
+  <main>
+
+    <!-- R4  The recipe title "Sunbutter Jelly Sandwich".
+             A heading, less prominent than the banner — so h2, the next level
+             down. Never skip a level. -->
+    <h2>Sunbutter Jelly Sandwich</h2>
+
+    <!-- R5  A photograph with "alt" text that describes it.
+             alt describes what the picture SHOWS, not the filename. -->
+    <img src="img/sandwich.jpg"
+      alt="A hand-drawn panel showing, left to right: a square slice of bread with red spread scribbled across it, a tall jar, a shorter open jar, and a second slice of bread with red spread."
+      width="25%">
+
+    <!-- R6  The sentence: I LOVE this sandwich.
+             In the drawing, LOVE is red and bolder than the words around it.
+             <span> wraps just that word without adding any meaning of its
+             own; the class "highlight" is the hook R15 styles it with. -->
+    <p>I <span class="highlight">LOVE</span> this sandwich.</p>
+
+    <!-- R7  A table of ingredients, two columns wide and four rows deep.
+             Rows and columns of related values — genuinely tabular data, so a
+             real <table>. <th> for label cells, <td> for data cells.
+             The top row's right-hand cell is empty: an empty cell is still a
+             cell, so it gets written out. -->
+    <table>
+      <tr>
+        <th>Ingredients</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>Bread</td>
+        <td>2 slices</td>
+      </tr>
+      <tr>
+        <td>Sunbutter</td>
+        <td>1 tbsp</td>
+      </tr>
+      <tr>
+        <td>Jam</td>
+        <td>1 tbsp</td>
+      </tr>
+    </table>
+
+    <!-- R8  A heading: "Instructions".
+             h3, because it sits under the h2 recipe title. Coloured in R16. -->
+    <h3>Instructions</h3>
+
+    <!-- R9  The sentence: Spread jam & sunbutter. Combine.
+             Note the &amp; — a bare & is reserved in HTML. -->
+    <p>Spread jam &amp; sunbutter. Combine.</p>
+
+  </main>
+
+  <!-- R10 A solid red strip across the very bottom with no text, but at a
+           fixed height. The element is written here; the colour and the
+           height are styling, done in R17. -->
+  <footer>
+  </footer>
+
+</body>
+
+</html>

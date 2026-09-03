@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+        -->
+      <section>
+        <img src="img/m1-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Genres of Software</h1>
+
+        <p>
+          Module 1 - Web Design &amp; Development<br />
+          Lecture 1.4 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ul>
+          <li>Finish Quiz 1</li>
+          <li>Quiz 1: answers</li>
+          <li>Warm-up: what software does agriculture use?</li>
+          <li>Genres of Software</li>
+          <li>The Ag Tech Landscape</li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!--
+          PART 1 — QUIZ
+
+          Quiz slide copied verbatim from lecture-1.3.html (its final content
+          slide), so students see the same instructions they started under.
+        -->
+      <section>
+        <h2>Quiz</h2>
+        <p>20 minutes, paper only. Use your cheatsheet.</p>
+        <p>Work in pairs. Ask us questions!</p>
+        <p>Goal: to gut-check how you're coping with the course.</p>
+      </section>
+
+      <!--
+          ==========================================================
+          PART 1 — QUIZ ANSWERS: whole page first, then atomised components.
+
+          The drawing, then the finished page, then a decomposition — each
+          component shown as the HTML and the CSS that TOGETHER produce it.
+
+          The R1-R17 "dictionary" set was dropped 2026-09-03; every
+          requirement now lives on one of the component slides below, and
+          each slide names the requirements it covers in its heading.
+          ==========================================================
+        -->
+
+      <style>
+        /* Scoped to the alternative set, so these rules cannot leak into the
+           rest of the deck. Same declarations as the worked solution at
+           instructor-content/quiz-1-skeleton/style.css, minus the body rule
+           (a slide is not a page). */
+        .finished-page {
+          font-family: Georgia, "Times New Roman", serif;
+          font-size: 14px;
+          text-align: left;
+          background: #fff;
+        }
+
+        .finished-page #banner {
+          padding: 12px 20px;
+        }
+
+        .finished-page #banner h1 {
+          font-size: 32px;
+          margin: 0;
+        }
+
+        .finished-page nav {
+          border-top: 1px solid #333;
+          border-bottom: 1px solid #333;
+          padding: 8px 20px;
+        }
+
+        .finished-page nav ul {
+          list-style-type: none;
+          display: flex;
+          gap: 20px;
+          padding: 0;
+          margin: 0;
+        }
+
+        .finished-page .random-box {
+          border: 1px solid #333;
+          padding: 2px 8px;
+        }
+
+        .finished-page main {
+          padding: 12px 20px;
+        }
+
+        .finished-page main h2 {
+          font-size: 22px;
+          margin: 0 0 8px;
+        }
+
+        .finished-page .highlight {
+          color: red;
+          font-weight: bold;
+        }
+
+        .finished-page table {
+          border-collapse: collapse;
+          margin: 12px 0;
+        }
+
+        .finished-page th,
+        .finished-page td {
+          border: 1px solid #333;
+          padding: 4px 8px;
+          text-align: left;
+          font-size: 13px;
+        }
+
+        .finished-page h3 {
+          color: #1a4f8a;
+          font-size: 17px;
+          margin: 8px 0 4px;
+        }
+
+        .finished-page img {
+          max-width: 180px;
+        }
+
+        .finished-page footer {
+          background-color: red;
+          min-height: 24px;
+        }
+
+        /* Component slides: the same rules, one component at a time. */
+        .altdemo {
+          font-family: Georgia, "Times New Roman", serif;
+          text-align: left;
+          background: #fff;
+        }
+
+        .altdemo-header #banner {
+          padding: 20px;
+        }
+
+        .altdemo-nav nav {
+          border-top: 1px solid #333;
+          border-bottom: 1px solid #333;
+          padding: 10px 20px;
+        }
+
+        .altdemo-nav nav ul {
+          list-style-type: none;
+          display: flex;
+          gap: 20px;
+          padding: 0;
+          margin: 0;
+        }
+
+        .altdemo-nav .random-box {
+          border: 1px solid #333;
+          padding: 4px 10px;
+        }
+
+        .altdemo-body {
+          padding: 10px 20px;
+        }
+
+        .altdemo-main main {
+          padding: 10px 20px;
+        }
+
+        .altdemo-main h2 {
+          font-size: 26px;
+          margin: 0 0 10px;
+        }
+
+        .altdemo-main img {
+          max-width: 220px;
+        }
+
+        .altdemo-love {
+          padding: 10px 20px;
+          font-size: 26px;
+        }
+
+        .altdemo-love .highlight {
+          color: red;
+          font-weight: bold;
+        }
+
+        .altdemo-table {
+          padding: 10px 20px;
+        }
+
+        .altdemo-table table {
+          border-collapse: collapse;
+        }
+
+        .altdemo-table th,
+        .altdemo-table td {
+          border: 1px solid #333;
+          padding: 6px 12px;
+          text-align: left;
+          font-size: 20px;
+        }
+
+        .altdemo-instr {
+          padding: 10px 20px;
+        }
+
+        .altdemo-instr h3 {
+          color: #1a4f8a;
+          font-size: 24px;
+          margin: 0 0 6px;
+        }
+
+        .altdemo-footer footer {
+          background-color: red;
+          min-height: 30px;
+        }
+      </style>
+
+      <!--
+          THE DRAWING — what they were handed. Comes first so the finished
+          page on the next slide reads as the answer to it.
+        -->
+      <section>
+        <h2 class="text-medium">How it started: <span class="blue">R1 - R17</span></h2>
+        <img src="img/m1-quiz-layout.jpeg" height="480"
+          alt="The hand-drawn quiz layout: RECIPES as a large heading, a ruled nav row reading home, all-recipes, and a boxed random, then the title Sunbutter Jelly Sandwich, a framed drawing of bread and jars, the sentence I LOVE this sandwich with LOVE in red, a four-row ingredients table, a blue Instructions heading, the line Spread jam and sunbutter, Combine, and a ruled strip across the bottom." />
+      </section>
+
+      <!--
+          THE FINISHED PAGE — full width, before any decomposition.
+          Real markup, not a screenshot, so it is the same thing they wrote.
+        -->
+      <section>
+        <h2 class="text-medium">How it's going: <span class="blue">R1 - R17</span></h2>
+        <div class="finished-page show-border">
+          <header id="banner">
+            <h1>RECIPES</h1>
+          </header>
+          <nav>
+            <ul>
+              <li><a href="#">home</a></li>
+              <li><a href="#">all-recipes</a></li>
+              <li><a href="#" class="random-box">random</a></li>
+            </ul>
+          </nav>
+          <main>
+            <h2>Sunbutter Jelly Sandwich</h2>
+            <img src="img/m1-sandwich.jpg"
+              alt="A hand-drawn panel showing two slices of bread with red spread, a tall jar, and a shorter open jar." />
+            <p>I <span class="highlight">LOVE</span> this sandwich.</p>
+            <table>
+              <tr>
+                <th>Ingredients</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Bread</td>
+                <td>2 slices</td>
+              </tr>
+              <tr>
+                <td>Sunbutter</td>
+                <td>1 tbsp</td>
+              </tr>
+              <tr>
+                <td>Jam</td>
+                <td>1 tbsp</td>
+              </tr>
+            </table>
+            <h3>Instructions</h3>
+            <p>Spread jam &amp; sunbutter. Combine.</p>
+          </main>
+          <footer></footer>
+        </div>
+        <p class="text-small">Seventeen requirements. One page. Now let's take it apart.</p>
+      </section>
+
+      <!--
+          ==========================================================
+          COMPONENT WALKTHROUGH — the whole page, taken apart.
+
+          Replaces the old R1-R17 "dictionary" set (dropped 2026-09-03): every
+          requirement now has a home in this sequence, so nothing is orphaned.
+          Order follows the page top to bottom, not the requirement numbers.
+
+          Each slide: the rendered component as a strip on top, then the HTML
+          and the CSS that TOGETHER produce it, side by side underneath. The
+          render goes on top because these components are wide and short —
+          that is what leaves the code full width and readable.
+
+          Requirement numbers are marked in every heading.
+
+          Source of truth: instructor-content/quiz-1-skeleton/index.html and
+          style.css; wording from requirements.txt.
+        -->
+
+      <!--
+          PAGE-WIDE — R11. First, because everything below inherits it.
+        -->
+      <section>
+        <h2 class="text-medium">The whole page <span class="blue">R11</span></h2>
+        <div class="align-left show-border altdemo altdemo-body">
+          <p>Set the font once on <code>body</code>. Everything inside inherits it.</p>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">CSS &mdash; whole page</p>
+            <pre><code data-trim data-line-numbers="1-4|2|3"><script type="text/template">
+              body {
+                font-family: Georgia, serif;
+                margin: 0;
+              }
+            </script></code></pre>
+          </div>
+          <div class="text-small align-left">
+            <p><code>font-family</code> on <code>body</code> cascades to every element on the page.</p>
+            <p><code>margin: 0</code> removes the browser's default gap &mdash; that is what lets the header sit flush
+              against the edge.</p>
+          </div>
+        </div>
+      </section>
+
+      <!--
+          COMPONENT — THE HEADER. R1 (structure) + R12 (appearance).
+        -->
+      <section>
+        <h2 class="text-medium">Component: the header <span class="blue">R1 + R12</span></h2>
+        <div class="align-left show-border altdemo altdemo-header">
+          <header id="banner">
+            <h1>RECIPES</h1>
+          </header>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; what it is <span class="gray">(R1)</span></p>
+            <pre><code data-trim data-line-numbers="1-3|1|2"><script type="text/template">
+              <header id="banner">
+                <h1>RECIPES</h1>
+              </header>
+            </script></code></pre>
+          </div>
+          <div>
+            <p class="align-left blue text-small">CSS &mdash; how it looks <span class="gray">(R12)</span></p>
+            <pre><code data-trim data-line-numbers="1-3|2"><script type="text/template">
+              #banner {
+                padding: 20px;
+              }
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="text-small"><code>id</code> in the HTML, <code>#</code> in the CSS. Padding, not margin &mdash; the
+          room goes INSIDE the box.</p>
+      </section>
+
+      <!--
+          COMPONENT — THE NAV. R2 (structure) + R13 (appearance).
+        -->
+      <section>
+        <h2 class="text-medium">Component: the nav <span class="blue">R2 + R13</span></h2>
+        <div class="align-left show-border altdemo altdemo-nav">
+          <nav>
+            <ul>
+              <li><a href="#">home</a></li>
+              <li><a href="#">all-recipes</a></li>
+              <li><a href="#" class="random-box">random</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; what it is <span class="gray">(R2)</span></p>
+            <pre><code data-trim data-line-numbers="1-7|3-5"><script type="text/template">
+              <nav>
+                <ul>
+                  <li><a href="index.html">home</a></li>
+                  <li><a href="all-recipes.html">all</a></li>
+                  <li><a href="random.html">random</a></li>
+                </ul>
+              </nav>
+            </script></code></pre>
+          </div>
+          <div>
+            <p class="align-left blue text-small">CSS &mdash; how it looks <span class="gray">(R13)</span></p>
+            <pre><code data-trim data-line-numbers="1-5|2|3"><script type="text/template">
+              nav ul {
+                list-style-type: none;
+                display: flex;
+                gap: 20px;
+              }
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="text-small">Bullets off, direction across. <code>display: flex</code> goes on the
+          <code>ul</code> &mdash; the container, not the items.
+        </p>
+      </section>
+
+      <!--
+          COMPONENT — THE BOXED NAV ITEM. R14.
+          Full nav on the left as context, with only the "random" line lit.
+        -->
+      <section>
+        <h2 class="text-medium">Component: the boxed nav item <span class="blue">R14</span></h2>
+        <div class="align-left show-border altdemo altdemo-nav">
+          <nav>
+            <ul>
+              <li><a href="#">home</a></li>
+              <li><a href="#">all-recipes</a></li>
+              <li><a href="#" class="random-box">random</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; one line carries the hook</p>
+            <pre><code data-trim data-line-numbers="5"><script type="text/template">
+              <nav>
+                <ul>
+                  <li><a href="index.html">home</a></li>
+                  <li><a href="all-recipes.html">all</a></li>
+                  <li><a href="random.html" class="random-box">random</a></li>
+                </ul>
+              </nav>
+            </script></code></pre>
+          </div>
+          <div>
+            <p class="align-left blue text-small">CSS &mdash; the box <span class="gray">(R14)</span></p>
+            <pre><code data-trim data-line-numbers="1-4|1"><script type="text/template">
+              .random-box {
+                border: 1px solid #333;
+                padding: 4px 10px;
+              }
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="text-small">You invented the name <code>random-box</code>. The <code>.</code> is how CSS asks for
+          it &mdash; and only that one link gets the border.</p>
+      </section>
+
+      <!--
+          COMPONENT — THE RECIPE TITLE AND PHOTO. R3 + R4 + R5.
+        -->
+      <section>
+        <h2 class="text-medium">Component: the title &amp; photo <span class="blue">R3 + R4 + R5</span></h2>
+        <div class="align-left show-border altdemo altdemo-main">
+          <main>
+            <h2>Sunbutter Jelly Sandwich</h2>
+            <img src="img/m1-sandwich.jpg"
+              alt="A hand-drawn panel showing two slices of bread with red spread, a tall jar, and a shorter open jar." />
+          </main>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; structure and content</p>
+            <pre><code data-trim data-line-numbers="1-6|1,6|2|3-5"><script type="text/template">
+              <main>
+                <h2>Sunbutter Jelly Sandwich</h2>
+                <img src="img/sandwich.jpg"
+                     alt="Two slices of bread with red
+                          spread, and two jars.">
+              </main>
+            </script></code></pre>
+          </div>
+          <ul class="text-medium no-bullets align-left">
+            <li><span class="blue">R3</span> &mdash; <code>main</code> holds what is unique to THIS page. One per
+              page.</li>
+            <li><span class="blue">R4</span> &mdash; <code>h2</code>, the level below the banner. Never skip a level.
+            </li>
+            <li><span class="blue">R5</span> &mdash; <code>alt</code> describes what the picture SHOWS, not the
+              filename.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!--
+          COMPONENT — THE SENTENCE. R6 (the hook) + R15 (the styling).
+          The clearest HTML-needs-CSS pair on the page.
+        -->
+      <section>
+        <h2 class="text-medium">Component: the sentence <span class="blue">R6 + R15</span></h2>
+        <div class="align-left show-border altdemo altdemo-love">
+          <p>I <span class="highlight">LOVE</span> this sandwich.</p>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; the hook <span class="gray">(R6)</span></p>
+            <pre><code data-trim data-line-numbers="1"><script type="text/template">
+              <p>I <span class="highlight">LOVE</span> this.</p>
+            </script></code></pre>
+          </div>
+          <div>
+            <p class="align-left blue text-small">CSS &mdash; the look <span class="gray">(R15)</span></p>
+            <pre><code data-trim data-line-numbers="1-4|2|3"><script type="text/template">
+              .highlight {
+                color: red;
+                font-weight: bold;
+              }
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="text-small"><code>span</code> wraps one word and means nothing on its own. Two declarations, because
+          red and bold are two separate properties.</p>
+      </section>
+
+      <!--
+          COMPONENT — THE TABLE. R7.
+        -->
+      <section>
+        <h2 class="text-medium">Component: the ingredients table <span class="blue">R7</span></h2>
+        <div class="align-left show-border altdemo altdemo-table">
+          <table>
+            <tr>
+              <th>Ingredients</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>Bread</td>
+              <td>2 slices</td>
+            </tr>
+            <tr>
+              <td>Sunbutter</td>
+              <td>1 tbsp</td>
+            </tr>
+          </table>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; rows and cells</p>
+            <pre><code data-trim data-line-numbers="1-10|2-5|4|6-9"><script type="text/template">
+              <table>
+                <tr>
+                  <th>Ingredients</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>Bread</td>
+                  <td>2 slices</td>
+                </tr>
+              </table>
+            </script></code></pre>
+          </div>
+          <div class="text-small align-left">
+            <p><code>tr</code> is a row. <code>th</code> is a label cell, <code>td</code> is a data cell.</p>
+            <p>The top-right cell is empty in the drawing &mdash; an empty cell is still a cell, so
+              <code>&lt;th&gt;&lt;/th&gt;</code> still gets written out.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!--
+          COMPONENT — THE INSTRUCTIONS. R8 + R9 (structure) + R16 (colour).
+        -->
+      <section>
+        <h2 class="text-medium">Component: the instructions <span class="blue">R8 + R9 + R16</span></h2>
+        <div class="align-left show-border altdemo altdemo-instr">
+          <h3>Instructions</h3>
+          <p>Spread jam &amp; sunbutter. Combine.</p>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML <span class="gray">(R8 + R9)</span></p>
+            <pre><code data-trim data-line-numbers="1-2|1|2"><script type="text/template">
+              <h3>Instructions</h3>
+              <p>Spread jam &amp; sunbutter.</p>
+            </script></code></pre>
+          </div>
+          <div>
+            <p class="align-left blue text-small">CSS <span class="gray">(R16)</span></p>
+            <pre><code data-trim data-line-numbers="1-3|2"><script type="text/template">
+              h3 {
+                color: #1a4f8a;
+              }
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="text-small"><code>h3</code>, because it sits under the <code>h2</code> recipe title. You type
+          <code>&amp;amp;</code>, the browser shows <code>&amp;</code> &mdash; a bare <code>&amp;</code> is
+          reserved.
+        </p>
+      </section>
+
+      <!--
+          COMPONENT — THE BOTTOM STRIP. R10 (the element) + R17 (making it
+          visible). The payoff: structure alone renders nothing here.
+        -->
+      <section>
+        <h2 class="text-medium">Component: the bottom strip <span class="blue">R10 + R17</span></h2>
+        <div class="align-left show-border altdemo altdemo-footer">
+          <footer></footer>
+        </div>
+        <div class="r-hstack">
+          <div>
+            <p class="align-left blue text-small">HTML &mdash; empty on purpose <span class="gray">(R10)</span></p>
+            <pre><code data-trim data-line-numbers="1-2"><script type="text/template">
+              <footer>
+              </footer>
+            </script></code></pre>
+          </div>
+          <div>
+            <p class="align-left blue text-small">CSS &mdash; gives it a body <span class="gray">(R17)</span></p>
+            <pre><code data-trim data-line-numbers="1-4|2|3"><script type="text/template">
+              footer {
+                background-color: red;
+                min-height: 30px;
+              }
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="text-small">An empty element collapses to zero height. Without <code>min-height</code> there is
+          nothing to see, however red you paint it.</p>
+      </section>
+
+      <!--
+          SELECTOR PRACTICE — the quiz's a-e, kept from the old set.
+          No render: these are answers, not markup.
+        -->
+      <section>
+        <h2>Selector practice <span class="blue text-medium">a &ndash; e</span></h2>
+        <div class="r-hstack">
+          <div class="align-left text-medium">
+            <ul class="no-bullets">
+              <li>a. every paragraph &rarr; <code class="blue">p</code></li>
+              <li>b. class "highlight" &rarr; <code class="blue">.highlight</code></li>
+              <li>c. id "banner" &rarr; <code class="blue">#banner</code></li>
+              <li>d. links inside the nav &rarr; <code class="blue">nav a</code></li>
+              <li>e. every table cell &rarr; <code class="blue">th, td</code></li>
+            </ul>
+          </div>
+          <div class="align-left show-border">
+            <p class="text-small ">Punctuation matters:</p>
+            <ul class="no-bullets text-small">
+              <li><code>.class-name</code>: period = reusable class, use many times</li>
+              <li><code>#id-name</code>: hashtag = unique id, use only once</li>
+              <li><code>sel1 sel2</code>: space between selectors = "inside"</li>
+              <li><code>sel1, sel2</code> comma between selectors = "and"</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <!--
+          ==========================================================
+          PART 2 — GENRES OF SOFTWARE
+
+          Curated from the 2024 archive's lecture1.1.html, lines 199-459
+          ("Genres of Software" through the FarmTech Landscape).
+
+          Changed on the way across, deliberately:
+            - slide titles h3 -> h2, matching the template's hierarchy
+            - alt text written for every image (none had any)
+            - the FarmOS .mp4 was an <iframe src="...mp4">; it is a <video>
+              here. An iframe cannot play a bare mp4.
+            - YouTube embeds moved to youtube-nocookie.com with real titles
+              and referrerpolicy, per the set proven in Lecture 1.2
+            - .container/.col -> .r-hstack, the template's current pattern
+            - added the missing attribution on the FarmTech Landscape
+          ==========================================================
+        -->
+
+      <!--
+          WARM-UP ACTIVITY — moved to the front from the old Part 2 position.
+          Pairs generate stickies here; the wall gets clustered while they
+          finish the quiz. The Discussion half of the original slide stays at
+          the end, next to the landscape map.
+        -->
+      <section>
+        <h2>Warm-up: Genres of Software</h2>
+        <div class="fragment">
+          <p>In PAIRS</p>
+          <p class="red">What types of software are used or needed in food and agricultural systems?</p>
+          <ul class="text-small">
+            <li>Be specific! Either give an example, or describe the software itself.</li>
+            <li>Use a YELLOW sticky note for EXISTING software</li>
+            <li>Use a PINK sticky note for ideas you come up with for NEW software.</li>
+          </ul>
+          <p>4 mins starts now.</p>
+        </div>
+      </section>
+      <section>
+        <h2>Genres of Software</h2>
+        <ul class="no-bullets">
+          <li>Data collection, management, and visualization tools</li>
+          <li>Computer applications</li>
+          <li>Mobile applications</li>
+          <li>Websites and web applications</li>
+          <li>Control systems</li>
+          <li>Modeling and simulation tools</li>
+        </ul>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Essential Difficulties of Software</h2>
+        <ul class="no-bullets">
+          <li class="fragment" data-fragment-index="1">Complexity<br /></li>
+          <li class="fragment" data-fragment-index="1"><span class="text-small">No two systems are alike. Software has
+              many possible states. Nonlinear increase in complexity. Math is hard. Management is difficult.</span></li>
+          <li class="fragment" data-fragment-index="1"><span class="text-small red">How to represent the complex
+              interplay between agricultural, social, environmental, and economic aspects of a farm? </span></li>
+          <li class="fragment" data-fragment-index="2">Conformity</li>
+          <li class="fragment" data-fragment-index="2"><span class="text-small">No unifying theories about goodness,
+              correctness, usefulness.</span></li>
+          <li class="fragment" data-fragment-index="2"><span class="text-small red">How to decide what elements of a
+              farm to focus on in software? </span></li>
+          <li class="fragment" data-fragment-index="3">Changeability</li>
+          <li class="fragment" data-fragment-index="3"><span class="text-small"> Software needs to be adapted. One
+              change = dependencies galore. Maintenance is hard. Technology evolves. Humans change.</span></li>
+          <li class="fragment" data-fragment-index="3"><span class="text-small red">Food and ag systems are dynamic and
+              temporally complex. How to manage?</span></li>
+          <li class="fragment" data-fragment-index="4">Invisibility</li>
+          <li class="fragment" data-fragment-index="4"><span class="text-small">If a line of code fails in a computer
+              and you don't get an error message, did anything break?</span></li>
+          <li class="fragment" data-fragment-index="4"><span class="text-small red">Balance between visibility of farms
+              and invisibility of, for instance, food flows.</span></li>
+        </ul>
+
+        <p class="cite">"No Silver Bullet", Fred Brooks, 1986</p>
+      </section>
+
+      <!--
+          The xkcd comic is hot-linked to imgs.xkcd.com, as it was in the 2024
+          deck — not copied into img/. If it ever fails to load, that is why.
+        -->
+      <section>
+        <h2>Compounding Difficulties <br /><span class="fragment green">of Software in Agriculture</span></h2>
+        <img src="https://imgs.xkcd.com/comics/here_to_help.png" width="80%"
+          alt="xkcd comic: a person says that computational biologists' problems seem solvable with basic data pipelines, offers to build one, and returns much later having produced nothing usable." /><br /><br />
+        <p class="cite"><a href="https://xkcd.com/1831/">https://xkcd.com/1831/</a>, Randall Munroe (CC BY-NC 2.5)</p>
+      </section>
+
+      <section>
+        <h2>Components of Software</h2>
+        <table>
+          <tr class="fragment">
+            <td>User Interface</td>
+            <td>view</td>
+            <td>HTML, CSS, Javascript</td>
+          </tr>
+          <tr class="fragment">
+            <td>Controllers </td>
+            <td>logic</td>
+            <td>Javascript, Python</td>
+          </tr>
+          <tr class="fragment">
+            <td>Data Access &amp; Model</td>
+            <td>APIs, <br />database</td>
+            <td>Javascript, Python, SQL</td>
+          </tr>
+          <tr class="fragment">
+            <td>Environment</td>
+            <td>web server</td>
+            <td>Linux, Node, Docker</td>
+          </tr>
+          <tr class="fragment">
+            <td>Configurations</td>
+            <td>hosting, <br />versioning</td>
+            <td>Digital Ocean, <br />Github</td>
+          </tr>
+          <tr class="fragment">
+            <td>Meta</td>
+            <td>licenses, <br />docs</td>
+            <td>GNU GPL, <br />markdown</td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="r-fit-text">How It's Made: Ag Tech Software</h2>
+      </section>
+
+      <!--
+          FarmOS: screenshot, then the asset-management screen recording.
+          The 2024 deck loaded this .mp4 through an <iframe>, which does not
+          play. <video> with controls does.
+        -->
+      <section>
+        <h2>Web Apps: FarmOS</h2>
+        <div class="r-stack">
+          <img class="fragment fade-in-then-out" src="img/m1-tech-farmos1.png"
+            alt="The farmOS dashboard for Wolfe's Neck Farm: a satellite map with field boundaries outlined in yellow and green, a popup showing West Bay 1 at 3.5 acres, and below it an upcoming-tasks list and a metrics panel counting animals, sensors, equipment and acreage." />
+          <video class="fragment" width="760" height="515" controls src="img/m1-tech-farmos-assets.mp4"
+            title="Screen recording of adding and browsing assets in farmOS"></video>
+        </div>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>UI + logic: Drupal (PHP)</li>
+              <li>Mobile UI: Vue.js</li>
+              <li>Data: SQL database</li>
+              <li>API available</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Docker available </li>
+              <li>License: GNU GPL</li>
+              <li>Docs &amp; Versioning: Github</li>
+              <li>Link: farmos.org</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Mobile Apps: Row Crop Sampling</h2>
+        <img src="img/m1-tech-mobile-apps.jpg" width="90%"
+          alt="A grid of phone screenshots from eight agricultural apps, labelled Market Pricing, Smart Irrigation, Farm Management, Communicating Drift, Social Media, Pest Management, Spray Decision Support, and Farm Management." />
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>IOS: Swift</li>
+              <li>Android: Java</li>
+              <li>Data: Some sort of database</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Cloud service provider </li>
+              <li>License: Proprietary</li>
+              <li>Docs &amp; Versioning: Likely Github</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>IoT System: Water Sensor System</h2>
+        <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/PmO3XwmOGcY?start=414"
+          title="YouTube video player showing a talk on the Precision Sustainable Agriculture water sensor system"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Sensor-Gateway: C on Arduino</li>
+              <li>Communication: LoRa + Hologram API</li>
+              <li>Data: PostgreSQL database</li>
+              <li>Dashboard: React.js</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Docker on Azure </li>
+              <li>License: MIT</li>
+              <li>Docs &amp; Versioning: Github</li>
+              <li>Link: precisionsustainableag.org</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Modeling Tool: COMET-Farm</h2>
+        <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/EBuKvziAUlE?start=44"
+          title="YouTube video player showing a walkthrough of the COMET-Farm carbon accounting tool"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>UI: .NET, Javascript</li>
+              <li>Logic: Daycent Model (FORTRAN, C, Perl)</li>
+              <li>Data: Entity Framework</li>
+              <li>Python API</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Google Cloud?</li>
+              <li>License: Proprietary</li>
+              <li>Docs &amp; Versioning: Internal</li>
+              <li>Link: comet-farm.com</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>AI &amp; Robotics: EarthSense</h2>
+        <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/GK5ncp82je4"
+          title="YouTube video player showing the EarthSense TerraSentia field robot"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Device: Arduino likely with ROS (C/C++)</li>
+              <li>UI: Android app (Java)</li>
+              <li>Logic: Python with openCV/pytorch/etc</li>
+              <li>Data: likely something noSQL</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Azure?</li>
+              <li>License: Proprietary</li>
+              <li>Docs &amp; Versioning: Internal</li>
+              <li>Link: earthsense.co</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!--
+          The discussion half of the old activity slide. The generation half
+          now opens the deck; this is where the clustered wall gets read back,
+          immediately before the landscape map it gets compared against.
+        -->
+      <section>
+        <h2>Discussion</h2>
+        <p>Each pair, tell us what you came up with.</p>
+        <p class="text-small">What did we cluster? What's missing?</p>
+      </section>
+
+      <section>
+        <h2>The FarmTech Landscape</h2>
+        <img src="img/m1-tech-landscape.png" width="95%"
+          alt="The FarmTech Landscape 2020: a dense market map sorting several hundred company logos into three columns — Digital Agronomy and Production, Planning and Farm Management, and Market Access and Financing — each broken into categories such as field monitoring sensors, precision irrigation, imaging analytics, robotics, farm ERP, water management, and crop marketing." />
+        <p class="cite">FarmTech Landscape 2020, Seana Day, <a href="https://betterfoodventures.com/">Better Food
+            Ventures</a></p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
