@@ -52,6 +52,43 @@ td {
     font-size: 0.8em;
 }
 
+/* Boundary around a rendered code snippet, so the live half of a
+   code-beside-output slide reads as a viewport rather than slide content. */
+.show-border {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+/* A <p> that LOOKS like a heading inside a rendered demo, without BEING one.
+
+   Why this exists: on a code-beside-output slide the rendered half is real,
+   live DOM. A genuine <h1> there joins the deck's heading outline, so a deck
+   ends up with several h1s and backwards h2 -> h1 jumps — a WCAG 2.2 AA
+   problem (target 2027-04-26). Using <p class="code-heading level-N"> in the
+   RENDERED column keeps the outline clean while the CODE column still shows
+   students the real <h1>/<h2>/<h3> they are meant to write.
+
+   Sizes are in em, so they scale with whatever font-size the demo wrapper
+   sets — the same class works in a 14px miniature page and a full-size one.
+   Ankita's call, 2026-09-07; expected to recur in the Django modules. */
+.code-heading {
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0.4em 0;
+}
+
+.code-heading.level-1 {
+    font-size: 2em;
+}
+
+.code-heading.level-2 {
+    font-size: 1.5em;
+}
+
+.code-heading.level-3 {
+    font-size: 1.17em;
+}
+
 /* ===== Color utilities ===== */
 .red {
     color: var(--color-red);

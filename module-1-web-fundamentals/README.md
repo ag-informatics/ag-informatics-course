@@ -25,10 +25,19 @@ Source code for the slides is in this folder. The slides are live here:
 
 - [Lecture 1.1](lecture-1.1.html)
 - [Lecture 1.2](lecture-1.2.html) - Graded in-class activity
+- [Lecture 1.3](lecture-1.3.html) - Anatomy of a website, and Quiz 1
+- [Lecture 1.4](lecture-1.4.html) - Quiz 1 answers, and genres of software
 
--- Next week!
-- [Lecture 1.3](lecture-1.3.html) - Quiz 1
-- [Lecture 1.4]()
+## Demo
+
+[Demo 1: One Page, Five Layouts](demo-1-web-anatomy/README.md) - the layout demo from Lecture 1.3.
+Open each example in a browser and in your editor side by side. Nothing here is graded.
+
+## Quiz
+
+[Quiz 1: Decomposing a Website](quiz-1-web-anatomy/README.md) - the quiz as it was run in class,
+with the handouts, the cheatsheet, and a fully worked solution. We walked through the answers in
+Lecture 1.4.
 
 ## Lab
 
@@ -55,7 +64,8 @@ The mockup resulting from the 30-minute activity on the Lecture 1.2 activity sli
 
 ### Quiz — 5 pts
 
-Next week: decompose a layout into HTML elements, cheat sheet on-hand.
+Decompose a layout into HTML elements, cheat sheet on-hand. Run in Lecture 1.3, answers walked
+through in Lecture 1.4. See [quiz-1-web-anatomy/](quiz-1-web-anatomy/README.md).
 
 ### Lab 1 — 20 pts
 
