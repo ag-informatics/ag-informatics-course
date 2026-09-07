@@ -144,7 +144,7 @@ You can open your HTML file in your preferred web browser (such as Chrome). Anot
 
 ### STEP 5: Translate mockup to HTML + CSS
 
-In [Lecture 1.2's](..\lecture1.2.html) activity, you scoped, sketched, atomized, and pseudocoded a layout for your own portfolio site. This step is where you revise and translate that work into real HTML + CSS.
+In [Lecture 1.2's](../lecture-1.2.html) activity, you scoped, sketched, atomized, and pseudocoded a layout for your own portfolio site. This step is where you revise and translate that work into real HTML + CSS.
 
 For example, during the [in-class demo](https://ag-informatics.github.io/sudokita.github.io), I showed you a simple multi-page website that I made in back in grad school. The mockup below can be thought of as a one-page "first draft" of that website. In this lab, you'll make your ONE-PAGE website.
 
