@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m2-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Ag Data Lifecycle</h1>
+
+        <p>
+          Module 2 - Data Exploration <br />
+          Lecture 2.1 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ul>
+          <li>Genres of AgTech</li>
+          <li>Ag data types</li>
+          <li>What is data science?</li>
+          <li>The data lifecycle</li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- GENRES OF SOFTWARE -->
+
+      <section>
+        <h2>Genres of Software</h2>
+        <ul class="no-bullets">
+          <li>Data collection and exploration tools</li>
+          <li>Whole-system management tools</li>
+          <li>Decision support and recommendation systems</li>
+          <li>Embedded and control systems</li>
+          <li>Geospatial systems</li>
+          <li>Modeling and simulation tools</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>The FarmTech Landscape</h2>
+        <img src="img/m2-tech-landscape.png" width="85%"
+          alt="The FarmTech Landscape 2020: a dense market map sorting several hundred company logos into three columns - Digital Agronomy and Production, Planning and Farm Management, and Market Access and Financing - each broken into categories such as field monitoring sensors, precision irrigation, imaging analytics, robotics, farm ERP, water management, and crop marketing." />
+        <p class="cite">FarmTech Landscape 2020, Seana Day, <a href="https://betterfoodventures.com/">Better Food
+            Ventures</a></p>
+      </section>
+
+
+      <!-- Ankita fills this in after class; commented out so it neither shows
+           blank nor trips the leftover-TODO check.
+      <section>
+        <h2>Your Snapshot from Class</h2>
+        <p>Insert student post-it notes</p>
+      </section>
+      -->
+
+
+      <section data-auto-animate>
+        <h2>Essential Difficulties of Software</h2>
+        <ul class="no-bullets">
+          <li class="fragment" data-fragment-index="1">Complexity</li>
+          <li class="fragment" data-fragment-index="1"><span class="text-small">No two systems are alike. Software has
+              many possible states. Nonlinear increase in complexity. Math is hard. Management is difficult.</span></li>
+          <li class="fragment" data-fragment-index="1"><span class="text-small red">How to represent the complex
+              interplay between agricultural, social, environmental, and economic aspects of a farm? </span></li>
+          <li class="fragment" data-fragment-index="2">Conformity</li>
+          <li class="fragment" data-fragment-index="2"><span class="text-small">No unifying theories about goodness,
+              correctness, usefulness.</span></li>
+          <li class="fragment" data-fragment-index="2"><span class="text-small red">How to decide what elements of a
+              farm to focus on in software? </span></li>
+          <li class="fragment" data-fragment-index="3">Changeability</li>
+          <li class="fragment" data-fragment-index="3"><span class="text-small"> Software needs to be adapted. One
+              change = dependencies galore. Maintenance is hard. Technology evolves. Humans change.</span></li>
+          <li class="fragment" data-fragment-index="3"><span class="text-small red">Food and ag systems are dynamic and
+              temporally complex. How to manage?</span></li>
+          <li class="fragment" data-fragment-index="4">Invisibility</li>
+          <li class="fragment" data-fragment-index="4"><span class="text-small">If a line of code fails in a computer
+              and you don't get an error message, did anything break?</span></li>
+          <li class="fragment" data-fragment-index="4"><span class="text-small red">Balance between visibility of farms
+              and invisibility of, for instance, food flows.</span></li>
+        </ul>
+
+        <p class="cite">"No Silver Bullet", Fred Brooks, 1986</p>
+      </section>
+
+      <!--
+          The xkcd comic is hot-linked to imgs.xkcd.com, as it was in the 2024
+          deck - not copied into img/. If it ever fails to load, that is why.
+        -->
+      <section>
+        <h2>Compounding Difficulties, <br /><span class="fragment green"> even in Agriculture</span></h2>
+        <img src="https://imgs.xkcd.com/comics/here_to_help.png" width="80%"
+          alt="xkcd comic: a person says that computational biologists' problems seem solvable with basic data pipelines, offers to build one, and returns much later having produced nothing usable." /><br /><br />
+        <p class="cite"><a href="https://xkcd.com/1831/">https://xkcd.com/1831/</a>, Randall Munroe (CC BY-NC 2.5)</p>
+      </section>
+      <section>
+        <h2>Components of Software</h2>
+        <table>
+          <tr class="fragment">
+            <td>User Interface</td>
+            <td>view</td>
+            <td>HTML, CSS, Javascript</td>
+          </tr>
+          <tr class="fragment">
+            <td>Controllers </td>
+            <td>logic</td>
+            <td>Javascript, Python</td>
+          </tr>
+          <tr class="fragment">
+            <td>Data Storage &amp; Access</td>
+            <td>APIs, <br />database</td>
+            <td>Javascript, Python, SQL</td>
+          </tr>
+          <tr class="fragment">
+            <td>Environment</td>
+            <td>web server</td>
+            <td>Linux, Node, Docker</td>
+          </tr>
+          <tr class="fragment">
+            <td>Configurations</td>
+            <td>hosting, <br />versioning</td>
+            <td>Digital Ocean, <br />Github</td>
+          </tr>
+          <tr class="fragment">
+            <td>Meta</td>
+            <td>licenses, <br />docs</td>
+            <td>GNU GPL, <br />markdown</td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="r-fit-text">How It's Made: Ag Tech Software</h2>
+      </section>
+
+      <!--
+          FarmOS: screenshot, then the asset-management screen recording.
+          The 2024 deck loaded this .mp4 through an <iframe>, which does not
+          play. <video> with controls does.
+        -->
+      <section>
+        <h2>Web Apps: FarmOS</h2>
+        <div class="r-stack">
+          <img class="fragment fade-in-then-out" src="img/m2-tech-farmos1.png"
+            alt="The farmOS dashboard for Wolfe's Neck Farm: a satellite map with field boundaries outlined in yellow and green, a popup showing West Bay 1 at 3.5 acres, and below it an upcoming-tasks list and a metrics panel counting animals, sensors, equipment and acreage." />
+          <video class="fragment" width="760" height="515" controls src="img/m2-tech-farmos-assets.mp4"
+            title="Screen recording of adding and browsing assets in farmOS"></video>
+        </div>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>UI + logic: Drupal (PHP)</li>
+              <li>Mobile UI: Vue.js</li>
+              <li>Data: SQL database</li>
+              <li>API available</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Docker available </li>
+              <li>License: GNU GPL</li>
+              <li>Docs &amp; Versioning: Github</li>
+              <li>Link: farmos.org</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cite">Screenshot and screen recording of farmOS, <a href="https://farmos.org">farmos.org</a>
+          (GNU GPL)</p>
+      </section>
+
+      <section>
+        <h2>Mobile Apps: Row Crop Sampling</h2>
+        <img src="img/m2-tech-mobile-apps.jpg" width="90%"
+          alt="A grid of phone screenshots from eight agricultural apps, labelled Market Pricing, Smart Irrigation, Farm Management, Communicating Drift, Social Media, Pest Management, Spray Decision Support, and Farm Management." />
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>IOS: Swift</li>
+              <li>Android: Java</li>
+              <li>Data: Some sort of database</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Cloud service provider </li>
+              <li>License: Proprietary</li>
+              <li>Docs &amp; Versioning: Likely Github</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>IoT System: Water Sensor System</h2>
+        <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/PmO3XwmOGcY?start=414"
+          title="YouTube video player showing a talk on the Precision Sustainable Agriculture water sensor system"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Sensor-Gateway: C on Arduino</li>
+              <li>Communication: LoRa + Hologram API</li>
+              <li>Data: PostgreSQL database</li>
+              <li>Dashboard: React.js</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Docker on Azure </li>
+              <li>License: MIT</li>
+              <li>Docs &amp; Versioning: Github</li>
+              <li>Link: precisionsustainableag.org</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cite">"On-Farm Water Sensor Installation Tutorial", <a
+            href="https://www.youtube.com/watch?v=PmO3XwmOGcY">Precision Sustainable Agriculture</a></p>
+      </section>
+
+      <section>
+        <h2>Modeling Tool: COMET-Farm</h2>
+        <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/EBuKvziAUlE?start=44"
+          title="YouTube video player showing a walkthrough of the COMET-Farm carbon accounting tool"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>UI: .NET, Javascript</li>
+              <li>Logic: Daycent Model (FORTRAN, C, Perl)</li>
+              <li>Data: Entity Framework</li>
+              <li>Python API</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Google Cloud?</li>
+              <li>License: Proprietary</li>
+              <li>Docs &amp; Versioning: Internal</li>
+              <li>Link: comet-farm.com</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cite">"COMET-Farm", <a href="https://www.youtube.com/watch?v=EBuKvziAUlE">USDA NRCS</a></p>
+      </section>
+
+      <section>
+        <h2>AI &amp; Robotics: EarthSense</h2>
+        <iframe width="760" height="515" src="https://www.youtube-nocookie.com/embed/GK5ncp82je4"
+          title="YouTube video player showing the EarthSense TerraSentia field robot"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="r-hstack box">
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Device: Arduino likely with ROS (C/C++)</li>
+              <li>UI: Android app (Java)</li>
+              <li>Logic: Python with openCV/pytorch/etc</li>
+              <li>Data: likely something noSQL</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets text-small">
+              <li>Environment: Azure?</li>
+              <li>License: Proprietary</li>
+              <li>Docs &amp; Versioning: Internal</li>
+              <li>Link: earthsense.co</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cite">"TerraSentia System Highlights", <a
+            href="https://www.youtube.com/watch?v=GK5ncp82je4">EarthSense, Inc.</a></p>
+      </section>
+
+
+      <!-- ================= AG DATA WORK ================= -->
+
+      <section>
+        <h2>A common component?</h2>
+
+        <h3 class="fragment">Using <span class="red">data</span> to<br /> learn something, <br />solve a problem,<br />
+          or make a
+          decision.</h3>
+      </section>
+
+      <section>
+        <h2>What is data?</h2>
+
+        <p class="fragment" data-fragment-index="1">"Data are symbols that represent the properties of objects and
+          events."</p>
+        <p class="fragment text-small" data-fragment-index="1">Ackoff, From Data to Wisdom, 1989</p>
+
+        <p class="fragment" data-fragment-index="2">"[R]ecorded information of any kind regardless of the form or method
+          of the recording[.]"</p>
+        <p class="fragment text-small" data-fragment-index="2">DEVCOM Army Research Lab, Legal Definition in General
+          CRADA, 2020.</p>
+
+        <h3 class="fragment" data-fragment-index="3"><span class="red">Data are Observations!</span></h3>
+      </section>
+
+      <!--
+          The DIKW ladder mapped onto genres of technology. Harvested from
+          fall2024/module2/lecture2.1.html section 7; the same mapping appears on
+          slide 22 of the 2026 Digital Sovereignty deck. The 2024 markup had a
+          stray </li> and <ul> siblings outside their <li> — rebuilt with proper
+          nesting here.
+        -->
+      <section>
+        <h2>Genres of Technology</h2>
+        <ul class="no-bullets">
+          <li><b>Data:</b> Observations
+            <ul class="text-medium red fragment" data-fragment-index="4">
+              <li>Data Collection Tools, Transaction Processing Systems</li><br />
+            </ul>
+          </li>
+          <li class="fragment" data-fragment-index="1"><b>Information:</b> Processed data, i.e., <em>formatted,
+              structured, organized, and contextualized</em>
+            <ul class="text-medium red fragment" data-fragment-index="4">
+              <li>Management Information Systems</li><br />
+            </ul>
+          </li>
+          <li class="fragment" data-fragment-index="2"><b>Knowledge:</b> Explicit (know what). Tacit (know how).
+            <em>"[A] mix of information, understanding, capability, experience, skills and values"</em>
+            <ul class="text-medium red fragment" data-fragment-index="4">
+              <li>Decision Support Tools, Recommender Systems, Machine Learning</li><br />
+            </ul>
+          </li>
+          <li class="fragment" data-fragment-index="3"><b>Wisdom:</b> <em>"[E]xpert knowledge and judgement
+              about
+              important, difficult and uncertain questions[.]"</em> Whose wisdom? Whose intelligence?
+            <ul class="text-medium red fragment" data-fragment-index="4">
+              <li>Expert Systems, Artificial Intelligence</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="cite">Rowley, The wisdom hierarchy: representations of the DIKW hierarchy, 2006.</p>
+      </section>
+
+      <!-- ================= DATA TYPES ================= -->
+
+      <!--
+          Harvested from fall2024/module2/lecture2.1.html section 3, with the
+          vignettes refreshed from the 2026 Digital Sovereignty deck, slide 20
+          ("Field to fork"). .container/.col converted to r-hstack.
+        -->
+      <section data-background-image="img/m2-photo-knowledge.JPG" data-background-opacity="0.5">
+        <h2 class="r-hstack overlay" style="background: rgba(255, 255, 255, 0.7);">Field to fork, <span
+            class="blue">data work</span></h2>
+        <div class="r-hstack overlay" style="background: rgba(255, 255, 255, 0.7);">
+          <div>
+            <ul class="no-bullets">
+              <li class="align-right">Using historical crop rotations</li>
+              <li class="align-right">Taking soil samples</li>
+              <li class="align-right">Viewing bird cameras</li>
+              <li class="align-right">Tracking cattle movements</li>
+              <li class="align-right">Using social media</li>
+              <li class="align-right">Scanning traffic maps</li>
+            </ul>
+          </div>
+
+          <div>
+            <ul class="no-bullets">
+
+              <li>to create a crop plan.</li>
+              <li>to test for heavy metals.</li>
+              <li>to monitor habitats.</li>
+              <li>to calculate grazing capacity.</li>
+              <li>to estimate product popularity.</li>
+              <li>to optimize delivery routes.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Types of Data</h2>
+        <div class="r-hstack">
+          <div>
+            <ul class="no-bullets">
+              <li><img src="img/m2-noun-text.png" width="100px"
+                  alt="Line icon of a document with lines of text on it." />
+              </li>
+              <li>
+                <h3><span class="red">Qualitative</span></h3>
+              </li>
+              <li>Text, images.</li>
+              <li>Does order matter?
+                <ul class="no-bullets">
+                  <li>No: Nominal. e.g., trees</li>
+                  <li>Yes: Ordinal. e.g., rating</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="fragment">
+            <ul class="no-bullets">
+              <li><img src="img/m2-noun-count.png" width="100px" alt="Line icon of tally marks being counted." /></li>
+              <li>
+                <h3><span class="red">Quantitative</span></h3>
+              </li>
+              <li>Numerical.</li>
+              <li>Fixed increment? Discrete. Otherwise, Continuous.</li>
+              <li>Does 0 matter?
+                <ul class="no-bullets">
+                  <li>No: Interval. e.g., date/time</li>
+                  <li>Yes: Ratio. e.g., weight</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Qualitative &amp; quantitative data?</h2>
+        <img class="r-stretch" src="img/m2-study-nori.JPG"
+          alt="A herd of tan and brown dairy cows grazing on green pasture in front of a white hoop shelter, with oak woodland and dry golden hills behind them under a blue sky." />
+      </section>
+
+      <section>
+        <h2>Types of (un)certainty</h2>
+        <img class="r-stretch" src="img/m2-diagram-quantqualdata.jpg"
+          alt="Two horizontal double-headed arrows on a dark background. The top one, labelled Quantitative, runs from 'estimate' on the left through 'quantity, amount' to 'detailed tally, calculations' on the right. The bottom one, labelled Qualitative, runs from 'guess' through 'patterns, regularities, differences' to 'detailed depiction'. Both kinds of data span a range from rough to precise." />
+        <p class="cite">Practical Empathy: For Collaboration and Creativity in Your Work, Young, Indi. 2015. New York:
+          Rosenfeld Media. rosenfeldmedia.com/books/practical-empathy/</p>
+      </section>
+
+      <section>
+        <div class="r-hstack">
+          <div>
+            <h2>Data scope?</h2>
+            <p>Spatial vs Temporal</p>
+            <img src="img/m2-moss-system-data.png"
+              alt="Diagram linking time to space: a horizontal strip of time slices runs across the top with several highlighted, and lines drop from one slice down to a plan view of a field divided into plots, where individual plots and a sampling point are also highlighted. The same observation can be scoped to a moment or to a place." />
+          </div>
+
+          <div class="fragment">
+            <h3>Data creators?</h3>
+            <p>Humans, Processes, Machines!</p>
+            <img src="img/m2-noun-human.png" width="100px" alt="Line icon of a person." />
+            <img src="img/m2-noun-process.png" width="100px" alt="Line icon of interlocking gears." />
+            <img src="img/m2-noun-drone.png" width="100px" alt="Line icon of a quadcopter drone." />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>One Field, Many Data Types</h2>
+        <p class="text-medium"><b>Data:</b> Spring cover crop in a field.<br />
+          <b>Type:</b> image, qualitative, spatial, temporal.
+        </p>
+        <img src="img/m2-gis-1.jpg" width="60%"
+          alt="A gently sloping field of green cover crop under a blue sky with wispy clouds, bordered by a treeline. Bare tan patches show through the stand where the cover crop established poorly." />
+      </section>
+
+      <section>
+        <h2>One Field, Many Data Types</h2>
+        <p class="text-medium"><b>Data:</b> Cover crop sample point (estimated low, medium, high biomass)<br />
+          <b>Type:</b> lat/long, qualitative, spatial, temporal.
+        </p>
+        <img src="img/m2-gis-2.jpg" width="38%"
+          alt="A hand holding a pen over a clipboard in a cover crop field. The paper form has columns for Sample ID, Lat, Lon and Notes, with latitude and longitude values written in by hand; a smartphone rests on the clipboard as the GPS source." />
+      </section>
+
+      <section>
+        <h2>One Field, Many Data Types</h2>
+        <p class="text-medium"><b>Data:</b> Cover crop biomass sample weight<br />
+          <b>Type:</b> numerical, quantitative, spatial, temporal.
+        </p>
+        <div class="r-stack">
+          <img src="img/m2-gis-sample.jpeg" width="40%"
+            alt="A paper sack of cut cover crop, wheat and crimson clover, standing in a plastic tub on gravel. The sack is labelled by hand." />
+          <img class="fragment" src="img/m2-gis-weigh.jpeg" width="40%"
+            alt="A researcher leaning over an open laptop in the back of a vehicle, recording the weight of a white tub filled with cut cover crop biomass." />
+        </div>
+      </section>
+
+      <section>
+        <h2>One Field, Many Data Types</h2>
+        <p class="text-medium"><b>Data:</b> Cover crop quality estimation<br />
+          <b>Type:</b> LiDAR image, quantitative, spatial, temporal.
+        </p>
+        <img src="img/m2-gis-highboy.jpeg" width="65%"
+          alt="Two researchers riding a red high-clearance sprayer through a tall cover crop stand. A sensor box is mounted on a boom arm extending out to the side of the machine." />
+      </section>
+
+      <section>
+        <h2>One Field, Many Data Types</h2>
+        <p class="text-medium"><b>Data:</b> Cover crop quantity and quality<br />
+          <b>Type:</b> numerical, quantitative, spatial, temporal.
+        </p>
+        <img src="img/m2-gis-sheet.jpeg" width="65%"
+          alt="A dirty laptop screen photographed outdoors, showing a Google Sheets biomass table. Columns record drill line spacing, two subsample fresh-biomass weights in grams, empty bag weight, average fresh biomass per square metre, and whether the subplot is more than 40 percent legume. Several rows below the entered data show #DIV/0! errors." />
+      </section>
+
+      <section>
+        <h2>One Field, Many Data Types</h2>
+        <p class="text-medium"><b>Data:</b> Cover crop quantity and quality estimation<br />
+          <b>Type:</b> All together now!
+        </p>
+        <img class="r-stretch" src="img/m2-gis-3.png"
+          alt="An aerial map rendered in a green-to-red colour ramp, with clusters of dark red sample points overlaid on several field parcels near a town." />
+      </section>
+
+
+      <section>
+        <h2>Information. Knowledge. Wisdom.</h2>
+
+        <img src="img/m2-chalkley-information-knowledge-and-wisdom.jpg" width="70%"
+          alt="Three-panel cartoon. INFORMATION: a puzzled hunter stands in a landscape with a question mark over his head, rabbits and a broken tool nearby. KNOWLEDGE: the same man thinking through a chain of facts - rabbits eat grass, grass grows in soil, rain falls from clouds, wolves eat rabbits, etc. WISDOM: he realises that if he kills off all the wolves, the rabbits will eat up the grass and the soil will all wash away." />
+
+        <ul class="fragment text-medium no-bullets">
+          <li>Where is the Life we have lost in living?</li>
+          <li class="red">Where is the wisdom we have lost in knowledge?</li>
+          <li class="red">Where is the knowledge we have lost in information?</li>
+          <li>The cycles of Heaven in twenty centuries.</li>
+          <li>Brings us farther from God and nearer to the Dust.</li>
+        </ul>
+
+        <p class="cite">Top: Chalkley via
+          https://www.normanjackson.co.uk/creative-academic/using-cultivating-imagination-reflections-synthesis. Bottom:
+          T.S. Eliot, The Rock, 1934. Origins story via Fricke's <a
+            href="https://www.inlibra.com/document/download/pdf/uuid/d02a1734-aeea-3a91-a7b3-c8256a3d020b">"The
+            Knowledge Pyramid, the DIWK Hierarchy"</a></p>
+      </section>
+
+      <!-- ================= WHAT IS DATA SCIENCE? ================= -->
+
+      <section>
+        <h2>What is Data Science?</h2>
+        <p>Collecting, transforming, and using data to inform decision making, derive knowledge, and find meaning.</p>
+        <img class="r-stretch" src="img/m2-diagram-data-pipeline.png"
+          alt="A hand-drawn pipeline: a sensor in a field sends readings to a gateway, over the internet to a server, to a data scientist drawn as a large tangled scribble, which resolves into a chart labelled information and then into a person making a decision." />
+      </section>
+
+      <!-- ================= THE DATA LIFECYCLE ================= -->
+
+      <!--
+          Harvested from fall2024/module3/Lecture3.1.html sections 3-8. The 2024
+          Module 2 deck had only the summary diagram; L3.1 breaks out all six
+          stages, so this is the version that moved across. See the harvest
+          outline for why L3.1 dissolves into Module 2.
+        -->
+      <!--
+          THE LIFECYCLE WAYFINDER.
+
+          One image per stage, exported from Ankita's diagram with that stage in
+          black and the rest greyed back. To repoint a slide, swap the filename:
+          m2-diagram-data-lifecycle-<stage>.jpg, where <stage> is understand,
+          plan, acquire, process, analyze, use, or meta.
+          m2-diagram-data-lifecycle.jpg is the plain overview.
+
+          The h2 is the same on every stage slide; only the blue span changes.
+
+          Sizing note: --r-heading3-size is 1.3em, i.e. RELATIVE. Put the font
+          class on the wrapper div, not on the ul -- a text-small wrapper drags
+          the h3 down to about 21px with it. The wrapper carries text-medium here
+          and the list inherits it.
+
+          PROVENANCE: Understand and Plan are harvested verbatim from
+          fall2024/module3/Lecture3.1.html sections 4-5. Acquire is section 6,
+          tightened, plus one added bullet on permissions -- the only drafted
+          line still standing. The 2024 deck gave Process, Analyze and Use one
+          line each and had no meta slide; Claude drafted those four lists on
+          2026-09-07 to level the detail, and Ankita rewrote all four the same
+          day. Process, Analyze, Share / Use and Meta are hers.
+
+          Spacing: <br /> sits between </li> and the next <li>, outside the list
+          item. Technically invalid, deliberately so -- it is how Ankita forces
+          line spacing, and it neither renders wrong nor affects screen readers.
+          Leave it alone.
+        -->
+
+      <!--
+          CLICK-THROUGH: the three published lifecycles, then Ankita's. r-stack
+          layers them in place; fade-in-then-out swaps each for the next, and the
+          last (no fade-out) stays up as the one the module actually uses.
+
+          All four images are in place. Each layer carries its own <p class="cite">,
+          so build_credits.py pairs them 1:1 rather than stamping every source
+          onto Ankita's diagram.
+        -->
+      <section>
+        <h2>The Data Lifecycle</h2>
+        <p class="text-small">Many people have drawn this. Here are three, and then ours.</p>
+
+        <div class="r-stack">
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-usgs-science-data-lifecycle.png" width="90%"
+              alt="The USGS science data lifecycle, drawn as a straight line rather than a ring: six blue boxes with arrows running left to right, reading Plan, Acquire, Process, Analyze, Preserve, Publish/Share. Three long arrows run beneath the whole sequence, labelled Describe (metadata, documentation), Manage quality, and Backup and secure." />
+            <p class="cite"><a href="https://pubs.usgs.gov/of/2013/1265/">USGS Science Data Lifecycle
+                Model</a></p>
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-FWS-data-lifecycle-graphic.png" width="90%"
+              alt="The US Fish and Wildlife Service data lifecycle, drawn as a colour wheel of six wedges reading Plan, Acquire, Maintain, Access, Evaluate and Archive, each with a small icon. At the hub, QA/QC sits in a circle with arrows radiating out to every wedge." />
+            <p class="cite"><a href="https://www.fws.gov/program/data-management/data-management-life-cycle">US
+                Fish &amp; Wildlife Service Data Management Life Cycle</a></p>
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-illinois-data-science-pipeline.png" width="85%"
+              alt="The Illinois Data Science Pipeline, drawn as a left-to-right chain of coloured boxes: Formulate Research Question, Collect Data, Data Management, Data Cleaning/Data Representation, Descriptive Analytics, Predictive Analytics, Prescriptive Analytics. Probability Theory and Inferential Statistics branch above the analytics stages, and a panel across the top reads Coding, Ethics, and Communication." />
+            <p class="cite"><a
+                href="https://exploration.stat.illinois.edu/learn/Understanding-and-Wrangling-Data/">Illinois "Data
+                Science Exploration" course</a></p>
+          </div>
+
+          <div class="fragment">
+            <img src="img/m2-diagram-data-lifecycle.jpg" width="52%"
+              alt="Our data lifecycle: six stages in a ring connected by clockwise arrows - Understand, Plan, Acquire, Process, Analyze, and Share / Use, returning to Understand - around a centre box reading Documentation, Quality Control, Data Management." />
+            <p class="cite text-small">Ankita Raturi, Purdue University</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Understand</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-understand.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. UNDERSTAND is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Mapping the problem space</h3>
+            <ul class="text-medium no-bullets">
+              <li>What is the problem/question?</li><br />
+              <li>What is the goal?</li><br />
+              <li>Who are the actors? What are their needs?</li><br />
+              <li>What data are required?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Plan</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-plan.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. PLAN is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Mapping the solution space</h3>
+            <ul class="text-medium no-bullets">
+              <li>How will data be collected/acquired?</li><br />
+              <li>How will you process and analyze it?</li><br />
+              <li>How will the data be used and/or shared?</li><br />
+              <li>How will you handle documentation, data management, quality control?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Acquire</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-acquire.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. ACQUIRE is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Getting the data you need</h3>
+            <ul class="text-medium no-bullets">
+              <li><b>BYO data:</b> collect it from the world - interviews, sensors, samples.</li><br />
+              <li><b>Private/protected data:</b> a sharing agreement with the data owner.</li><br />
+              <li><b>Public data:</b> available on the internet, with terms attached.</li><br />
+              <li>Whose data is it, and what are you permitted to do with it?</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Process</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-process.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. PROCESS is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Making the data usable</h3>
+            <ul class="text-medium no-bullets">
+              <li><b>Clean data:</b> identify missing values and duplicates. Consider obvious errors e.g., negative
+                numbers,
+                allowed ranges.</li><br />
+              <li><b>Check data types:</b> is that number stored as text? Does that date parse?</li><br />
+              <li><b>Structure:</b> one observation per row, one variable per column.</li><br />
+              <li><b>Track changes:</b> archive raw data, archive data at each processing step.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Analyze</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-analyze.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. ANALYZE is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Converting data to information</h3>
+            <ul class="text-medium no-bullets">
+              <li><b>Describe the data:</b> size, shape, distributions, outliers.</li><br />
+              <li><b>Visualize the data:</b> visualize simple trends, patterns, and gaps in the data.</li><br />
+              <li><b>Data analysis:</b> begin with exploratory data analysis, then answer your data science
+                question.</li><br />
+              <li><b>Document your process:</b> maintain a "lab" notebook to track what you did, why you did it, and
+                what
+                you
+                learned.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Share / Use</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-use.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. SHARE / USE is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Informing action</h3>
+            <ul class="text-medium no-bullets">
+              <li><b>Define use:</b> Who are the data users and data stakeholders? What is the intended use of the
+                data?</li><br />
+              <li><b>Design for sharing:</b> How can you best support user-data interactions? Graphs, dashboards,
+                interactive web apps?</li><br />
+              <li><b>Data metadata:</b> provenance, scope, limits, assumptions, bias in the data.</li><br />
+              <li><b>Data protocols:</b> Share the method AND the data, not just the results.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Meta</span></h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 50%;">
+            <img src="img/m2-diagram-data-lifecycle-meta.jpg"
+              alt="The data lifecycle: six stages in a ring - Understand, Plan, Acquire, Process, Analyze, Share / Use - around a centre box reading Documentation, Quality Control, Data Management. The centre box is shown in black and bold; the rest of the diagram is greyed back." />
+          </div>
+
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <h3>Meta data work is perennial</h3>
+            <ul class="text-medium no-bullets">
+              <li><b>Documentation:</b> explains and tracks data provenance, workflow, and your manipulations.</li>
+              <br />
+              <li><b>Quality control:</b> a continuous improvement process, from initial manual "checks" to more
+                formalized data verification and validation.</li><br />
+              <li><b>Data management:</b> naming and versioning conventions, storage and backup protocols, access and
+                data sharing.</li><br />
+              <li>For good data habits early = useful preliminary results!</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>Reminder: Lab Prework</h2>
+        <ul class="no-bullets">
+          <li>Python intro / refresh: includes specific libraries</li>
+          <li>Setup your development environment</li>
+          <li>Tinker with a Jupyter Notebook/li>
+          <li>Think about possible datasets for your lab work</li>
+        </ul>
+      </section>
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br />
+          </li>
+          <br />
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if
+                changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
