@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m2-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Framing a Data Problem</h1>
+
+        <p>
+          Module 2 - Data Exploration<br />
+          Lecture 2.2 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ul>
+          <li>Why Python?</li>
+          <li>Data structures, formats, parts</li>
+          <li>Data in Python: dictionaries, arrays, dataframes</li>
+          <li>The Ag Data Landscape: where data lives, and how to get it</li>
+          <li>Assessing data quality</li>
+          <li class="blue"><br />Then, the rest of the session:</li>
+          <li><b>Activity:</b> frame your data problem, find your dataset, plan your data acquisition, processing,
+            analysis, and visualization</li>
+          <li>Lab 2</li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <section>
+        <h2>Today: the first half of the lifecycle</h2>
+        <img class="r-stretch" src="img/m2-diagram-data-lifecycle-first-half.jpg"
+          alt="The data lifecycle ring with the first four stages drawn in black and connected by black arrows - Understand, Plan, Acquire, Process - while Analyze and Share / Use are greyed out. The centre box reads Documentation, Quality Control, Data Management." />
+
+      </section>
+
+      <section>
+        <img class="r-stretch" src="img/m2-monica-rosales-ascencio-data-sorted.jpg"
+          alt="Five stages of the same Lego bricks, stacked top to bottom. DATA: a heap of mixed bricks. SORTED: the same bricks grouped into colour piles. ARRANGED: each colour pile squared off into a block. PRESENTED VISUALLY: the blocks standing as columns of different heights, a bar chart. EXPLAINED WITH A STORY: the bricks built into a house with a garage, garden and tree." />
+        <p class="cite">Image by Mónica Rosales Ascencio via <a
+            href="https://twitter.com/rskudesia/status/1431275057863561223?s=21">Ravi Kudesia</a></p>
+      </section>
+
+
+      <section>
+        <h2>Why Python?</h2>
+        <ul class="text-medium no-bullets">
+          <li class="fragment">"Python is an interpreted high-level <span class="red">general-purpose programming
+              language.</span></li>
+          <br />
+          <li class="fragment">Its design philosophy emphasizes <span class="red">code readability</span> with its use
+            of significant
+            indentation.
+            <ul class="text-medium">
+              <li>Its language constructs as well as its object-oriented approach aim to <br />help programmers <span
+                  class="red">write
+                  clear,
+                  logical code</span> for small and large-scale projects.</li><br />
+            </ul>
+          </li>
+          <li class="fragment">Python is dynamically-typed and garbage-collected. <br />
+            It supports <span class="red">multiple programming
+              paradigms</span>, including:
+            <ul class="text-medium">
+              <li>structured (particularly, procedural),</li>
+              <li>object-oriented and </li>
+              <li>functional programming.</li>
+            </ul>
+          </li><br />
+          <li class="fragment">It is often described as a <span class="red">"batteries included"</span> language due to
+            its comprehensive
+            standard library"</li>
+        </ul>
+        <p class="cite"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python (programming language), Wikipedia</a></p>
+      </section>
+
+
+      <section>
+        <h2>...Learn More</h2>
+        <div class="r-hstack">
+          <div>
+            <ul class="no-bullets">
+              <li>Readability</li>
+              <li><a href="https://realpython.com/lessons/dynamic-vs-static/">Dynamic Typing</a> & Garbage Collection
+              </li>
+              <li><a href="https://en.wikipedia.org/wiki/Interpreter_(computing)">Interpreted Language</a></li>
+              <li>Portability</li>
+              <li><a href="https://www.python.org/community/">Community</a></li>
+              <li><a href="https://pypi.org/">PyPI Library of Resources</a></li>
+            </ul>
+          </div>
+          <div>
+            <img src="img/m2-why-py.jpg"
+              alt="The 'X, all the X' meme: a wide-mouthed stick figure yelling, arms flung out against a yellow starburst. Captioned 'WHY PY?' above and 'ALL THE RESOURCES!' below." />
+          </div>
+        </div>
+        <p class="cite"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python (programming language), Wikipedia</a></p>
+      </section>
+
+
+      <!-- ========== PROCESS: WHAT DATA LOOKS LIKE ========== -->
+
+      <!--
+          Harvested from A-L2.1 §18-20, the block that never got taught in 2.1.
+          The 2024 markup used a class="inline-img" that does not exist in
+          styles.css, so the three structure icons are laid out with r-hstack
+          instead. Images copied from the fall2024 module2 archive and prefixed.
+        -->
+
+      <section>
+        <h2>Structure of Data</h2>
+        <div class="r-hstack">
+          <div class="fragment">
+            <img src="img/m2-noun-unstructured-data.png" width="200px"
+              alt="Line icon of overlapping media: a framed photograph, a video player with a play triangle, and a page of text lines." /><br />
+            <span class="blue">Unstructured:</span> <br /> Free-form text/numbers/images.
+          </div>
+
+          <div class="fragment">
+            <img src="img/m2-noun-spreadsheet.png" width="200px"
+              alt="Line icon of a spreadsheet: a five-by-four grid of cells with a header row and a labelled first column." /><br />
+            <span class="blue">Semi-structured:</span> <br /> Tables, Labeled Sections
+          </div>
+
+          <div class="fragment">
+            <img src="img/m2-noun-database.png" width="200px"
+              alt="Line icon of a database: a cylinder linked by lines to three record cards, drawn as a connected network." /><br />
+            <span class="blue">Structured:</span> <br /> Database
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Data Formats</h2>
+        <table>
+          <tr class="fragment">
+            <td>Text</td>
+            <td>TXT: <br />Text file, unformatted</td>
+            <td>DOC: <br />Word document, formatted text</td>
+          </tr>
+          <tr class="fragment">
+            <td>Tables</td>
+            <td class="red">CSV: <br />Delimiter (Comma, Tab) Separated Values.</td>
+            <td>XLS: <br />Excel spreadsheet</td>
+          </tr>
+          <tr class="fragment">
+            <td>Self Describing</td>
+            <td class="red">JSON: <br /> Attribute:Value pairs &amp; arrays <br />{"name":"Ankita"}</td>
+            <td>XML: <br />Markup Language used to structure data<br />(like HTML!)</td>
+          </tr>
+          <tr class="fragment">
+            <td>Other</td>
+            <td>Docs/Images: PDF, PNG, JPG</td>
+            <td>Geospatial Vector: KML, GeoJSON, Shapefile</td>
+          </tr>
+        </table>
+      </section>
+
+      <!--
+          CLICK-THROUGH: the source page, then the same data as CSV, then as raw
+          JSON, then as formatted JSON. One dataset, four views - which is the
+          whole point of the slide. Each layer carries its own heading so the
+          click-through reads in order.
+        -->
+      <section>
+        <h2>Parts of Data</h2>
+        <div class="r-stack">
+          <a class="fragment fade-in-then-out" href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">
+            <img src="img/m2-data-sample-source.png" width="55%"
+              alt="The NOAA National Centers for Environmental Information 'Past Weather' page for west lafayette, indiana. A map and a list of nearby stations sit at the top, each with an Access Data button; Lafayette Purdue University Airport is selected. Below, coloured buttons filter for Avg Temp, Max Temp, Min Temp, Precip, Snowfall and Snow Depth, and a time series chart of average temperature runs alongside a list showing which measures are present and which are missing." />
+            <p class="cite"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past
+                Weather</a></p>
+          </a>
+
+          <div class="fragment fade-in-then-out">
+            <h3>Data in CSV Format</h3>
+            <img src="img/m2-data-sample-itself.png" width="80%"
+              alt="A spreadsheet of daily weather for Lafayette Purdue University Airport, station USW00014835. One row per date, from 2021-09-02 backwards, and one column per variable: TAVG, TMAX and TMIN in degrees Fahrenheit, PRCP, SNOW and SNWD in inches. Several cells are empty where a measure was not recorded." />
+            <p>Observations = Rows. <br /> Variables = Columns. <br />Metadata = data about the data</p>
+            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past Weather, downloaded as CSV</a></p>
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <h3>Data in JSON Format</h3>
+            <img src="img/m2-data-sample-json-raw.png" width="80%"
+              alt="The same weather data as raw JSON in a browser's Raw Data tab: one long unbroken line beginning with a description object that names the station and the units for each measure, followed by a data object keyed by date, each date holding TMAX, TMIN, PRCP, SNOW and SNWD as quoted values." />
+            <p>Attribute:Value Pairs. <br />Metadata in the header</p>
+            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past Weather, the same request as JSON</a></p>
+          </div>
+
+          <div class="fragment">
+            <h3>Data in JSON Format</h3>
+            <img src="img/m2-data-sample-json-formatted.png" width="50%"
+              alt="The same JSON in the browser's formatted JSON viewer, drawn as a collapsible tree: 'description' expands to 'station' and a 'units' block listing degrees Fahrenheit and inches for each measure; 'data' expands to a node per date, with 1944-02-01 opened to show TMAX 43, TMIN 31, PRCP 0.00, SNOW 0.0 and SNWD 0.0." />
+            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past Weather, the same JSON in a formatted viewer</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Data in Python</h2>
+        <div class="r-hstack">
+          <div class="align-left text-medium" style="flex: 1 1 42%;">
+            <p>A <b>list</b> of observations.</p>
+            <p>A <b>dictionary</b> is attribute:value pairs ~like JSON.</p>
+          </div>
+          <div class="align-left" style="flex: 1 1 58%;">
+            <pre><code class="language-python" data-trim>
+              # List
+              years = [2021, 2022, 2023]
+
+              # Dictionary: one day
+              day = {"date": "2021-08-27", "tmax": 92, "prcp": 0.03}
+
+              # List + Dictionary: many days
+              days = [
+                  {"date": "2021-08-27", "tmax": 92, "prcp": 0.03},
+                  {"date": "2021-08-28", "tmax": 91, "prcp": 0.00},
+              ]
+            </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Python Library: <code>pandas</code></h2>
+        <div class="r-hstack">
+          <div class="align-left text-medium">
+            <p><b>pandas</b> will hold your data as a table that you can filter, group, and summarize. It has one
+              observation per row, and one variable per column.</p>
+          </div>
+          <div class="align-left">
+            <pre><code class="language-python" data-trim>
+              import pandas as pd
+
+              land = pd.read_csv("faostat-land-use.csv")
+              land.info()
+              land.describe()
+              land.head()
+            </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Python Library: <code>numpy</code></h2>
+        <div class="r-hstack">
+          <div class="align-left text-medium">
+            <p><b>numpy</b> does the numerical work inside pandas.</p>
+            <p class="text-small">We're mostly going to use pandas and matplotlib, so we won't cover much about numpy.
+            </p>
+          </div>
+          <div class="align-left">
+            <pre><code class="language-python" data-trim>
+              import numpy as np
+
+              yields = np.array([168.4, 172.1, 159.8, 181.3])
+              yields.mean()
+              yields.std()
+              np.isnan(yields).any()
+            </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Data in Python: <span class="blue">arrays, dataframes</span></h2>
+        <div class="r-hstack">
+          <div class="align-left text-medium" style="flex: 1 1 42%;">
+            <p>A <b>numpy array</b> holds one variable, and does maths on all of it at once.</p>
+            <p>A <b>pandas dataframe</b> holds the whole table: one observation per row, one variable per
+              column.</p>
+          </div>
+          <div class="align-left" style="flex: 1 1 58%;">
+            <pre><code class="language-python" data-trim>
+              import numpy as np
+              import pandas as pd
+
+              tmax = np.array([92, 91, 86, 90, 94])
+              tmax.mean()
+
+              weather = pd.DataFrame(days)
+              weather.head()
+            </code></pre>
+          </div>
+        </div>
+        <p class="text-small">A CSV ~like a dataframe. JSON ~like a dictionary. .</p>
+      </section>
+
+      <!-- ========== ACQUIRE: WHERE IT LIVES, HOW TO GET IT, IS IT ANY GOOD ========== -->
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Acquire</span></h2>
+        <img src="img/m2-diagram-data-lifecycle-acquire.jpg" width="55%"
+          alt="The data lifecycle ring, with ACQUIRE shown in black and bold and the rest of the diagram greyed back." />
+      </section>
+
+      <!--
+          LOAD-BEARING SLIDE. Students pick their Lab 2 dataset from this list,
+          in this session, so a dead link here costs someone their lab. Re-run
+          check_links.py against this deck before every push, not just at module
+          close.
+        -->
+      <section>
+        <h2>Some Public Data Sources</h2>
+        <ul class="no-bullets text-medium">
+          <li><b>US Food &amp; Ag:</b> <a href="https://www.nass.usda.gov/">USDA Statistical Service</a>, <a
+              href="https://www.nal.usda.gov/services/agdatacommons">US Ag Data Commons</a></li>
+
+          <li><b>Global Food &amp; Ag:</b> <a href="https://www.fao.org/faostat/en/">FAO Global Food &amp; Ag
+              Data</a>, <a href="https://bigdata.cgiar.org/">CGIAR Global Ag Data</a></li>
+
+          <li><b>Soils:</b> <a href="https://sdmdataaccess.nrcs.usda.gov/">US Soil Survey</a>, <a
+              href="https://africasoils.net/">Africa Soil Info Service</a></li>
+
+          <li><b>Climate &amp; Earth:</b> <a href="https://www.ncei.noaa.gov/cdo-web/">NOAA Climate Data</a>, <a
+              href="https://waterdata.usgs.gov/">USGS Water Data</a></li>
+
+          <li><b>Imagery:</b> <a href="https://science.nasa.gov/earth/nasa-earth-observations-neo/">NASA Earth
+              Observations</a></li>
+
+          <li><b>Plants:</b> <a href="https://plants.sc.egov.usda.gov/">USDA PLANTS Database</a></li>
+
+          <li><b>Geospatial:</b> <a href="https://www.usgs.gov/the-national-map-data-delivery">USGS GIS Data</a>, <a
+              href="https://www.usgs.gov/national-hydrography/watershed-boundary-dataset">Watershed Boundary
+              Dataset</a>, <a href="https://gdg.sc.egov.usda.gov/index.html">Geospatial Data Gateway</a></li>
+
+          <li><b>Economic:</b> <a href="https://www.ers.usda.gov/data-products/">USDA Economic Research Service</a>,
+            <a href="https://data.worldbank.org/">World Bank</a>
+          </li>
+
+          <li><b>Health &amp; Nutrition:</b> <a href="https://www.fns.usda.gov/data-research">USDA Food &amp;
+              Nutrition Service Data</a>, <a href="https://www.who.int/data/gho">WHO Public Health Data</a></li>
+        </ul>
+
+        <p>What other kinds of data would you go looking for?</p>
+        <p class="fragment green"> EXPLORE THIS LIST for activity + lab.</p>
+      </section>
+
+      <section>
+        <h2>Data Acquisition Methods</h2>
+        <ol>
+          <li><b>BYO data: collect it yourself.</b><br />
+            <span class="text-medium">You design data collection protocols; you are responsible for all errors.</span>
+          </li><br />
+          <li><b>Get data: browse and direct download.</b><br />
+            <span class="text-medium">View, explore, and take out data hot-to-go.</span>
+          </li><br />
+          <li><b>Get via Application Programming Interface (API).</b><br />
+            <span class="text-medium">Repeatable, computational REQESTS for data</span>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Python Library: <code>requests</code></h2>
+        <div class="r-hstack">
+          <div class="align-left text-medium">
+            <p><b>requests</b> lets you programmatically acquire data using an API.</p>
+          </div>
+          <div class="align-left">
+            <pre><code class="language-python" data-trim>
+              import requests
+
+              url = "https://quickstats.nass.usda.gov/api/api_GET/"
+              params = {"key": API_KEY, "commodity_desc": "CORN",
+                        "year": "2025", "format": "JSON"}
+
+              r = requests.get(url, params=params)
+              r.json()["data"][0]
+            </code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Data Acquisition Methods: Examples</h2>
+        <ol>
+          <li>View data: <a href="https://croplandcros.scinet.usda.gov/">CroplandCROS</a></li>
+          <li>Get data: <a href="https://www.nass.usda.gov/Research_and_Science/Cropland/SARS1a.php">Cropland
+              data
+              download</a></li>
+          <li>Get data via API: <a href="https://quickstats.nass.usda.gov/api">NASS Quick Stats API</a></li>
+        </ol>
+        <p class="fragment red">The BIG questions: How will this data change? Can I access it next year? Same way? Is
+          perennial data access guaranteed? Is it out of date? Does it matter?</p>
+      </section>
+
+      <section>
+        <h2>Assessing Data Quality</h2>
+        <p class="text-medium red">Sixteen dimensions!! <br /> Which of these matter for your work, your lab dataset?
+        </p>
+
+        <div class="r-hstack">
+          <div class="align-left">
+            <ul class="text-medium">
+              <li>Accessibility</li>
+              <li>Appropriate amount of data</li>
+              <li>Believability</li>
+              <li>Completeness</li>
+              <li>Concise representation</li>
+              <li>Consistent representation</li>
+              <li>Ease of manipulation</li>
+              <li>Free-of-error</li>
+            </ul>
+          </div>
+
+          <div class="align-left">
+            <ul class="text-medium">
+              <li>Interpretability</li>
+              <li>Objectivity</li>
+              <li>Relevancy</li>
+              <li>Reputation</li>
+              <li>Security</li>
+              <li>Timeliness</li>
+              <li>Understandability</li>
+              <li>Value-added</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="cite text-small">Pipino, Lee &amp; Wang 2002, <a href="https://doi.org/10.1145/505248.506010">Data
+            Quality Assessment</a>, Communications of the ACM 45(4), 211-218.</p>
+      </section>
+
+
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+      <!-- ================= HANDS-ON ACTIVITY ================= -->
+
+      <!--
+          THE ACTIVITY, ported 2026-09-09 from Ankita's
+          2023-Adhoc-Activity-Framing-Data-Problem.pptx. Eight prompts in four
+          numbered steps; the pptx's slide 6 is the printable handout version,
+          which now lives in instructor-content/l2.2-activity/.
+
+          The pptx's worked example (its slide 7) is rebuilt here as text rather
+          than reproduced as an image, so it is legible from the back of the room
+          and readable by a screen reader.
+
+          This is 35 of the 50 minutes. It ends with a PLAN, not a finished
+          download - the download is a test of whether the plan is real.
+        -->
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Understand, Plan</span></h2>
+        <div class="r-stack">
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-diagram-data-lifecycle-understand.jpg" width="55%"
+              alt="The data lifecycle ring, with UNDERSTAND shown in black and bold and the rest of the diagram greyed back." />
+          </div>
+
+          <div class="fragment">
+            <img src="img/m2-diagram-data-lifecycle-plan.jpg" width="55%"
+              alt="The data lifecycle ring, with PLAN shown in black and bold and the rest of the diagram greyed back." />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Framing your DATA problem</h2>
+        <div class="r-hstack text-small align-left">
+
+          <div style="flex: 1 1 25%;">
+            <p class="blue"><b>Understand:</b> domain space</p>
+            <ul class="no-bullets text-medium">
+              <li>What is the problem/question?</li>
+              <li>What is the goal?</li>
+              <li>Who are the actors? What are their needs?</li>
+              <li>What data are required?</li>
+            </ul>
+          </div>
+
+          <div style="flex: 1 1 25%;">
+            <p class="blue"><b>Plan:</b> solution space</p>
+            <ul class="no-bullets text-medium">
+              <li>How will data be collected/acquired?</li>
+              <li>How will you process and analyze it?</li>
+              <li>How will the data be used and/or shared?</li>
+              <li>How will you handle documentation, data management, quality control?</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-small">You have this as a handout.</p>
+      </section>
+
+      <section>
+        <h2>Tracking Pests at Luna Orchard</h2>
+        <!--
+            Each layer carries its OWN cite, so build_credits.py pairs them 1:1
+            rather than stamping all four sources onto every image. The slide
+            used to carry one combined cite underneath; that is the pattern that
+            mis-attributed three third-party diagrams in Lecture 2.1.
+          -->
+        <div class="r-stack">
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-luna-layout.png" width="50%"
+              alt="Plan of Luna Orchard: an Orange Field of 10 years, a Specialty Field of 2 to 4 years, a Mandarin Field of 6 years, and a Lemon Field of 8 years, with a house, barn, shed, compost and beehives marked. A legend distinguishes protected wilderness, conventional agriculture, water and non-farm land around the edges." />
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-luna-citrusgreening.jpg"
+              alt="Close-up of citrus leaves showing the blotchy yellow mottling characteristic of citrus greening disease." />
+            <p class="cite text-small">Matthew Weinert/AQIS, <a
+                href="https://www.cabi.org/isc/datasheet/16567">CABI</a></p>
+          </div>
+
+          <div class="fragment fade-in-then-out">
+            <img src="img/m2-luna-quarantine.png" width="60%"
+              alt="Map of southern and central California showing Asian citrus psyllid quarantine boundaries outlined in blue, dense detection clusters shaded around the Los Angeles basin, and scattered detections through the Central Valley near Fresno and Bakersfield." />
+            <p class="cite text-small">Asian Citrus Psyllid quarantine zones, <a
+                href="https://www.cdfa.ca.gov/citrus/pests_diseases/acp/regulation.html">California Department of Food
+                and Agriculture</a></p>
+          </div>
+
+          <div class="fragment">
+            <img src="img/m2-luna-acp-sample.png"
+              alt="A University of California Agriculture and Natural Resources field form titled 'Asian Citrus Psyllid Sampling plan'. It has blanks for monitor, orchard, block, date, leaf status, variety and GPS; a diagram of an orchard block with sample trees marked on the north, east, south, west borders and through the centre; instructions to strike a branch three times and count winged adults; and a table for recording counts per tap and per flush." />
+            <p class="cite text-small">Sampling plan: University of California Agriculture and Natural Resources</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Pest Tracking as a DATA problem</h2>
+        <div class="r-hstack">
+          <div>
+            <ul class=" no-bullets text-medium">
+              <li><b>Problem:</b> citrus greening?</li>
+              <li><b>Actors:</b> farmers, consultants, govt /APHIS?</li>
+              <li><b>Goals:</b> track pests, identify disease, report status</li><br />
+              <li><b>Data:</b> observations, samples, photos, recordings, plant material</li><br />
+              <li><b>Collect:</b> tap samples, visual survey, …?</li>
+              <li><b>Used for:</b> ...decision support?</li>
+            </ul>
+          </div>
+
+          <div>
+            <img src="img/m2-luna-mandarin-problems.png" wdith="45%"
+              alt="A grid map of the Mandarin Field: columns of grey tree symbols separated by stippled cover crop strips. A legend marks tap samples as a yellow band across the top row, tissue samples in dark green, problem trees in red, sample productivity in magenta, pest and weed sightings as small icons, and a grey circle showing the area under ongoing investigation in the lower left." />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>In-Class Activity -> Lab 2 [30 mins]</h2>
+        <p class="text-medium blue">What problem / dataset would you like to work with?</p>
+        <ol class="text-medium align-left">
+          <li><b>Work through the handout</b></li><br />
+          <li><b>Find a dataset</b> that would answer step 3. See: public data sources slide, or anywhere else, or ask!
+          </li><br />
+          <li><b>Test the download.</b> Can you actually get the file? What format is it in? Does it have the
+            variables you need?</li><br />
+          <li><b>Write the plan.</b> Where the data is, how you'd get it, what shape it arrives in, and what you'd
+            have to do to it. Downloading the data will help you check the feasibility of your plan.</li>
+        </ol>
+        <p class="text-small red">No problem of your own yet? Use the default dataset from the lab and practice the
+          planning on that.</p>
+      </section>
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

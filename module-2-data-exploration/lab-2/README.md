@@ -47,14 +47,14 @@ You are choosing your own dataset for this lab. The **public data sources** slid
 
 #### Python intro / refresh
 
-If you are not familiar with Python, or need a quick refresher, do this 30 minute [Short Introduction to Programming in Python](https://datacarpentry.org/python-ecology-lesson/01-short-introduction-to-Python) by the Data Carpentry.
+If you are not familiar with Python, or need a quick refresher, do this 30 minute [Short Introduction to Programming in Python](https://datacarpentry.github.io/python-ecology-lesson/01-short-introduction-to-Python) by the Data Carpentry.
 
 Here are basic tutorials for each of the packages this lab uses. The two in **bold** are the ones worth doing before you arrive; the rest are reference.
 
 1. [Jupyter notebook](https://jupyter.org/): An interactive Python environment that lets you run and view code alongside your notes. This is where the whole lab happens.
 
    - We'll do a quick demo in class.
-   - **Go through this quick tutorial: [Jupyter Notebooks](https://datacarpentry.org/python-ecology-lesson/jupyter_notebooks).**
+   - **Go through this quick tutorial: [Jupyter Notebooks](https://datacarpentry.github.io/python-ecology-lesson/jupyter_notebooks).**
    - Full documentation: <https://jupyter-notebook.readthedocs.io/en/stable/>.
 
 2. [Numpy](https://numpy.org/): Python package for scientific computing. We're mostly going to use pandas and matplotlib, so the other materials cover what you need to know about numpy.
@@ -67,7 +67,7 @@ Here are basic tutorials for each of the packages this lab uses. The two in **bo
 4. [Matplotlib](https://matplotlib.org/): Python package for data visualization.
 
    - [Quick start guide for matplotlib](https://python-graph-gallery.com/matplotlib/).
-   - You can consult the Data Carpentry [Introduction to Matplotlib](https://datacarpentry.org/python-ecology-lesson/08-putting-it-all-together).
+   - You can consult the Data Carpentry [Introduction to Matplotlib](https://datacarpentry.github.io/python-ecology-lesson/08-putting-it-all-together).
    - Full documentation: <https://matplotlib.org/stable/>.
 
 5. [Requests](https://requests.readthedocs.io/en/latest/): Python package to make HTTP requests. You'll need this only if your dataset comes from an API. Read "Make a Request" from [this tutorial](https://requests.readthedocs.io/en/latest/user/quickstart/).
@@ -154,64 +154,113 @@ If that runs, you are ready for the lab. If it doesn't, bring it to office hours
 
 ---
 
-<!-- ============================================================
-     EVERYTHING BELOW IS HEADINGS ONLY - the planned port.
-     Content to be written next, per Ankita 2026-09-07.
-     ============================================================ -->
+## LAB INSTRUCTIONS
 
-## LAB INSTRUCTIONS - Coming Thursday
+<!-- Bullets, for Ankita to turn into prose in her own voice. Structured by
+     lifecycle stage. Every step names an OUTCOME, never a method: the functions
+     appear as "worth looking at" suggestions so students know what exists,
+     without being told which one to use. Markdown explanation is graded work.
+     The same steps head the sections of lab2-skeleton.ipynb - if you renumber
+     here, renumber there.
 
-<!-- Structured by data lifecycle stage, per the 2026 redesign. Each stage asks
-     a question about THEIR data rather than naming a function, so students
-     reach for .describe()/.info() rather than being told to use them.
-     Markdown explanation is graded work, not decoration. -->
+     NO DATES, NO POINTS in this file (removed 2026-09-10 after the B-scope
+     review). Both broke checklist rows - "no semester-specific dates in prose"
+     and "no rubric in the lab README" - and the staging they carried is now
+     discussed with students in class instead. The rubric lives in the module
+     README. Pacing still matters: the lab runs the whole lifecycle while the
+     lectures walk it one stage at a time, and Steps 10-12 depend on Lecture
+     2.3's code-along and chooser slides. -->
+
+Work through these in your copy of [`lab2-skeleton.ipynb`](lab2-skeleton.ipynb).
+
+- **Your dataset, your choices.** The steps say what to produce, not which function to call.
+- **No dataset of your own?** Use `aglandvalues-clean.csv` in this folder — US agricultural land values by state, 1997-2023. Bring a *problem* to it as well as a file: pick something you would want to know from land values, and frame that.
+- **Markdown is graded work.** Every step ends with you saying what you found.
+- **Every code cell starts with your plan, written as comments.** What you intend to do, in order, in plain English — then the code under it. This is the "function designs" step in the course AI policy, and it is what makes a notebook yours.
+
+Check Brightspace for the deadline. Steps 10-12 build on Lecture 2.3, so leave them until after it.
 
 ### STEP 6: Set up your lab repository and notebook
 
-<!-- PORT, largely verbatim, from fall2024 lab2 "Copy the Lab Skeleton File into
-     your Repository": the YOURNAME-ASM532-Labs repo, private, collaborators
-     added, rename the skeleton to lab2-YOURNAME.ipynb, first commit.
-     CHANGES NEEDED: TA handle (2024 says @tame0001 - confirm for 2026); the
-     Anaconda-opening subsection is dropped; screenshots lab2-contents.png,
-     vscode-1.png and vscode-2.png need re-shooting or re-checking, since they
-     show the 2024 folder layout. -->
+- Your private `YOURNAME-ASM532-Labs` repo from Lab 1, one folder per lab — make a `lab2` folder.
+- Add `@tame0001` as a collaborator if you have not already.
+- Copy `lab2-skeleton.ipynb` into your `lab2` folder and rename it `lab2-YOURNAME.ipynb`.
+- Copy `aglandvalues-clean.csv` across too if you plan to use it.
+- Open it in VS Code, select your `.venv` kernel (see STEP 4), confirm a cell runs.
+- Commit and push. **That is commit 1.**
 
 ### STEP 7: Understand and plan — what is your question?
 
-<!-- NEW. Carries forward what they drafted in the Lecture 2.2 studio.
-     Markdown only, no code. The seven lifecycle questions as prompts. -->
+- Markdown only, no code.
+- The revised version of your Lecture 2.2 worksheet — start from the handout, not from scratch.
+- The problem, who has it, and why it matters.
+- The actors, and what they are trying to do.
+- **Your question, in one sentence.**
+- What would count as an answer.
+- What changed since the handout — contact with a real dataset always changes something.
 
 ### STEP 8: Acquire — get your data, and record where it came from
 
-<!-- NEW, thin. read_csv or requests. Provenance and terms of use recorded in
-     markdown - this is the Acquire stage's real content. Default dataset
-     offered here for anyone who did not choose their own (#45). -->
+- Get the file into your `lab2` folder, commit it, and load it into a dataframe.
+- **Record the provenance in markdown** — source, URL, date retrieved, terms of use.
+- Say what actually arrived: format, rows, columns, anything surprising.
+- **Judge whether it fits.** Name the three data quality dimensions from Lecture 2.2 that matter most for your question, and say how your dataset does on each. **At least one should be a dimension it does badly on** — every dataset fails something, and saying which is the skill.
+- Worth looking at: `pd.read_csv()`, `pd.read_excel()`, `pd.read_json()`.
+- Will not load? It is usually the delimiter, the encoding, or preamble rows above the header.
 
 ### STEP 9: Process — what is in here, and what is broken?
 
-<!-- PARTIAL PORT from fall2024 lab2-Skeleton.ipynb "Part 1: Processing Data",
-     steps 2-4, but reframed. 2024 named the functions; 2026 asks the question
-     and lets them find .info(), .describe(), .head(), .dtypes, .isna(),
-     .drop_duplicates(). Each finding explained in markdown. -->
+Five questions. Answer each in code, then say what you found.
+
+- **How big is it, and how big should it be?** — `.shape`, `.info()`, `.head()`, `.tail()`
+- **Is every column the type it should be?** — `.dtypes`, `.describe()`, `type()`. Numbers stored as text sort wrong and will not plot.
+- **What is missing, and how is "missing" spelled here?** — `.isna().sum()`, `.value_counts()`, `.unique()`, `.str.contains()`. `NaN` is one spelling; `(NA)`, `(D)`, `(S)`, `-999` and an empty string are others.
+- **Anything duplicated, or out of order?** — `.duplicated()`, `.sort_values()`, `.reset_index()`
+- **Clean it, and keep the raw file.** — `.dropna()`, `.drop()`, `.astype()`, `.str.strip()`, `.to_csv()`. Save under a new name; check the shape again afterwards.
+- Then: one line per decision, saying what you changed and why.
+
+**Using `aglandvalues-clean.csv`?** It has already been cleaned — the name says so. Your job for this step is to **verify that, and show how you know**: run the same five questions, and report what you checked and what came back clean. A dataset someone hands you as "clean" still has to be inspected before you trust it, and that inspection is exactly the same work.
 
 ### STEP 10: Analyze — what does it look like?
 
-<!-- PARTIAL PORT from lab2-Skeleton.ipynb "Exploratory Data Analysis" and its
-     four plot tasks. 2024 prescribed the four plots against a fixed dataset;
-     2026 asks for 2-3 visualizations chosen for THEIR data and question, with
-     the L2.3 chooser slides as the guide. -->
+- **Plot it badly first.** Whole thing, no styling, no subsetting. Then say what is wrong with it — that sentence is the point of the step.
+- Then **two or three visualizations chosen for your question**, using the chooser slides from Lecture 2.3.
+- One must involve a **comparison or grouping**.
+- One must bring in a **second variable**, with a sentence on what the pairing shows.
+- Titles, axis labels, legends. Save each plot as a file and commit it.
+- Worth looking at: `.groupby()`, `.mean()`, `plt.subplots()`, `ax.set_xlabel()`, `ax.legend()`, `plt.savefig()`.
 
-### STEP 11: Share and use — what can you say, and what can you not?
+### STEP 11: Prove you could get it again
 
-<!-- NEW. Markdown only. Limits, assumptions, what the data cannot answer.
-     This is the AI-resistant half of the deliverable. -->
+- A download needs a human. An API does not — so it can be repeated, scheduled, and checked. The acquisition slide asked: *can I get this again next year, the same way, and prove it?* This is where you answer.
+- **If your dataset has an API:** re-request the data you analysed in STEP 10, with code instead of clicking. **Show one number matching** between your downloaded file and the API pull. That match is the proof.
+- **If it does not:** use the National Weather Service active alerts feed instead — <https://api.weather.gov/alerts/active>, no key, no account. Then add one line: what would you have to do to turn that response into a dataframe like the one you already have?
+- Either way, show that you can: make the request and confirm it worked; turn the response into something Python can navigate; reach one specific value several levels down.
+- Worth looking at: `requests.get()`, `.status_code`, `.json()`, `.keys()`, `pd.json_normalize()`.
+
+### STEP 12: Share and use — what can you say, and what can you not?
+
+- Markdown only, no code.
+- What you can say from this data, with confidence.
+- What you **cannot** say — what would a reader be wrong to conclude from your plots? Start from the thing you named in class that this dataset would not let you answer.
+- Which cleaning assumptions a reader needs to know about.
+- Who would use this, and what they would need next.
+
+### Optional exercises
+
+- Not graded. In the skeleton notebook, at the end.
+- Install and use a package that is not in `requirements.txt` (`yfinance`, for commodity and stock prices).
+- Clean the raw version of the ag land values file yourself — the one in this folder was cleaned for you.
+- **Two y-axes:** put two sources on one plot with `ax.twinx()`, and work out what moves first. Genuinely fiddly, which is why it is here rather than in STEP 10.
 
 ## How to Submit your Lab - GitHub + Brightspace
 
-<!-- PORT from fall2024 lab2 "How to Submit your Lab", updated: commit count
-     stated once (4+, matching SNIPPETS.md - 2024 said 5 here), and the
-     lab2-contents-done.png screenshot re-checked against the new folder shape. -->
-
+- Push to your private `YOURNAME-ASM532-Labs` repo, in the `lab2` folder:
+  - `lab2-YOURNAME.ipynb`, running top to bottom with no errors — restart the kernel and run all before you submit
+  - your raw data file, and your cleaned data file under a different name
+  - every plot you made, saved as an image file
+- **4+ commits**, each with a message saying what changed and why.
+- Then submit the repo link on Brightspace. Check Brightspace for the deadline.
 ### Academic Integrity Reminder
 
 <!-- Submission Policy snippet — see documentation/SNIPPETS.md, edit there first -->

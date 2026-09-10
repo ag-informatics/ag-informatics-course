@@ -25,13 +25,19 @@ A Python refresher, and the data notebook as a way of *exploring* data before co
 Source code for the slides is in this folder. The slides are live here:
 
 - [Lecture 2.1](lecture-2.1.html) - Genres of ag tech, ag data types, and the data lifecycle
-<!-- - [Lecture 2.2](lecture-2.2.html) - Graded in-class activity -->
+- [Lecture 2.2](lecture-2.2.html) - What data looks like, where to get it, and framing your own data problem
 <!-- - [Lecture 2.3](lecture-2.3.html) - Data visualization and Quiz 2
 - [Lecture 2.4](lecture-2.4.html) - Quiz 2 answers, and the ag-data landscape bookend -->
 
 ## Lab 2
 
-Instructions for the lab, including submission instructions, are in the [lab subfolder](lab-2/README.md).
+**[Lab 2: Data Notebook](lab-2/README.md)** - find a dataset for a problem you care about, assess whether it
+fits, and explore it in a Jupyter notebook. Instructions, prework and submission details are in the lab
+subfolder, along with:
+
+- [`lab2-skeleton.ipynb`](lab-2/lab2-skeleton.ipynb) - the notebook template you work in, one section per step.
+- [`aglandvalues-clean.csv`](lab-2/aglandvalues-clean.csv) - US agricultural land values by state, 1997-2023.
+  The default dataset, for anyone not bringing their own.
 
 Each lab has a specific AI use policy, specified in the lab itself.
 As a reminder, the overarching AI policy is available in the main repository [README](../README.md).
@@ -71,15 +77,14 @@ notebook to analyse it. Bring your own dataset, or use one of the provided alter
 
 * Git Commits — 4 pts
     * 1 pt for each of 4 commits.
-* Revised plan — 2 pts
+* Revised plan — 2 pts (STEP 7)
     * Picks up from what was done in lecture — dataset selected and question formulated.
 * Final notebook — up to 14 pts
-
-| Points | Criteria |
-| --- | --- |
-| 0 | Missed or low effort |
-| 1-19 | Allocated in lab notebook per segment |
-| 20 | All complete, everything works |
+    * Acquire (STEP 8) — 2 pts. Provenance recorded, plus a fitness judgement: three data quality dimensions that matter for the question, and at least one the dataset fails.
+    * Process (STEP 9) — 3 pts. Size, types, missingness, duplicates, and a cleaned file with the decisions written down. Students on the provided dataset verify it is clean and show how they know.
+    * Analyze (STEP 10) — 5 pts. The bad first plot and what's wrong with it, then 2-3 visualizations, one grouped/compared and one bringing in a second variable.
+    * Prove you could get it again (STEP 11) — 2 pts. The data re-requested with code, and one number matching between the download and the API pull.
+    * Share and use (STEP 12) — 2 pts. What the data supports, what it doesn't, and which assumptions a reader needs.
 
 ## References
 
