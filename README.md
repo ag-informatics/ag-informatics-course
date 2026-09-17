@@ -1,7 +1,3 @@
----
-layout: none
----
-
 <img src="https://aginformaticslab.org/assets/axilab-logo.png" height="100px">
 
 <!-- LICENSE -->
