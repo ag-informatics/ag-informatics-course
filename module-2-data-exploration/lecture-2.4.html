@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<!--
+    ============================================================================
+    BLANK LECTURE — copy this file to start a new lecture.
+
+    Save as lecture-N.M.html in the module folder, then fill in the VARIABLE
+    CONTENT section. Everything outside that section is fixed scaffolding and
+    should not need editing.
+
+    For the menu of available slide layouts (big image, quote, two-column,
+    fragments, embed...), see `lecture-template.html` — it's the catalog, with
+    one worked example of each and notes on when to use it. Copy the sections
+    you want from there into the VARIABLE CONTENT block below.
+
+    Keep the two in sync: if the head/footer/license/scripts change there, they
+    change here too.
+    ============================================================================
+  -->
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <section>
+        <img src="img/m2-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Data Viz, Sharing, Use</h1>
+
+        <p>
+          Module 2 - Data Exploration<br />
+          Lecture 2.4 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ul>
+          <li>Quiz 2 walkthrough</li>
+          <li>Why look at your data?</li>
+          <li>Choosing a chart</li>
+          <li>What makes a chart good?</li>
+          <li>How sure can we be? The data behind Quiz 2</li>
+          <li>AI-assisted debugging</li>
+          <li>FAIR data, trust, and sensitivity</li>
+          <li>Sharing: licenses and code</li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+
+          HARVESTED 2026-09-16 per module-2-harvest-outline.md, Lecture 2.4.
+          Slide TEXT is verbatim from the archive (fall2024). Only markup
+          changed, to clear the L gate: h3 -> h2 slide headings, h6 column
+          heads -> h3, .container/.col -> r-hstack, bare-URL cites wrapped in
+          anchors (link text unchanged), two broken tags closed, alt written.
+          Search "NOTE FOR ANKITA" for everything missing or held.
+        -->
+
+      <section>
+        <h2>The Data Lifecycle <span class="blue">- Share / Use</span></h2>
+        <img src="img/m2-diagram-data-lifecycle-use.jpg" width="55%"
+          alt="The data lifecycle ring, with SHARE / USE shown in black and bold and the rest of the diagram greyed back." />
+      </section>
+
+      <!-- ================= OPEN: QUIZ 2 WALKTHROUGH ================= -->
+
+
+      <section>
+        <h2>Quiz 2: <span class="blue">Task</span></h2>
+        <p>Produce a <b>line chart of Indiana's average monthly temperature from January 1970
+            through December 2021</b> — one data point per month, time running along the x-axis.</p>
+
+        <div class="r-hstack">
+          <ul class="no-bullets align-left">
+            <li>
+              <h3>1. Filter raw data</h3>
+            </li>
+            <li class="text-medium"><span class="blue">R1</span> In plain English, describe the filtering logic you
+              need</li>
+            <li class="text-medium"><span class="blue">R2</span> Translate R1 into Pandas code</li>
+          </ul>
+          <ul class="no-bullets align-left">
+            <li>
+              <h3>2. Plot the data</h3>
+            </li>
+            <li class="text-medium"><span class="blue">R3</span> Sketch a mock-up of your chart</li>
+            <li class="text-medium"><span class="blue">R4</span> Write the Matplotlib code</li>
+          </ul>
+        </div>
+        <p class="text-small">A DataFrame <code>df</code> holding <b>Average Monthly Temperature by US State</b>.
+          Each row is one state in one month of one year; the data covers 1950–2021.</p>
+        <p class="text-small"><a href="quiz-2-python/quiz-2-solution.md">Full solution and grading rubric</a></p>
+      </section>
+
+      <section>
+        <h2 class="text-medium">Filter raw data <span class="blue">R1 + R2</span></h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 45%;">
+            <p class="blue text-small">R1 - plain English <span class="gray">(the pseudocode)</span></p>
+            <p class="text-medium">Keep only the rows where <code>state</code> equals <code>"Indiana"</code> <b>and</b>
+              <code>year</code> is greater than or equal to 1970 — that is, 1970 through 2021, all 12 months of
+              each year.
+            </p>
+            <p class="fragment text-medium">From those rows I will plot <code>average_temp</code> on the y-axis against
+              time on
+              the x-axis, where time comes from combining the <code>year</code> and <code>month</code> columns.</p>
+          </div>
+          <div class="align-left text-medium" style="flex: 1 1 55%;">
+            <p class="blue text-small">R2 - Pandas</p>
+            <pre><code class="language-python" data-trim data-line-numbers="1|3-4|6-8"><script type="text/template">
+              indiana = df[(df["state"] == "Indiana") & (df["year"] >= 1970)]
+
+              indiana = df.query("state == 'Indiana' and year >= 1970")
+              indiana = df.loc[(df.state == "Indiana") & (df.year >= 1970)]
+
+              # chained, also fully correct
+              indiana = df[df["state"] == "Indiana"]
+              indiana = indiana[indiana["year"] >= 1970]
+            </script></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-medium">Plot the data <span class="blue">R3 + R4</span></h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 40%;">
+            <p class="blue text-small">R3 - grade on the presence of components</p>
+            <ul class="text-small">
+              <li>Line chart form — a continuous line, not bars/scatter/pie</li>
+              <li>Descriptive title (e.g. "Indiana Average Monthly Temperature, 1970–2021")</li>
+              <li>X-axis has a label naming time (Year / Date / Month)</li>
+              <li>X-axis shows plausible tick values (e.g. 1970, 1980, … 2020)</li>
+              <li>Y-axis has a label naming temperature</li>
+              <li>Y-axis label or ticks show units (°F) and a plausible range (roughly 15–80)</li>
+            </ul>
+          </div>
+          <div class="align-left text-medium" style="flex: 1 1 60%;">
+            <p class="blue text-small">R4 - Matplotlib <span class="gray">(OO style)</span></p>
+            <pre><code class="language-python" data-trim data-line-numbers="1|2|3|4-5|6"><script type="text/template">
+              fig, ax = plt.subplots(figsize=(12, 4))
+              ax.plot(indiana["year"] + (indiana["month"] - 1) / 12, indiana["average_temp"])
+              ax.set_title("Indiana Average Monthly Temperature, 1970-2021")
+              ax.set_xlabel("Year")
+              ax.set_ylabel("Average temperature (°F)")
+              plt.show()
+            </script></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-medium">Plot the data <span class="blue">R4, rendered</span></h2>
+        <img class="r-stretch" src="img/m2-quiz2-indiana-line.png"
+          alt="Line chart titled Indiana Average Monthly Temperature, 1970-2021, x-axis Year and y-axis Average temperature in degrees F. The line is a tight, regular zigzag: 52 annual cycles swinging between winter lows of about 20 to 35 degrees and summer highs of about 70 to 77 degrees, with the coldest dips, near 16 to 17 degrees, in the late 1970s. No long-term trend is visible by eye." />
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.
+          Plotted 1970-2021.</p>
+      </section>
+
+      <!-- ================= A. WHY LOOK? ================= -->
+
+      <!-- Verbatim, A-L2.3 §3-5. The notebook is section 2 of
+           demos/demo-choosing-charts-notebook.ipynb. -->
+
+      <!-- A-L2.3 §3 -->
+      <section>
+        <p class="r-fit-text">
+          "The greatest value <br />
+          of a picture<br />
+          is when it forces us to notice<br />
+          what we never expected to see."
+        </p>
+        <br /><br />
+        <p class="cite">John W. Tukey, Exploratory Data Analysis, 1977</p>
+      </section>
+
+      <!-- A-L2.3 §4, reworked 2026-09-17 per Ankita: no class time for students to explore the data themselves,
+           so three slides walk it: the data, the statistics, the plots. The archive's "What do you notice?" is
+           kept (slide 2) and answered (slide 3). Values and chart come from demos/demo-choosing-charts-notebook.ipynb
+           section 2; the chart is that code re-run with savefig. -->
+      <section>
+        <h2 class="text-medium">The Datasaurus Dozen</h2>
+        <p class="text-medium">One file: a dozen datasets, plus <code>dino</code>. 142 points each, just <code>x</code>
+          and <code>y</code>.</p>
+        <div class="r-hstack">
+          <div>
+            <p class="text-medium blue"><code>bullseye</code></p>
+            <table class="text-medium">
+              <tr>
+                <th>x</th>
+                <th>y</th>
+              </tr>
+              <tr>
+                <td>51.2</td>
+                <td>83.3</td>
+              </tr>
+              <tr>
+                <td>59.0</td>
+                <td>85.5</td>
+              </tr>
+              <tr>
+                <td>51.9</td>
+                <td>85.8</td>
+              </tr>
+              <tr>
+                <td>48.2</td>
+                <td>85.0</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <p class="text-medium blue"><code>star</code></p>
+            <table class="text-medium">
+              <tr>
+                <th>x</th>
+                <th>y</th>
+              </tr>
+              <tr>
+                <td>58.2</td>
+                <td>91.9</td>
+              </tr>
+              <tr>
+                <td>58.2</td>
+                <td>92.2</td>
+              </tr>
+              <tr>
+                <td>58.7</td>
+                <td>90.3</td>
+              </tr>
+              <tr>
+                <td>57.3</td>
+                <td>89.9</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <p class="text-medium blue"><code>circle</code></p>
+            <table class="text-medium">
+              <tr>
+                <th>x</th>
+                <th>y</th>
+              </tr>
+              <tr>
+                <td>56.0</td>
+                <td>79.3</td>
+              </tr>
+              <tr>
+                <td>50.0</td>
+                <td>79.0</td>
+              </tr>
+              <tr>
+                <td>51.3</td>
+                <td>82.4</td>
+              </tr>
+              <tr>
+                <td>51.2</td>
+                <td>79.2</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <p class="text-medium blue"><code>x_shape</code></p>
+            <table class="text-medium">
+              <tr>
+                <th>x</th>
+                <th>y</th>
+              </tr>
+              <tr>
+                <td>38.3</td>
+                <td>92.5</td>
+              </tr>
+              <tr>
+                <td>35.8</td>
+                <td>94.1</td>
+              </tr>
+              <tr>
+                <td>32.8</td>
+                <td>88.5</td>
+              </tr>
+              <tr>
+                <td>33.7</td>
+                <td>88.6</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <p class="text-small">...and <code>away</code>, <code>dots</code>, <code>h_lines</code>,
+          <code>high_lines</code>, <code>slant_down</code>, <code>slant_up</code>, <code>v_lines</code>,
+          <code>wide_lines</code>. And the thirteenth: <code>dino</code>.
+        </p>
+        <p class="cite">Data: Matejka &amp; Fitzmaurice, 2017, <a
+            href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Same Stats, Different
+            Graphs</a>.
+          Code: <code>demos/demo-choosing-charts-notebook.ipynb</code>, section 2.</p>
+      </section>
+
+      <!-- NEW 2026-09-17: descriptive statistics, from the notebook. -->
+      <section>
+        <h2 class="text-medium">Describe the data</h2>
+        <!-- <div class="r-hstack contain">
+          <div class="align-left text-medium" style="flex: 1 1 45%;">
+            <pre><code class="language-python" data-trim><script type="text/template">
+              datasaurus.groupby("dataset").agg(
+                  x_mean=("x", "mean"), y_mean=("y", "mean"),
+                  x_std=("x", "std"), y_std=("y", "std"),
+              ).round(2)
+
+              # correlation between x and y
+              datasaurus.groupby("dataset")[["x", "y"]].corr()
+            </script></code></pre>
+          </div>
+          <div class="text-small" style="flex: 1 1 55%;"> -->
+        <table class="text-medium">
+          <tr>
+            <th>dataset</th>
+            <th>x mean</th>
+            <th>y mean</th>
+            <th>x sd</th>
+            <th>y sd</th>
+            <th>corr</th>
+          </tr>
+          <tr>
+            <td><code>away</code></td>
+            <td>54.27</td>
+            <td>47.83</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.06</td>
+          </tr>
+          <tr>
+            <td><code>bullseye</code></td>
+            <td>54.27</td>
+            <td>47.83</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>circle</code></td>
+            <td>54.27</td>
+            <td>47.84</td>
+            <td>16.76</td>
+            <td>26.93</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>dino</code></td>
+            <td>54.26</td>
+            <td>47.83</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.06</td>
+          </tr>
+          <tr>
+            <td><code>dots</code></td>
+            <td>54.26</td>
+            <td>47.84</td>
+            <td>16.77</td>
+            <td>26.93</td>
+            <td>-0.06</td>
+          </tr>
+          <tr>
+            <td><code>h_lines</code></td>
+            <td>54.26</td>
+            <td>47.83</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.06</td>
+          </tr>
+          <tr>
+            <td><code>high_lines</code></td>
+            <td>54.27</td>
+            <td>47.84</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>slant_down</code></td>
+            <td>54.27</td>
+            <td>47.84</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>slant_up</code></td>
+            <td>54.27</td>
+            <td>47.83</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>star</code></td>
+            <td>54.27</td>
+            <td>47.84</td>
+            <td>16.77</td>
+            <td>26.93</td>
+            <td>-0.06</td>
+          </tr>
+          <tr>
+            <td><code>v_lines</code></td>
+            <td>54.27</td>
+            <td>47.84</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>wide_lines</code></td>
+            <td>54.27</td>
+            <td>47.83</td>
+            <td>16.77</td>
+            <td>26.94</td>
+            <td>-0.07</td>
+          </tr>
+          <tr>
+            <td><code>x_shape</code></td>
+            <td>54.26</td>
+            <td>47.84</td>
+            <td>16.77</td>
+            <td>26.93</td>
+            <td>-0.07</td>
+          </tr>
+        </table>
+        <!-- </div>
+        </div> -->
+        <p class="cite">Data: Matejka &amp; Fitzmaurice, 2017, <a
+            href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Same Stats, Different
+            Graphs</a>.
+          Code: <code>demos/demo-choosing-charts-notebook.ipynb</code>, section 2.</p>
+      </section>
+
+      <!-- NEW 2026-09-17: the plots, rendered from the notebook's code. Answer in red. -->
+      <section>
+        <h2 class="text-medium">Plot the data</h2>
+        <p class="blue text-medium">Cairo says: “never
+          trust summary statistics alone; always visualize your data.”</p>
+        <img class="r-stretch" src="img/m2-datasaurus-scatter-grid.png"
+          alt="A 3 by 5 grid of scatter plots sharing axes, one per Datasaurus dataset, with the last two panels empty. dino is a dinosaur outline; away is a scattered cloud; h_lines is five horizontal rows of points; v_lines is vertical columns; x_shape is a large X; star is a five-pointed star; high_lines is two horizontal bands; dots is a 3 by 3 grid of tight clusters; circle is an oval ring; bullseye is two concentric rings; slant_up and slant_down are parallel diagonal lines rising and falling; wide_lines is two vertical bands." />
+        <p class="cite">Data: Matejka &amp; Fitzmaurice, 2017, <a
+            href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Same Stats, Different
+            Graphs</a>.
+          Code: <code>demos/demo-choosing-charts-notebook.ipynb</code>, section 2.</p>
+      </section>
+
+      <section>
+        <h2>The Value of Exploration</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-in-then-out" src="img/m2-graphs-dinosequential.gif"
+            alt="Animation from Same Stats, Different Graphs: a scatter plot of points shaped like a dinosaur morphs through a dozen other shapes, including a star, a circle, a bullseye and sets of parallel lines, while the summary statistics beside it hold steady at X mean 54.26, Y mean 47.83, X SD 16.76, Y SD 26.93 and correlation -0.06." />
+          <img class="fragment fade-in-then-out" src="img/m2-graphs-boxviolin.gif"
+            alt="Animation in three panels, Raw Data, Box-plot of the Data, and Violin-plot of the Data, for seven groups A to G. As the raw points shift between very different distributions, including splitting into two clusters, the box plots stay exactly the same while the violin plots change shape to follow the data." />
+          <img class="fragment fade-in" src="img/m2-graphs-anscombe.png"
+            alt="Two sets of four scatter plots, all with the same regression line. Left, Anscombe's Quartet: four datasets with the same mean, standard deviation and correlation that look clearly different - a noisy linear trend, a curve, a tight line with one outlier, and a vertical column with one distant point. Right, an Unstructured Quartet: four datasets that also share those statistics but look alike, as similar noisy clouds." />
+        </div>
+        <br /><br />
+        <p class="cite">Matejka &amp; Fitzmaurice, 2017, <a
+            href="https://www.autodesk.com/research/publications/same-stats-different-graphs">https://www.autodesk.com/research/publications/same-stats-different-graphs</a>.
+          <br />
+          Cairo, 2016, <a
+            href="http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html">http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html</a>
+        </p>
+      </section>
+
+      <!-- NEW -->
+      <section>
+        <h2>The Quiz dataset</h2>
+        <p class="text-medium">Scope: <b>spatial</b> (<code>state</code>, centroids) and
+          <b>temporal</b> (<code>year</code>, <code>month</code>).
+        </p>
+        <table class="text-medium">
+          <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td><code>state</code></td>
+            <td class="red">Qualitative</td>
+            <td>Nominal: order doesn't matter</td>
+          </tr>
+          <tr>
+            <td><code>month</code></td>
+            <td class="red">Qualitative</td>
+            <td>Ordinal: order matters. Stored as 1-12, used as a group</td>
+          </tr>
+          <tr>
+            <td><code>year</code></td>
+            <td class="red">Quantitative</td>
+            <td>Discrete, interval: date/time</td>
+          </tr>
+          <tr>
+            <td><code>average_temp</code></td>
+            <td class="red">Quantitative</td>
+            <td>Continuous, interval: 0 °F is not "no temperature"</td>
+          </tr>
+          <tr>
+            <td><code>monthly_mean_from_1901_to_2000</code></td>
+            <td class="red">Quantitative</td>
+            <td>Continuous, interval</td>
+          </tr>
+          <tr>
+            <td><code>centroid_lon</code>, <code>centroid_lat</code></td>
+            <td class="red">Quantitative</td>
+            <td>Continuous</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- A-L2.3 §8 -->
+      <section>
+        <h2>Viz Function: Data Type?</h2>
+        <a class="r-stretch" href="https://www.data-to-viz.com/"><img src="img/m2-graphs-datatoviz.png"
+            alt="The data-to-viz.com decision tree on its Num and Cat tab, one of six tabs: Numeric, Categoric, Num and Cat, Maps, Network, and Time series. Branches ask how many numeric and categorical variables there are, then whether there is one observation or several per group, and end in chart icons. One numeric and one categorical variable with several observations per group leads to a boxplot or a violin; other branches lead to lollipop, grouped scatter, 2D density, stacked area, heatmap, barplot, dendrogram, network and chord charts." /></a>
+        <p class="cite"><a href="https://www.data-to-viz.com/">https://www.data-to-viz.com/</a></p>
+      </section>
+
+      <!-- NEW -->
+      <section>
+        <h2>Same data, <span class="blue">different questions</span></h2>
+        <table class="text-medium">
+          <tr>
+            <th>Question</th>
+            <th>Data</th>
+            <th>Chart</th>
+          </tr>
+          <tr>
+            <td>How has Indiana's temperature changed since 1970?</td>
+            <td>1 numeric, over time</td>
+            <td>Line <span class="gray">(Quiz 2)</span></td>
+          </tr>
+          <tr>
+            <td>How does temperature vary by month?</td>
+            <td>1 numeric, 1 ordinal, several per group</td>
+            <td>Box / violin</td>
+          </tr>
+          <tr>
+            <td>How are Indiana's monthly temperatures spread?</td>
+            <td>1 numeric</td>
+            <td>Histogram / density</td>
+          </tr>
+          <tr>
+            <td>How does each month compare to its 1901-2000 mean?</td>
+            <td>2 numeric</td>
+            <td>Scatter</td>
+          </tr>
+          <tr>
+            <td>Which states were warmest in 2021?</td>
+            <td>1 numeric, 1 nominal, one per group</td>
+            <td>Ranked barplot</td>
+          </tr>
+          <tr>
+            <td>Where are the warmest states?</td>
+            <td>1 numeric, spatial</td>
+            <td>Bubble map</td>
+          </tr>
+        </table>
+        <!-- NEW: answer in red, per Ankita 2026-09-16. -->
+        <p class="fragment red text-medium">Must choose the right chart for the right question: highlight without
+          hiding!</p>
+      </section>
+
+      <!-- NEW -->
+      <section>
+        <h2>Q: Indiana temp variance across year?</h2>
+        <!-- <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 40%;"> -->
+        <!-- </div>
+          <div class="align-left text-medium" style="flex: 1 1 60%;">
+            <pre><code class="language-python" data-trim data-line-numbers="1|3-4|5-8"><script type="text/template">
+              by_month = [indiana[indiana["month"] == m]["average_temp"] for m in range(1, 13)]
+
+              fig, ax = plt.subplots(figsize=(12, 4))
+              ax.violinplot(by_month, showmedians=True)
+              ax.set_xticks(range(1, 13))
+              ax.set_xlabel("Month")
+              ax.set_ylabel("Average temperature (°F)")
+              plt.show()
+            </script></code></pre>
+          </div>
+        </div> -->
+        <!-- Merged 2026-09-17 per Ankita: image and answer from the former "Box or violin, rendered" slide
+             (left panel ax.boxplot, right panel this slide's code, same data). -->
+        <img width="90%" src="img/m2-quiz2-indiana-box-violin.png"
+          alt="Two side-by-side charts titled Indiana, 1970-2021: 52 observations per month, sharing a y-axis of Average temperature in degrees F, with months 1 to 12 on each x-axis. Left, a box plot: boxes rise from about 29 degrees in January to about 73 in July and August and fall back to about 37 in December, with a few outlier circles below the January, February and March boxes. Right, a violin plot of the same data: the summer violins are short and compact, while the winter violins for January, February and March are tall with long, thin lower tails, showing the spread and skew that the box plot reduces to outlier points." />
+        <p class="text-small">
+          <code>average_temp</code>: one number. <code>month</code>: one ordinal category. 52 Januaries, 52
+          Februaries...: several observations per group.
+        </p>
+        <p class="blue">Question: Which graph is better?</p>
+        <p class="fragment red text-medium">Violin shows shape: Jan-Mar have long, thin lower tails, i.e., few
+          very
+          cold
+          months. Box plot shows as a few outlier circles.</p>
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average
+            Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.
+          Plotted 1970-2021.</p>
+      </section>
+
+
+
+      <!-- NEW: from demos/demo-choosing-charts-notebook.ipynb, same code; chart
+           rendered from it at slide size. Answer in red. -->
+      <section>
+        <h2 class="text-medium">Indiana's monthly temp spread? <span class="blue">Histogram</span></h2>
+        <!-- <div class="text-medium">
+          <pre><code class="language-python" data-trim data-line-numbers="2|3-5"><script type="text/template">
+            fig, ax = plt.subplots(figsize=(8, 4))
+            ax.hist(indiana["average_temp"], bins=30)
+            ax.set_title("Indiana monthly average temperatures, 1970-2021")
+            ax.set_xlabel("Average temperature (°F)")
+            ax.set_ylabel("Number of months")
+            plt.show()
+          </script></code></pre>
+        </div> -->
+        <img class="r-stretch" src="img/m2-quiz2-indiana-histogram.png"
+          alt="Histogram titled Indiana monthly average temperatures, 1970-2021, with Average temperature in degrees F from about 15 to 78 on the x-axis and Number of months on the y-axis. It is not a single bell: there are several humps, near 30, 35, 48, 58 and a tallest one near 72 degrees, with dips between them around 42 and 52 degrees." />
+        <p class="fragment red text-medium">Not one bell: several humps. Each point is a month, and months cluster by
+          season.</p>
+        <!-- NEW: error marker, per Ankita 2026-09-16. The chart is right for the file; the file is not
+             true to NOAA (see "What's actually in the file"). Remove here if she switches to the D8 reveal only. -->
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.</p>
+      </section>
+
+      <!-- NEW: from demos/demo-choosing-charts-notebook.ipynb, same code; chart
+           rendered from it at slide size. Answer in red. -->
+      <section>
+        <h2 class="text-medium">Which states were warmest in 2021? <span class="blue">Ranked bar</span></h2>
+        <!-- <div class="text-medium">
+          <pre><code class="language-python" data-trim data-line-numbers="1|3-4|5-7"><script type="text/template">
+            by_state_2021 = df[df["year"] == 2021].groupby("state")["average_temp"].mean().sort_values(ascending=False)
+
+            fig, ax = plt.subplots(figsize=(14, 5))
+            ax.bar(by_state_2021.index, by_state_2021.values)
+            ax.set_title("Mean of monthly average temperatures, 2021")
+            ax.set_ylabel("Average temperature (°F)")
+            ax.tick_params(axis="x", labelrotation=90)
+            plt.show()
+          </script></code></pre>
+        </div> -->
+        <img class="r-stretch" src="img/m2-quiz2-states-2021-bar.png"
+          alt="Bar chart titled Mean of monthly average temperatures, 2021, with one bar for each of 48 states, sorted from warmest to coolest and labelled vertically. Bars fall steadily from Florida at about 72 degrees F, then Louisiana and Texas, through Indiana in the middle near 53 degrees, down to Minnesota, Montana, North Dakota and Wyoming at about 44 degrees." />
+        <p class="fragment red text-medium">Florida (71.8 °F), Louisiana, Texas. Coolest: Wyoming (43.5 °F).
+          <br />Indiana? In the middle, 24th of 48.
+        </p>
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.</p>
+      </section>
+
+      <!-- NEW: from demos/demo-choosing-charts-notebook.ipynb, same code; chart
+           rendered from it at slide size. Answer in red. -->
+      <section>
+        <h2 class="text-medium">Where are the warmest states? <span class="blue">Bubble map</span></h2>
+        <!-- <div class="text-medium">
+          <pre><code class="language-python" data-trim data-line-numbers="1|3-6"><script type="text/template">
+            states_2021 = df[df["year"] == 2021].groupby("state")[["centroid_lon", "centroid_lat", "average_temp"]].mean()
+
+            fig, ax = plt.subplots(figsize=(12, 6))
+            points = ax.scatter(states_2021["centroid_lon"], states_2021["centroid_lat"],
+                                c=states_2021["average_temp"], s=200, cmap="coolwarm")
+            fig.colorbar(points, label="Average temperature, 2021 (°F)")
+            plt.show()
+          </script></code></pre>
+        </div> -->
+        <img class="r-stretch" src="img/m2-quiz2-states-2021-map.png"
+          alt="Scatter plot titled 48 states at their centroids, 2021, with Longitude from about -120 to -69 on the x-axis and Latitude from about 29 to 47 on the y-axis, so the dots form the rough outline of the contiguous United States. Dots are coloured on a blue-to-red scale from about 44 to 72 degrees F: northern dots are dark blue, middle dots pale, and the southern row warm orange, with the single dark red dot at the bottom, Florida, the warmest." />
+        <p class="fragment red text-medium">The south. In 2021, temperature follows latitude (correlation -0.95), not
+          longitude (0.10).</p>
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.</p>
+      </section>
+
+      <!-- A-L2.3 §9-12 restored as four slides with their screenshots, 2026-09-17 per Ankita (the merged
+           "Find more charts" slide dropped the data-catalog images). -->
+      <!-- A-L2.3 §9 -->
+      <section>
+        <h2>Viz Function: Data structure?</h2>
+        <a class="r-stretch" href="https://datavizproject.com/#"><img src="img/m2-graphs-datavizproject.png"
+            alt="The Data Viz Project website filtered by input: a strip of small table shapes across the top, each a different arrangement of rows and columns, above a grid of chart cards including exploded view drawing, matrix diagram, linear process diagram, cycle diagram, Euler diagram, flow chart, swimlane flow chart, organisational chart and target diagram." /></a>
+        <p class="cite"><a href="https://datavizproject.com/#">https://datavizproject.com/#</a></p>
+      </section>
+
+      <!-- A-L2.3 §10 -->
+      <section>
+        <h2>Viz Function: What to Highlight?</h2>
+        <a class="r-stretch" href="https://datavizcatalogue.com/search.html"><img src="img/m2-graphs-datavizcat.png"
+            alt="The Data Visualisation Catalogue's What do you want to show? page, listing charts by function as orange circle icons: Comparisons, Proportions, Relationships, Hierarchy, Concepts, Location, Part-to-a-whole and Distribution." /></a>
+        <p class="cite"><a href="https://datavizcatalogue.com/search.html">https://datavizcatalogue.com/search.html</a>
+        </p>
+      </section>
+
+      <!-- A-L2.3 §11 -->
+      <section>
+        <h2>Python Possibilities</h2>
+        <a class="r-stretch" href="https://www.python-graph-gallery.com/"><img src="img/m2-graphs-datavizpython.png"
+            alt="The Python Graph Gallery home page: hundreds of charts made with Python, mostly Matplotlib and Seaborn, each with reproducible code. Its Distribution section shows icons for violin, density, histogram, boxplot and ridgeline charts." /></a>
+        <p class="cite"><a href="https://www.python-graph-gallery.com/">https://www.python-graph-gallery.com/</a></p>
+      </section>
+
+      <!-- A-L2.3 §12 -->
+      <!-- NOTE FOR ANKITA: CURRENCY - Plotnine's docs moved to plotnine.org; the
+           other four links redirect but resolve (checked 2026-09-16). -->
+      <section>
+        <h2>Python Plotting Libraries</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td><a href="https://matplotlib.org/">Matplotlib</a></td>
+              <td>Utility plotting library.</td>
+            </tr>
+            <tr>
+              <td><a href="https://seaborn.pydata.org/index.html#">SeaBorn</a></td>
+              <td>'Prettier' matplotlib.</td>
+            </tr>
+            <tr>
+              <td><a href="https://plotnine.readthedocs.io/en/stable/#">Plotnine</a></td>
+              <td>ggplot2 style grammar.</td>
+            </tr>
+            <tr>
+              <td><a href="https://bokeh.org/">Bokeh</a></td>
+              <td>Interactive visualizations.</td>
+            </tr>
+            <tr>
+              <td><a href="https://geopandas.org/">Geopandas</a> &amp; <a
+                  href="https://residentmario.github.io/geoplot/index.html">Geoplot</a></td>
+              <td>Maps maps maps.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ================= B. WHAT MAKES A CHART GOOD? criteria interleaved with the temperature charts ================= -->
+
+      <!-- A-L2.3 §6 -->
+      <section>
+        <h2>Good Data Visualizations are...</h2>
+        <ol class="fragment">
+          <li>Truthful: Evidence based.</li>
+          <li>Functional: Useful!</li>
+          <li>Beautiful: Aesthetic &amp; User-centered.</li>
+          <li>Insightful: Reveals things that are hard to see.</li>
+          <li>Enlightening: The path to knowledge.</li>
+        </ol>
+        <br /><br />
+        <p class="cite">Alberto Cairo, 2016, A Truthful Art.</p>
+      </section>
+
+      <!-- A-L2.3 §14 -->
+      <section>
+        <h2>Example: Breakfast Plots</h2>
+        <img class="r-stretch" src="img/m2-graphs-beaut.png"
+          alt="Before and after of the same bar chart, Attendee Breakfast Preferences. Left: a default 3D chart with gridlines, a border, tick marks, a legend, and a different colour for every bar. Right: the redesign, sorted largest to smallest from Eggs at 23% and Just a pile of bacon at 21% down to Fruit salad at 8%, with a headline title reading Breakfast preferences focus on protein, a subtitle, data labels on each bar, and a single teal action colour on Don't eat breakfast, 10%. Arrows name each chart element." />
+        <br />
+        <!-- NEW: callback to Quiz 2 R3. -->
+        <p class="text-medium">Quiz 2's R3 graded exactly these: a title, axis labels, units, plausible ticks.
+        </p>
+        <p class="cite">Green &amp; Emery, 2015, Data Visualization Checklist <a
+            href="https://stephanieevergreen.com/data-visualization-checklist/">https://stephanieevergreen.com/data-visualization-checklist/</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Example: World Food Supply</h2>
+        <img class="r-stretch" src="img/m2-graphs-calorie-gdp.png"
+          alt="Our World in Data bubble chart, Daily per capita supply of calories vs. GDP per capita, 2013. Each country is a bubble sized by population and coloured by continent, on a log-scale GDP axis from 1,000 to 100,000 dollars against 1,500 to over 3,500 kcal. The cloud rises from left to right: Central African Republic and Zambia sit low near 2,000 kcal, India and China are the largest bubbles in the middle, and the United States sits top right near 3,700 kcal." />
+        <p class="cite">Roser &amp; Ritchie. <a
+            href="https://ourworldindata.org/food-supply#the-link-between-food-supply-and-prosperity">https://ourworldindata.org/food-supply#the-link-between-food-supply-and-prosperity</a>
+        </p>
+      </section>
+
+      <!-- A-L2.3 §7 -->
+      <section>
+        <h2>Example: IPCC Climate Data Viz</h2>
+        <!-- 2026-09-17, per Ankita: the single 2024 figure image replaced by two screenshots, the figure and
+             its data source. The archive's caption paragraph and "Download the data!" link (verbatim) now sit
+             above the data-source screenshot. -->
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m2-ipcc-spm1-figure.png"
+            alt="IPCC AR6 Working Group I Figure SPM.1, headed Human influence has warmed the climate at a rate that is unprecedented in at least the last 2000 years: changes in global surface temperature relative to 1850-1900. Panel (a), decadal averages: the grey reconstructed line from year 1 to 2000 stays between about -0.5 and 0.5 degrees C, then the black observed line from 1850 to 2020 rises steeply past 1 degree, annotated Warming is unprecedented in more than 2000 years; a bar at left marks the warmest multi-century period in more than 100,000 years at 0.2 to 1.0 degrees. Panel (b), annual averages 1850-2020: the black observed line rises to about 1.2 degrees, tracking the brown simulation using human and natural factors, while the green natural-only simulation stays near zero. Below, the figure caption describing both panels." />
+          <div class="fragment" data-fragment-index="0">
+            <img src="img/m2-ipcc-spm1-data-ceda.png" width="85%"
+              alt="CEDA Archive dataset page: Summary for Policymakers of the Working Group I Contribution to the IPCC Sixth Assessment Report - data for Figure SPM.1 (v20210809). Buttons read Permitted Use: Any, Open Access, Download, and See Related Documents. A side panel lists Update Frequency Not Planned, Latest Data Update 2021-08-06, Status Completed, Online Status ONLINE, Publication State Published, Publication Date 2021-08-09, Dataset Size 7 Files, 65KB, and Citations: 7. An orange banner reads This dataset has been superseded. See Latest Version here. The abstract begins Data for Figure SPM.1 from the Summary for Policymakers, and the Coverage panel gives a temporal range from 0001-01-01 to 2019-12-31." />
+          </div>
+        </div>
+        <p class="cite">IPCC Summary for Policy Makers IPCC AR6WGI, <a
+            href="https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf">https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf</a>;
+          data: <a href="https://catalogue.ceda.ac.uk/uuid/76cad0b4f6f141ada1c44a4ce9e7d4bd">CEDA Archive</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Evaluate our Quiz Data + Viz</h2>
+        <!-- NEW: the truthful hook for act D. -->
+        <p class="blue text-medium">Truthful? Functional? Beautiful? Insightful? Enlightening?
+        </p>
+        <img width="80%" src="img/m2-quiz2-indiana-line.png"
+          alt="Line chart titled Indiana Average Monthly Temperature, 1970-2021, x-axis Year and y-axis Average temperature in degrees F. The line is a tight, regular zigzag: 52 annual cycles swinging between winter lows of about 20 to 35 degrees and summer highs of about 70 to 77 degrees, with the coldest dips, near 16 to 17 degrees, in the late 1970s. No long-term trend is visible by eye." />
+        <!-- Moved 2026-09-17 from the former "What does this chart let you say?" slide, per Ankita. -->
+        <ul class="text-medium">
+          <li class="fragment">52 years × 12 months: mostly the seasons</li>
+          <li class="fragment">The data contains: <code>monthly_mean_from_1901_to_2000</code>
+            <pre><code class="language-python" data-trim><script type="text/template">
+              indiana["average_temp"] - indiana["monthly_mean_from_1901_to_2000"]
+            </script></code></pre>
+          </li>
+          <li class="blue">Question: Is Indiana hotter?</li>
+          <li class="red fragment text-medium">Answer: Unclear! The seasons mask it.</li>
+        </ul>
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.
+          Plotted 1970-2021.</p>
+      </section>
+
+      <!-- NEW: rendered. Top panel is the quiz chart; bottom is
+           average_temp - monthly_mean_from_1901_to_2000, with a 12-month
+           rolling mean (not shown in the slide code). Decade means of that
+           difference: 1970s -0.51, 1980s +0.07, 1990s +0.70, 2000s +1.00,
+           2010s +1.35, 2020-21 +2.00 degrees F.
+           The IPCC figure on "A Truthful Viz" is the same kind of plot -
+           change relative to a baseline - so that slide can call back here.
+           Data source and license moved to their own slide, next. -->
+      <section>
+        <h2>Is Indiana hotter?</h2>
+        <img width="80%" src="img/m2-quiz2-indiana-anomaly.png"
+          alt="Two stacked line charts titled Indiana, 1970-2021, sharing a Year axis. Top, Average monthly temperature (the quiz chart): a regular seasonal zigzag between about 20 and 77 degrees F. Bottom, Difference from that month's 1901-2000 mean: each month drawn as a thin grey line scattered between about -12 and +11 degrees around a black zero line, with a thick red 12-month rolling mean running mostly below zero in the late 1970s and mostly above zero after the late 1990s, peaking near +4 degrees around 2012 and 2017." />
+        <!-- NEW: error marker, per Ankita 2026-09-16. The chart is right for the file; the file is not
+             true to NOAA (see "What's actually in the file"). Remove here if she switches to the D8 reveal only. -->
+
+        <p class="text-small red">
+          Yes. Months averaged 0.5 °F below their 1901-2000 mean in the 1970s, and 1.35 °F
+          above it in the 2010s. <br />
+          But: Visualization is correct for this file. Is the data + data source correct?</p>
+        <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.
+          Plotted 1970-2021.</p>
+      </section>
+
+      <!-- D4. NEW. Output from demos/demo-choosing-charts-notebook.ipynb, section 3. -->
+      <section>
+        <h2 class="text-medium">A clue that something's off:<br /> the 1901-2000 means</h2>
+        <p class="text-small">Each month has a "1901-2000 mean": that month's average over the whole 20th century. It
+          should be one fixed number per month.</p>
+        <div class="text-medium">
+          <pre><code class="language-python" data-trim><script type="text/template">
+            indiana.groupby("month")["monthly_mean_from_1901_to_2000"].unique()
+          </script></code></pre>
+          <pre><code class="language-plaintext" data-trim><script type="text/template">
+            month
+            1     [28.5, 28.4]
+            2     [28.0, 27.9]
+            3     [34.5, 34.4]
+            ...
+            12    [35.7, 35.6]
+          </script></code></pre>
+        </div>
+        <p class="fragment blue text-medium">A mean over 1901-2000 is one number per month. Why two?</p>
+        <p class="fragment red text-medium">Something in how the file was made. Go to the source.</p>
+      </section>
+
+      <!-- ================= D. HOW SURE CAN WE BE? NEW 2026-09-16: slides, answers and screenshots per l2.4-flow-rework.md ================= -->
+
+      <!-- D1. NEW. Replaces the earlier "Where did this data come from?" text slide. -->
+      <section>
+        <h2 class="text-medium">Where did this data <span class="blue">come from?</span></h2>
+        <p class="fragment red text-medium">Clues about accuracy and provenance:<br /> Kaggle data is a copy. Cites
+          NOAA's
+          Climate at a Glance, with no license.
+        </p>
+        <img class="r-stretch" src="img/m2-kaggle-data-card.png"
+          alt="Kaggle data card for Average Monthly Temperature by US State, by Justin Wong, updated 4 years ago. About Dataset: Includes Average Temperature of US States from Jan 1950 - Aug 2022. Source: https://www.ncei.noaa.gov/cag/statewide/mapping/110/tavg/202208/1/value. References: NOAA National Centers for Environmental information, Climate at a Glance: Statewide Mapping, Average Temperature, published September 2022, retrieved on October 8, 2022 from https://www.ncdc.noaa.gov/cag/. The sidebar reads Usability 3.53, License Unknown, Expected update frequency Not specified." />
+        <p class="cite">Screenshot: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, 2026-09-16.</p>
+      </section>
+
+      <!-- D2. NEW. -->
+      <section>
+        <h2 class="text-medium">What travelled <span class="blue">with it?</span></h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-in-then-out" src="img/m2-kaggle-file-no-description.png"
+            alt="Kaggle file preview for average_monthly_temperature_by_state_1950-2022.csv, 2.6 MB. About this file: This file does not have a description yet. Column summaries show an unnamed index from 0 to 41.9k, month from 1 to 12, year from 1950 to 2022, state with 48 unique values, and average_temp from -2.8 to 88.4; the first rows read month 01, year 1950, Alabama 53.8, Arizona 39.6, Arkansas 45.6, California 39.4." />
+          <img class="fragment fade-in-then-out" src="img/m2-kaggle-metadata-empty.png"
+            alt="Kaggle Metadata panel for the dataset, with collapsible sections Collaborators, Authors, Coverage, DOI Citation and Provenance. Provenance is expanded: Sources is a dash, and Collection Methodology is a dash." />
+          <img class="fragment" src="img/m2-kaggle-provenance-empty.png"
+            alt="Kaggle Provenance and License panels: Sources, Collection Methodology and Citations are each empty, shown as a dash, and License reads Unknown. Expected Update Frequency is collapsed below." />
+        </div>
+        <p class="fragment red text-medium">The file says "monthly". Nothing says how the months were computed.</p>
+        <p class="cite">Screenshot: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, 2026-09-16.</p>
+      </section>
+
+      <!-- D3. NEW. -->
+      <section>
+        <h2 class="text-medium">How far did the copy <span class="blue">travel?</span></h2>
+        <img class="r-stretch" src="img/m2-kaggle-activity.png"
+          alt="Kaggle Activity Overview for the dataset: 7,613 views with 185 in the last 30 days, 1,323 downloads with 23 in the last 30 days, engagement of 0.17378 downloads per view, 0 comments posted, and three top contributors. Below, all-time charts of daily views and downloads; downloads spike to about 27 in a day around October, then stay low." />
+        <p class="fragment red text-medium">1,323 downloads. Every one inherits whatever is missing.</p>
+        <p class="cite">Screenshot: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, 2026-09-16.</p>
+      </section>
+
+      <!-- <section>
+        <h2 class="text-medium">Monthly comparison to 1901-2000 mean? <span class="blue">Scatter</span>
+        </h2> -->
+      <!-- <div class="r-hstack contain">
+          <div class="align-left text-medium" style="flex: 1 1 50%;">
+            <pre><code class="language-python" data-trim data-line-numbers="2|3|4-6"><script type="text/template">
+            fig, ax = plt.subplots(figsize=(6, 6))
+            ax.scatter(indiana["monthly_mean_from_1901_to_2000"], indiana["average_temp"], marker=".")
+            ax.axline((20, 20), slope=1, color="black", linewidth=1)
+            ax.set_title("Indiana, 1970-2021: each month vs. its 1901-2000 mean")
+            ax.set_xlabel("1901-2000 mean for that month (°F)")
+            ax.set_ylabel("Average temperature (°F)")
+            plt.show()
+            </script></code></pre>
+            <p class="fragment red text-medium">56% of months sit above the line: warmer than normal. The stripes pair
+              up
+              because spring and fall months have similar normals.</p>
+          </div>
+          <div style="flex: 1 1 50%;"> -->
+      <!-- <img width="50%" src="img/m2-quiz2-indiana-scatter.png"
+          alt="Square scatter plot titled Indiana, 1970-2021: each month vs. its 1901-2000 mean, with the 1901-2000 mean for that month on the x-axis and Average temperature on the y-axis, both in degrees F from about 17 to 77, and a black diagonal line where the two are equal. The points form twelve vertical stripes, one per calendar month, sitting in near-pairs at about 28, 35, 46, 58, 67 and 73 degrees. Each stripe straddles the line, spread widest in the coldest months, where January and February run from about 16 to 37 degrees." /> -->
+      <!-- </div>
+  </div> -->
+      <!-- <p class="cite">Data: Justin Wong, <a
+            href="https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state">Average Monthly
+            Temperature by US State</a>, Kaggle, from NOAA NCEI <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/value">Climate
+            at a Glance</a>.</p>
+      </section> -->
+
+      <!-- D5. NEW. -->
+      <section>
+        <h2>NOAA data source</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m2-noaa-video-right-output.png"
+            alt="Frame from NOAA's Climate at a Glance data outputs video, white text over a dark globe with grid lines: When using Climate at a Glance, it is important to use the right data output in order to obtain the data you are looking for. NOAA logo at bottom right." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m2-noaa-cag-home-us-background.png"
+            alt="Paragraph from the Climate at a Glance home page: Because these data are primarily intended for the study of climate variability, observations have been adjusted to account for the artificial effects introduced into the climate record by factors such as instrument changes, station relocation, observer practice changes and urbanization. Some of the more current data provided by Climate at a Glance are preliminary and may be modified after appropriate quality control has been performed. As a result, some values may differ from official observations." />
+        </div>
+        <p class="fragment red text-medium" data-fragment-index="1">NOAA adjusts and revises: expect small differences
+          from a 2022 copy and consider how you process/visualize.</p>
+        <p class="cite"><a href="https://www.ncei.noaa.gov/monitoring-content/cag/videos/CAAG_data_outputs.mp4">Climate
+            at a Glance: Data Outputs</a> (video), NOAA NCEI; <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/">Climate at a Glance</a>, NOAA NCEI,
+          2026-09-16.</p>
+      </section>
+
+      <!-- D6a. NEW. Kaggle's reference follows NOAA's own "Citing This Page" template. -->
+      <section>
+        <h2>Kaggle data citation?</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m2-noaa-video-mapping-1.png"
+            alt="Frame from NOAA's Climate at a Glance data outputs video: The Mapping Output allows you to visualize climate data geographically. You can plot data for specific time periods, and see how the data vary from region to region." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m2-noaa-video-mapping-2.png"
+            alt="Frame from NOAA's Climate at a Glance data outputs video: The Mapping Output is also great for understanding changes in spatial patterns in data values, anomalies, and ranks." />
+          <div class="fragment fade-in" data-fragment-index="1">
+            <img src="img/m2-noaa-cag-regional-mapping-settings.png" width="80%"
+              alt="Climate at a Glance Regional Mapping form: Region(s) Climate Regions, Parameter Average Temperature, Time Scale Year-to-Date, Month August, Year 2026 on a slider from 1895 to 2026, and a Plot button. A note says some Palmer drought indices are not offered for multiple-month time scales." />
+            <img src="img/m2-noaa-cag-citing-this-page.png" width="80%"
+              alt="Citing This Page, from the same Climate at a Glance page: NOAA National Centers for Environmental information, Climate at a Glance: Regional Mapping, published September 2026, retrieved on September 16, 2026 from https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/regional/mapping" />
+          </div>
+        </div>
+        <p class="fragment red text-medium" data-fragment-index="2">NOAA's citation names the page and the date, not any
+          settings.
+          Kaggle's reference is correct, BUT the URL returns a one-month map, not 72 years of months.</p>
+        <p class="cite"><a href="https://www.ncei.noaa.gov/monitoring-content/cag/videos/CAAG_data_outputs.mp4">Climate
+            at a Glance: Data Outputs</a> (video), NOAA NCEI; Climate at a Glance: Regional Mapping, NOAA NCEI,
+          2026-09-16.</p>
+      </section>
+
+      <!-- D6b. NEW. -->
+      <section>
+        <h2>Data for a timeseries?</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m2-noaa-video-time-series.png"
+            alt="Frame from NOAA's Climate at a Glance data outputs video: The Time Series Output allows you to observe how a climate variable for a specific location or region changes over time. You can create plots that show monthly, seasonal, or yearly data." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m2-noaa-cag-time-series-settings.png"
+            alt="Climate at a Glance Statewide Time Series settings: State Indiana, Parameter Average Temperature, Time Scale Year-to-Date, Filter No Filter, Month December, Start Year 1895, End Year 2026, with a year slider from 1895 to 2026." />
+          <img class="fragment fade-in" data-fragment-index="1" src="img/m2-noaa-cag-api.png"
+            alt="Climate at a Glance National Time Series Data Service API page: a RESTful API that returns CSV, JSON or XML. Path parameters: https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/{scope}/time-series/{location}/{parameter}/{timescale}/{month}/{begYear}-{endYear}/data.{format}. The begYear and endYear parameters are optional." />
+        </div>
+        <p class="fragment red text-medium" data-fragment-index="2">Time Scale is a setting: 1-month, 2-month,
+          year-to-date... It's in the form
+          and in the API path. It's nowhere in the Kaggle file.</p>
+        <p class="cite"><a href="https://www.ncei.noaa.gov/monitoring-content/cag/videos/CAAG_data_outputs.mp4">Climate
+            at a Glance: Data Outputs</a> (video), NOAA NCEI; Climate at a Glance: Statewide Time Series, NOAA NCEI,
+          2026-09-16.</p>
+      </section>
+
+      <!-- D7. NEW. Chart rendered from demos/noaa-cag_statewide-time-series_indiana_tavg_{1-month_dec,2-month_nov-dec}_1950-2021.csv
+           and the Kaggle file; same comparison as notebook section 5. Normals from
+           demos/noaa-cag_statewide-mapping_contiguous-us_tavg_1-month_2022-12.csv. -->
+      <section>
+        <h2 class="text-medium">What's in the two datasets?</h2>
+        <img class="r-stretch" src="img/m2-noaa-kaggle-december-comparison.png"
+          alt="Line chart titled Indiana average temperature, December, 1950-2021, with Year on the x-axis and Average temperature in degrees F on the y-axis. Three lines: NOAA 1-month December in thin blue, swinging between about 18 and 42 degrees; NOAA 2-month November-December as a thick pale orange line, between about 29 and 45 degrees; and the Kaggle file's December as a black dashed line that sits exactly on the orange line in every year, not on the blue one." />
+        <p class="fragment red text-medium">Kaggle's "December" is NOAA's 2-month November-December average: within 0.1
+          °F in all 72 years, and every other month matches its 2-month series too. Against true December, it's off by
+          up to 12.5 °F.</p>
+        <p class="fragment red text-small">Kaggle's December 1901-2000 mean: 35.6-35.7 °F. NOAA's: 30.3 °F.</p>
+        <p class="cite">Data: NOAA NCEI Climate at a Glance: Statewide Time Series, Indiana, Average Temperature,
+          1-month (December) and 2-month (November-December), 1950-2021, and Statewide Mapping, December 2022, retrieved
+          2026-09-16; Justin Wong, Kaggle.</p>
+      </section>
+
+      <!-- D8. NEW. -->
+      <section>
+        <h2>Implications</h2>
+        <div class="r-hstack" style="align-items: flex-start;">
+          <div class="align-left">
+            <h3>Still true</h3>
+            <ul class="text-medium">
+              <li>Indiana is warming</li>
+              <li>Winter varies more than summer</li>
+              <li>The histogram's humps are seasons</li>
+              <li>2021's warmest states, and the latitude pattern</li>
+            </ul>
+          </div>
+          <div class="align-left fragment">
+            <h3 class="red">Not quite</h3>
+            <ul class="text-medium">
+              <li>"Monthly": each month is that month plus the one before</li>
+              <li>"January" includes December</li>
+              <li>The "1901-2000 means" are 2-month normals</li>
+              <li>The 0.1 °F diff: likely rounding error </li>
+            </ul>
+          </div>
+        </div>
+        <p class="fragment red text-medium">The charts were correct for the data file. The data file wasn't "correct".
+        </p>
+      </section>
+
+      <!-- D9. NEW. Values checked against demos/noaa-cag_statewide-haywood_indiana_tavg_jan-dec_1895-2026.csv:
+           average 51.6 (1895-2025); warmest 2024 55.2, 2012 55.1, 1998/1921 54.9, 2023 54.3; coldest 1917 48.1 ...
+           1978 49.1; 2026 through August 55.4 = 14th of 132 for January-August (2012 leads at 58.4).
+           Notebook section 5 re-plots it. -->
+      <section>
+        <h2 class="text-medium">The right tool: <span class="blue">NOAA's Haywood plot</span></h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m2-noaa-video-haywoods.png"
+            alt="Frame from NOAA's Climate at a Glance data outputs video: The Haywoods Output gives a time series cumulative view of data for each month over a 12-month period." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0"
+            src="img/m2-noaa-cag-haywood-indiana-settings.png"
+            alt="Climate at a Glance Statewide Haywood settings: Use the options below to create a cumulative time series of each selected 12-month period in the period of record. Parameter Average Temperature, Period January to December, State Indiana, and a Plot button. A note says the period-of-record average, 5 warmest years, 5 coldest years and current year are highlighted, and all other years are in light gray." />
+          <img class="fragment fade-in" data-fragment-index="1" src="img/m2-noaa-cag-haywood-indiana-chart.png"
+            alt="Close-up of the same Indiana Haywood chart, Year-to-Date Average Temperature: one line per year since 1895 from January to December, with the average in black ending at 51.6 degrees F, the 5 warmest years (2024, 2012, 1998, 1921, 2023) in reds and oranges ending between 54.3 and 55.2 degrees, the 5 coldest years (1978, 1924, 1912, 1904, 1917) in blues and purples ending between 48.1 and 49.1 degrees, and 2026 in green, running above the average and at 55.4 degrees through August." />
+        </div>
+        <p class="fragment red text-medium" data-fragment-index="2">Is Indiana hotter? Three of the five warmest years
+          are since 2012. The
+          source's own chart, with its settings on the page.</p>
+        <p class="cite">NOAA NCEI, Climate at a Glance: Statewide Haywood (Indiana, Average Temperature,
+          January-December), retrieved 2026-09-16, <a
+            href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/haywood">https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/haywood</a>
+        </p>
+      </section>
+
+
+      <!-- ================= CODA: ON METHOD ================= -->
+
+      <!-- Reworked 2026-09-17 per Ankita, for students who weren't there: the discovery as numbered steps with
+           who did each, one readable screenshot, a plain takeaway. Replaces the 2026-09-16 bullets ("a mean that
+           wouldn't sit still" etc.). The screenshot is cropped from img/m2-ai-confirmed.png and appears with step 5,
+           the step it shows. Screenshots are this session's Claude Code transcript. -->
+      <section>
+        <h2 class="text-medium">AI-assisted debugging</h2>
+        <p class="text-small red">Human evaluation. AI data crunching. Data source
+          verification.</p>
+        <table class="text-medium">
+          <tr>
+            <th></th>
+            <th>Step</th>
+            <th>Who</th>
+          </tr>
+          <tr class="fragment" data-fragment-index="1">
+            <td>0</td>
+            <td>Data exploration: Producing a TON of simple charts all on the same data.</td>
+            <td>Instructor prompting based on course materials.</td>
+          </tr>
+          <tr class="fragment" data-fragment-index="2">
+            <td>1</td>
+            <td>Noticed: the "1901-2000 mean" should be one number per month. It had two (January: 28.5 and 28.4). First
+              guess: rounding.</td>
+            <td>AI reports results.</td>
+          </tr>
+          <tr class="fragment" data-fragment-index="2">
+            <td>2</td>
+            <td>Verified: downloaded NOAA's own data. The download settings were not recorded on Kaggle.</td>
+            <td>Instructor</td>
+          </tr>
+          <tr class="fragment" data-fragment-index="3">
+            <td>3</td>
+            <td>Compared: December normal is 35.7 °F in Kaggle, 30.3 °F at NOAA. Too big for rounding.</td>
+            <td>AI report, Instructor assess </td>
+          </tr>
+          <tr class="fragment" data-fragment-index="4">
+            <td>4</td>
+            <td>Hypothesis: each Kaggle "month" is a 2-month average.</td>
+            <td>AI propose, Instructor assess</td>
+          </tr>
+          <tr class="fragment" data-fragment-index="5">
+            <td>5</td>
+            <td>Tested against NOAA: 2-month matches within 0.1 °F every year; 1-month is off by up to 14.5 °F.</td>
+            <td>AI reports to Instructor</td>
+          </tr>
+          <tr class="fragment" data-fragment-index="5">
+            <td>6</td>
+            <td>Checked more: Alabama and Wyoming match too.</td>
+            <td>AI reports to Instructor</td>
+          </tr>
+          <tr class="fragment" data-fragment-index="6">
+            <td>7</td>
+            <td>Review, verify, think, share!</td>
+            <td>Instructor, with AI-assist</td>
+          </tr>
+        </table>
+        <img class="fragment" data-fragment-index="5" src="img/m2-ai-confirmed-message.png" width="70%"
+          alt="Claude Code session message: Confirmed for Indiana: Kaggle values align with NOAA's 2-month time scale across all months and years (within 0.1°F), while the 1-month scale shows discrepancies up to 14.5°F. I'll spot-check two more states before finalizing the report." />
+        <p class="cite">Claude Code session, 2026-09-16.</p>
+      </section>
+
+      <!-- ================= E. SHARING DATA YOU CAN TRUST ================= -->
+
+
+
+      <!-- A-L3.1 §20 -->
+      <section>
+        <h2>FAIR DATA</h2>
+        <img class="r-stretch" src="img/m2-data-fair.png"
+          alt="The FAIR guiding principles as four bulleted lists. Findability: data and metadata get a globally unique, persistent identifier, rich metadata, and are indexed in a searchable resource. Accessibility: retrievable by that identifier over an open, free protocol, with metadata kept even when the data are gone. Interoperability: a formal, shared language for knowledge representation, FAIR vocabularies, and qualified references to other data. Reusability: richly described, with a clear usage license, detailed provenance, and domain community standards." />
+        <p class="cite"><a
+            href="https://www.nature.com/articles/sdata201618">https://www.nature.com/articles/sdata201618</a></p>
+      </section>
+
+      <!-- A-L3.1 §21 -->
+      <section>
+        <h2>Data FAIRification process</h2>
+        <img class="r-stretch" src="img/m2-data-fairification.png"
+          alt="The GO FAIR FAIRification process as a flowchart of seven blue steps: 1, retrieve non-FAIR data; 2, analyse the retrieved data; 3, define the semantic model; 4, make data linkable; 5, assign license; 6, define metadata for the dataset; 7, deploy FAIR data resource. Two yellow steps follow and loop back to the start: combine with other FAIR data, and questions across multiple sources." />
+        <br /><br />
+        <p class="cite"><a
+            href="https://www.go-fair.org/fair-principles/fairification-process/">https://www.go-fair.org/fair-principles/fairification-process/</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Trust Issues!</h2>
+        <div class="r-stack r-stretch">
+          <img src="img/m2-farmer-perspectives1.png"
+            alt="Key Findings, page 9 of the Farmer Perspectives on Data report. Four findings: there is a significant digital gap, with 62% not relying on farm management information systems (FMIS) exclusively and 28% storing data on paper; satisfaction with FMIS outputs is mediocre, with 47% entirely satisfied; trusted advisors play a critical role but are sparse, with 52% having one and those who do 24% more likely to use FMIS; and FMIS use rises with acreage but is not universal." />
+          <img class="fragment" src="img/m2-farmer-perspectives2.png"
+            alt="Key Findings, page 10 of the same report. Four more findings: 79% would start or increase their use of precision technology if the equipment were free or discounted; 73% don't trust private companies with their data and 58% don't trust the government, while 71% trust their financial institutions; 65% say their customers do not have a right to know how the crop was produced; and farmers who sell to food or fuel companies are more likely to use FMIS." />
+        </div>
+
+        <br />
+        <p class="cite">Slattery et al., 2021, <a
+            href="https://www.trustinfood.com/wp-content/uploads/2021/05/Farmer-Perspectives-on-Data-2021.pdf">https://www.trustinfood.com/wp-content/uploads/2021/05/Farmer-Perspectives-on-Data-2021.pdf</a>
+        </p>
+      </section>
+
+      <!-- A-L3.1 §10 -->
+      <!-- NOTE FOR ANKITA: this cite and the next two still read "Forthcoming
+           (2021)". Left verbatim - update if the paper has since come out. -->
+      <section>
+        <h2>Practicing Trust with Data</h2>
+        <div class="r-hstack">
+          <div>
+            <h3>Privacy</h3>
+            <ul>
+              <li>Protect personal information</li><br />
+              <li>Handle geolocation information with sensitivity</li><br />
+              <li>Provide granular data access controls</li>
+            </ul>
+          </div>
+
+          <div class="fragment">
+            <h3>Agency</h3>
+            <ul>
+              <li>Come to early consensus on data ownership</li><br />
+              <li>Provide situational control over data</li><br />
+              <li>Empower stakeholder voices</li>
+            </ul>
+          </div>
+        </div>
+        <br /><br />
+        <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable
+          Agricultural Research".</p>
+      </section>
+
+      <!-- A-L3.1 §11 -->
+      <section>
+        <h2>Cultivate Trust in your Process</h2>
+        <div class="r-hstack">
+          <div>
+            <h3>Transparency</h3>
+            <ul>
+              <li>Be inclusive of stakeholders in the process</li><br />
+              <li>Provide feedback and clarity on the process</li><br />
+              <li>Open source development of tools</li><br />
+              <li>Open access to privacy-preserved data</li>
+            </ul>
+          </div>
+
+          <div class="fragment">
+            <h3>Accountability</h3>
+            <ul>
+              <li>Uphold the responsibility of protecting data and research stakeholder rights</li><br />
+              <li>Provide traceability of action</li><br />
+              <li>Provide feedback among stakeholders</li>
+            </ul>
+          </div>
+        </div>
+        <br />
+        <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable
+          Agricultural Research".</p>
+      </section>
+
+      <!-- A-L3.1 §12 -->
+      <section>
+        <h2>Precision Sustainable Agriculture</h2>
+        <p>Managing access to cover crop research data from US farms.</p>
+        <img class="r-stretch" src="img/m2-psa-datasensitivity.png"
+          alt="Precision Sustainable Agriculture's data sensitivity table, running from Not Sensitive on the left to Very Sensitive on the right. On-farm field observations, measurements and sensor data are not subject to IRB and sit in Database 1 with broad team access. Personal information and GPS locations are Sensitive, also in Database 1, with modelers limited to reading GPS locations. Human-subject data is subject to IRB: anonymized, aggregated data goes in Database 2 for social scientists and economists, and personally identifiable information in Database 3, open only to researchers named on the IRB." />
+        <br />
+        <p class="cite">Raturi et al., Forthcoming (2021), "Cultivating Trust in Technology-Mediated Sustainable
+          Agricultural Research".</p>
+      </section>
+
+      <!-- A-L3.1 §13 -->
+      <section>
+        <h2>Sensitivity of Data</h2>
+        <ul class="no-bullets">
+          <li><b>Private:</b> Some Farmer Data, Proprietary Data, Human Subjects Research Data</li><br />
+          <li><b>Protected:</b> Same as above, but can be released in certain ways (e.g., de-identified, aggregated,
+            shared with certain people)</li><br />
+          <li><b>Public:</b> Publicly funded research data, "Generic" data e.g., general plant data, "utility" data
+            e.g., weather, can also include protected data e.g., deidentified data. </li>
+        </ul>
+      </section>
+
+      <!-- A-L3.1 §15 -->
+      <section>
+        <h2>The Open Data Ecosystem</h2>
+        <p>Publish data* on the web.</p>
+        <a class="r-stretch" href="https://purr.purdue.edu/sharedata"><img src="img/m2-data-purr.png"
+            alt="Purdue University Research Repository page titled Two ways to share your data with PURR. Publish, for data stored on PURR: open-access downloads, a DOI, search-engine indexing, view and citation tracking, 10+ years of archiving, and meeting funder requirements. Register, for data stored elsewhere: a citation, an optional DOI, search-engine indexing, and control over how the data can be accessed, requested or purchased." /></a>
+        <p>*with appropriate permissions/protections</p>
+
+        <br />
+        <p class="cite"><a href="https://purr.purdue.edu/sharedata">https://purr.purdue.edu/sharedata</a></p>
+      </section>
+
+      <!-- A-L3.1 §23 -->
+      <section>
+        <h2>Re-usable Media/Writing/Courses!</h2>
+        <img src="img/m2-course-license.png" width="70%"
+          alt="This course's own license notice from its GitHub README: a CC BY-NC-SA 4.0 badge, then Introduction to Agricultural Informatics Course by Ankita Raturi, Purdue University is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License." />
+        <!-- Fixed 2026-09-17: was <a class="fragment r-stretch">. A hidden r-stretch fragment reserves the
+             slide's space before the click and can collapse to zero height after it. -->
+        <a class="fragment" href="https://creativecommons.org/share-your-work/"><img width="60%"
+            src="img/m2-creativecommons.png"
+            alt="The Creative Commons license chooser. The License Features panel has Allow adaptations of your work to be shared set to Yes, as long as others share alike, and Allow commercial uses of your work set to No. The Selected License panel shows Attribution-NonCommercial-ShareAlike 4.0 International with its four icons, noted as not a Free Culture License." /></a>
+        <p class="cite"><a
+            href="https://creativecommons.org/share-your-work/">https://creativecommons.org/share-your-work/</a></p>
+
+      </section>
+
+      <!-- A-L3.1 §24 -->
+      <section>
+        <h2>Open Source Software Code</h2>
+        <a class="r-stretch" href="https://tldrlegal.com/"><img src="img/m2-tldrlegal.png"
+            alt="The tl;drLegal summary page for the GNU General Public License v3. A quick summary says you may copy, distribute and modify the software as long as you track changes and make modifications available under the GPL. Three columns list what you Can do (commercial use, modify, distribute, place warranty, use patent claims), Cannot do (sublicense, hold liable), and Must do (include original, state changes, disclose source, include license, include copyright, include install instructions)." /></a>
+        <p class="cite"><a href="https://tldrlegal.com/">https://tldrlegal.com/</a></p>
+      </section>
+
+      <!-- A-L2.3 §18 - closing further reading, per Ankita kept as a slide
+           rather than a README section. -->
+      <section>
+        <h2>Learn More:</h2>
+        <ul class="no-bullets">
+          <li><a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Same Stats, Different
+              Graphs</a></li>
+          <li><a href="http://www.thefunctionalart.com/">Alberto Cairo. A Functional Art / A Truthful Art</a></li>
+          <li><a href="http://www.stat.cmu.edu/~hseltman/309/Book/chapter4.pdf">Howard Seltman, 2018. Exploratory Data
+              Analysis</a></li>
+        </ul>
+      </section>
+
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

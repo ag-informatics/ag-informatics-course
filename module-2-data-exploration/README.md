@@ -20,37 +20,30 @@ A Python refresher, and the data notebook as a way of *exploring* data before co
 * How do you go from a question to pseudocode to working analysis?
 * Goal: Be able to conduct an exploratory data analysis and visualise what you find.
 
-## Lectures
+## Course Materials
 
-Source code for the slides is in this folder. The slides are live here:
+Lecture materials including handouts, demos, and quizzes.
 
-- [Lecture 2.1](lecture-2.1.html) - Genres of ag tech, ag data types, and the data lifecycle
-- [Lecture 2.2](lecture-2.2.html) - What data looks like, where to get it, and framing your own data problem
-<!-- - [Lecture 2.3](lecture-2.3.html) - Data visualization and Quiz 2
-- [Lecture 2.4](lecture-2.4.html) - Quiz 2 answers, and the ag-data landscape bookend -->
+- [Lecture 2.1](lecture-2.1.html)
+- [Lecture 2.2](lecture-2.2.html) - Graded in-class activity ([handout](handouts/handout-data-problem.html))
+- [Lecture 2.3 demo](demos/demo-plotting-notebook.ipynb) and [Quiz 2](quiz-2-python/README.md)
+- [Lecture 2.4](lecture-2.4.html) - Quiz 2 answers, and the [choosing charts and Datasaurus Dozen demo](demos/demo-choosing-charts-notebook.ipynb)
 
-## Lab 2
+Cheatsheets:
+- [Custom Python cheatsheet for this module](handouts/cheatsheet-python.md)
 
-**[Lab 2: Data Notebook](lab-2/README.md)** - find a dataset for a problem you care about, assess whether it
-fits, and explore it in a Jupyter notebook. Instructions, prework and submission details are in the lab
-subfolder, along with:
+### Lab 2
 
-- [`lab2-skeleton.ipynb`](lab-2/lab2-skeleton.ipynb) - the notebook template you work in, one section per step.
-- [`aglandvalues-clean.csv`](lab-2/aglandvalues-clean.csv) - US agricultural land values by state, 1997-2023.
+**[Lab 2: Data Notebook](lab-2-data-notebook/README.md)** - find a dataset for a problem you care about, assess whether it fits, and explore it in a Jupyter notebook. Instructions, prework and submission details are in the lab subfolder, along with:
+
+- [`lab-2-skeleton.ipynb`](lab-2-data-notebook/lab-2-skeleton.ipynb) - the notebook template you work in, one section per step.
+- [`aglandvalues-clean.csv`](lab-2-data-notebook/aglandvalues-clean.csv) - US agricultural land values by state, 1997-2023.
   The default dataset, for anyone not bringing their own.
 
-Each lab has a specific AI use policy, specified in the lab itself.
+Each lab has a specific AI use policy, specified in the lab itself. 
 As a reminder, the overarching AI policy is available in the main repository [README](../README.md).
 
 If you are a Purdue ASM 532 student: Check Brightspace for current instructions, due dates, and other submission details.
-
-<!-- ## Demo
-
-... coming soon
-
-## Quiz 2
-
-... coming soon -->
 
 ## Rubrics
 
@@ -87,7 +80,6 @@ notebook to analyse it. Bring your own dataset, or use one of the provided alter
     * Share and use (STEP 12) — 2 pts. What the data supports, what it doesn't, and which assumptions a reader needs.
 
 ## References
-
 
 See `CREDITS.md` for image sourcing/attribution and non-image reference citations used in this module's slides and lab.
 

@@ -118,7 +118,8 @@
             its comprehensive
             standard library"</li>
         </ul>
-        <p class="cite"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python (programming language), Wikipedia</a></p>
+        <p class="cite"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python (programming
+            language), Wikipedia</a></p>
       </section>
 
 
@@ -141,7 +142,8 @@
               alt="The 'X, all the X' meme: a wide-mouthed stick figure yelling, arms flung out against a yellow starburst. Captioned 'WHY PY?' above and 'ALL THE RESOURCES!' below." />
           </div>
         </div>
-        <p class="cite"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python (programming language), Wikipedia</a></p>
+        <p class="cite"><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python (programming
+            language), Wikipedia</a></p>
       </section>
 
 
@@ -224,7 +226,8 @@
             <img src="img/m2-data-sample-itself.png" width="80%"
               alt="A spreadsheet of daily weather for Lafayette Purdue University Airport, station USW00014835. One row per date, from 2021-09-02 backwards, and one column per variable: TAVG, TMAX and TMIN in degrees Fahrenheit, PRCP, SNOW and SNWD in inches. Several cells are empty where a measure was not recorded." />
             <p>Observations = Rows. <br /> Variables = Columns. <br />Metadata = data about the data</p>
-            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past Weather, downloaded as CSV</a></p>
+            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA
+                NCEI Past Weather, downloaded as CSV</a></p>
           </div>
 
           <div class="fragment fade-in-then-out">
@@ -232,14 +235,16 @@
             <img src="img/m2-data-sample-json-raw.png" width="80%"
               alt="The same weather data as raw JSON in a browser's Raw Data tab: one long unbroken line beginning with a description object that names the station and the units for each measure, followed by a data object keyed by date, each date holding TMAX, TMIN, PRCP, SNOW and SNWD as quoted values." />
             <p>Attribute:Value Pairs. <br />Metadata in the header</p>
-            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past Weather, the same request as JSON</a></p>
+            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA
+                NCEI Past Weather, the same request as JSON</a></p>
           </div>
 
           <div class="fragment">
             <h3>Data in JSON Format</h3>
             <img src="img/m2-data-sample-json-formatted.png" width="50%"
               alt="The same JSON in the browser's formatted JSON viewer, drawn as a collapsible tree: 'description' expands to 'station' and a 'units' block listing degrees Fahrenheit and inches for each measure; 'data' expands to a node per date, with 1944-02-01 opened to show TMAX 43, TMIN 31, PRCP 0.00, SNOW 0.0 and SNWD 0.0." />
-            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA NCEI Past Weather, the same JSON in a formatted viewer</a></p>
+            <p class="cite text-small"><a href="https://www.ncei.noaa.gov/access/past-weather/west%20lafayette">NOAA
+                NCEI Past Weather, the same JSON in a formatted viewer</a></p>
           </div>
         </div>
       </section>
@@ -481,7 +486,7 @@
           THE ACTIVITY, ported 2026-09-09 from Ankita's
           2023-Adhoc-Activity-Framing-Data-Problem.pptx. Eight prompts in four
           numbered steps; the pptx's slide 6 is the printable handout version,
-          which now lives in instructor-content/l2.2-activity/.
+          which now lives in handouts/handout-data-problem.html.
 
           The pptx's worked example (its slide 7) is rebuilt here as text rather
           than reproduced as an image, so it is legible from the back of the room
@@ -550,8 +555,8 @@
           <div class="fragment fade-in-then-out">
             <img src="img/m2-luna-citrusgreening.jpg"
               alt="Close-up of citrus leaves showing the blotchy yellow mottling characteristic of citrus greening disease." />
-            <p class="cite text-small">Matthew Weinert/AQIS, <a
-                href="https://www.cabi.org/isc/datasheet/16567">CABI</a></p>
+            <p class="cite text-small">Matthew Weinert/AQIS, <a href="https://www.cabi.org/isc/datasheet/16567">CABI</a>
+            </p>
           </div>
 
           <div class="fragment fade-in-then-out">
@@ -611,6 +616,43 @@
           Do not EDIT BELOW ------------------------------------------------------------
         -->
 
+      <section>
+        <h2>Activity: Show Me the Data!</h2>
+        <b>Visit: <a href="http://www.fao.org/faostat/en/">http://www.fao.org/faostat/en/</a></b>
+        <p>Let's explore.</p>
+        <ul class="text-small">
+          <li class="fragment"><b>Navigate to "Land Use" data found under "Land, Inputs, and Sustainability".</b>
+            <ul class="text-small">
+              <li>What are the different ways in which I can download Land Use data?</li>
+              <li>How many categories of "metadata" are associated with these data? Anything interesting?</li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">The tool offers a <b>"Visualization"</b> tab. Using this can you answer the following:
+            <ul class="text-small">
+              <li>Between 2010 & 2019, which 5 countries have the largest area of land classified as "Agricultural
+                Land"?</li>
+              <li>Let's try to reproeduce some of these graphs.</li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Let's check out how these <b>variables are defined and the data standardized:</b>
+            <ul class="text-small">
+              <li>What is the <b>definition</b> for the data <b>item</b> "Agricultural Land"?</li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Navigate to <b>"Selected Indicators"</b>. These are some preset visualizations that
+            describe key indicitors of food
+            <ul class="text-small">
+              <li>Between 2018 & 2020, what is the number of moderately or severely food inscecure people in the US?
+              </li>
+              <li>Can you download this data directly to reproduce the graph?</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
       <!--
           CLOSING SLIDE — license
         -->
@@ -649,6 +691,7 @@
           </li>
         </ul>
       </section>
+
 
     </div>
   </div>

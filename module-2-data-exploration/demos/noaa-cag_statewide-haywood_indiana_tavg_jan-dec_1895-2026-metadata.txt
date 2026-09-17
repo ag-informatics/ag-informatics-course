@@ -1,0 +1,17 @@
+File: noaa-cag_statewide-haywood_indiana_tavg_jan-dec_1895-2026.csv
+Title: Indiana Year-to-Date Average Temperature
+Publisher: NOAA National Centers for Environmental Information (NCEI), Climate at a Glance
+Output: Statewide Haywood
+Settings: State: Indiana; Parameter: Average Temperature; Period: January-December
+Download URL: https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/haywood/12/tavg/12/data.csv
+Downloaded: 2026-09-16
+Citation: NOAA National Centers for Environmental information, Climate at a Glance: Statewide Haywood, Indiana Year-to-Date Average Temperature, retrieved on September 16, 2026 from https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/haywood/12/tavg/12/data.csv
+License / terms: NOAA NCEI data are produced by the U.S. federal government and are freely available for reuse (public domain in the U.S.). Citation requested.
+Format: CSV with '#' comment header lines; read with pd.read_csv(file, comment='#')
+Coverage: 1895 - August 2026 (year-to-date running average per month); columns Year, Month, Value (degrees F)
+Used by: demos/demo-choosing-charts-notebook.ipynb (section 5, Haywood re-plot); Lecture 2.4
+
+Notes:
+- Climate at a Glance observations are adjusted for instrument changes, station relocation, observer practice changes and urbanization; recent values are preliminary and may be revised after quality control.
+- December rows equal NOAA's Indiana January-December annual average for every complete year.
+- 2026 is partial (through August) at download time.

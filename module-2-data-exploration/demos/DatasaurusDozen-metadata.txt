@@ -1,0 +1,14 @@
+File: DatasaurusDozen.tsv
+Title: The Datasaurus Dozen
+Creators: Justin Matejka and George Fitzmaurice, Autodesk Research
+Citation: Justin Matejka and George Fitzmaurice. 2017. Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing. In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems (CHI '17), 1290-1294. https://doi.org/10.1145/3025453.3025912
+Source: https://www.autodesk.com/research/publications/same-stats-different-graphs
+Original dinosaur: Alberto Cairo, 2016, "Download the Datasaurus: Never trust summary statistics alone; always visualize your data"
+Format: Tab-separated; columns dataset, x, y; 13 datasets x 142 points = 1,846 rows
+Obtained: Copied from the Fall 2024 course archive (module2/data/)
+License / terms: Released by Autodesk Research with the paper for reuse; cite the paper above.
+Used by: demos/demo-choosing-charts-notebook.ipynb (section 2); Lecture 2.4
+
+Notes:
+- Read with pd.read_csv('DatasaurusDozen.tsv', sep='\t'). Without sep the file loads as one column.
+- dino is the original Datasaurus; the other twelve make up the Dozen.

@@ -1,6 +1,6 @@
-# HTML Reference Cheatsheet
+# HTML Reference 
 
-ASM 532 · Module 1
+ASM 532 · Module 1 · Custom Cheatsheet
 ---
 
 ## Anatomy of an element

@@ -1,0 +1,52 @@
+# Title: August 2022 Contiguous U.S. Statewide Average Temperature
+# Units: Degrees Fahrenheit
+# Note: Period of Record: 132 Years
+ID,Name,Value,Anomaly (1901-2000 base period),Rank,1901-2000 Mean
+1,Alabama,79.3,-0,61,79.3
+2,Arizona,79,1.2,93,77.8
+3,Arkansas,79.4,0.1,69,79.3
+4,California,78.4,4.7,130,73.7
+5,Colorado,67.8,2.6,121,65.2
+6,Connecticut,74.5,5.9,132,68.6
+7,Delaware,78.1,4.4,129,73.7
+8,Florida,83,1.9,122,81.1
+9,Georgia,79.5,0.5,86,79
+10,Idaho,69.4,5.8,132,63.6
+11,Illinois,73.6,0.2,70,73.4
+12,Indiana,73,0.7,83,72.3
+13,Iowa,72,0.6,89,71.4
+14,Kansas,79.2,1.9,104,77.3
+15,Kentucky,75.3,0.5,77,74.8
+16,Louisiana,81.8,0.2,73,81.6
+17,Maine,67.3,4.3,128,63
+18,Maryland,76.7,3.5,124,73.2
+19,Massachusetts,73.9,6.4,132,67.5
+20,Michigan,68.2,2.3,104,65.9
+21,Minnesota,67.3,1,88,66.3
+22,Mississippi,80.2,-0,61,80.2
+23,Missouri,76.4,0.4,77,76
+24,Montana,69.7,5.6,130,64.1
+25,Nebraska,75,2.7,115,72.3
+26,Nevada,74.4,4.3,130,70.1
+27,New Hampshire,69.8,5.7,132,64.1
+28,New Jersey,77.2,5.6,132,71.6
+29,New Mexico,71.9,1,93,70.9
+30,New York,70,4,124,66
+31,North Carolina,76.5,0.9,85,75.6
+32,North Dakota,69.5,2.6,114,66.9
+33,Ohio,72.2,1.3,94,70.9
+34,Oklahoma,82.5,1.6,93,80.9
+35,Oregon,70.4,6.5,132,63.9
+36,Pennsylvania,71.4,3,115,68.4
+37,Rhode Island,75,6.3,131,68.7
+38,South Carolina,79,0.3,70,78.7
+39,South Dakota,73.2,2.7,112,70.5
+40,Tennessee,76.4,0.4,76,76
+41,Texas,83.4,1.5,108,81.9
+42,Utah,72.4,3,121,69.4
+43,Vermont,68.4,5,130,63.4
+44,Virginia,74.7,1.6,94,73.1
+45,Washington,69.8,6.3,132,63.5
+46,West Virginia,71.7,1.3,94,70.4
+47,Wisconsin,67.5,1.1,85,66.4
+48,Wyoming,67.3,3.9,127,63.4

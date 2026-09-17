@@ -20,6 +20,11 @@
 }
 
 /* ===== Typography ===== */
+/* Absolute size on every p and ul. Consequence, and the source of a
+   recurring bug: a size class on a CONTAINER does nothing to the p/ul inside
+   it - `<div class="text-small"><p>` renders at xx-large. Put .text-small /
+   .text-medium on the p, ul or li itself. (Not changed globally: approved
+   slides in L1.3, L1.4 and L2.2 render as they do because of it. 2026-09-16.) */
 p,
 ul {
     font-size: xx-large;
@@ -150,8 +155,20 @@ td {
     gap: 4%;
 }
 
+/* reveal.js centers .r-hstack children flush; these share the row evenly. */
 .r-hstack>div {
     flex: 1;
+}
+
+/* Opt-in: <div class="r-hstack contain">. A flex item defaults to
+   min-width: auto - never narrower than its longest unbreakable content - so
+   one long code line forces its column wide and crushes the other column to
+   a word per line. .contain lets each column keep its share; long code
+   scrolls inside its own block. Use it on any text-beside-code slide.
+   Opt-in rather than global because approved slides in L1.3, L1.4 and L2.2
+   were laid out without it (2026-09-16). */
+.r-hstack.contain>div {
+    min-width: 0;
 }
 
 .col {
@@ -198,6 +215,23 @@ td {
 img {
     max-height: 100%;
     max-width: 100%;
+}
+
+/* .r-stretch on a LINKED image: reveal.js only stretches direct children of
+   <section>, so the class goes on the <a>, which then needs to be a block with
+   the image filling it. Used where a slide's screenshot links to its site.
+   (Added 2026-09-16 for L2.4; no other deck used a.r-stretch before.) */
+.reveal a.r-stretch {
+    display: block;
+}
+
+.reveal a.r-stretch>img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    object-fit: contain;
 }
 
 .overlay {

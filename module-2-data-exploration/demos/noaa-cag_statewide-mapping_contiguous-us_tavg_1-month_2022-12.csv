@@ -1,0 +1,52 @@
+# Title: December 2022 Contiguous U.S. Statewide Average Temperature
+# Units: Degrees Fahrenheit
+# Note: Period of Record: 131 Years
+ID,Name,Value,Anomaly (1901-2000 base period),Rank,1901-2000 Mean
+1,Alabama,49.1,2.7,95,46.4
+2,Arizona,42.8,1.3,87,41.5
+3,Arkansas,43.2,1.7,83,41.5
+4,California,43.5,0.4,68,43.1
+5,Colorado,25.7,0.5,58,25.2
+6,Connecticut,33.5,4.3,107,29.2
+7,Delaware,37.8,1.6,73,36.2
+8,Florida,61.5,2.7,87,58.8
+9,Georgia,49.1,2,86,47.1
+10,Idaho,22.8,-1.1,43,23.9
+11,Illinois,30.3,0.9,63,29.4
+12,Indiana,31.7,1.4,70,30.3
+13,Iowa,21.3,-1.4,48,22.7
+14,Kansas,30.6,-0.9,42,31.5
+15,Kentucky,37.8,1.6,80,36.2
+16,Louisiana,54.1,3.2,106,50.9
+17,Maine,27.6,8.9,126,18.7
+18,Maryland,36.5,1.2,70,35.3
+19,Massachusetts,33.1,5,113,28.1
+20,Michigan,26.9,3.6,99,23.3
+21,Minnesota,12.5,-0.4,56,12.9
+22,Mississippi,50.1,3.3,102,46.8
+23,Missouri,33.1,0.1,57,33
+24,Montana,14.6,-6,21,20.6
+25,Nebraska,22.7,-2.6,28,25.3
+26,Nevada,31.7,0.5,68,31.2
+27,New Hampshire,28.3,6.6,117,21.7
+28,New Jersey,35.5,2.5,87,33
+29,New Mexico,37.2,2.9,106,34.3
+30,New York,29,4.5,108,24.5
+31,North Carolina,41.8,0.3,62,41.5
+32,North Dakota,6.7,-6,19,12.7
+33,Ohio,32.6,2.2,80,30.4
+34,Oklahoma,40.1,1.2,71,38.9
+35,Oregon,30.6,-1.2,41,31.8
+36,Pennsylvania,30.6,1.7,73,28.9
+37,Rhode Island,35.5,4.5,110,31
+38,South Carolina,46.1,0.5,74,45.6
+39,South Dakota,15.1,-4.6,25,19.7
+40,Tennessee,40.8,1.6,83,39.2
+41,Texas,50,3.1,111,46.9
+42,Utah,28.2,1.2,75,27
+43,Vermont,27.2,7,117,20.2
+44,Virginia,37.3,0.5,62,36.8
+45,Washington,26.3,-4.3,17,30.6
+46,West Virginia,34.4,1.3,72,33.1
+47,Wisconsin,19.2,1.1,69,18.1
+48,Wyoming,19.6,-1,46,20.6

@@ -19,29 +19,20 @@ Second, I provide quick skills-forward overview of how people engineering softwa
 * How do people design and build web applications?
 * Goal: Be able to build a simple website.
 
-## Lectures
+## Course Materials
 
-Source code for the slides is in this folder. The slides are live here:
-
+Lecture materials including handouts, demos, and quizzes.
 - [Lecture 1.1](lecture-1.1.html)
 - [Lecture 1.2](lecture-1.2.html) - Graded in-class activity
-- [Lecture 1.3](lecture-1.3.html) - Anatomy of a website, and Quiz 1
-- [Lecture 1.4](lecture-1.4.html) - Quiz 1 answers, and genres of software
+- [Lecture 1.3](lecture-1.3.html) - [Web anatomy demo](demos/README.md), and [Quiz 1: Decomposing a Website](quiz-1-html-css/README.md)
+- [Lecture 1.4](lecture-1.4.html) - Quiz 1 answers
 
-## Demo
+Cheatsheets:
+- [Custom HTML+CSS cheatsheet for this module](handouts/cheatsheet-html-css.md)
 
-[Demo 1: One Page, Five Layouts](demo-1-web-anatomy/README.md) - the layout demo from Lecture 1.3.
-Open each example in a browser and in your editor side by side. Nothing here is graded.
+### Lab 1
 
-## Quiz
-
-[Quiz 1: Decomposing a Website](quiz-1-web-anatomy/README.md) - the quiz as it was run in class,
-with the handouts, the cheatsheet, and a fully worked solution. We walked through the answers in
-Lecture 1.4.
-
-## Lab
-
-Instructions for the lab, including submission instructions, are in the [lab subfolder](lab-1/README.md). 
+Instructions for the lab, including submission instructions, are in the [lab 1 subfolder](lab-1-website/README.md). 
 
 Each lab has a specific AI use policy, specified in the lab itself. 
 As a reminder, the overarching AI policy is available in the main repository [README](../README.md).
@@ -50,9 +41,9 @@ If you are a Purdue ASM 532 student: Check Brightspace for current instructions,
 
 ## Rubrics
 
-Total: 30 points (5 in-class activity + 5 quiz + 18 lab).
+Total: 30 points (5 in-class activity + 5 quiz + 20 lab).
 
-### In-class activity — 5 pts
+### In-class activity 1 — 5 pts
 
 The mockup resulting from the 30-minute activity on the Lecture 1.2 activity slide.
 
@@ -62,10 +53,9 @@ The mockup resulting from the 30-minute activity on the Lecture 1.2 activity sli
 | 2 | Incomplete layout — doesn't have to be "right" |
 | 5 | Complete - doesn't have to be "right"! |
 
-### Quiz — 5 pts
+### Quiz 1 — 5 pts
 
-Decompose a layout into HTML elements, cheat sheet on-hand. Run in Lecture 1.3, answers walked
-through in Lecture 1.4. See [quiz-1-web-anatomy/](quiz-1-web-anatomy/README.md).
+Decompose a layout into HTML elements, cheat sheet on-hand.
 
 ### Lab 1 — 20 pts
 
@@ -88,12 +78,6 @@ through in Lecture 1.4. See [quiz-1-web-anatomy/](quiz-1-web-anatomy/README.md).
 
 
 ## References
-
-<!-- TODO: summarize the resources / future-learning-pathways content shared in the slides and in the Airtable base for this module, so students have one place to find it instead of hunting through slide decks.
-
-| Resource | Type | Link | Notes |
-| --- | --- | --- | --- |
-| TODO | TODO | TODO | TODO | -->
 
 See `CREDITS.md` for image sourcing/attribution and non-image reference citations used in this module's slides and lab.
 

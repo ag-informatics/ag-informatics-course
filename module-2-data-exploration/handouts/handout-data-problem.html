@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Framing your DATA problem — ASM 532 Lecture 2.2 handout</title>
+
+  <!--
+      PRINTABLE HANDOUT. Open in a browser and print to PDF, or print directly.
+
+      TWO SIDES of US Letter. Page 1 is steps 1-3; page 2 is steps 4-5, whose two
+      big boxes get about half a page each because they are where the thinking
+      happens. Box heights are set in cm, so check the print preview after
+      editing - anything that grows above them pushes to a third page.
+
+      Ported 2026-09-09 from Ankita's 2023-Adhoc-Activity-Framing-Data-Problem.pptx
+      (slide 6, the handout version), in the pptx's own order and wording.
+
+      LAYOUT RULES, set 2026-09-10:
+        - The pptx prompt is the LABEL ABOVE each box, never repeated as grey
+          text inside it.
+        - Grey text inside a box is only ever a Luna Orchard example, taken from
+          the "Pest Tracking as a DATA problem" slide.
+        - A box with no Luna example is left empty. The 2023 worked answer
+          deliberately left process/analyze, share/use and solutions blank - so
+          there is nothing to put there, and inventing something would pre-empt
+          the discussion those blanks exist to provoke.
+
+      Self-contained by design: no stylesheet link, so it prints correctly from
+      wherever it is copied to.
+    -->
+
+  <style>
+    @page {
+      margin: 1.5cm;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 1.5cm;
+      max-width: 21cm;
+      line-height: 1.3;
+    }
+
+    header {
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.4em;
+      margin-bottom: 0.9em;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 0 0 0.15em 0;
+    }
+
+    .course {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    .name-line {
+      float: right;
+      font-size: 0.8rem;
+      margin-top: 0.3em;
+    }
+
+    .instructions {
+      font-size: 0.85rem;
+      margin: 0 0 1em 0;
+    }
+
+    .instructions p {
+      margin: 0 0 0.35em 0;
+    }
+
+    .step {
+      margin-bottom: 0.9em;
+      page-break-inside: avoid;
+    }
+
+    .step-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5em;
+      margin-bottom: 0.3em;
+    }
+
+    .num {
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: 2px solid #000;
+      border-radius: 50%;
+      width: 1.6em;
+      height: 1.6em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+    }
+
+    .prompt {
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .stage {
+      font-size: 0.7rem;
+      color: #444;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-left: auto;
+      flex: none;
+    }
+
+    .row {
+      display: flex;
+      gap: 0.6em;
+    }
+
+    .row+.row {
+      margin-top: 0.5em;
+    }
+
+    .col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The pptx prompt, above its box. Never repeated inside. */
+    .box-label {
+      font-size: 0.78rem;
+      font-weight: bold;
+      margin-bottom: 0.15em;
+    }
+
+    .box {
+      border: 1px solid #000;
+      padding: 0.35em 0.5em;
+      flex: 1;
+      min-height: 3.6cm;
+    }
+
+    .box.short {
+      min-height: 2.0cm;
+    }
+
+    /* The two thinking boxes. 8cm each plus their headings and labels fills
+       page 2 almost exactly - about half a page each, which is as literal as
+       "half a page" can be once the share/use box and the footer are on the
+       same side. Raising either of these by more than ~0.4cm spills to page 3. */
+    .box.half {
+      min-height: 8.0cm;
+    }
+
+    .box p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .box p.example {
+      font-style: italic;
+    }
+
+    .page-two {
+      page-break-before: always;
+    }
+
+    .runner {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.35em;
+      margin-bottom: 1em;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      margin-top: 1em;
+      padding-top: 0.4em;
+      border-top: 1px solid #000;
+      font-size: 0.75rem;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <span class="name-line">Name: ______________________</span>
+    <h1>Framing your DATA problem</h1>
+    <p class="course">ASM 532: Introduction to Ag Informatics &middot; Module 2, Lecture 2.2 &middot;
+      ankita@purdue.edu</p>
+  </header>
+
+  <div class="instructions">
+    <p>Pick a problem related to your research or a topic you'd like to learn more about. When you get to step 3, find
+      an appropriate dataset and try to download it. This will help you evaluate the
+      feasibility of this plan! <b>Consider this plan a "first draft" for your lab.</b></p>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="num">1</span>
+      <span class="prompt">What is the problem?</span>
+      <span class="stage">understand</span>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="box">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="num">2</span>
+      <span class="prompt">Who are the actors, and what do they want?</span>
+      <span class="stage">understand</span>
+    </div>
+    <div class="row">
+      <div class="col">
+        <span class="box-label">Who are the actors?</span>
+        <div class="box">
+
+        </div>
+      </div>
+      <div class="col">
+        <span class="box-label">What goals do they have?</span>
+        <div class="box">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-head">
+      <span class="num">3</span>
+      <span class="prompt">What data, and what would you do with it?</span>
+      <span class="stage">plan &middot; acquire &middot; process</span>
+    </div>
+    <div class="row">
+      <div class="col">
+        <span class="box-label">What data do we need?</span>
+        <div class="box">
+
+        </div>
+      </div>
+      <div class="col">
+        <span class="box-label">How to collect this data?</span>
+        <div class="box">
+        </div>
+      </div>
+      <div class="col">
+        <span class="box-label">How to process/analyze?</span>
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE TWO ===================== -->
+
+  <div class="page-two">
+
+    <div class="runner">
+      <span><b>Framing your DATA problem</b> &middot; ASM 532, Lecture 2.2</span>
+      <span>Name: ______________________</span>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="num">4</span>
+        <span class="prompt">How might you use data to provide support or solutions?</span>
+        <span class="stage">share / use</span>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span class="box-label">How to share/use data or findings?</span>
+          <div class="box short"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span class="box-label">Possible solutions?</span>
+          <div class="box half">
+            <p>Sketch it if that is easier than writing it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-head">
+        <span class="num">5</span>
+        <span class="prompt">Your acquisition plan</span>
+        <span class="stage">plan &middot; acquire &middot; process</span>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="box half">
+            <p>Which dataset, and where does it live? Could you download it — and what happened when you tried? What
+              format did it arrive in? Write down the three things you would do to this data, in order, in plain
+              English.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      This work by <a href="https://github.com/ag-informatics/ag-informatics-course">Ankita Raturi, Purdue
+        University</a> is licensed under
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>.
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

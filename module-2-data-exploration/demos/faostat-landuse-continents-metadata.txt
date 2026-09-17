@@ -1,0 +1,15 @@
+File: faostat-landuse-continents.csv
+Title: FAOSTAT Land Use: land area, agricultural land and forest land, World and continents
+Publisher: Food and Agriculture Organization of the United Nations (FAO), FAOSTAT
+Source: https://www.fao.org/faostat/en/#data/RL (Land Use domain)
+Citation: FAO. FAOSTAT: Land Use (RL). Rome: Food and Agriculture Organization of the United Nations. https://www.fao.org/faostat/en/#data/RL
+Selection: Areas: World, Africa, Americas, Asia, Europe, Oceania; Element: Area; Items: Land area, Agricultural land, Forest land; Years: 1961-2019
+Obtained: Copied from the Fall 2024 course archive (module2/data/); original retrieval date not recorded
+License / terms: FAOSTAT data are licensed CC BY 4.0 under the FAO Statistical Database Terms of Use (https://www.fao.org/contact-us/terms/db-terms-of-use/en/); attribution to FAO required.
+Columns: Domain Code, Domain, Area Code (FAO), Area, Element Code, Element, Item Code, Item, Year Code, Year, Unit, Value, Flag, Flag Description
+Coverage: 888 rows, 1961-2019; Unit: 1000 ha
+Used by: demos/demo-plotting-notebook.ipynb (Lecture 2.3 code-along); handouts/cheatsheet-python.md examples
+
+Notes:
+- Definitions: https://www.fao.org/faostat/en/#definitions
+- Retrieval date is unknown; values may differ from current FAOSTAT releases.

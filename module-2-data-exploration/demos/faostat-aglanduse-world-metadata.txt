@@ -1,0 +1,16 @@
+File: faostat-aglanduse-world.csv
+Title: FAOSTAT Land Use: Agricultural land, World
+Publisher: Food and Agriculture Organization of the United Nations (FAO), FAOSTAT
+Source: https://www.fao.org/faostat/en/#data/RL (Land Use domain)
+Citation: FAO. FAOSTAT: Land Use (RL). Rome: Food and Agriculture Organization of the United Nations. https://www.fao.org/faostat/en/#data/RL
+Selection: Area: World; Element: Area; Item: Agricultural land; Years: 1961-2019
+Obtained: Copied from the Fall 2024 course archive (module2/data/); original retrieval date not recorded
+License / terms: FAOSTAT data are licensed CC BY 4.0 under the FAO Statistical Database Terms of Use (https://www.fao.org/contact-us/terms/db-terms-of-use/en/); attribution to FAO required.
+Columns: Domain Code, Domain, Area Code, Area, Element Code, Element, Item Code, Item, Year Code, Year, Unit, Value, Flag, Flag Description
+Coverage: 59 rows, 1961-2019; Unit: 1000 ha
+Used by: demos/demo-plotting-notebook.ipynb (Lecture 2.3 code-along); handouts/cheatsheet-python.md examples
+
+Notes:
+- Definitions: https://www.fao.org/faostat/en/#definitions
+- Flag 'A' = aggregate, may include official, semi-official, estimated or calculated data.
+- Retrieval date is unknown; values may differ from current FAOSTAT releases.

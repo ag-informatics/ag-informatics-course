@@ -1,0 +1,16 @@
+File: kaggle-average_monthly_temperature_by_state_1950-2021.csv
+Title: Average Monthly Temperature by US State
+Creator: Justin Wong (Kaggle upload, 2022)
+Source: https://www.kaggle.com/datasets/justinrwong/average-monthly-temperature-by-us-state
+Cited source (per Kaggle): NOAA National Centers for Environmental information, Climate at a Glance: Statewide Mapping, Average Temperature, published September 2022, retrieved on October 8, 2022 from https://www.ncdc.noaa.gov/cag/
+Downloaded: 2026-09-16, by Ankita Raturi
+License / terms: Kaggle listing: "Unknown". The underlying data are NOAA NCEI Climate at a Glance (U.S. federal, public domain). Cite both the Kaggle upload and NOAA.
+Columns: (unnamed row index), month, year, state, average_temp, monthly_mean_from_1901_to_2000, centroid_lon, centroid_lat
+Coverage: 48 contiguous states, January 1950 - December 2021, 41,472 rows
+Changes from the download: Trimmed from Jan 1950 - Aug 2022 to 1950-2021 to match Quiz 2; renamed with a kaggle- prefix. Rows otherwise unchanged.
+Used by: quiz-2-python/ (Quiz 2 data); demos/demo-choosing-charts-notebook.ipynb; Lecture 2.4
+
+Notes:
+- IMPORTANT: despite the column names, each "month" is NOAA's 2-MONTH average ending in that month (e.g. month 12 = November-December). Checked 2026-09-16 against NOAA's Indiana 1-month and 2-month time series: matches the 2-month series within 0.1 F in all 72 years for every month; also spot-checked for Alabama and Wyoming.
+- monthly_mean_from_1901_to_2000 is therefore a 2-month normal, and alternates by 0.1 F between years for every state and month (likely rounding when the file was built).
+- The time-scale setting is not recorded anywhere in the file or on the Kaggle page. This is the metadata lesson in Lecture 2.4.

@@ -95,9 +95,9 @@ min-height or padding to occupy space at all.
 
 | File | What it is |
 | --- | --- |
-| [handout-index.html](handout-index.html) | The HTML skeleton handed out in class, with blanks to fill in. |
-| [handout-style.css](handout-style.css) | The CSS skeleton handed out in class. |
-| [handout-html-css-cheatsheet.md](handout-html-css-cheatsheet.md) | The reference sheet you could use during the quiz. |
+| [quiz-1-handout-index.html](quiz-1-handout-index.html) | The HTML skeleton handed out in class, with blanks to fill in. |
+| [quiz-1-handout-style.css](quiz-1-handout-style.css) | The CSS skeleton handed out in class. |
+| [cheatsheet-html-css.md](../handouts/cheatsheet-html-css.md) | The reference sheet you could use during the quiz, shared with the rest of the module. |
 | [img/layout.jpeg](img/layout.jpeg) | The layout drawing you were working from. |
 | [quiz-1-solution/](quiz-1-solution/) | The worked solution. |
 

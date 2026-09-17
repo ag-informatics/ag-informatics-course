@@ -1,0 +1,16 @@
+File: noaa-cag_statewide-mapping_contiguous-us_tavg_1-month_2022-08.csv
+Title: August 2022 Contiguous U.S. Statewide Average Temperature
+Publisher: NOAA National Centers for Environmental Information (NCEI), Climate at a Glance
+Output: Statewide Mapping
+Settings: Parameter: Average Temperature; Time scale: 1-month; Month: August; Year: 2022
+Download URL: https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/data.csv
+Downloaded: 2026-09-16
+Citation: NOAA National Centers for Environmental information, Climate at a Glance: Statewide Mapping, August 2022 Contiguous U.S. Statewide Average Temperature, retrieved on September 16, 2026 from https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/statewide/mapping/110/tavg/202208/1/data.csv
+License / terms: NOAA NCEI data are produced by the U.S. federal government and are freely available for reuse (public domain in the U.S.). Citation requested.
+Format: CSV with '#' comment header lines; read with pd.read_csv(file, comment='#')
+Coverage: 48 contiguous states, one row each; columns ID, Name, Value, Anomaly (1901-2000 base period), Rank, 1901-2000 Mean
+Used by: Lecture 2.4 (the output the Kaggle page cites)
+
+Notes:
+- Climate at a Glance observations are adjusted for instrument changes, station relocation, observer practice changes and urbanization; recent values are preliminary and may be revised after quality control.
+- This is the page Kaggle's citation points to: a one-month map across states, not a monthly time series.

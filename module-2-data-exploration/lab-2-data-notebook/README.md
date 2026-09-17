@@ -160,7 +160,7 @@ If that runs, you are ready for the lab. If it doesn't, bring it to office hours
      lifecycle stage. Every step names an OUTCOME, never a method: the functions
      appear as "worth looking at" suggestions so students know what exists,
      without being told which one to use. Markdown explanation is graded work.
-     The same steps head the sections of lab2-skeleton.ipynb - if you renumber
+     The same steps head the sections of lab-2-skeleton.ipynb - if you renumber
      here, renumber there.
 
      NO DATES, NO POINTS in this file (removed 2026-09-10 after the B-scope
@@ -171,7 +171,7 @@ If that runs, you are ready for the lab. If it doesn't, bring it to office hours
      lectures walk it one stage at a time, and Steps 10-12 depend on Lecture
      2.3's code-along and chooser slides. -->
 
-Work through these in your copy of [`lab2-skeleton.ipynb`](lab2-skeleton.ipynb).
+Work through these in your copy of [`lab-2-skeleton.ipynb`](lab-2-skeleton.ipynb).
 
 - **Your dataset, your choices.** The steps say what to produce, not which function to call.
 - **No dataset of your own?** Use `aglandvalues-clean.csv` in this folder — US agricultural land values by state, 1997-2023. Bring a *problem* to it as well as a file: pick something you would want to know from land values, and frame that.
@@ -184,7 +184,7 @@ Check Brightspace for the deadline. Steps 10-12 build on Lecture 2.3, so leave t
 
 - Your private `YOURNAME-ASM532-Labs` repo from Lab 1, one folder per lab — make a `lab2` folder.
 - Add `@tame0001` as a collaborator if you have not already.
-- Copy `lab2-skeleton.ipynb` into your `lab2` folder and rename it `lab2-YOURNAME.ipynb`.
+- Copy `lab-2-skeleton.ipynb` into your `lab2` folder and rename it `lab2-YOURNAME.ipynb`.
 - Copy `aglandvalues-clean.csv` across too if you plan to use it.
 - Open it in VS Code, select your `.venv` kernel (see STEP 4), confirm a cell runs.
 - Commit and push. **That is commit 1.**
@@ -224,7 +224,7 @@ Five questions. Answer each in code, then say what you found.
 ### STEP 10: Analyze — what does it look like?
 
 - **Plot it badly first.** Whole thing, no styling, no subsetting. Then say what is wrong with it — that sentence is the point of the step.
-- Then **two or three visualizations chosen for your question**, using the chooser slides from Lecture 2.3.
+- Then **two or three visualizations chosen for your question**, using the chooser slides from Lecture 2.4.
 - One must involve a **comparison or grouping**.
 - One must bring in a **second variable**, with a sentence on what the pairing shows.
 - Titles, axis labels, legends. Save each plot as a file and commit it.

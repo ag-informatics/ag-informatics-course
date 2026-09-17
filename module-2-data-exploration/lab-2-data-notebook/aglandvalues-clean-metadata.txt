@@ -1,0 +1,15 @@
+File: aglandvalues-clean.csv
+Title: US agricultural land values: cropland asset value, $ per acre, by state
+Publisher: USDA National Agricultural Statistics Service (NASS), Quick Stats
+Source: https://quickstats.nass.usda.gov/ (Data Item: AG LAND, CROPLAND - ASSET VALUE, MEASURED IN $ / ACRE; geographic level: State)
+Citation: USDA National Agricultural Statistics Service. Quick Stats: AG LAND, CROPLAND - ASSET VALUE, MEASURED IN $ / ACRE, by state, 1997-2023. https://quickstats.nass.usda.gov/
+Obtained: Copied from the Fall 2024 course archive (module2/lab2/); original retrieval date not recorded
+License / terms: USDA NASS statistics are U.S. federal government data (public domain in the U.S.). Citation requested.
+Columns: Year, State, State ANSI, Data Item, Value
+Coverage: 1,122 rows, 42 states, 1997-2023
+Changes from the download: CLEANED before distribution: suppressed or missing codes in Value ((NA), (D), (S)) removed and thousands separators stripped, so Value is numeric. The raw download is not in the course materials.
+Used by: Lab 2 default dataset (lab-2-data-notebook/README.md, lab-2-skeleton.ipynb)
+
+Notes:
+- Quick Stats disclosure codes: (D) withheld to avoid disclosing individual operations, (NA) not available, (S) insufficient reports to publish.
+- States with no reported value for a year are absent rather than blank.
