@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m3-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Modeling in Agriculture</h1>
+
+        <p>
+          Module 3 - Concept Modeling<br />
+          Lecture 3.1 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="blue">A primer in modeling domain problems to develop useful data models.
+        </p>
+
+        <ul class="text-medium">
+          <li>Modeling as abstraction</li>
+          <li>Case Study: Modeling agricultural systems</li>
+        </ul>
+      </section>
+
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!--
+          Built 2026-09-20 from Ankita's slide-by-slide outline in prompts.md
+          ("202609-20 Lecture 3.1 revision"). Her content only - nothing here is
+          inferred or invented. Where she named an image that does not exist yet,
+          the slide carries a TODO placeholder rather than a substitute.
+
+          Ported sources:
+            CS-N   = reuu-short-course/2-smallfarms-casestudy.html, section N
+            RP-N   = "2018-1-Research Presentation.pptx", slide N
+          Both live in gitignored reference folders; images were copied into img/
+          and downsampled (the ported set went 104 MB -> ~14 MB).
+
+          Layout note: the source decks use .container/.col, which the current
+          Style Guide replaces with r-hstack. Converted on the way in.
+        -->
+
+      <!-- ===================== 1. WHAT IS A MODEL? ===================== -->
+
+      <section>
+        <h2>The skill of abstraction</h2>
+        <img src="img/m3-photo-picasso-bull-1945.jpg" class="r-stretch"
+          alt="Picasso's lithograph series The Bull: a sequence of eleven states in which a naturalistic, heavily modelled bull is progressively reduced, stage by stage, to a few outline strokes." />
+        <p><em>"in order to achieve his pure and linear rendering of the
+            bull, <br />[Picasso] had to pass through all of the intermediary stages"</em></p>
+        <p class="cite"><a href="https://en.wikipedia.org/wiki/Le_Taureau">Le Taureau (The Bull)</a>,
+          Pablo Picasso, 1945.</p>
+      </section>
+
+      <section>
+        <h2>What is modeling?</h2>
+        <p>Modeling is the process of abstracting a system in the real world, such that only
+          the attributes pertinent to a particular analysis remain.</p><br />
+        <div class="fragment">
+          <h3>What is a model?</h3>
+          <blockquote>
+            "a model can be [a] <br />physical, mathematical, <br />or otherwise logical representation <br /> of a
+            system"
+          </blockquote><br />
+          <p class="cite"><a href="https://acqnotes.com/Attachments/DoD%20M&amp;S%20Glossary%201%20Oct%2011.pdf">DoD
+              Modeling and Simulation Glossary</a>, 1 Oct 2011.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>A Modeling Challenge</h2>
+        <p class="text-medium blue">Representing the real world through abstractions to aid in
+          reflection, analysis, and prediction.</p>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m3-strauch-models-perspective-fig1.png"
+            alt="Strauch figure 1, Mathematical analysis: a box labelled Mathematical model, an arrow labelled Mathematical analysis, and a box labelled Mathematical results." />
+          <img class="fragment fade-in-then-out" data-fragment-index="1"
+            src="img/m3-strauch-models-perspective-fig2.png"
+            alt="Strauch figure 2, A common perception of analysis: a hatched Substantive problem box drops to a Mathematical model, which leads across to Mathematical results, which rise to a hatched Substantive conclusion. The hatching marks the two ends as the messy, real-world parts." />
+          <img class="fragment fade-in-then-out" data-fragment-index="2"
+            src="img/m3-strauch-models-perspective-fig4.png"
+            alt="Strauch figure 4, Application of quantitative methodology, the general case: the same loop as figure 2 but with an extra rung on each side - Substantive problem becomes a Formal problem before it becomes a Mathematical model, and Mathematical results become a Formal conclusion before a Substantive conclusion." />
+          <img class="fragment fade-in-then-out" data-fragment-index="3"
+            src="img/m3-strauch-models-perspective-fig5.png"
+            alt="Strauch figure 5, A model as a perspective: a three-dimensional box drawn in perspective, with a small triangle marked a, b, c at one corner." />
+          <img class="fragment fade-in" data-fragment-index="4" src="img/m3-strauch-models-perspective-fig6.png"
+            alt="Strauch figure 6, A risk of working in perspective: the same box has flattened into a shallow tray - hold one perspective too long and the depth you were reasoning about disappears." />
+        </div>
+        <p class="cite">Ralph E. Strauch, <a href="https://www.rand.org/pubs/papers/P5303.html">"Squishy Problems and
+            Quantitative Methods"</a>, RAND Corporation, P-5303.</p>
+      </section>
+
+      <section>
+        <h2>Models as perspective...</h2>
+        <img class="r-stretch" src="img/m3-study-banana-pano.JPG"
+          alt="A wide panoramic photograph of a banana planting, so wide that the scene bends - the same rows read differently depending on where along the panorama you look." />
+      </section>
+
+      <section>
+        <h2>Physical Models: Soil conservation</h2>
+        <div class="r-hstack">
+          <img src="img/m3-usda-soil-conservation-service-eikleberry-block-diagrams-pg1.png" width="40%"
+            alt="A USDA Soil Conservation Service block diagram: a cutaway three-dimensional drawing of a landscape showing soil horizons and landforms together." />
+          <img src="img/m3-usda-soil-conservation-service-eikleberry-block-diagrams-pg4.jpg" width="60%"
+            alt="A page of accompanying text from the same USDA report, explaining how the block diagrams are drawn and read." />
+        </div>
+        <p class="cite">Robert Eikleberry, "Block Diagrams for Soil Survey Interpretations", USDA
+          Soil Conservation Service report.</p>
+      </section>
+
+      <section>
+        <h2>Biophysical Models: Bioinformatics</h2>
+        <div class="r-stack r-stretch">
+          <div class="fragment fade-out" data-fragment-index="0">
+            <p class="text-medium align-left"><span class="blue">1. Observation:</span> "high-quality data through
+              experiments [to]
+              identify patterns, propose hypotheses, [... understand] the biological phenomenon"</p>
+            <img src="img/m3-simons-biophysical-modeling-1-Celegans.gif" width="55%"
+              alt="An animation of a C. elegans nematode moving, used to stand for the observation stage of biophysical modeling." />
+          </div>
+          <div class="fragment fade-in-then-out" data-fragment-index="1">
+            <p class="text-medium align-left"><span class="blue">2. Simulation:</span>
+              "computational tools [... to] translate our
+              observations into detailed simulations"</p>
+            <img src="img/m3-simons-biophysical-modeling-2-Large-Scale-Simulaition.png" width="75%"
+              alt="A large-scale computational simulation output, standing for the simulation stage." />
+          </div>
+          <div class="fragment fade-in-then-out" data-fragment-index="2">
+            <p class="text-medium align-left"><span class="blue">3. Reduced Order Modeling:</span>
+              "models that encapsulate the core
+              mechanisms of the systems under investigation."</p>
+            <img src="img/m3-simons-biophysical-modeling-3-Analysis-BFM.png" width="75%"
+              alt="A reduced-order model diagram, standing for the reduced order modeling stage." />
+          </div>
+          <div class="fragment fade-in" data-fragment-index="3">
+            <p class="text-medium align-left"><span class="blue">4. Analysis:</span> "analyze both
+              simulations and models to uncover new
+              insights, identify critical parameters, and validate results against experiments"</p>
+            <img src="img/m3-simons-biophysical-modeling-4-Analysis-BioPhysMod.png" width="75%"
+              alt="An analysis figure comparing model output against experimental results, standing for the analysis stage." />
+          </div>
+        </div>
+        <p class="cite"><a
+            href="https://www.simonsfoundation.org/flatiron/center-for-computational-biology/biophysical-modeling/">Biophysical
+            Modeling</a>, Center for Computational Biology, Flatiron Institute, Simons Foundation.</p>
+      </section>
+
+      <section>
+        <h2>Biophysical Models: Crop systems</h2>
+        <p class="text-small">
+          Simulate biophysical processes in a system. Mathematical equations and parameters derived from empirical
+          studies.
+          <br />
+          Bottom-up design of a specialized dynamic system model.
+          <span class="blue">A physical and mathematical model, with encoded logic.</span>
+        </p>
+        <img src="img/m3-dssat-model.jpg" width="55%"
+          alt="The DSSAT Cropping System Model's architecture: a main program running an initialization, rate-calculation, integration and output loop, calling a land unit module, which in turn calls primary modules for weather, management, soil-plant-atmosphere, soil and plant, each fanning out into secondary modules such as planting, irrigation, tillage, soil water and pest damage." />
+        <p class="cite"><a href="https://dssat.net/models-overview/components/">DSSAT model
+            components</a>, DSSAT Foundation.</p>
+      </section>
+
+      <section>
+        <h2>Concept Models: Crop ontology</h2>
+        <p class="text-small">
+          Represent system components and the relationships among them. Provide "rules" of operation in a domain of
+          interest and a baseline model.
+          <br />
+          Iterative design of a generalized conceptual model.
+          <span class="blue">A logical model, that supports physical and mathematical modeling.</span>
+        </p>
+        <img src="img/m3-crop-ontology.png" width="65%"
+          alt="A crop ontology diagram: a central blue circle holds one variable, leaf length measured in centimetres by the ruler method, with arrows pointing into it from study metadata boxes on the left (experimental design, germplasm, crop management, environmental and administrative details) and annotation boxes on the right (time stamp, subsampling stamp, observer and instrument attributes, and statistical summaries)." />
+        <p class="cite"><a
+            href="https://cgspace.cgiar.org/server/api/core/bitstreams/22de8353-20a1-4d3a-aaeb-f4ddabf3a9e5/content">Crop
+            Ontology</a>, CGIAR.</p>
+      </section>
+
+
+      <section>
+        <h2>How to design a <br />domain-driven concept model?</h2>
+        <img class="r-stretch" src="img/m3-moss-farm-cas.png"
+          alt="A diagram of a farm drawn as a complex adaptive system: components, activities and resources connected by flows, rather than as a list of fields." />
+        <p class="cite">Raturi Dissertation, "Modeling Sustainable Agriculture, 2017</p>
+      </section>
+
+      <!-- ============ 2. CASE STUDY: SMALL FARMS (CS-2, 3, 6-20) ============ -->
+
+      <section>
+        <h2>Case Study</h2>
+        <h3><span class="blue">Creating a farm-scale conceptual model</span></h3>
+        <p>
+          How do <br />
+          small-to-medium scale, <br />
+          sustainability-oriented farmers, <br />
+          model their agricultural systems to <br />
+          assess environmental performance?<br /><br />
+          <em>Research question -> modeling goal</em><br />
+        </p><br />
+        <p class="cite">Raturi Dissertation, "Modeling Sustainable Agriculture, 2017</p>
+      </section>
+
+      <section data-background-image="img/m3-study-eggplant1.JPG">
+        <img class="fragment" src="img/m3-logos-certs.png" width="80%"
+          alt="A wall of certification and label marks - organic, humane, sustainability and retailer-specific programs - shown together to convey how many schemes a single farm may face." />
+      </section>
+
+      <!-- <section>
+        <h2>Environmental Assessments</h2>
+        <div class="r-hstack">
+          <ul class="no-bullets align-left">
+            <li><br /><b class="red">Certification &amp; Labeling</b></li><br />
+            <li>Federal</li>
+            <ul class="text-small">
+              <li>National Organic Program</li>
+            </ul>
+            <li>Non-Profit</li>
+            <ul class="text-small">
+              <li>Certified Naturally Grown</li>
+            </ul>
+            <li>Product Specific</li>
+            <ul class="text-small">
+              <li>Certified Humane</li>
+            </ul>
+            <li>Retailer Specific</li>
+            <ul class="text-small">
+              <li>Whole Foods Rating</li>
+            </ul>
+          </ul>
+          <ul class="no-bullets align-left">
+            <li><br /><b class="red">Policy &amp; Regulation</b></li><br />
+            <li>State (California)</li>
+            <ul class="text-small">
+              <li>Irrigated Lands Regulatory Program</li>
+              <li>Global Warming Solutions Act</li>
+            </ul>
+            <li>Federal</li>
+            <ul class="text-small">
+              <li>Food Quality Protection Act</li>
+              <li>Food, Ag, Conservation Trade Act</li>
+            </ul>
+            <li>Voluntary</li>
+            <ul class="text-small">
+              <li>Environmental Quality Incentives Program</li>
+            </ul>
+          </ul>
+        </div>
+      </section> -->
+
+      <!-- <section>
+        <h2>Theoretical Framing</h2>
+        <div class="r-hstack">
+          <ul class="no-bullets align-left">
+            <li>
+              <h3>Complex Adaptive Systems</h3>
+            </li>
+            <li><img src="img/m3-diagram-farm-cas.png" width="80%"
+                alt="A diagram of a farm as a complex adaptive system, with interacting components and feedback loops between them." />
+            </li>
+            <li class="text-small">
+              CAS Characteristics:
+              <ul class="text-small">
+                <li>Individuality and Adaptation,</li>
+                <li>Feedback and Interdependence,</li>
+                <li>Heterogeneity,</li>
+                <li>Spatial and Dynamic Complexity. (NAP, 2015)</li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="no-bullets align-left fragment">
+            <li>
+              <h3>Everybody Models</h3>
+            </li>
+            <li><img src="img/m3-photo-models-wall-zoolander.png" width="90%"
+                alt="A still from Zoolander used as a visual pun on the word models." /></li>
+          </ul>
+        </div>
+      </section> -->
+
+      <section>
+        <h2>Qualitative Field Study</h2>
+        <img src="img/m3-table-study-overview.png" width="88%"
+          alt="A table summarizing the field study: the participating farms, their scale and production type, and the data collected at each." />
+      </section>
+
+      <!--
+          Field-study photo interlude, CS-9 to CS-18. Full-bleed backgrounds in the
+          source deck, kept that way. Each section carries an aria-label rather than
+          alt text, because a background image cannot take alt - and the photos are
+          scene-setting rather than informational.
+
+          The labels are deliberately generic: the filenames do NOT reliably describe
+          the contents (study-1.JPG is a roadside landscape, not a crop), so writing
+          specific alt text would mean guessing. Worth one pass with the images open.
+        -->
+      <section data-background-image="img/m3-study-1.JPG" data-background-size="contain"
+        aria-label="A California farming landscape seen from the roadside: dry gold hills with planted blocks and orchard rows along their lower slopes, power lines overhead and a highway sign in the foreground.">
+      </section>
+      <section data-background-image="img/m3-study-apple.JPG" data-background-size="contain"
+        aria-label="A farmer's hands opening a manila folder of records: a soil-stained hand-drawn field map, two Brandt Lime Sulfur fungicide labels, an ARBICO Organics packet, and a CCOF recordkeeping form on the table behind.">
+      </section>
+      <section data-background-image="img/m3-study-banana.JPG" data-background-size="contain"
+        aria-label="A packing-shed wall covered corner to corner with dozens of laminated illustrated worker-safety and food-handling sheets, taped up in a grid.">
+      </section>
+      <section data-background-image="img/m3-study-guava.JPG" data-background-size="contain"
+        aria-label="A farmer pointing at a folded, hand-annotated spray plan headed 2016 Triggerr Calcium: columns of inventory carryover, rates per acre, nozzle settings, tank counts and notes such as SKIPPED FIRST TREE.">
+      </section>
+      <section data-background-image="img/m3-study-honey.JPG" data-background-size="contain"
+        aria-label="A battered cardboard box on a shed shelf serving as a filing system, stuffed with hand-labelled dividers and folders - SF35, FF36, SF45 - with a fertilizer label taped to the front.">
+      </section>
+      <section data-background-image="img/m3-study-lemon2.JPG" data-background-size="contain"
+        aria-label="A wall of numbered seed-storage drawers, each with a handwritten card listing grower names and lot numbers; one drawer is open and a hand lifts out a labelled bag of grain.">
+      </section>
+      <section data-background-image="img/m3-study-mulberry.png" data-background-size="contain"
+        aria-label="A FileMaker database screen, Pick and Pack Manager: a sidebar of Customers, Contacts, Items, Orders, Invoices and Field Maps beside a daily pick list of crop categories with pick and pack crew columns and quantities.">
+      </section>
+      <section data-background-image="img/m3-study-mulberry2.png" data-background-size="contain"
+        aria-label="A weekly Farm Availabilities sheet from a CCOF-certified farm, dated May 18 2016: color-coded rows of flowers, peaches, asparagus, carrots, alliums, greens, potatoes, lettuce, roots and herbs with prices by bunch, box or pound.">
+      </section>
+      <section data-background-image="img/m3-study-orange2.jpg" data-background-size="contain"
+        aria-label="A thick white three-ring binder labelled CCOF Documents, stuffed with colored dividers, resting on a chair beside shelves of more files.">
+      </section>
+      <section data-background-image="img/m3-study-potato.JPG" data-background-size="contain"
+        aria-label="A dirt farm track running downhill between a young vineyard block and an olive planting, with more vineyards and dry hills stretching to the horizon under a big cloudy sky.">
+      </section>
+
+      <section>
+        <h2>Data Collection Methods?</h2>
+        <ul class="no-bullets">
+          <li>Observation<br />
+            <em>
+              <p class="text-small">"We work with a lot of data, but <span class="red">data comes in
+                  different forms</span>. So lots of being in and walking the fields. Lots of, lots
+                of <span class="red">tracking weather</span>. And looking at the <span class="red">moisture content of
+                  the soil</span>, sort of like, my dad has a better
+                sense of- it's still a little mystical to me <span class="red">when we have to
+                  water</span>! [... A] lot of what we do is very old fashioned in term of: we just
+                spend a lot of time in the fields. Walking, driving, by virtue of living here, we do
+                a lot of <span class="red">visual observation of what's happening.</span>"
+              </p>
+            </em>
+          </li>
+          <li>Sampling<br />
+            <img src="img/m3-study-water-tests.png" width="60%"
+              alt="A set of water test records from Marsden Organic Farm." /><br />
+          </li>
+          <li>Sensing<br />
+            <p class="text-small">In 2015 when this study was conducted, not a lot of in-field or
+              remote sensing used due to cost, availability, accessibility.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Genres of Data?</h2>
+        <table class="text-medium">
+          <thead>
+            <tr>
+              <th>Operational Data</th>
+              <th>Environmental Data</th>
+              <th class="red">Resource Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Labor, finances, medical</td>
+              <td>Weather, land, pests</td>
+              <td class="red">Water, energy, seed, fertilizers, pesticides</td>
+            </tr>
+            <tr>
+              <td>Regarding farm management.</td>
+              <td>Regarding the farming context.</td>
+              <td class="red">Regarding farming inputs.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="r-hstack">
+          <img src="img/m3-study-inputs-organic.jpg" width="80%"
+            alt="A paper organic input form filled in by hand at Atwood Organic Vineyard." />
+          <img src="img/m3-study-inputs-spray.png" width="80%"
+            alt="A spray log recording applications, dates and materials." />
+        </div>
+      </section>
+
+      <!-- ============ 3. FINDINGS (RP-21 to RP-25) ============ -->
+
+      <section>
+        <h2>Findings</h2>
+        <div class="fragment align-left text-medium">
+          <p><b class="blue">Who are the stakeholders of farm data?</b></p>
+          <p>Farmers, farmworkers, consumers, retailers, brokers, inspectors,
+            regulators, [...] farm advisors.</p>
+        </div>
+
+        <div class="fragment align-left text-medium">
+          <p><b class="blue">What do they use these data for?</b></p>
+          <p>Analysis. Communication. Coordination.</p>
+        </div>
+
+        <div class="fragment align-left text-medium">
+          <p><b class="blue">How do farmers model farm data?</b></p>
+          <p>1. Models that represent space. <br />2. Models that represent time. <br />
+            3. Goal-driven models with combined representations.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>1. Models that represent space</h2>
+        <img class="r-stretch" src="img/m3-moss-2018-models-space.png"
+          alt="Four farmer-made spatial models shown together: a vineyard layout, an orchard structures and crops map, a farm satellite map, and a greenhouse mousetrap map." />
+      </section>
+
+      <section>
+        <h2>2. Models that represent time</h2>
+        <div class="r-hstack">
+          <img src="img/m3-moss-2018-models-time-1.jpeg" width="50%"
+            alt="A farmer's hand-kept temporal record from Glass Organic Orchard." />
+          <img src="img/m3-moss-2018-models-time-2.jpg" width="60%"
+            alt="A second temporal record from the same orchard, tracking events over a season." />
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Goal-driven spatiotemporal models</h2>
+        <div class="r-hstack">
+          <img src="img/m3-moss-2018-goal-driven-wholefarm.jpg" width="40%"
+            alt="A whole-farm crop layout drawn by the farmer, combining spatial position with what is planted where." />
+          <img src="img/m3-moss-2018-goal-driven-singlefield.jpg" width="40%"
+            alt="A single-field crop layout at finer grain, showing rows and plantings within one field." />
+        </div>
+      </section>
+
+      <section>
+        <h2>What gets generalized?</h2>
+        <h3><span class="blue">Modeling requirements</span></h3>
+        <ul class="text-medium">
+          <li>Need standardized data structures across heterogenous data types.</li>
+          <li>Need a a consistent modeling workflow spanning across devices.</li>
+          <li>Need to support varying levels of abstraction, formality, and granularity.</li>
+          <li>Need to brdige the data reusability gap.</li>
+          <li>Need to support change tracking in dynamic farms.</li>
+          <li>Need to bridge original data collection reasons and actual data use cases.</li>
+          <li>Need for increased support for coordination and collaboration on farms.</li>
+        </ul>
+      </section>
+
+      <!-- ============ 4. WHAT GETS GENERALIZED? ============ -->
+
+      <section>
+        <h2>What gets generalized?</h2>
+        <h3><span class="blue">Data scopes</span></h3>
+        <div class="r-hstack">
+          <img src="img/m3-moss-system-data.png" width="55%"
+            alt="A farm system model showing the same farm data organized by scope, from a single point through to the whole system and its future states." />
+          <ol class="text-medium">
+            <li>A point in space &amp; time.</li>
+            <li>The system as a whole.</li>
+            <li>A subcomponent.</li>
+            <li>System behavior.</li>
+            <li>System in the future.</li>
+            <li>Inputs to the system.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ 5. DESIGN METHOD (CS-22 to CS-28) ============ -->
+
+      <section>
+        <h2>Design method?</h2>
+        <ol class="align-left" start="0">
+          <li>Create farm <span class="blue">personas (archetypes)</span></li>
+          <li>Trace information flows</li>
+          <li>Cluster common data</li>
+          <li>Abstract into <span class="blue">objects</span></li>
+          <li>Test concept model prototypes</li>
+          <li>Articulate a core <span class="blue">concept model</span></li>
+          <li>Formalize the core model</li>
+          <li>Iterate and add complexity</li>
+          <li>Refine into a <span class="blue">data model</span></li>
+          <li>Test the final data model</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>0. Create farm <span class="blue">personas (archetypes)</span></h2>
+        <img class="r-stretch" src="img/m3-moss-farm-persona.png"
+          alt="A farm persona card: an archetypal farm described by scale, production type, practices and information needs." />
+      </section>
+
+      <section>
+        <h2>1. Trace information flows</h2>
+        <img class="r-stretch" src="img/m3-moss-artifact-trail.jpg"
+          alt="An artifact trail tracing how a single piece of farm information moves between paper forms, people and systems." />
+      </section>
+
+      <section>
+        <h2>2. Cluster common data</h2>
+        <img class="r-stretch" src="img/m3-moss-method-clustering.png"
+          alt="An affinity diagram in which individual data items are grouped into clusters of related information." />
+      </section>
+
+      <section>
+        <h2>3. Abstract into <span class="blue">objects</span></h2>
+        <img class="r-stretch" src="img/m3-moss-data-model.png"
+          alt="A pseudo-software data model abstracted from the clusters, with named entities and the relationships between them." />
+      </section>
+
+      <section>
+        <h2>4. Test concept model prototypes</h2>
+        <img class="r-stretch" src="img/m3-moss-personas-blackbird.png"
+          alt="An early prototype of the data model tested against a specific farm persona." />
+      </section>
+
+      <section>
+        <h2>5. Articulate a core <span class="blue">concept model</span></h2>
+        <p>The MoSS framework enables the <br /><span class="red">Mo</span>deling of <span
+            class="red">S</span>ustainable
+          <span class="red">S</span>ystems in three layers.
+        </p>
+        <img src="img/m3-moss-informal.png" width="70%"
+          alt="The MoSS framework shown in the abstract: system, components, activities and resources and the relations among them." />
+      </section>
+
+      <!-- ============ 6. THE MoSS FRAMEWORK (RP-35 to RP-40) ============ -->
+
+      <section>
+        <h2>6. Formalize the core model</h2>
+        <p>MoSS: basic concepts in the abstract model</p>
+        <img src="img/m3-moss-2018-abstract-basic.png" width="50%"
+          alt="A UML-style class diagram titled Basic Elements. A System box sits at the top, composed of Component and Activity boxes. Component generalizes to itself and to Resource. Dashed arrows run from Resource to Activity and back, labelled used by and produced by." />
+        <p class="text-small">This diagram uses the notation of the "Unified Modeling Language" -- we'll come back to
+          this in later
+          lectures. </p>
+      </section>
+
+      <section>
+        <h2>7. Iterate and add complexity</h2>
+        <p>MoSS: expanded concepts in the abstract model</p>
+        <img src="img/m3-moss-2018-abstract-full.png" width="60%"
+          alt="The full MoSS abstract model: the basic elements diagram extended with further classes and relationships." />
+      </section>
+
+      <section>
+        <h2>8. Refine into a <span class="blue">data model</span></h2>
+        <p>MoSS: expanded to include agricultural data</p>
+        <img class="r-stretch" src="img/m3-moss-2018-domain-elements.png"
+          alt="A taxonomy of agricultural components, showing how domain terms specialize the abstract model's Component class." />
+      </section>
+
+      <section>
+        <h2>Scenario: Luna Orchard</h2>
+        <img src="img/m3-moss-2018-luna-layout.png" class="r-stretch"
+          alt="Luna Orchard's multi-layer layout: mandarin trees planted in grids." />
+
+      </section>
+
+      <section>
+        <h2>9. Test the final data model</h2>
+        <p>[Scope = Field: Mandarin [Scope = 1 acre]]</p>
+        <div class="r-hstack">
+          <img src="img/m3-moss-2018-perspective-multilayer.png" width="70%"
+            alt="The multi-layer layout expressed in MoSS notation, with scope annotations and constraint relationships between the layers." />
+        </div>
+      </section>
+
+      <section>
+        <h2>Next steps:</h2>
+        <ul>
+          <li>Conceptual modeling workflow in practice + in-class activity (prep for lab)</li>
+          <li>Lab: create a data model for a system domain of interest</li>
+          <li>Project Part 1: Write a concept note for your project
+            <ul>
+              <li>Identify a domain-specific problem that may need new or improved
+                digital tools, and map its problem space.</li>
+              <li>See: <a href="../project/project-part-1-concept-note.md">project/project-part-1-concept-note.md</a>
+              </li>
+              <li>Submit a PDF online via Brightspace - check Brightspace for the due
+                date.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Questions?</h2>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>

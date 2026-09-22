@@ -4,7 +4,7 @@
 
 There are two parts to this module. 
 
-**1. Ag-Informatics: A lens to view agricultural landscapes**
+**1. Ag Informatics: a lens to view agricultural landscapes**
 First, I introduce the concept of "ag-informatics": a concept that we'll use to navigate the tech landscape across our domains of research and practice. We'll continue to explore this concept across all modules through the use of domain-driven data to address user-centered challenges, and learn how to co-create appropriate digital technologies.
 
 * What is informatics? 
@@ -12,7 +12,7 @@ First, I introduce the concept of "ag-informatics": a concept that we'll use to 
 * Why do we build specialized tools for agricultural, food, and ecological systems?
 * Goal: Become oriented with the ag-tech landscape.
 
-**2. Web Fundamentals: Shared digital infrastructure**
+**2. Web Fundamentals: shared digital infrastructure**
 Second, I provide quick skills-forward overview of how people engineering software that runs on the Internet. 
 * What is the web and the internet? (Hint: both a series of tubes and a community of users)
 * How do websites work?

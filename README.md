@@ -51,10 +51,10 @@ You can jump between publicly released modules available in Fall 2026 below. If 
 --- Fall 2026 - Released Modules:
 * [Module 1: Web Fundamentals](module-1-web-fundamentals)
 * [Module 2: Data Exploration](module-2-data-exploration)
+* [Module 3: Concept Modeling](module-3-concept-modeling)
 
 --- Coming Soon
-* Module 3: Data Modeling
-* Module 4: Web Application
+* Module 4: Web Applications
 * Module 5: User Interfaces
 * Module 6: Software Engineering
 * Module 7: Future of Ag Tech
@@ -130,7 +130,6 @@ This course relies on an ecosystem of Free and Open Source Software. Some fundam
 * ... and much more!
 
 
-
 #
 # Who created and maintains this repository?
 **Ankita Raturi** is an asst. professor in Agricultural and Biological Engineering, and is the primary instructor of this course. She has designed this course, will deliver lectures, and is available for technical and general support for any aspect of the course. 
@@ -156,8 +155,8 @@ But in the meantime, I needed to curate materials that (1) help a variety of lea
 
 This gives me space to focus my energy on creating useful and domain-driven content that I cannot find easily in existing educational materials -- hence this repository.
 
+#
 # Revision History
-
 - Fall 2021: AgINF v1.0
     * Ankita Raturi created the first version of all modules with funding and collaborators from a National Institute for Food & Agriculture Higher Education Challenge Grant.
     * Learning materials first used in my "ASM 591" Special Topics: Intro to Ag Informatics.

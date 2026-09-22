@@ -156,21 +156,6 @@ If that runs, you are ready for the lab. If it doesn't, bring it to office hours
 
 ## LAB INSTRUCTIONS
 
-<!-- Bullets, for Ankita to turn into prose in her own voice. Structured by
-     lifecycle stage. Every step names an OUTCOME, never a method: the functions
-     appear as "worth looking at" suggestions so students know what exists,
-     without being told which one to use. Markdown explanation is graded work.
-     The same steps head the sections of lab-2-skeleton.ipynb - if you renumber
-     here, renumber there.
-
-     NO DATES, NO POINTS in this file (removed 2026-09-10 after the B-scope
-     review). Both broke checklist rows - "no semester-specific dates in prose"
-     and "no rubric in the lab README" - and the staging they carried is now
-     discussed with students in class instead. The rubric lives in the module
-     README. Pacing still matters: the lab runs the whole lifecycle while the
-     lectures walk it one stage at a time, and Steps 10-12 depend on Lecture
-     2.3's code-along and chooser slides. -->
-
 Work through these in your copy of [`lab-2-skeleton.ipynb`](lab-2-skeleton.ipynb).
 
 - **Your dataset, your choices.** The steps say what to produce, not which function to call.
@@ -261,6 +246,7 @@ Five questions. Answer each in code, then say what you found.
   - every plot you made, saved as an image file
 - **4+ commits**, each with a message saying what changed and why.
 - Then submit the repo link on Brightspace. Check Brightspace for the deadline.
+
 ### Academic Integrity Reminder
 
 <!-- Submission Policy snippet — see documentation/SNIPPETS.md, edit there first -->
@@ -276,9 +262,3 @@ Five questions. Answer each in code, then say what you found.
 ## License
 
 This work by [Ankita Raturi, Purdue University](https://github.com/ag-informatics/ag-informatics-course) is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-<!-- Rubrics live in the module README, not here. Future learning pathways live
-     in the module README's References section, not here. Both follow Module 1.
-     The 2024 lab had a "Future Learning Pathways" section with two Data Carpentry
-     links (Data Organization in Spreadsheets; Data Analysis & Visualization in
-     Python) - both verified live 2026-09-07, move them to the module README. -->
