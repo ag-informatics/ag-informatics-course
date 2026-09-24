@@ -26,8 +26,8 @@ Learn the process of abstraction and decomposition, including how to: model obje
 Lecture materials including handouts, demos, and quizzes.
 
 - [Lecture 3.1](lecture-3.1.html)
-<!-- - [Lecture 3.2]() - Graded in-class activity ([handout]())
-- [Lecture 3.3 demo]() and [Quiz 3]()
+- [Lecture 3.2](lecture-3.2.html) - Graded in-class activity, which begins Lab 3 Part 1
+<!-- - [Lecture 3.3 demo]() and [Quiz 3]()
 - [Lecture 3.4]() -->
 
 ### Lab 3

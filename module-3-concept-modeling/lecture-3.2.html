@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+        -->
+      <section>
+        <img src="img/m3-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>From concepts to objects</h1>
+
+        <p>
+          Module 3 - Concept Modeling<br />
+          Lecture 3.2 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ol class="fragment text-medium">
+          <li>Concept -> object model</li>
+
+          <li>Decomposing a domain
+            <ul class="text-small no-bullets">
+              <li>Design methods: hierarchical task analysis; object and operational analysis</li>
+              <li>Next Lecture: object -> data model
+                <ul class="text-small no-bullets">
+                  <li>Software development tools: UML diagramming tool</li>
+                  <li>Languages: SQL, Python</li>
+                </ul>
+              </li>
+            </ul>
+          </li><br />
+
+          <li>Activity: model your own system (5 pts) - Lab 3, Part 1</li>
+        </ol>
+        <p class="fragment green">Goal: decompose a domain you know into tasks, and turn those tasks
+          into an object model you can draw.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- ===================== 1. TASKS, TOOLS, MAPPING ===================== -->
+
+      <section>
+        <h2>Work, activities, tasks</h2>
+        <ul>
+          <li><b>Work</b> is what someone is trying to get done.</li>
+          <li class="fragment">Work is made of <b class="blue">activities</b> - growing a crop,
+            managing a herd, running a trial.</li>
+          <li class="fragment">Activities are made of <b class="blue">tasks</b> - decide when to
+            irrigate, record a treatment, compare two fields.</li>
+        </ul>
+        <p class="fragment text-medium">Software does not support "farming." It supports
+          <i>tasks</i>.
+        </p>
+      </section>
+
+      <section>
+        <h2>Task domains</h2>
+        <blockquote class="text-medium">
+          "All the tasks associated with an activity, considered together, are referred to as a
+          <b>task domain</b>."
+        </blockquote>
+        <ul class="text-medium">
+          <li>Example task domains:
+            <ul class="text-medium">
+              <li>Irrigation scheduling.</li>
+              <li>Pest scouting.</li>
+              <li>Water sample analysis.</li>
+              <li>Habitat assessment</li>
+            </ul>
+          </li>
+          <li class="fragment green">Naming the task domain sets the boundary of design.</li>
+        </ul>
+        <p class="red">On paper:<br />
+          Name 1-3 task domains that you are considering for your lab.</p>
+        <p class="cite">Jeff Johnson and Austin Henderson, <a
+            href="https://www.oreilly.com/library/view/conceptual-models-core/9780123859303/">"Conceptual
+            Models: Core to Good Design"</a>, Morgan &amp; Claypool, 2011.</p>
+      </section>
+
+      <section>
+        <h2>Task-Tool Mapping</h2>
+        <ul class="text-medium">
+          <li class="fragment">If: a <span class="blue">tool</span> is <em>"a technology that people use to help them
+              carry out tasks
+              in a
+              task domain"</em>
+          </li>
+          <li class="fragment">Then: tools are used if they<em> "help with a user's task, [...]because it adds
+              <span class="blue">value</span>
+              to their activity"</em></li><br />
+          <li class="fragment">Services provided by a tool are <span class="blue">functions:<br /></span><em>"what the
+              application
+              does and the user
+              employs in getting
+              their work done"</em></li><br />
+
+          <li class="fragment"><em>"the [user] has to make a connection between tasks and tools, a
+              <span class="blue">plan</span> for using the functions of the tools to accomplish the task". </em>
+          </li>
+        </ul>
+        <p class="cite">Jeff Johnson and Austin Henderson, <a
+            href="https://www.oreilly.com/library/view/conceptual-models-core/9780123859303/">"Conceptual
+            Models: Core to Good Design"</a>, Morgan &amp; Claypool, 2011.</p>
+      </section>
+
+      <section>
+        <h2>Users have mental models</h2>
+        <p class="blue text-medium">When a tool is hard to use: functions may exist, but mapping is
+          missing.</p>
+        <img width="32%" src="img/m3-task-tool-mapping-fig1.png"
+          alt="A diagram of one activity. A user, carrying a thought bubble labelled their mental model, faces a task inside the task domain. Below, a plan connects that task to a function inside the application, which sits above the user interface and the implementation. The plan is labelled: mapping, plan accomplishes task.">
+        <p class="cite">Jeff Johnson and Austin Henderson, <a
+            href="https://www.oreilly.com/library/view/conceptual-models-core/9780123859303/">"Conceptual
+            Models: Core to Good Design"</a>, Morgan &amp; Claypool, 2011.</p>
+      </section>
+
+      <section>
+        <h2>One task, many tools</h2>
+        <p>"Tasks can be accomplished with different tools."</p>
+        <p class="text-medium">Deciding when to irrigate can be done with:</p>
+        <ul class="text-medium">
+          <li>a soil probe and judgement</li>
+          <li>a spreadsheet of moisture readings</li>
+          <li>a scheduling app with a weather feed</li>
+          <li>a neighbor's advice</li>
+        </ul>
+        <p class="fragment"><em>So at some point a person has
+            to
+            find out <span class="blue"> tools are
+              available,</span><br /> and <span class="blue">learn how
+              each can be useful for
+              the tasks</span> <br />that the person wants to carry out as part of their activities"</em></p>
+      </section>
+
+      <section>
+        <h2>Designers have conceptual models</h2>
+        <p class="blue text-medium">Conceptual modeling is to understand users' task-tool mapping.</p>
+        <img width="42%" src="img/m3-task-tool-mapping-fig1.2.png"
+          alt="The same activity diagram, with designers added outside it. The designers carry their own thought bubble, labelled conceptual model, holding a small copy of the task, the plan and the application. Arrows run from the designers to both the task domain and the application: they shape the model the user ends up with.">
+        <p class="cite">Jeff Johnson and Austin Henderson, <a
+            href="https://www.oreilly.com/library/view/conceptual-models-core/9780123859303/">"Conceptual
+            Models: Core to Good Design"</a>, Morgan &amp; Claypool, 2011.</p>
+      </section>
+
+      <section>
+        <h2>Designing conceptual models</h2>
+        <blockquote class="text-medium">
+          "Designers should design new technology to support how people want to think about doing
+          their tasks."
+        </blockquote>
+        <ul class="no-bullets">
+          <li class="fragment">A conceptual model is:
+            <ul class="text-medium">
+              <li>Partial on purpose: abstract unnecessary attributes.</li>
+              <li>Simple, not overtly complicated</li>
+              <li>Designed iteratively. An ideal with gut-checks.</li>
+            </ul>
+          </li><br />
+        </ul>
+        <ul class="no-bullets">
+          <li class="fragment">Reflective of users' ideal mental model:
+            <ul class="text-medium">
+              <li>not how the database demands it</li>
+              <li>not just how the last tool happened to do it</li>
+              <li>not the fanciest most complex mathematical formalization</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p class="fragment blue">"Good enough to work with" is the target, not "complete."</p>
+      </section>
+
+      <section>
+        <h2>Map the task domain?</h2>
+        <div class="r-stack">
+          <img src="img/m3-apricot-deident-richpicture.jpg"
+            alt="A rich picture of how one small farm actually keeps its records: screenshots of several spreadsheets, a physical notebook, a WordPress dashboard, and sticky notes tracing how information passes between them." />
+          <img class="fragment" src="img/m3-apricot-annotated.png"
+            alt="The same rich picture, now labelled. Each artifact is named by the tool and the task it serves: spreadsheet tables for field layout and seed catalog, a spreadsheet timeline for the crop plan, a Gantt chart for the management schedule, spreadsheet equations to calculate planting and harvest dates, a custom script to connect information, a physical notebook for field observations, and WordPress for marketing and sales. The caption asks what tasks they are performing, and with which tools." />
+        </div>
+      </section>
+
+      <section>
+        <h2>L3, Step 1: Map the domain [10 mins]</h2>
+        <p class="red">Pick ONE of your task domains that you are considering for lab.</p>
+        <ul>
+          <li class="fragment">Draw the system.</li><br />
+          <li class="fragment"><span class="blue">Show what physically moves through it:</span> seed from planting to
+            harvest, a sample
+            from field to lab, an order
+            from request to delivery.</li><br />
+          <li class="fragment"><span class="blue">Show what information moves alongside it:</span> where is data
+            created, who records it,
+            where does it go next,
+            and
+            where it is used, saved, or lost?</li><br />
+        </ul>
+        <p class="blue">
+          This is a brainstorming sketch, not a deliverable :)
+        </p>
+      </section>
+
+      <!-- ============ 2. HIERARCHICAL TASK ANALYSIS ============ -->
+
+      <section>
+        <h2>Hierarchical task analysis</h2>
+        <img src="img/m3-hierarchical_task_analysis-generic.png" class="r-stretch"
+          alt="A hierarchical task analysis for scanning a letter. Goal 0, make a digital copy of a physical letter, sits at the top over four numbered tasks: download software, launch scanner program, scan document, save document. Tasks 1 and 3 break down further into numbered sub-tasks, and each level carries a plan box saying how its children run." />
+        <p class="cite"><a href="https://www.nngroup.com/articles/task-analysis/">Task Analysis</a>,
+          Nielsen Norman Group.</p>
+      </section>
+
+      <section>
+        <h2>Worked example: chemical incident response</h2>
+        <p class="text-medium">Same analysis, drawn two ways. The <b class="blue">plans</b> are the
+          rounded boxes - they say in what order, and under what condition.</p>
+        <!-- First image visible on arrival (fade-out at index 0), second fades
+             in over it on the same index - the r-stack pattern in the Style
+             Guide. Two images, not four: m3-hta-chemical-incident-0.jpg is an
+             "Operate radiator line" hierarchy, a manufacturing example rather
+             than this one, and m3-hta-example-war.jpg is no longer on disk. -->
+        <div class="r-stack">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m3-hta-chemical-incident-2.jpg" width="55%"
+            alt="A task analysis for dealing with a chemical incident, drawn as a hierarchy. Rounded plan boxes sit beside each level: Plan 0 says wait until task 1, then do 2, then 3 only if there is a hazard, then 4 and 5, else exit. Lower plans branch on whether suspects or hazards are present." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m3-hta-chemical-incident-1.jpg" width="55%"
+            alt="The same chemical incident analysis written out as an indented, numbered list instead of a diagram. Each plan is spelled out in words between the tasks it governs, showing that the hierarchy and its plans carry the same content in either form." />
+        </div>
+        <p class="cite">Annett &amp; Stanton, <a
+            href="https://www.sciencedirect.com/science/article/pii/S0003687005000980?via=ihub#fig2">hierarchical
+            task analysis examples</a>, <i>Applied Ergonomics</i>.</p>
+      </section>
+
+
+      <section>
+        <h2>Worked example: applying a pesticide</h2>
+        <img src="img/m3-hta-pesticide-application.png" class="r-stretch"
+          alt="A hierarchical task analysis of pesticide application. Goal 0 breaks into four tasks: preparation, transit, application and final operations. Preparation holds product preparation, loading, equipment setting and protective measures; transit holds start/stop, road transit and in-field transit; application holds checking, product application and setting or maintenance; final operations holds cleaning and residuals dismission." />
+        <p class="cite">Adapted from <a href="https://www.mdpi.com/2077-0472/9/7/158">Agriculture
+            9(7):158</a>, MDPI, 2019.</p>
+      </section>
+
+      <section>
+        <h2>L3, Step 2: Task Analysis [10 mins]</h2>
+        <p class="blue">Design for how people plan: for how they map tasks to tools.</p>
+        <ul>
+          <li class="fragment">Write the users' <b class="blue">goal</b> at the top. Number it <b>0</b>.</li><br />
+          <li class="fragment">Break it into <b class="blue">tasks</b> (1, 2, 3...).
+            <br /><span class="text-medium">A task is
+              something the user is trying to get done, not a feature of a tool.</span>
+          </li><br />
+          <li class="fragment">Break each task into <b class="blue">sub-tasks</b> (1.1, 1.2...).
+            <br /><span class="text-medium">Stop when a sub-task is small enough that you could describe in one
+              sentence.</span>
+          </li><br />
+          <li class="fragment">Add a <b class="blue">plan</b> at each level, describing the flow of child-tasks.
+            <br /><span class="text-medium">The plans include loops, waiting, and branching.</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- <section>
+        <h2>How deep, and when to stop</h2>
+        <div class="r-hstack">
+          <div>
+            <img src="img/m3-hta-example-war.jpg" width="95%"
+              alt="A fragment of a task hierarchy, numbered 1.1 Identify threats, splitting into 1.1.1 Scan for threats and 1.1.2 Classify threats, which splits again into 1.1.2.1, 1.1.2.2 and 1.1.2.3. The numbering shows how deep each box sits." />
+            <p class="text-small">The number <i>is</i> the depth.</p>
+          </div>
+          <div>
+            <img src="img/m3-task-analysis-sub-goal-heirarchy.jpg" width="80%"
+              alt="A flowchart of the task analysis procedure: state the overall goal, state subordinate goals, state the plan, then check whether the breakdown is adequate, revising it if not, and loop back for the next sub-goal until no goals remain." />
+            <p class="text-small">Stop when a sub-task fits in one sentence.</p>
+          </div>
+        </div>
+        <p class="cite">Both from Annett &amp; Stanton, <a
+            href="https://www.sciencedirect.com/science/article/pii/S0003687005000980?via=ihub#fig2">hierarchical
+            task analysis examples</a>, <i>Applied Ergonomics</i>.</p>
+      </section> -->
+      <!-- 
+      <section>
+        <h2>Plans are the part people skip</h2>
+        <p class="text-medium">The boxes say <i>what</i>. The plans say <b class="blue">in what
+            order, and under what condition</b> - this is where looping, waiting and branching
+          live.</p>
+        <img src="img/m3-hta-chemical-incident-2.jpg" class="r-stretch"
+          alt="A task analysis for dealing with a chemical incident. Rounded plan boxes sit beside each level of the hierarchy: Plan 0 says wait until task 1, then do 2, then 3 only if there is a hazard, then 4 and 5, else exit. Lower plans branch on whether suspects or hazards are present." />
+        <p class="cite">Annett &amp; Stanton, <a
+            href="https://www.sciencedirect.com/science/article/pii/S0003687005000980?via=ihub#fig2">hierarchical
+            task analysis examples</a>, <i>Applied Ergonomics</i>.</p>
+      </section> -->
+
+      <!-- ============ 4. FROM TASKS TO OBJECTS ============ -->
+
+      <section>
+        <h2>L3, Step 3: Identify concepts [2 mins]</h2>
+        <ul>
+          <li>Review your task hierarchy and <b class="blue">highlight the nouns in each task</b>.<br /><em>Note: A noun
+              that appears in only one sub-task is usually a
+              <i>detail of</i> another concept, not a concept of its own.</em>
+          </li><br />
+          <li class="fragment">These are your candidate <b>concepts</b>.</li><br />
+          <li class="fragment">From the pesticide application example: <br /><em class="blue"><i>product</i>,
+              <i>equipment</i>,
+              <i>field</i>, <i>application</i>, <i>operator</i>.</em>
+          </li><br />
+          <li class="fragment">Aim for more than you need — you will cut in the next step. Highlight or mark which
+            concepts you think are
+            important to modeling your task-domain.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Object and operational analysis</h2>
+        <p class="text-medium">Take each concept you kept, and <b class="blue">decompose</b> it:</p>
+        <ul>
+          <li><b>Objects</b> - the nouns themselves.</li>
+          <li class="fragment"><b>Attributes</b> - what you know about each one, and what type that
+            is.</li>
+          <li class="fragment"><b>Operations</b> - what the tasks <i>do</i> to it: create, record,
+            assign, close.</li>
+        </ul>
+        <p class="fragment text-medium gray">The operations come straight off your task hierarchy.
+          That is what the hierarchy was for.</p>
+        <p class="cite">Method from Johnson &amp; Henderson, <a
+            href="https://www.oreilly.com/library/view/conceptual-models-core/9780123859303/">"Conceptual
+            Models: Core to Good Design"</a>, ch. 4.</p>
+      </section>
+
+      <section>
+        <h2>Then <span class="blue">relate</span> them</h2>
+        <p class="text-medium">For each pair that connects, pick which applies and <b>label the
+            line</b>:</p>
+        <ul class="text-medium">
+          <li><i>is a type of</i> - hierarchy</li>
+          <li class="fragment"><i>is a part of</i> - containment or aggregation</li>
+          <li class="fragment"><i>produces</i> / <i>consumes</i> - source and sink</li>
+          <li class="fragment"><i>is associated with</i> - anything else, but name it</li>
+        </ul>
+        <p class="fragment text-medium red">An unlabelled arrow is not a relationship. <br />Don't make yourself
+          guess later!</p>
+      </section>
+
+      <section>
+        <h2>Decompose + relate: <span class="blue">irrigation scheduler</span></h2>
+        <p class="text-small"><b>Task domain:</b> keeping a crop watered without wasting water or
+          pumping capacity.</p>
+        <!-- text-medium on the table, not text-small: styles.css sets
+             td { font-size: 0.8em }, so text-small would put the cells at
+             about 13px. 24px here gives ~19px cells under a 24px header. -->
+        <table class="text-medium">
+          <tr>
+            <th>Object</th>
+            <th>Attributes</th>
+            <th>Operations</th>
+            <th>Related to</th>
+          </tr>
+          <tr class="fragment">
+            <td><b>Zone</b></td>
+            <td>name, area, crop, soil type</td>
+            <td>add, retire</td>
+            <td>-</td>
+          </tr>
+          <tr class="fragment">
+            <td><b>Moisture Reading</b></td>
+            <td>depth, value, taken-at</td>
+            <td>record</td>
+            <td><i>is a part of</i> Zone</td>
+          </tr>
+          <tr class="fragment">
+            <td><b>Irrigation Set</b></td>
+            <td>start, duration, depth applied</td>
+            <td>schedule, confirm</td>
+            <td><i>is a part of</i> Zone</td>
+          </tr>
+          <tr class="fragment">
+            <td><b>Water Budget</b></td>
+            <td>period, allocation, used-so-far</td>
+            <td>set, draw down</td>
+            <td><i>consumed by</i> Irrigation Set</td>
+          </tr>
+        </table>
+        <p class="fragment text-small blue">These are the nouns a user already says out loud.</p>
+      </section>
+
+      <section>
+        <h2>How to draw it</h2>
+        <p class="text-medium">A box per object, its name at the top, its attributes listed
+          underneath, and a <b class="blue">labelled line</b> to each object it relates to.</p>
+        <img src="img/m3-creately-entity-and-attribute-1.webp" width="80%"
+          alt="Two boxes side by side, both labelled User. The left one is empty and captioned Entity; the right one lists Username, Age and Email, and is captioned Entity with Attributes." />
+        <p class="fragment text-medium">Four objects, maximum. Pen and paper is fine - this one is
+          not a diagramming-tool exercise yet.</p>
+        <p class="cite"><a href="https://www.creately.com/guides/crows-foot-notation/">Crow's Foot
+            Notation guide</a>, Creately.</p>
+      </section>
+
+      <section>
+        <h2>L3, Step 4: Outline then sketch a box-and-arrow object model [15 mins]</h2>
+        <p class="text-medium"><b>Task domain:</b> ____________ .</p>
+
+        <table class="text-medium">
+          <tr>
+            <th>Object</th>
+            <th>Attributes</th>
+            <th>Operations</th>
+            <th>Related to</th>
+          </tr>
+          <tr class="fragment">
+            <td><b>Zone</b></td>
+            <td>name, area, crop, soil type</td>
+            <td>add, retire</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><b>E.g., Moisture Reading</b></td>
+            <td>depth, value, taken-at</td>
+            <td>record</td>
+            <td><i>is a part of</i> Zone</td>
+          </tr>
+          <tr>
+            <td><b></b></td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+          <tr>
+            <td><b></b></td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+          <tr>
+            <td><b></b></td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+        </table>
+        <p class="text-medium blue">Convert to box-and-arrow diagram.</p>
+      </section>
+
+      <!-- ============ 5. ACTIVITY ============ -->
+
+      <section>
+        <h2>Activity: <span class="blue">model your own system</span></h2>
+        <p class="text-medium">Pick a task domain you actually know. Pen and paper. 5 pts for
+          <i>complete</i>, not for <i>right</i>.
+        </p>
+        <div class="r-hstack">
+          <div>
+            <ul class="no-bullets align-left text-medium">
+              <li><span class="blue">1</span> Map the domain - what moves through it, and what
+                <i>information</i> moves alongside.
+              </li>
+              <li><span class="blue">2</span> Task analysis - goal, tasks, sub-tasks, plans.</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="no-bullets align-left text-medium">
+              <li><span class="blue">3</span> Highlight the nouns. List your candidate concepts.
+              </li>
+              <li><span class="blue">4</span> Box-and-arrow object model. Four objects maximum,
+                every line labelled.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fragment text-medium green">This is Lab 3, STEPs 1-4: <a
+            href="lab-3-data-model/README.md">lab-3-data-model/README.md</a>. Photograph your
+          sketches before you leave.</p>
+      </section>
+
+      <section>
+        <h2>Next steps:</h2>
+        <ul>
+          <li>Finish STEPs 1-4 on your own, and write up what you noticed.</li>
+          <li>Lecture 3.3: turning that object model into tables, keys, and Python.</li>
+          <li class="text-medium gray">Check Brightspace for due dates.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Questions?</h2>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+</body>
+
+</html>
