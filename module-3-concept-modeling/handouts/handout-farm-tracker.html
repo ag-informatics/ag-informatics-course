@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Farm tracker — ASM 532 Lecture 3.3 handout</title>
+
+  <!--
+      PRINTABLE HANDOUT. Open in a browser and print to PDF, or print directly.
+
+      Follows Lecture 3.3's slides in order (rebuilt 2026-10-01 to match them):
+        PAGE 1: the Farm tracker object model (copied from the "Farm tracker, object
+          model" slide - keep the two in step), the Crow's Foot legend (slide "Reminder:
+          Crow's Foot Notation", second image), and a blank data-model diagram: seven
+          empty boxes, no names, no lines. Seven because the full model has seven tables.
+          The legend's path, ../img/, assumes the handout stays in handouts/.
+        PAGE 2: the SQL slides, verbatim - building the animal table, the farm data so
+          far, the crops join, the two inserts the database accepts, and the join that
+          catches them - each beside a notes column.
+      The farm.py read-along has its own handout, handout-farm-readalong.html.
+
+      Self-contained apart from the legend image: no stylesheet link.
+    -->
+
+  <style>
+    @page {
+      margin: 1.5cm;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      font-size: 11pt;
+    }
+
+    h1 {
+      font-size: 16pt;
+      margin: 0 0 0.2em;
+    }
+
+    h2 {
+      font-size: 12pt;
+      margin: 1.2em 0 0.4em;
+    }
+
+    .sub {
+      margin: 0 0 1em;
+    }
+
+    .block {
+      display: grid;
+      grid-template-columns: 68% 32%;
+      border: 1px solid #000;
+      break-inside: avoid;
+    }
+
+    pre {
+      margin: 0;
+      padding: 0.6em;
+      font-family: Menlo, Consolas, monospace;
+      font-size: 9pt;
+      line-height: 1.9;
+      white-space: pre-wrap;
+      border-right: 1px solid #000;
+    }
+
+    .notes {
+      padding: 0.6em;
+      font-size: 9pt;
+      color: #555;
+      background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 1.65em, #bbb 1.65em, #bbb calc(1.65em + 1px));
+    }
+
+    table.spec {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-bottom: 1em;
+    }
+
+    table.spec th,
+    table.spec td {
+      border: 1px solid #000;
+      padding: 0.3em 0.45em;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.6em 2.2em;
+      padding: 0.8em 0;
+      break-inside: avoid;
+    }
+
+    .box {
+      border: 1.5px solid #000;
+    }
+
+    .box .name {
+      height: 1.8em;
+      border-bottom: 1.5px solid #000;
+    }
+
+    .box .rows {
+      height: 8.5em;
+      background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 1.65em, #ccc 1.65em, #ccc calc(1.65em + 1px));
+    }
+
+    .legend {
+      display: flex;
+      align-items: flex-end;
+      gap: 1em;
+      break-inside: avoid;
+    }
+
+    .legend img {
+      width: 45%;
+    }
+
+    .cite {
+      font-size: 8pt;
+      color: #555;
+    }
+
+    .page-break {
+      break-before: page;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Farm tracker</h1>
+    <p class="sub">ASM 532, Lecture 3.3 &middot; from object model to data model. Name: ______________________</p>
+
+    <h2>Object model</h2>
+    <p class="sub"><b>Task domain:</b> tracking the locations of my crops and animals</p>
+    <table class="spec">
+      <tr><th>Object</th><th>Attributes</th><th>Operations</th><th>Related to</th></tr>
+      <tr><td><b>Farm</b></td><td>name</td><td>add, view</td><td>has 1-many Fields.<br />has 0-many Animals.</td></tr>
+      <tr><td><b>Field</b></td><td>name, acres, field_type (pasture, cropland), note</td><td>add, view</td><td>has 0-many plots.<br />If pasture, has 0-many Animals.</td></tr>
+      <tr><td><b>Plot</b></td><td>name, length, width, planted_date, harvest_date</td><td>add, view, plant, harvest</td><td>has 0-1 crop</td></tr>
+      <tr><td><b>Crop</b></td><td>name, days_to_maturity</td><td>add, view</td><td>-</td></tr>
+      <tr><td><b>Animal</b></td><td>name, species, breed, birthdate, weight</td><td>calculate age, details</td><td>-</td></tr>
+      <tr><td><b>Goat</b></td><td>secret name</td><td>same as Animal</td><td>is a type of Animal</td></tr>
+      <tr><td><b>Cow</b></td><td>-</td><td>details of its own</td><td>is a type of Animal</td></tr>
+    </table>
+
+    <div class="legend">
+      <img src="../img/m3-creately-crows-foot-cardinality-3.webp"
+        alt="The four Crow's Foot combinations. A bar then a ring: minimum zero, maximum one, optional. A ring then a fork: minimum zero, maximum many, optional. Two bars: minimum one, maximum one, mandatory. A bar then a fork: minimum one, maximum many, mandatory." />
+      <p class="cite">Crow's Foot legend: <a href="https://www.creately.com/guides/crows-foot-notation/">Crow's Foot Notation guide</a>, Creately.</p>
+    </div>
+
+    <h2>Data model</h2>
+    <p class="sub">Name each table. Mark its primary key (PK) and foreign keys (FK), list its columns, and draw the
+      relationships between tables.</p>
+    <div class="diagram">
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box"><div class="name"></div><div class="rows"></div></div>
+    </div>
+
+
+    <h2 class="page-break">Building a table: animal</h2>
+    <div class="block">
+      <pre>create table animal (
+    animal_id integer primary key,
+    farm_id integer not null,
+    field_id integer,               -- optional: only pasture animals have a field
+    species_id integer not null,
+    name text not null,
+    breed text,
+    birthdate text,
+    weight real,
+    secret_name text,               -- goats only
+    foreign key (farm_id) references farm (farm_id),
+    foreign key (field_id) references field (field_id),
+    foreign key (species_id) references species (species_id)
+);</pre>
+      <div class="notes">Notes</div>
+    </div>
+
+    <h2>The farm data, so far</h2>
+    <table class="spec">
+      <tr><th>farm</th><th>field</th><th>crop</th><th>plot</th><th>animal</th></tr>
+      <tr>
+        <td>1 Home farm<br />2 River farm</td>
+        <td>1 North pasture (farm 1, pasture)<br />2 South field (farm 1, cropland)<br />3 River field (farm 2, cropland)</td>
+        <td>1 carrot<br />2 lettuce</td>
+        <td>1 south plot A (field 2, crop 1)<br />2 south plot B (field 2, no crop)<br />3 river plot (field 3, crop 2)</td>
+        <td>1 Sunny (farm 1, field 1, goat)<br />2 Bessy (farm 1, no field, cow)</td>
+      </tr>
+    </table>
+
+    <h2>Joins: FK at work &middot; which crops are growing in which fields?</h2>
+    <div class="block">
+      <pre>select field.name as field, plot.name as plot, crop.name as crop
+from plot
+join field on plot.field_id = field.field_id
+left join crop on plot.crop_id = crop.crop_id
+order by field.name, plot.name</pre>
+      <div class="notes">The result:</div>
+    </div>
+
+    <h2>Insert to DB &middot; does the database enforce our two rules?</h2>
+    <div class="block">
+      <pre>-- Home farm, South field (cropland), goat
+insert into animal (farm_id, field_id, species_id, name) values (1, 2, 1, 'Clover');
+-- Home farm, River field (River farm's), goat
+insert into animal (farm_id, field_id, species_id, name) values (1, 3, 1, 'Pepper');</pre>
+      <div class="notes">Accepted or refused?</div>
+    </div>
+
+    <h2>Joins: which animals are on a different farm from their field?</h2>
+    <div class="block">
+      <pre>select animal.name, animal.farm_id, field.farm_id as field_farm_id
+from animal
+join field on animal.field_id = field.field_id
+where animal.farm_id != field.farm_id</pre>
+      <div class="notes">The result, and who is missing:</div>
+    </div>
+  </main>
+</body>
+
+</html>

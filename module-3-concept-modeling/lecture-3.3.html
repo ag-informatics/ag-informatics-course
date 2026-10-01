@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+        -->
+      <section>
+        <img src="img/m3-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>From objects to data models</h1>
+
+        <p>
+          Module 3 - Concept Modeling<br />
+          Lecture 3.3 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <ol class="fragment text-medium">
+          <li>How databases work: object -> data model</li><br />
+          <li>Objects in Python</li><br />
+          <li>Project: How's it going?</li>
+        </ol>
+        <p class="fragment green">Goal: from <em>universals</em> to <em>particulars</em>. <br />From abstractions to
+          real working
+          code.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!--
+          Built 2026-10-01 from ankita-review-needed/module-3-lecture-3-3-outline-fresh.md.
+          Sources are Ankita's only: locked L3.2, the 2024 Lecture3.2/3.3 decks (A24-3.2 §N,
+          A24-3.3 §N), the 2024 oop-example/farm.py, and images she staged. Each slide's
+          comment names its source. [ANKITA] marks what is hers to fill.
+        -->
+
+      <!-- A24-3.3 §3 -->
+      <section>
+        <h2>Abstraction warmup</h2>
+        <div>
+          <p class="red">How might we represent a plant?</p>
+          <ul>
+            <li>What attributes?</li>
+            <li class="fragment">Where does the data come from?</li>
+            <li class="fragment">What should it be related to?</li>
+            <li class="fragment">Any operations?</li>
+            <li class="fragment">What about varieties?</li>
+            <li class="fragment">Seed vs seedling vs crop vs product?</li>
+            <li class="fragment">Limits to object modeling?</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Models in Software Engineering</h2>
+        <div class="r-hstack contain">
+          <div style="flex: 1 1 35%;">
+            <img src="img/m3-pastor-molina-model-driven-architecture-in-practice.png" width="80%"
+              alt="Cover of Model-Driven Architecture in Practice" />
+          </div>
+          <div class="align-left" style="flex: 1 1 40%;">
+            <p>
+              "to represent models of the
+              real world with computational models used by computers." <br /><br />
+              "to abstract key concepts, represent
+              them appropriately, and transform them correctly."
+            </p>
+          </div>
+        </div>
+        <p class="cite"><a href="https://link.springer.com/book/10.1007/978-3-540-71868-0">Model-Driven Architecture in
+            Practice</a>, Springer.</p>
+      </section>
+
+      <section>
+        <h2>The problem of <em>universals</em></h2>
+        <p class="text-medium">Builds on the philosophical tradition of distinguishing between:</p>
+        <ul class="no-bullets text-medium">
+          <li><em class="blue">universals</em> ------ abstractions ------ an animal</li>
+          <li><em class="blue">particulars</em> ------ instances ------ my cat newton</li>
+        </ul><br />
+
+        <div class="align-left fragment">
+          <p>Three questions:</p>
+          <ol class="text-medium">
+            <li class="fragment">The question of concept:
+              <ul class="no-bullets text-medium">
+                <li>nature and functions of the concept, the nature of particulars and their relations with
+                  universals;
+                  <span class="red">
+                    levels of realism as design decisions</span>
+                </li><br />
+              </ul>
+            </li>
+            <li class="fragment">The question of trueness:
+              <ul class="no-bullets text-medium">
+                <li>the truth criteria and the connection of universals with
+                  particulars;</li>
+                <li class="red">
+                  evaluation of implementation against specification</li>
+              </ul>
+            </li><br />
+            <li class="fragment">The question of language:
+              <ul class="no-bullets text-medium">
+                <li>the nature of signs and their relation with signified entities;</li>
+                <li class="red">bridge the semantic gap among users and designers</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        <p class="cite">Lightly paraphrased from: <a
+            href="https://link.springer.com/book/10.1007/978-3-540-71868-0">Model-Driven Architecture in
+            Practice</a>, Ch1, Springer.</p>
+      </section>
+
+      <!-- ============ 1. HOW DATABASES WORK: OBJECT -> DATA MODEL ============ -->
+
+      <section>
+        <h2>Reminder: Objects and Entities</h2>
+        <br />
+        <ul class="text-medium no-bullets">
+          <li class="fragment">Design writing says <b class="green">object</b>,<br />the term used in <b
+              class="green">object modeling</b><br />
+            When <b class="green">object-oriented programming in Python</b>, this will be called a
+            <b class="green">class</b>.
+          </li><br />
+          <li class="fragment">Database writing says <b class="blue">entity</b>, <br />the standard name for a data
+            model diagram is
+            an
+            <b class="blue">entity-relationship diagram (ERD)</b>. <br />This is also a <b class="blue">table</b> in
+            SQL.
+          </li><br />
+        </ul>
+      </section>
+
+      <!--
+          The L3.2 decompose-and-relate table layout. Farm tracker: Ankita's model, combining
+          Lab 3's crop tracker (Crop, Plot) with the farm.py animals. Updated 2026-10-01 so it
+          is implementable: field type (if pasture), species on Animal with breed moved up,
+          harvest date on Plot, days to maturity (the lab code stores an integer). Carried
+          through to the data-model and lookup-list slides and the "What did the DB force us to
+          decide?" slide.
+        -->
+      <section>
+        <h2>Farm tracker, <span class="blue">object model</span></h2>
+        <p class="text-small"><b>Task domain:</b> tracking the locations of my crops and animals</p>
+        <table class="text-medium">
+          <tr>
+            <th>Object</th>
+            <th>Attributes</th>
+            <th>Operations</th>
+            <th>Related to</th>
+          </tr>
+          <tr>
+            <td><b>Farm</b></td>
+            <td>name</td>
+            <td>add, view</td>
+            <td>has 1-many Fields. <br />has 0-many Animals.</td>
+          </tr>
+          <tr>
+            <td><b>Field</b></td>
+            <td>name, acres, <br />field_type (pasture, cropland), note</td>
+            <td>add, view</td>
+            <td>has 0-many plots. <br />If pasture, has 0-many
+              Animals.
+            </td>
+          </tr>
+          <tr>
+            <td><b>Plot</b></td>
+            <td>name, length, width, planted_date, harvest_date</td>
+            <td>add, view, plant, harvest</td>
+            <td>has 0-1 crop</td>
+          </tr>
+          <tr>
+            <td><b>Crop</b></td>
+            <td>name, days_to_maturity</td>
+            <td>add, view</td>
+            <td>-</td>
+          </tr>
+          <!-- Animals: from the farm.py read-along (Animal, Goat, Cow). Dodo, an empty stub, is left out. -->
+          <tr>
+            <td><b>Animal</b></td>
+            <td>name, species, breed, birthdate, weight</td>
+            <td>calculate age, details</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td><b>Goat</b></td>
+            <td>secret name</td>
+            <td>same as Animal</td>
+            <td>is a type of Animal</td>
+          </tr>
+          <tr>
+            <td><b>Cow</b></td>
+            <td>-</td>
+            <td>details of its own</td>
+            <td>is a type of Animal</td>
+          </tr>
+        </table>
+        <!-- <p class="fragment blue">So how do we translate this into code?</p> -->
+      </section>
+
+      <!-- IMG -->
+      <section>
+        <h2>Visualizing the data model</h2>
+        <p class="text-medium">For this module and lab, pick <b>one notation</b> and stay in it.</p>
+        <img src="img/m3-ERD_Representation.svg.webp" class="r-stretch"
+          alt="One relationship drawn six ways, one panel per notation, each joining a Person box to a Location box. Chen puts a Birthplace diamond between them, marked N and 1. IDEF1X uses a dashed line with a filled dot and a hollow diamond. Bachman uses an arrow labelled Born in and Birthplace of. Martin, or Crow's Foot, uses a ring-and-fork at Person and a double bar at Location. Min-Max/ISO writes (1,1) Born in and Birthplace of (0,N). UML labels both boxes as entities and writes 0..N and 1 at the line ends." />
+        <p class="cite"><a href="https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model">Entity–relationship
+            model</a>, Wikipedia.</p>
+      </section>
+
+      <!-- IMG -->
+      <section>
+        <h2>Reminder: Crow's Foot Notation</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m3-creately-crows-foot-symbols-2.webp"
+            alt="The three Crow's Foot symbols, each on the end of a line: a ring means zero, a bar means one, and a fork means many." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m3-creately-crows-foot-cardinality-3.webp"
+            alt="The four Crow's Foot combinations. A bar then a ring: minimum zero, maximum one, optional. A ring then a fork: minimum zero, maximum many, optional. Two bars: minimum one, maximum one, mandatory. A bar then a fork: minimum one, maximum many, mandatory." />
+        </div>
+        <p class="cite"><a href="https://www.creately.com/guides/crows-foot-notation/">Crow's Foot Notation guide</a>,
+          Creately.</p>
+      </section>
+
+      <!--
+          A24-3.2 §20, as edited in the fresh outline. Book examples swapped for the Farm tracker
+          (2026-10-01): the diagram is a subsample - Field, Plot, Crop - showing a primary key, a
+          foreign key, one-many (field -> plots) and many-many (fields <-> crops, through Plot).
+          The Farm tracker has no one-one relationship, so the ear-tag example is new (Claude's) -
+          keep, swap or cut. The MDN library diagram still appears on the Django leap slide.
+        -->
+      <section>
+        <h2>Databases: Relational (SQL)</h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 50%;">
+            <ul class="text-medium">
+              <li>All records have a unique identifier, one column = <b class="blue">PRIMARY KEY</b></li><br />
+              <li class="fragment">Tables are linked based on a lookup "column" = <b class="blue">FOREIGN KEY</b></li>
+              <br />
+              <li class="fragment"><span class="blue">Cardinality refers to how many of one thing can relate to
+                  another</span>. <br />
+                <ul class="no-bullets text-medium">
+                  <li><span class="blue">1-1:</span> none in our model. e.g., one cow has one ear-tag</li>
+                  <li><span class="blue">1-many:</span> one field can have many plots</li>
+                  <li><span class="blue">many-many:</span> many crops can be grown in many fields - through plots</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div style="flex: 1 1 50%;">
+            <pre class="mermaid">
+erDiagram
+    accTitle: Farm tracker subsample: field, plot, crop
+    accDescr: Three tables. Field and crop each have a primary key. Plot has its own primary key plus two foreign keys, field_id and crop_id. One field has many plots; one crop is grown in many plots, and a plot can sit empty. Through plot, many crops are grown in many fields.
+    FIELD ||--o{ PLOT : has
+    CROP |o--o{ PLOT : "grown in"
+    FIELD {
+        int field_id PK
+        int farm_id FK
+        lookup field_type "pasture, cropland"
+        string name
+        real acres "real = float"
+        string note
+    }
+    PLOT {
+        int plot_id PK
+        int field_id FK
+        int crop_id FK "optional"
+        string name
+        int length
+        int width
+        date planted_date
+        date harvest_date
+    }
+    CROP {
+        int crop_id PK
+        string name
+        int days_to_maturity
+    }
+            </pre>
+            <!-- <p class="text-small">Field and crop each have a primary key. Plot has its own primary key plus two foreign
+              keys, field_id and crop_id. One field has many plots; one crop is grown in many plots, and a plot can sit
+              empty. Through plot, many crops are grown in many fields.</p> -->
+          </div>
+        </div>
+      </section>
+
+      <!--
+          Fresh outline S1 (accepted), now on the Farm tracker, plus A24-3.3 §6's notation
+          line and goal.
+          Diagrams on both slides below are Mermaid erDiagrams (Crow's Foot), drawn in the browser.
+            Slide 1: five tables, keys plus the columns the bullets mention - farm, field, plot,
+              crop, animal. FKs: field.farm_id; plot.field_id; plot.crop_id; animal.farm_id;
+              animal.field_id (zero-or-one, since only pasture animals have a field).
+            Slide 2 (lookup lists): Field and Animal in full, plus lookup tables field_type and
+              species, pointed at by field.field_type_id and animal.species_id.
+          Goat's secret name: kept by Ankita's call; shown on slide 1 as a goat-only column,
+          the oddity it is.
+        -->
+      <section>
+        <h2>Farm tracker, <span class="blue">data model</span></h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 50%;">
+            <ul class="text-small">
+              <li><span class="red">Each object becomes a table, with its own primary key.</span><br />
+                One farm, one or more fields. One farm, zero or more animals.<br />
+                One field, zero or more plots. If field_type = pasture: one field, zero or more animals; each
+                animal is in zero or one field.<br />
+                One plot can sit empty, or grow one crop. <br />
+                One crop can be grown in zero or more plots. </li><br />
+
+              <li><span class="red">Foreign keys sit on the "many" side:</span><br /> <code>farm_id</code> on field and
+                animal<br />
+                <code>field_id</code> on plot and
+                animal <br /><code>crop_id</code> on plot
+              </li><br />
+
+              <li>Animals can just be part of the farm, or if a field is in pasture, an animal can be in a pasture.</li>
+              <li class="red">A table can have two FKs, where one is optional.</li><br />
+
+              <li>Goat and Cow don't have to be their own table. They can be represented by
+                a <code>species</code> column. <br />
+                In Python, we'll do something different here.
+              </li>
+            </ul>
+          </div>
+          <div style="flex: 1 1 50%;">
+            <pre class="mermaid">
+erDiagram
+    accTitle: Farm tracker data model
+    accDescr: Five tables, each with a primary key. One farm has one or more fields and zero or more animals. One field has zero or more plots, and zero or more animals if it is a pasture; each animal is in zero or one field. One crop is grown in zero or more plots, and a plot can sit empty: it has zero or one crop. Foreign keys sit on the many side: farm_id on field and animal, field_id on plot and animal, crop_id on plot. Animal has a species column in place of Goat and Cow classes, and a goat-only secret_name column.
+    FARM ||--|{ FIELD : has
+    FARM ||--o{ ANIMAL : has
+    FIELD ||--o{ PLOT : has
+    FIELD |o--o{ ANIMAL : pastures
+    CROP |o--o{ PLOT : "grown in"
+    FARM {
+        int farm_id PK
+        string name
+    }
+    FIELD {
+        int field_id PK
+        int farm_id FK
+        lookup field_type "pasture, cropland"
+        string name
+        real acres
+        string note
+    }
+    PLOT {
+        int plot_id PK
+        int field_id FK
+        int crop_id FK "optional"
+        string name
+        int length
+        int width
+        date planted_date
+        date harvest_date
+    }
+    CROP {
+        int crop_id PK
+        string name
+        int days_to_maturity
+    }
+    ANIMAL {
+        int animal_id PK
+        int farm_id FK
+        int field_id FK "optional"
+        string species
+        string name
+        string breed
+        date birthdate
+        real weight
+        string secret_name "goats only"
+    }
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Farm tracker, <span class="blue">lookup lists</span></h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 50%;">
+            <ul class="text-medium">
+              <li>A <b class="blue">lookup list</b> is an attribute whose value must come from a fixed set — a crop
+                type, a soil class, a
+                status.</li><br />
+              <li>Avoids free text with spelling errors!</li><br />
+              <li>Field's <code>field type</code> and Animal's <code>species</code> become <b class="blue">lookup
+                  lists</b>: their own small tables.</li><br />
+            </ul>
+          </div>
+          <div style="flex: 1 1 80%;">
+            <pre class="mermaid">
+
+erDiagram
+    accTitle: Lookup tables in the Farm tracker
+    accDescr: Two lookup tables and the tables that use them. Field type, with the values pasture and cropland, classifies zero or more fields, through field_type_id on field. Species, with the values goat and cow, classifies zero or more animals, through species_id on animal.
+    FIELD_TYPE ||--o{ FIELD : classifies
+    SPECIES ||--o{ ANIMAL : classifies
+    FIELD_TYPE {
+        int field_type_id PK
+        string name "pasture, cropland"
+    }
+    FIELD {
+        int field_id PK
+        int farm_id FK
+        int field_type_id FK
+        string name
+        real acres
+        string note
+    }
+    SPECIES {
+        int species_id PK
+        string name "goat, cow"
+    }
+    ANIMAL {
+        int animal_id PK
+        int farm_id FK
+        int field_id FK "optional"
+        int species_id FK
+        string name
+        string breed
+        date birthdate
+        real weight
+        string secret_name "goats only"
+    }
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <!--
+          The full Farm tracker data model (Ankita, 2026-10-01): every table and column from the
+          object-model slide, plus keys and the two lookup tables. Full slide width. Matches the
+          blank 7-box diagram on the handout (handouts/handout-farm-tracker.html).
+        -->
+      <section>
+        <h2>Farm tracker, <span class="blue">full data model</span></h2>
+        <pre class="mermaid">
+erDiagram
+    accTitle: Farm tracker, full data model
+    accDescr: Seven tables. Farm has a name. Field has a name, acres, a note, a farm_id foreign key and a field_type_id foreign key to the field type lookup table. Plot has a name, length, width, planted and harvest dates, and foreign keys field_id and an optional crop_id. Crop has a name and days to maturity. Animal has a name, breed, birthdate, weight and a goat-only secret name, with foreign keys farm_id, an optional field_id, and species_id to the species lookup table. One farm has one or more fields and zero or more animals; one field has zero or more plots and, if a pasture, zero or more animals; one crop is grown in zero or more plots, and a plot has zero or one crop.
+    FARM ||--|{ FIELD : has
+    FARM ||--o{ ANIMAL : has
+    FIELD ||--o{ PLOT : has
+    FIELD |o--o{ ANIMAL : pastures
+    CROP |o--o{ PLOT : "grown in"
+    FIELD_TYPE ||--o{ FIELD : classifies
+    SPECIES ||--o{ ANIMAL : classifies
+    FARM {
+        int farm_id PK
+        string name
+    }
+    FIELD {
+        int field_id PK
+        int farm_id FK
+        int field_type_id FK
+        string name
+        real acres
+        string note
+    }
+    FIELD_TYPE {
+        int field_type_id PK
+        string name "pasture, cropland"
+    }
+    PLOT {
+        int plot_id PK
+        int field_id FK
+        int crop_id FK "optional"
+        string name
+        int length
+        int width
+        date planted_date
+        date harvest_date
+    }
+    CROP {
+        int crop_id PK
+        string name
+        int days_to_maturity
+    }
+    ANIMAL {
+        int animal_id PK
+        int farm_id FK
+        int field_id FK "optional"
+        int species_id FK
+        string name
+        string breed
+        date birthdate
+        real weight
+        string secret_name "goats only"
+    }
+    SPECIES {
+        int species_id PK
+        string name "goat, cow"
+    }
+        </pre>
+      </section>
+
+      <!--
+          SQL snippets 2 and 3 from demos/farm-oop-demo.ipynb (Ankita picked them, 2026-10-01),
+          preceded by one create-table example so the inserts have something to land in. All
+          code and results are copied from an executed run of the notebook; the full build
+          (seven tables, sample rows) lives there.
+        -->
+      <section>
+        <h2>Building a table: <span class="blue">animal</span></h2>
+        <pre class="text-small"><code class="language-sql" data-trim data-line-numbers="1-14|3|4|5|10|11-13"><script type="text/template">
+create table animal (
+    animal_id integer primary key,
+    farm_id integer not null,
+    field_id integer,               -- optional: only pasture animals have a field
+    species_id integer not null,
+    name text not null,
+    breed text,
+    birthdate text,
+    weight real,
+    secret_name text,               -- goats only
+    foreign key (farm_id) references farm (farm_id),
+    foreign key (field_id) references field (field_id),
+    foreign key (species_id) references species (species_id)
+);
+        </script></code></pre>
+        <p class="fragment text-medium"><code>not null</code> = required. <br />If it is not <code>not null</code> =
+          optional.<br />
+          <span class="blue">The other six tables follow the same pattern (demo notebook).</span>
+        </p>
+      </section>
+
+      <!-- Starting data: the rows the notebook inserts before the bad inserts (2026-10-01).
+           field_type and species are shown by name, not id, to keep the slide readable. -->
+      <section>
+        <h2>The farm data, so far</h2>
+        <div class="r-hstack contain" style="align-items: flex-start; gap: 1em;">
+          <table class="text-medium">
+            <tr>
+              <th colspan="2">farm</th>
+            </tr>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Home farm</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>River farm</td>
+            </tr>
+          </table>
+          <table class="text-medium">
+            <tr>
+              <th colspan="4">field</th>
+            </tr>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>farm_id</th>
+              <th>type</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>North pasture</td>
+              <td>1</td>
+              <td>pasture</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>South field</td>
+              <td>1</td>
+              <td>cropland</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>River field</td>
+              <td>2</td>
+              <td>cropland</td>
+            </tr>
+          </table>
+          <table class="text-medium">
+            <tr>
+              <th colspan="2">crop</th>
+            </tr>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>carrot</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>lettuce</td>
+            </tr>
+          </table>
+        </div>
+        <div class="r-hstack contain" style="align-items: flex-start; gap: 1em;">
+          <table class="text-medium">
+            <tr>
+              <th colspan="4">plot</th>
+            </tr>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>field_id</th>
+              <th>crop_id</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>south plot A</td>
+              <td>2</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>south plot B</td>
+              <td>2</td>
+              <td>NULL</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>river plot</td>
+              <td>3</td>
+              <td>2</td>
+            </tr>
+          </table>
+          <table class="text-medium">
+            <tr>
+              <th colspan="5">animal</th>
+            </tr>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>farm_id</th>
+              <th>field_id</th>
+              <th>species</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Sunny</td>
+              <td>1</td>
+              <td>1</td>
+              <td>goat</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Bessy</td>
+              <td>1</td>
+              <td>NULL</td>
+              <td>cow</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Joins: FK at work</h2>
+        <p class="text-medium">Which crops are growing in which fields?</p>
+        <p class="text-small">A <b class="blue">join</b> lines up rows from two tables where a key matches:
+          <code>plot.field_id = field.field_id</code>.
+        </p>
+        <pre class="text-small"><code class="language-sql" data-trim data-line-numbers="1-5|2|3|4"><script type="text/template">
+select field.name as field, plot.name as plot, crop.name as crop
+from plot
+join field on plot.field_id = field.field_id
+left join crop on plot.crop_id = crop.crop_id
+order by field.name, plot.name
+        </script></code></pre>
+        <table class="text-medium fragment">
+          <tr>
+            <th>field</th>
+            <th>plot</th>
+            <th>crop</th>
+          </tr>
+          <tr>
+            <td>River field</td>
+            <td>river plot</td>
+            <td>lettuce</td>
+          </tr>
+          <tr>
+            <td>South field</td>
+            <td>south plot A</td>
+            <td>carrot</td>
+          </tr>
+          <tr>
+            <td>South field</td>
+            <td>south plot B</td>
+            <td>NULL</td>
+          </tr>
+        </table>
+        <p class="fragment text-medium">Many crops, many fields: <b>through Plot</b>. <code>left join</code> keeps the
+          empty plot.<br /><code>join</code> drops rows with no match; <code>left join</code> keeps them.</p>
+      </section>
+
+      <section>
+        <h2>Insert to DB</h2>
+        <p class="text-small">Home farm has North pasture and South field (cropland). River farm has River field
+          (cropland).</p>
+        <p class="text-medium blue">Our model has two rules: animals only go in pastures, and an animal's farm must
+          match
+          its field's farm. Does the database enforce them?</p>
+        <pre class="text-small"><code class="language-sql" data-trim data-line-numbers="1-4|1-2|3-4"><script type="text/template">
+-- Home farm, South field (cropland), goat
+insert into animal (farm_id, field_id, species_id, name) values (1, 2, 1, 'Clover');
+-- Home farm, River field (River farm's), goat
+insert into animal (farm_id, field_id, species_id, name) values (1, 3, 1, 'Pepper');
+        </script></code></pre>
+        <ul class="text-medium">
+          <li class="fragment"><b>Clover</b>: a goat in South field, which is cropland. <span
+              class="red">Accepted.</span>
+          </li>
+          <li class="fragment"><b>Pepper</b>: on Home farm, in River farm's field. <span class="red">Accepted.</span>
+          </li>
+          <li class="fragment">An animal with <code>species_id</code> 99, which doesn't exist?
+            <span class="blue">Refused: <code>FOREIGN KEY constraint failed</code></span>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Joins: what's in the DB?</h2>
+        <p class="text-medium">Which animals are on a different farm from their field?</p>
+        <pre class="text-small"><code class="language-sql" data-trim data-line-numbers="1-4|3|4"><script type="text/template">
+select animal.name, animal.farm_id, field.farm_id as field_farm_id
+from animal
+join field on animal.field_id = field.field_id
+where animal.farm_id != field.farm_id
+        </script></code></pre>
+        <table class="text-medium fragment">
+          <tr>
+            <th>name</th>
+            <th>farm_id</th>
+            <th>field_farm_id</th>
+          </tr>
+          <tr>
+            <td>Pepper</td>
+            <td>1</td>
+            <td>2</td>
+          </tr>
+        </table>
+        <p class="fragment text-small">Clover's farm is right (her field is the wrong <i>type</i>). Bessy has no
+          field, so the <code>join</code> skips her.</p>
+        <p class="fragment text-medium">Join one table further, to <code>field_type</code>, to catch
+          animals outside a pasture: <b>Clover and Pepper</b>.</p>
+        <p class="fragment text-medium red">You will need validation code!</p>
+      </section>
+
+
+
+
+      <!--
+          Reflection on the Farm tracker exercise (Ankita, 2026-10-01). The four decisions are the
+          ones that came out of checking her object model against an implementable data model.
+          ANKITA: reword or cut as you like; the second one is the note you asked for.
+        -->
+      <section>
+        <h2>What did the DB force us to decide?</h2>
+        <p class="text-medium">What was vague in the object model?</p>
+        <ul class="text-medium">
+          <li class="fragment"><b>"If pasture"</b> needs something to check: a <code>field_type</code>.</li><br />
+          <li class="fragment"><b>Animals have two routes to belong to a farm:</b> directly and via a pasture.
+            <br />Animal carries <code>farm_id</code> and an optional <code>field_id</code> - so they can
+            disagree.<br /><br />
+            A goat on Farm A, in a field on Farm B?
+            <span class="blue">Keep both (barn animals have no field)? Then decide who keeps
+              them consistent!</span><br /><br />
+            The diagram can't say "only pastures hold animals" either: nothing stops a goat's <code>field_id</code>
+            pointing at cropland. <span class="red">Both rules need validation in code.</span>
+          </li><br />
+
+          <li class="fragment"><b>Goat and Cow aren't tables.</b> The Animal table needed a <code>species</code>, and
+            <code>breed</code> moves up.
+          </li><br />
+
+          <li class="fragment"><b>Harvest needed somewhere to land:</b> a <code>harvest date</code>. Keeping every
+            season's crop would take a Planting object.</li>
+        </ul>
+      </section>
+
+      <!-- Moved here from the lookup-lists slide (Ankita, 2026-10-01). The notation line is A24-3.3 §6. -->
+      <section>
+        <h2>What happened to the methods?</h2>
+        <ul class="text-medium">
+          <li class="fragment"><b>Operations don't become columns.</b><br />
+            <span class="blue">add, view, plant, harvest, calculate age, details</span> become methods.
+          </li><br />
+
+          <li class="fragment"><b>Some methods calculate, some change data.</b><br />
+            calculate age, details: read what's stored. <br />plant, harvest set Plot's <code>crop_id</code>,
+            <code>planted_date</code>, <code>harvest_date</code>.
+          </li><br />
+
+          <li class="fragment"><b>Don't store what you can calculate.</b><br />
+            Animal stores <code>birthdate</code>, not age. <br /><code>calculate_age()</code> will do the math.</li>
+          <br />
+
+          <li class="fragment"><b>All tables need to Create, Read, Update, Delete
+              (<span class="blue">CRUD</span>).</b><br />
+            <span class="blue">add, view</span> belong to every table.
+          </li>
+        </ul>
+        <div class="r-hstack fragment">
+          <p class="text-medium align-left">
+            Object. <br />
+            Attribute:type[limits].
+            <br />Function (input):(output).
+          </p>
+          <p class="text-medium align-left blue">
+            Plot. <br />
+            planted_date:date.
+            <br />plant(crop):(none).
+          </p>
+          <p class="text-medium align-left blue">
+            Animal. <br />
+            birthdate:date.
+            <br />calculate_age():(int).
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Here lie <s>dragons</s> databases</h2>
+        <img src="img/m3-kleppman-ch02-map-ebook-data-model-landscape.png" class="r-stretch"
+          alt="A hand-drawn fantasy map of the database world. The Relational Empire fills the west, with SQL Metropolis holding PostgreSQL, MySQL, Oracle, SQL Server and DB2, and the Declarative River running through it. To the north lies the Document Data District with MongoDB, CouchDB, RethinkDB and the ruins of XML databases; in the middle, the Graph Data Peaks with Neo4j, Cypher, SPARQL and Datalog; to the east, the Column-Family District with Cassandra and HBase, and the Key-Value District with Redis, Riak and Voldemort. A NoSQL Danger Zone sits in the south." />
+        <p class="cite">Martin Kleppmann, <a
+            href="https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html"><i>Designing
+              Data-Intensive Applications</i>, ch. 2</a>, O'Reilly.</p>
+      </section>
+
+      <!-- A24-3.2 §21 -->
+      <section>
+        <h2>Databases: Non-Relational (NoSQL)</h2>
+        <img src="img/m3-db-nosql.png"
+          alt="Four kinds of NoSQL database, each with an icon and a definition. Key-value stores pair keys and values using a hash table. Document databases organize whole documents into collections and allow queries on any attribute within a document. Columnar, or column-family, databases store and query sparse data efficiently across columns. Graph databases use nodes and edges to represent interconnected data, such as relationships between people in a social network." />
+        <p class="text-small">
+          Key-Value e.g., <a href="https://redis.io/">redis</a>. Document
+          e.g., <a href="https://www.mongodb.com/">MongoDB</a>. Columnar e.g.,
+          <a href="https://cassandra.apache.org/_/index.html">Apache Cassandra</a>.
+          Graph e.g., <a href="https://neo4j.com/">Neo4J</a>.
+        </p>
+        <p class="cite"><a href="https://azure.microsoft.com/en-us/overview/nosql-database/">Learn more about NoSQL
+            dbs</a>, Microsoft Azure.</p>
+      </section>
+
+      <section>
+        <h2>Relational -> Document -> Graph DB</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m3-kleppman-ddia_0201.png"
+            alt="A LinkedIn profile for Bill Gates beside the relational tables that store it. A users table holds his name and summary, with region_id and industry_id pointing into separate regions and industries tables; positions, education and contact_info tables each hold several rows that point back to his user_id." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m3-kleppman-ddia_0202.png"
+            alt="The same profile drawn as a tree. User 251 sits at the root with first_name, last_name and summary hanging off it, and two branches: positions, splitting into three jobs each with a job title and organization, and education, splitting into two entries each with a school name, start and end." />
+          <img class="fragment fade-in-then-out" data-fragment-index="1" src="img/m3-kleppman-ddia_0203.png"
+            alt="A LinkedIn experience section where hovering over the word Microsoft opens a card for the company: its description, size, website, headquarters and industry. The organization is not just a string of text but a link to another entity." />
+          <img class="fragment fade-in-then-out" data-fragment-index="2" src="img/m3-kleppman-ddia_0204.png"
+            alt="Two user profiles, 251 and 467, each with its own positions and education branches, now pointing out to shared organization and school entities in the middle, and a recommendation from one user to the other. The tree has become a web of many-to-many links." />
+          <img class="fragment fade-in" data-fragment-index="3" src="img/m3-kleppman-ddia_0205.png"
+            alt="A graph of people and places. Lucy and Alain are connected by a married edge. Lucy was born in Idaho and lives in London; Alain lives in London and was born in Beaune. Each place links upward by within edges: Idaho within the United States within North America; London within England within the United Kingdom within Europe; Beaune within Côte-d'Or within Burgundy within France within Europe." />
+        </div>
+        <!-- Captions: Ankita's quotes of Kleppmann's figure captions, one per image, on the same
+             fragment indices as the image stack above, so each caption changes with its figure. -->
+        <div class="r-stack">
+          <p class="text-medium fragment fade-out" data-fragment-index="0">Figure 2-1: "Representing a LinkedIn
+            profile using a relational schema."</p>
+          <p class="text-medium fragment fade-in-then-out" data-fragment-index="0">Figure 2-2: "One-to-many
+            relationships forming a tree structure."</p>
+          <p class="text-medium fragment fade-in-then-out" data-fragment-index="1">Figure 2-3: "The company name is not
+            just a string, but a link to a company entity."</p>
+          <p class="text-medium fragment fade-in-then-out" data-fragment-index="2">Figure 2-4: "Extending resumes with
+            many-to-many relationships"</p>
+          <p class="text-medium fragment fade-in" data-fragment-index="3">Figure 2-5: "Example of graph-structured data
+            (boxes represent vertices, arrows represent edges)."</p>
+        </div>
+        <p class="cite">Martin Kleppmann, <a
+            href="https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch02.html"><i>Designing
+              Data-Intensive Applications</i>, ch. 2</a>, O'Reilly.</p>
+      </section>
+
+      <section>
+        <h2>Watch for SQL injections</h2>
+        <img src="img/m3-xkcd-exploits_of_a_mom.png" width="90%"
+          alt="An xkcd comic in four panels. A school calls a mother to say they are having computer trouble. She asks whether her son broke something. The school asks if she really named her son Robert'); DROP TABLE Students;-- and she says yes, little Bobby Tables, they call him. The school says they have lost this year's student records, and she replies that she hopes they have learned to sanitize their database inputs." />
+        <p class="cite">Randall Munroe, <a href="https://xkcd.com/327/">"Exploits of a Mom"</a>, xkcd, CC BY-NC 2.5.</p>
+      </section>
+
+      <!-- ============ 2. OBJECTS IN PYTHON ============ -->
+
+      <!-- Fresh outline: new slide, Ankita to fill. Commented out at review (2026-10-01) so its
+           placeholders can't ship; the push check only catches TODO, not [ANKITA].
+      <section>
+        <h2>Object-Oriented Programming</h2>
+        <p>[ANKITA: definition and why]</p>
+        <p>[ANKITA: image]</p>
+      </section>
+      -->
+
+      <!--
+          A24-3.2 §10. oop-abstraction.png is a Booch cartoon (same series as the §14 and §16
+          images, which 2024 cited); the 2024 slide itself had no cite. Confirm.
+        -->
+      <section>
+        <h2>Principle #1 of OOP: Abstraction</h2>
+        <p>OOP use abstractions known as <span class="red">objects.</span></p>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m3-oop-abstraction.png"
+            alt="A cartoon cat on a stool between two people. A grandmother imagines it as a purring ball of fur beside a food bowl; a veterinary surgeon imagines its skeleton and organs. Caption: Abstraction focuses on the essential characteristics of some object, relative to the perspective of the viewer." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m3-oop-object.png"
+            alt="A UML class box for a Cat. Attributes: name, date_of_birth, breed, sassiness. Methods: purr, walk, sulk, eat." />
+        </div>
+        <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis &amp; Design.</p>
+      </section>
+
+      <!-- A24-3.2 §11 -->
+      <section>
+        <h2>Objects</h2>
+        <img src="img/m3-oop-object-field.png" width="25%"
+          alt="A UML class box for a Field. Attributes: name, a string of up to 50 characters; location, a latitude and longitude; crop, from a list of crops; date planted and date harvested; and is_fallow, true or false. Methods: plant a crop, harvest, which returns a crop, spray an input, mow, and covercrop." />
+        <div class="r-hstack">
+          <div>
+            <ul class="text-medium">
+              <li><b>Attributes</b> (Nouns)</li>
+              <li>A variable inside an object</li>
+              <li>Attributes have a type</li>
+              <li>Accessed: <code>field.location</code></li>
+            </ul>
+          </div>
+          <div>
+            <ul class="text-medium">
+              <li><b>Methods</b> (Verbs)</li>
+              <li>A function inside an object</li>
+              <li>Optional input/output.</li>
+              <li>Run: <code>field.plant(crop)</code></li>
+            </ul>
+          </div>
+        </div>
+        <!-- Optional, from the outline: autumn-denny-object_oriented_variables.png (Autumn Denny, Ag
+             Informatics Lab, Purdue University, 2025) - variables as labelled boxes. Not placed. -->
+      </section>
+
+      <!-- A24-3.2 §13 -->
+      <section>
+        <h2>Objects in Python</h2>
+        <p class="text-medium">Classes are used to represent objects</p>
+        <pre class="text-medium"><code class="language-python" data-trim data-line-numbers><script type="text/template">
+class Animal:
+    animal_type = "cow"
+    name = "Bessy"
+    age = 10
+    breed = "Holstein"
+        </script></code></pre>
+        <p class="text-medium">Class = Animal. Object = this_specific_animal_instance</p>
+        <p class="text-medium">"Constructors" can be used to instantiate an object. <code>__init__()</code>.</p>
+        <p class="red fragment"><b>Let's try to create a more abstract, reusable class.</b></p>
+      </section>
+
+      <!--
+          farm.py READ-ALONG. Code is the 2024 oop-example/farm.py, in its own order, comments
+          moved to speaker notes. Slide titles are farm.py's own section comments. Pairs of
+          slides auto-animate (data-auto-animate + matching data-id on the <pre>), so the code
+          grows in place; "..." stands for lines already shown. The full file is on the
+          printed handout, handouts/handout-farm-readalong.html.
+        -->
+      <section data-auto-animate>
+        <h2>Let's try to create a more reusable animal</h2>
+        <pre data-id="farm-1" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-7|3|4|5-7"><script type="text/template">
+from datetime import date
+
+class Animal:
+    def __init__(self, name, birth_year, birth_month, birth_day, weight):
+        self.name = name
+        self.birthdate = date(birth_year, birth_month, birth_day)
+        self.weight = weight
+        </script></code></pre>
+        <aside class="notes">farm.py: look for help using help(date). Indentation matters. Note the use of the colon.
+          Note the use of "self". Order within the function doesn't matter; order when passing into the function
+          matters, hence documentation matters. The constructor method allows you to create a class.</aside>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Demo using the animal</h2>
+        <pre data-id="farm-1" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-6|5|6"><script type="text/template">
+class Animal:
+    def __init__(self, name, birth_year, birth_month, birth_day, weight):
+        ...
+
+bessy = Animal("Bessy", 2010, 4, 1, 200)
+print(f"hello {bessy.name}")
+        </script></code></pre>
+      </section>
+
+      <!-- A24-3.2 §14 -->
+      <section>
+        <h2>Principle #2 of OOP: Inheritance.</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m3-oop-heirarchy.png"
+            alt="A cartoon of a man pouring a jar of clockwork toy mice through a stack of sieves labelled, from top to bottom, toy mice, clockwork motors, component parts, atoms, and etc. Caption: Abstractions form a hierarchy." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m3-oop-animal-heirarchy.png"
+            alt="A UML class hierarchy. Animal holds name, birthdate and weight, with methods __init__, change_name, calculate_age and print_details. Three subclasses inherit from it: Chicken, with breeds and purpose egg or meat; Cow, with breeds and purpose dairy or beef; and Goat, with breeds." />
+        </div>
+        <p>Objects have relationships!</p>
+        <p class="red fragment"><b>Let's try to create a heirarchy of reusable classes</b></p>
+        <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis &amp; Design.</p>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Example stub class</h2>
+        <pre data-id="farm-2" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-5|4-5"><script type="text/template">
+class Animal:
+    ...
+
+class Dodo(Animal):
+    pass
+        </script></code></pre>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Goat as an example of inheritance</h2>
+        <pre data-id="farm-2" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-9|4|5-6|7|8-9"><script type="text/template">
+class Animal:
+    ...
+
+class Goat(Animal):
+    def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
+        super().__init__(name, birth_year, birth_month, birth_day, weight)
+        self.breed = breed
+        goat_secret_name = "secret goaty goat"
+        self.goat_secret_name = "secret goaty goat"
+        </script></code></pre>
+        <aside class="notes">farm.py: create a child class. Mismatch to name aloud: in code, breed arrives through
+          the Goat and Cow subclasses; in the Farm tracker data model, breed sits on the one Animal table, next to
+          a species column. Classes tell Python what kind of animal it is - a table has no classes, so it needs a
+          column. Kleppmann calls this the object-relational mismatch (the database half, before Part 2).</aside>
+        <!-- farm.py left as is (Ankita, 2026-10-01): breed stays on the subclasses because that is the
+             inheritance point. The data model diverges on purpose; see the speaker note. -->
+      </section>
+
+      <!-- A24-3.2 §15 -->
+      <section>
+        <h2>Composition &amp; Association</h2>
+        <img src="img/m3-oop-car.png" class="r-stretch"
+          alt="A UML class diagram of a car. Car, with registration number, year and licence number and methods to move, stop and turn, is linked one-to-one to Engine, GearBox, Body and Brake, to one or more Suspensions, and many-to-one to a CarModel. GearBox links to a GearBoxType; Suspension to a Wheel; Wheel to a Tire and a Brake." />
+        <p class="cite">img src: Visual Paradigm, Tool Examples 2021.</p>
+      </section>
+
+      <!-- A24-3.2 §16 -->
+      <section>
+        <h2>Principle #3 of OOP: Encapsulation</h2>
+        <img src="img/m3-oop-encapsulation.png" width="50%"
+          alt="A cartoon cat with a door open in its side, showing a hidden machine inside with parts labelled purrer, pouncer, wool tangler and taunter. Caption: Encapsulation hides the details of the implementation of an object." />
+        <p>Objects have a notion of "self".</p>
+        <p class="red fragment"><b>Let's write a few methods</b></p>
+        <p class="cite">img src: Booch et al., 2007, Object Oriented Analysis &amp; Design.</p>
+        <!-- Optional, from the outline: autumn-denny-object_design_electrickettle.png (Autumn Denny, 2025).
+             Not placed. -->
+      </section>
+
+      <section data-auto-animate>
+        <h2>Later: come write a method</h2>
+        <pre data-id="farm-3" class="text-small"><code class="language-python" data-trim data-line-numbers="1-11|5-8|10-11"><script type="text/template">
+class Animal:
+    def __init__(self, name, birth_year, birth_month, birth_day, weight):
+        ...
+
+    def calculate_age(self):
+        today = date.today()
+        age = today.year - self.birthdate.year - ((today.month, today.day) < (self.birthdate.month, self.birthdate.day))
+        return age
+
+    def details(self):
+        print(f"{self.name} is {self.calculate_age()} years old today!")
+        </script></code></pre>
+        <aside class="notes">farm.py: provide a calculated output without revealing the details of this object.
+          Then: print the details.</aside>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Demo goat object</h2>
+        <pre data-id="farm-3" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-3|2|3"><script type="text/template">
+sunny = Goat("Sunny", 2009, 4, 1, 20, "highland")
+sunny.details()
+print(sunny.goat_secret_name)
+        </script></code></pre>
+        <aside class="notes">farm.py: access goat secret name and explain why that's bad.</aside>
+      </section>
+
+      <!-- A24-3.2 §17; heading renumbered #3 -> #4 (2024 had two "#3"s) -->
+      <section>
+        <h2>Principle #4 of OOP: Polymorphism</h2>
+        <img src="img/m3-oop-animal-polymorphism.png" width="50%"
+          alt="The Animal class hierarchy again, now with methods on the subclasses: Chicken and Cow each have their own __init__ and print_details, and Goat its own __init__, so each kind of animal can behave differently." />
+        <p class="red fragment"><b>Let's make our classes behave differently depending on what they are</b></p>
+      </section>
+
+      <section>
+        <h2>Cow is an example of polymorphism</h2>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-10|1|6-7|9-10"><script type="text/template">
+class Cow(Animal):
+    def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
+        super().__init__(name, birth_year, birth_month, birth_day, weight)
+        self.breed = breed
+
+    def details(self):
+        print(f"{self.name} is {self.calculate_age()} years old today. She is a {self.breed} weighing {self.weight} pounds.")
+
+bessy = Cow("Bessy", 2010, 4, 1, 200, "Holstein")
+bessy.details()
+        </script></code></pre>
+        <aside class="notes">farm.py: overriding the previously defined function.</aside>
+      </section>
+
+      <!-- A24-3.2 §18 -->
+      <section>
+        <h2>Methods as an Object Interface</h2>
+        <img src="img/m3-oop-interfaces.png" width="50%"
+          alt="Three boxes connected by cables. The middle box is open, with tools, variables and functions inside, and plugs into a red box on one side and a purple box on the other. Text: We can change something inside an object without changing the interface and the program will continue to work normally." />
+        <p>Interface with: a library, a module, an application.<br /><br />An Application Programming Interface (API!)
+        </p>
+        <p class="cite"><a
+            href="https://medium.com/practicum-by-yandex/introduction-to-object-oriented-programming-34cc3b7ab582">Introduction
+            to object-oriented programming</a>, Practicum by Yandex, Medium.</p>
+      </section>
+
+      <!-- A24-3.2 §19, retitled in the fresh outline -->
+      <section>
+        <h2>Object-Oriented Programming (OOP)</h2>
+        <p>Model your system as objects</p>
+        <ul>
+          <li>Identify classes.</li>
+          <li>Identify attributes (nouns).</li>
+          <li>Outline methods (verbs).</li>
+          <li>Create associations &amp; other relationships</li>
+        </ul>
+      </section>
+
+      <!-- ============ 3. CLOSE ============ -->
+
+      <!-- The outline's item 3 (review fix, 2026-10-01). The check-in itself is on Brightspace. -->
+      <section>
+        <h2>Project: How's it going?</h2>
+        <p>Check-in on Brightspace.</p>
+      </section>
+
+
+      <section>
+        <h2>Questions?</h2>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (2026-10-01), this deck only - not in module-template yet. Draws the three erDiagrams.
+      Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+    const draw = () => {
+      const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+      if (nodes.length) mermaid.run({ nodes });
+    };
+    if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+    Reveal.on('slidechanged', draw);
+  </script>
+</body>
+
+</html>

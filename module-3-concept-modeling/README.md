@@ -27,8 +27,7 @@ Lecture materials including handouts, demos, and quizzes.
 
 - [Lecture 3.1](lecture-3.1.html)
 - [Lecture 3.2](lecture-3.2.html) - Graded in-class activity, which begins Lab 3 Part 1
-<!-- - [Lecture 3.3 demo]() and [Quiz 3]()
-- [Lecture 3.4]() -->
+- [Lecture 3.3](lecture-3.3.html) - From objects to data models: the Farm tracker ([handout](handouts/handout-farm-tracker.html), [farm.py handout](handouts/handout-farm-readalong.html), [demo notebook](demos/farm-oop-demo.ipynb))
 
 ### Lab 3
 

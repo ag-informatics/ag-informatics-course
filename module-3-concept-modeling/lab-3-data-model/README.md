@@ -134,6 +134,16 @@ version number and a prompt. Type `.quit` to exit.
   extract it, and run `sqlite3.exe` from PowerShell.
 - **Linux:** install via your package manager, e.g. `sudo apt install sqlite3`.
 
+#### Add SQLAlchemy to your Python environment
+
+Part 3 uses **SQLAlchemy**, which is not in your Lab 2 environment yet. Add this line to the `requirements.txt` from Lab 2:
+
+```text
+sqlalchemy==2.1.*
+```
+
+Then, with your `.venv` active, run `pip install -r requirements.txt`. Skip this and STEP 8 stops with `ModuleNotFoundError: No module named 'sqlalchemy'`.
+
 #### Install a UML diagram editing tool
 
 Select one of the following diagramming tools (or let us know if you plan to use something else):
@@ -319,7 +329,7 @@ Record your `create table` and `insert` statements in `insert_<yourtable>.txt` f
 
 So far you have written SQL, which works in any relational database, but is not the friendliest language to live in. Now you will drive the same database from Python.
 
-Copy `lab-3-skeleton.ipynb` and `data_model.py` from this folder into your `lab3` folder, and rename the notebook to `lab-3-yourname.ipynb`. Open it and select the `.venv` kernel you used in Lab 2.
+Copy `lab-3-skeleton.ipynb` and `data_model.py` from this folder into your `lab3` folder, and rename the notebook to `lab-3-yourname.ipynb`. Open it and select the `.venv` kernel you used in Lab 2, with SQLAlchemy added (see "Before the lab").
 
 `data_model.py` ships with one fully worked example class, commented line by line, and two stubs. **Your turn:** complete the two stubs so they match the tables you built in STEP 7, then connect them with a `relationship` so you can follow the foreign key from Python.
 

@@ -24,3 +24,6 @@ ankita reference docs - do not commit/
 
 #ignore local Claude Code settings (machine-specific, not shared config)
 .claude/settings.local.json
+
+#ignore the instructor's local environment at a module root (lecture demos + lab code)
+/module-*/requirements.txt
