@@ -17,7 +17,7 @@
         PAGE 2: the SQL slides, verbatim - building the animal table, the farm data so
           far, the crops join, the two inserts the database accepts, and the join that
           catches them - each beside a notes column.
-      The farm.py read-along has its own handout, handout-farm-readalong.html.
+      (The farm.py read-along handout was removed 2026-10-05: Objects in Python moved to Lecture 4.1.)
 
       Self-contained apart from the legend image: no stylesheet link.
     -->
@@ -139,33 +139,95 @@
     <h2>Object model</h2>
     <p class="sub"><b>Task domain:</b> tracking the locations of my crops and animals</p>
     <table class="spec">
-      <tr><th>Object</th><th>Attributes</th><th>Operations</th><th>Related to</th></tr>
-      <tr><td><b>Farm</b></td><td>name</td><td>add, view</td><td>has 1-many Fields.<br />has 0-many Animals.</td></tr>
-      <tr><td><b>Field</b></td><td>name, acres, field_type (pasture, cropland), note</td><td>add, view</td><td>has 0-many plots.<br />If pasture, has 0-many Animals.</td></tr>
-      <tr><td><b>Plot</b></td><td>name, length, width, planted_date, harvest_date</td><td>add, view, plant, harvest</td><td>has 0-1 crop</td></tr>
-      <tr><td><b>Crop</b></td><td>name, days_to_maturity</td><td>add, view</td><td>-</td></tr>
-      <tr><td><b>Animal</b></td><td>name, species, breed, birthdate, weight</td><td>calculate age, details</td><td>-</td></tr>
-      <tr><td><b>Goat</b></td><td>secret name</td><td>same as Animal</td><td>is a type of Animal</td></tr>
-      <tr><td><b>Cow</b></td><td>-</td><td>details of its own</td><td>is a type of Animal</td></tr>
+      <tr>
+        <th>Object</th>
+        <th>Attributes</th>
+        <th>Operations</th>
+        <th>Related to</th>
+      </tr>
+      <tr>
+        <td><b>Farm</b></td>
+        <td>name</td>
+        <td>add, view</td>
+        <td>has 1-many Fields.<br />has 0-many Animals.</td>
+      </tr>
+      <tr>
+        <td><b>Field</b></td>
+        <td>name, acres, field_type (pasture, cropland), note</td>
+        <td>add, view</td>
+        <td>has 0-many plots.<br />If pasture, has 0-many Animals.</td>
+      </tr>
+      <tr>
+        <td><b>Plot</b></td>
+        <td>name, length, width, planted_date, harvest_date</td>
+        <td>add, view, plant, harvest</td>
+        <td>has 0-1 crop</td>
+      </tr>
+      <tr>
+        <td><b>Crop</b></td>
+        <td>name, days_to_maturity</td>
+        <td>add, view</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><b>Animal</b></td>
+        <td>name, species, breed, birthdate, weight</td>
+        <td>calculate age, details</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><b>Goat</b></td>
+        <td>secret name</td>
+        <td>same as Animal</td>
+        <td>is a type of Animal</td>
+      </tr>
+      <tr>
+        <td><b>Cow</b></td>
+        <td>-</td>
+        <td>details of its own</td>
+        <td>is a type of Animal</td>
+      </tr>
     </table>
 
     <div class="legend">
       <img src="../img/m3-creately-crows-foot-cardinality-3.webp"
         alt="The four Crow's Foot combinations. A bar then a ring: minimum zero, maximum one, optional. A ring then a fork: minimum zero, maximum many, optional. Two bars: minimum one, maximum one, mandatory. A bar then a fork: minimum one, maximum many, mandatory." />
-      <p class="cite">Crow's Foot legend: <a href="https://www.creately.com/guides/crows-foot-notation/">Crow's Foot Notation guide</a>, Creately.</p>
+      <p class="cite">Crow's Foot legend: <a href="https://www.creately.com/guides/crows-foot-notation/">Crow's Foot
+          Notation guide</a>, Creately.</p>
     </div>
 
     <h2>Data model</h2>
     <p class="sub">Name each table. Mark its primary key (PK) and foreign keys (FK), list its columns, and draw the
       relationships between tables.</p>
     <div class="diagram">
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
-      <div class="box"><div class="name"></div><div class="rows"></div></div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
+      <div class="box">
+        <div class="name"></div>
+        <div class="rows"></div>
+      </div>
     </div>
 
 
@@ -190,12 +252,20 @@
 
     <h2>The farm data, so far</h2>
     <table class="spec">
-      <tr><th>farm</th><th>field</th><th>crop</th><th>plot</th><th>animal</th></tr>
+      <tr>
+        <th>farm</th>
+        <th>field</th>
+        <th>crop</th>
+        <th>plot</th>
+        <th>animal</th>
+      </tr>
       <tr>
         <td>1 Home farm<br />2 River farm</td>
-        <td>1 North pasture (farm 1, pasture)<br />2 South field (farm 1, cropland)<br />3 River field (farm 2, cropland)</td>
+        <td>1 North pasture (farm 1, pasture)<br />2 South field (farm 1, cropland)<br />3 River field (farm 2,
+          cropland)</td>
         <td>1 carrot<br />2 lettuce</td>
-        <td>1 south plot A (field 2, crop 1)<br />2 south plot B (field 2, no crop)<br />3 river plot (field 3, crop 2)</td>
+        <td>1 south plot A (field 2, crop 1)<br />2 south plot B (field 2, no crop)<br />3 river plot (field 3, crop 2)
+        </td>
         <td>1 Sunny (farm 1, field 1, goat)<br />2 Bessy (farm 1, no field, cow)</td>
       </tr>
     </table>

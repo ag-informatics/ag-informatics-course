@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m4-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Python Objects</h1>
+
+        <p>
+          Module 4 - Web Applications<br />
+          Lecture 4.1 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE. Split 2026-10-05 (prompts.md, "Lecture 4.2 and L4.3"): Intro to Django and Django setup
+          moved to lecture-4.2.html. Title and purpose line trimmed to match; the goal is unchanged.
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">Object-oriented programming in Python.</p>
+
+        <ol class="fragment text-medium">
+          <li>Function design</li>
+          <li>Objects in Python</li>
+        </ol>
+        <p class="fragment green">Goal: Decompose systems, instantiate classes.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- CODE COLORS, Module 4 only (Ankita, 2026-10-05; redistributed 2026-10-06). Inline code in slide text and titles:
+             red    = Python keywords (def, class, return, pass, from, import)
+             green  = functions, methods and classes: anything you call or define with ()
+             blue   = arguments: the values passed in
+             purple = attributes (name, breed, self.x) AND terminal commands (pip, django-admin, python manage.py ...,
+                      git ...). The two never share a slide, so they share a color.
+             pink   = files, folders and local URLs (myapp/settings.py, views.py, http://127.0.0.1:8000/)
+           Blue also marks plain-text highlights outside <code>. Code blocks keep the highlight.js theme.
+           The "Code color key" slide shows this table before each lecture's first code. -->
+
+      <!-- ============ 1. FUNCTION DESIGN ============ -->
+      <!-- A24-3.2 §22-26 (D3 on #30: function design opens Module 4). Ported verbatim; headings h3 -> h2. -->
+
+      <section>
+        <h2>Programming Paradigms</h2>
+        <table class="text-medium">
+          <tr>
+            <th>Procedural</th>
+            <th>Functional</th>
+            <th>Object-oriented</th>
+          </tr>
+          <tr>
+            <td>"[P]rograms are lists of instructions that tell the computer what to do with the program's input."</td>
+            <td>"Functional programming decomposes a problem into a set of functions. Ideally, functions only take
+              inputs and produce outputs, and don't have any internal state that affects the output produced for a
+              given input."</td>
+            <td>"Object-oriented programs manipulate collections of objects. Objects have internal state and support
+              methods that query or modify this internal state in some way."</td>
+          </tr>
+          <tr class="red">
+            <td>Sequential instructions</td>
+            <td>Functions with inputs and outputs</td>
+            <td>Objects as data-method bundles</td>
+          </tr>
+        </table>
+        <p class="cite">A. M. Kuchling, <a href="https://docs.python.org/3/howto/functional.html">Functional
+            Programming HOWTO</a>, Python documentation.</p>
+      </section>
+
+      <!-- Code color key (Ankita, 2026-10-06): shown before the first code in every Module 4 lecture. Same table in
+           every deck; keep them in sync with the key in the harvest outline. -->
+      <section>
+        <h2>Code color key</h2>
+        <table class="text-medium">
+          <tr>
+            <th>Color</th>
+            <th>Marks</th>
+            <th>For example</th>
+          </tr>
+          <tr>
+            <td class="red">red</td>
+            <td>Python keywords</td>
+            <td><code class="red">def</code>, <code class="red">class</code>, <code class="red">return</code></td>
+          </tr>
+          <tr>
+            <td class="green">green</td>
+            <td>functions, methods and classes: things you call</td>
+            <td><code class="green">print()</code>, <code class="green">__init__()</code>, <code class="green">Animal</code></td>
+          </tr>
+          <tr>
+            <td class="blue">blue</td>
+            <td>arguments: the values you pass in</td>
+            <td><code class="blue">name</code> in <code><span class="green">greet</span>(<span class="blue">name</span>)</code></td>
+          </tr>
+          <tr>
+            <td class="purple">purple</td>
+            <td>attributes: the data an object holds<br />and commands you type in the terminal</td>
+            <td><code>self.<span class="purple">name</span></code>, <code class="purple">pip install</code></td>
+          </tr>
+          <tr>
+            <td class="pink">pink</td>
+            <td>files, folders and local URLs</td>
+            <td><code class="pink">views.py</code>, <code class="pink">http://127.0.0.1:8000/</code></td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <h2>Procedural Programming</h2>
+        <p>Previously...</p>
+        <pre><code class="language-python" data-trim data-line-numbers="1-2|3-5|6,7|8,9"><script type="text/template">
+import pandas as pd
+...
+dirty_CORN = pd.read_csv('dirty-cornprices.csv')
+dirty_CORN.dropna(how='all', axis=1, inplace=True)
+...
+dirty_CORN.to_csv('clean-cornprices.csv')
+...
+plt.plot(clean_CORN['Year'], clean_CORN['Value'])
+plt.show()
+        </script></code></pre>
+
+        <div class="r-hstack">
+          <div>
+            <p>PROS</p>
+            <ul>
+              <li>Linear batch-processing</li>
+              <li>Straightforward logic flow</li>
+            </ul>
+          </div>
+          <div>
+            <p>CONS</p>
+            <ul>
+              <li>Can't reuse code</li>
+              <li>Can't support dynamic logic flow</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="cite">
+          Quick reference on
+          <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a>
+        </p>
+      </section>
+
+      <!-- Ankita's slide (2026-10-05): the function machine, moved here from the Functional Programming slide.
+           Denny images cleared to ship, D5. -->
+      <section>
+        <h2>Whatabout my operations?!</h2>
+        <img src="img/m4-autumn-denny-function_machine.png" width="70%" alt="A cartoon of a function as a machine on a conveyor belt. Two input boxes, num1 holding 3 and num2
+          holding 4, ride in on the left; the machine, labelled addNum, shows result=num1 + num2 on its screen; a result
+          box holding 7 rides out on the right. Labels underneath read Input, Function and Output." />
+        <p class="cite">Function machine: Autumn Denny, Ag Informatics Lab, Purdue University, 2025.</p>
+      </section>
+
+      <section>
+        <h2>Functional Programming</h2>
+        <pre><code class="language-python" data-trim data-line-numbers="1-2|4-5"><script type="text/template">
+def greet():
+  print ("Hello World!")
+
+def greet(name):
+  print ("Hello " + name)
+        </script></code></pre>
+
+        <ul class="no-bullets">
+          <li>Logical groups of actions can <code><span class="red">def</span>ined as a <span
+              class="green">function()</span></code></li>
+          <li>Functions can have input <code class="blue">arguments</code>, e.g. name.</li>
+          <br />
+          <li class="fragment">
+            You've imported functions from <span class="blue">libraries</span>, e.g.,
+            <a
+              href="https://github.com/pandas-dev/pandas/blob/v1.3.3/pandas/core/algorithms.py#L328-L433">pandas.unique()</a>
+          </li>
+        </ul>
+
+        <br />
+        <p class="cite">
+          Quick reference on
+          <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a>
+        </p>
+      </section>
+
+      <!-- D4 fix: the 2024 loop read `for name in names`, which raises NameError; now `args`.
+           Typo fixed: **kwrags -> **kwargs. -->
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Function with variable number of arguments (<code class="blue">*args</code>)</p>
+        <pre><code class="language-python" data-trim data-line-numbers><script type="text/template">
+def greet(*args):
+    for name in args:
+      print(f"Hello {name}")
+        </script></code></pre>
+
+        <br />
+        <ul>
+          <li>
+            <code class="blue">*args</code> is variable length
+            <a href="https://www.w3schools.com/python/python_tuples.asp">tuple</a>
+            of arguments.
+          </li>
+          <li>
+            You can also send in keyword arguments (<code class="blue">kwargs</code>) and a variable
+            number of keyword arguments (<code class="blue">**kwargs</code>)
+          </li>
+          <li>
+            Use of a
+            <a href="https://www.w3schools.com/python/ref_string_format.asp">formatted string</a>
+          </li>
+        </ul>
+
+        <br /><br />
+        <p class="cite">
+          Quick reference on
+          <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Functional Programming</h2>
+        <p>Function can have outputs, aka a <code class="red">return</code> value</p>
+
+        <pre><code class="language-python" data-trim data-line-numbers="1-3|1-5"><script type="text/template">
+def ac_to_sqft(value):
+  answer = value*43560
+  return answer
+
+sqft = ac_to_sqft(15)
+        </script></code></pre>
+
+        <br />
+        <div class="r-hstack">
+          <div>
+            <p>PROS</p>
+            <ul>
+              <li>Can reuse code!</li>
+            </ul>
+          </div>
+          <div>
+            <p>CONS</p>
+            <ul>
+              <li>Still a linear program flow</li>
+            </ul>
+          </div>
+        </div>
+
+        <br /><br />
+        <p class="cite">
+          Quick reference on
+          <a href="https://www.w3schools.com/python/python_functions.asp">Python Functions</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Function Design, in short</h2>
+        <pre><code class="language-python" data-trim data-line-numbers="1|2|3|4-8|10-12|1-12"><script type="text/template">
+def get_area(width, height):
+  """Get the area of a rectangle.
+  @type width, height: int
+  >>> get_area(2, 5)
+  10
+  >>> get_area(100,42)
+  4200
+  """
+
+  area = width*height
+
+  return(area)
+        </script></code></pre>
+
+        <ul class="text-small">
+          <li>Write function header</li>
+          <li>Write a little description in the comments</li>
+          <li>
+            Write "type contract", i.e., what is each argument going to be
+          </li>
+          <li>Write examples expected behavior.</li>
+          <li>Write your function itself!</li>
+          <li>Test it.</li>
+        </ul>
+        <aside class="notes">Demo notebook, Part 1: run the doctest on get_area.</aside>
+      </section>
+
+      <!-- ============ 2. OBJECTS IN PYTHON ============ -->
+      <!-- Started as a copy of module-3-concept-modeling/lecture-3.3.html's second half (it did not run when
+           Lecture 3.3 was lost, 2026-09-29), then substantially revised here. Removed from 3.3 on 2026-10-05 at
+           Ankita's request; flagged to move back to Module 3 next year. -->
+
+      <!-- Ankita's OOP explainer slides (2026-10-05), from her outline and her Booch screenshots (3rd edition, 2007).
+           Every Booch cite in this deck links to archive.org's closest copy, which is the 2nd edition (2000 Indian
+           reprint, "Object-oriented analysis and design with applications"); no 3rd edition is on archive.org. -->
+      <section>
+        <h2>Designing complex systems</h2>
+        <div class="r-hstack">
+          <!-- Trojan cat, then Booch Figure 1-2 (Ankita, 2026-10-05; replaces the Object-Oriented Design slide). -->
+          <div class="r-stack">
+            <img class="fragment fade-out" data-fragment-index="0" src="img/m4-booch-trojan-cat.png" width="100%"
+              alt="A cartoon of an architects' office. On the wall is a poster for Project 2865108, the Trojan Cat Building: a giant cat-shaped skyscraper among city towers. Below it, architects at drafting tables each work on one subsystem: a miaowing system, a bird aggravation system, a purring system, a cuddliness system and a cat breath ventilation system. Caption: The architecture of a complex system is a function of its components as well as the hierarchic relationships among these components." />
+            <img class="fragment fade-in" data-fragment-index="0" src="img/m4-booch-canonical-form.png" width="100%"
+              alt="Booch Figure 1-2, The Canonical Form of a Complex System. At the bottom, two panels: Class Structure, an 'is a' hierarchy of classes C1 to C8 linked by arrows, and Object Structure, a 'part of' hierarchy of linked objects grouped in nested dashed boxes. Arrows from both panels point up to the Canonical Form: a hierarchy of boxes, each holding a small set of connected objects, linked by dashed lines to the boxes it decomposes into." />
+          </div>
+          <ul class="text-medium no-bullets">
+            <li><span class="red">Hierarchic structure</span>, composed of subsystems</li><br />
+            <li><span class="red">Primitive components</span> are design choices</li><br />
+            <li><span class="red">Separation of concerns</span> let us group/isolate parts</li><br />
+            <li><span class="red">Common patterns</span> to reuse small components</li><br />
+            <li><span class="red">Stable intermediate forms</span> as we iterate over code</li>
+          </ul>
+        </div>
+        <p class="cite">img src: Booch et al., 2007, <a
+            href="https://archive.org/details/objectorientedan0000booc_o2l7/mode/2up">Object Oriented Analysis &amp;
+            Design</a>.</p>
+      </section>
+
+      <section>
+        <h2>Object-Oriented Programming</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m4-booch-algorithmic-decomposition.png"
+            alt="Booch Figure 1-3, Algorithmic Decomposition: a tree of steps under Update file. Its children are Get master area, Get formatted update, Match, Update, Put unmatched master and Put new master area, and each breaks down further into smaller steps, such as Get OK master into Get old master record and Validate checksum, and Get valid card into Edit and Get sequenced card." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m4-booch-oo-decomposition.png"
+            alt="Booch Figure 1-4, Object-Oriented Decomposition: a diagram of five objects connected by labelled messages. An Update arrives at Master File, which sends Get Formatted Update to File of Updates, Get Put Create to Master Record, and Match to Update to Card. File of Updates sends Get Reformat to Update to Card. Master Record sends Is Valid Add to Checksum." />
+        </div>
+        <p class="cite">img src: Booch et al., 2007, <a
+            href="https://archive.org/details/objectorientedan0000booc_o2l7/mode/2up">Object Oriented Analysis &amp;
+            Design</a>.</p>
+      </section>
+
+      <section>
+        <h2>Benefits of OOP</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m4-booch-collaborating-cats.png"
+            alt="A cartoon of four cats, their bodies twisted together like a rope, pulling open a refrigerator door to reach a carton of fresh cream. Caption: Objects collaborate with other objects to achieve some behavior." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m4-booch-modularity.png"
+            alt="A cartoon of a man sitting among the parts of a Do-It-Yourself Cat Kit, reading the assembly instructions. Parts are tagged purrer, miaower, ticker, stick-on stripes, and leg - rear offside. Caption: Modularity packages abstractions into discrete units." />
+          <img class="fragment fade-in-then-out" data-fragment-index="1" src="img/m4-booch-concurrency.png"
+            alt="A cartoon cut-away of a cat stalking a mouse hole. Inside the cat, mice each work their own control panel at the same time: wag, arch back, mate, digest, tangle wool, bask, stretch, pounce, purr and miaow. Caption: Concurrency allows different objects to act at the same time." />
+          <img class="fragment fade-in" data-fragment-index="2" src="img/m4-booch-persistence.png"
+            alt="A cartoon of a cat on a sunny beach, claws dug into the sand, being pulled backwards into a large tube by a person inside it. Caption: Persistence saves the state and class of an object across time or space." />
+        </div>
+        <!-- Booch's definitions (Ankita, from the book, 2026-10-05), stepping with the images. The collaborating
+             cats get none. -->
+        <div class="r-stack text-medium">
+          <p class="fragment fade-in-then-out" data-fragment-index="0">"Modularity is the property of a system that has
+            been decomposed into a set of cohesive and loosely coupled modules."</p>
+          <p class="fragment fade-in-then-out" data-fragment-index="1">"Concurrency is the property that distinguishes
+            an
+            active object from one that is not active."</p>
+          <p class="fragment fade-in" data-fragment-index="2">"Persistence is the property of an object through which
+            its
+            existence transcends time and/or space."</p>
+        </div>
+        <p class="cite">img src: Booch et al., 2007, <a
+            href="https://archive.org/details/objectorientedan0000booc_o2l7/mode/2up">Object Oriented Analysis &amp;
+            Design</a>.</p>
+      </section>
+
+      <!-- Ankita's slide (2026-10-05). The four principles are the titles of the slides that follow. -->
+      <section>
+        <h2>Principles of OOP</h2>
+        <div class="r-hstack">
+          <div>
+            <ol class="fragment">
+              <li>Abstraction</li>
+              <li>Inheritance</li>
+              <li>Encapsulation</li>
+              <li>Polymorphism</li>
+            </ol>
+          </div>
+          <img src="img/m4-autumn-denny-object_oriented_variables.png" width="40%"
+            alt="A cartoon of variables as labelled cardboard boxes, filled from a black-and-white dog sitting beside them. The value &quot;Lizzie&quot; drops into a box labelled name, the number 4 into a box labelled age, and True into a box labelled isDog." />
+        </div>
+        <p class="cite">Variables as boxes: Autumn Denny, Ag Informatics Lab, Purdue University, 2025.</p>
+      </section>
+
+
+      <!-- A24-3.2 §10. The cat cartoons are all Booch (confirmed by Ankita, 2026-10-05). -->
+      <section>
+        <h2>Principle #1 of OOP: Abstraction</h2>
+        <p>OOP uses abstractions known as <span class="red">objects.</span></p>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m4-oop-abstraction.png"
+            alt="A cartoon cat on a stool between two people. A grandmother imagines it as a purring ball of fur beside a food bowl; a veterinary surgeon imagines its skeleton and organs. Caption: Abstraction focuses on the essential characteristics of some object, relative to the perspective of the viewer." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m4-oop-object.png"
+            alt="A UML class box for a Cat. Attributes: name, date_of_birth, breed, sassiness. Methods: purr, walk, sulk, eat." />
+        </div>
+        <p class="cite">img src: Booch et al., 2007, <a
+            href="https://archive.org/details/objectorientedan0000booc_o2l7/mode/2up">Object Oriented Analysis &amp;
+            Design</a>.</p>
+      </section>
+
+      <!-- A24-3.2 §11 -->
+      <section>
+        <h2>Objects</h2>
+        <img src="img/m4-oop-object-field.png" width="25%"
+          alt="A UML class box for a Field. Attributes: name, a string of up to 50 characters; location, a latitude and longitude; crop, from a list of crops; date planted and date harvested; and is_fallow, true or false. Methods: plant a crop, harvest, which returns a crop, spray an input, mow, and covercrop." />
+        <div class="r-hstack">
+          <div>
+            <ul class="text-medium">
+              <li><b>Attributes</b> (Nouns)</li>
+              <li>A variable inside an object</li>
+              <li>Attributes have a type</li>
+              <li>Accessed: <code>field.<span class="purple">location</span></code></li>
+            </ul>
+          </div>
+          <div>
+            <ul class="text-medium">
+              <li><b>Methods</b> (Verbs)</li>
+              <li>A function inside an object</li>
+              <li>Optional input/output.</li>
+              <li>Run: <code>field.<span class="green">plant</span>(<span class="blue">crop</span>)</code></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- A24-3.2 §13 -->
+      <section>
+        <h2>Python <code class="red">class</code></h2>
+        <div class="r-hstack">
+          <pre class="text-medium"><code class="language-python" data-trim data-line-numbers><script type="text/template">
+class Animal:
+    animal_type = "cow"
+    name = "Bessy"
+    age = 10
+    breed = "Holstein"
+          </script></code></pre>
+          <ul class="no-bullets text-medium align-left">
+            <li class="fragment"><code class="purple">animal_type</code>: Make each kind of
+              animal its own class.</li>
+            <li class="fragment"><code class="purple">name</code>: Pass the name as an argument when
+              object is created.</li>
+            <li class="fragment"><code class="purple">age</code>: Store birthdate,
+              calculate age.</li>
+            <li class="fragment"><code class="purple">breed</code>: Breeds vary by animal.</li>
+          </ul>
+        </div>
+        <p class="text-medium">Indentation matters. Note the use of the colon.</p>
+        <p class="text-medium">Class = Animal. <br />Object = this_specific_animal_instance</p>
+        <p class="text-medium red">This is a bad class! Not reusable! All hardcoded!</p>
+        <p class="green fragment"><b>Let's try to create a more abstract, reusable class.</b></p>
+      </section>
+
+      <!--
+          farm.py READ-ALONG. Code is the 2024 oop-example/farm.py, in its own order; its comments are now
+          on-slide notes (2026-10-05). Pairs of slides auto-animate (data-auto-animate + matching data-id on
+          the <pre>), so the code grows in place; "..." stands for lines already shown. Every cell is in
+          demos/farm-oop-demo.ipynb, Part 2. (Module 3's printed read-along handout is not copied here.)
+        -->
+      <section data-auto-animate>
+        <h2>An abstract, reusable <br /><code><span class="red">class</span> <span class="green">Animal</span></code>
+        </h2>
+        <pre data-id="farm-1" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-7|3|4|5-7"><script type="text/template">
+from datetime import date
+
+class Animal:
+    def __init__(self, name, birth_year, birth_month, birth_day, weight):
+        self.name = name
+        self.birthdate = date(birth_year, birth_month, birth_day)
+        self.weight = weight
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code class="green">__init__()</code> is a "constructor" method used to create an object.</li>
+          <li>See function documentation:
+            <code><span class="green">help</span>(<span class="blue">function_name</span>)</code>.
+          </li>
+          <li><code>self</code> is self-referential (this object).</li>
+          <li>Order within the function doesn't matter; <br />order when passing into the function matters, hence
+            documentation matters.</li>
+        </ul>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Instantiate "Bessy"</h2>
+        <pre data-id="farm-1" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-6|5|6"><script type="text/template">
+class Animal:
+    def __init__(self, name, birth_year, birth_month, birth_day, weight):
+        ...
+
+bessy = Animal("Bessy", 2010, 4, 1, 200)
+print(f"hello {bessy.name}")
+        </script></code></pre>
+        <!-- Explainer: Claude-drafted at Ankita's request (2026-10-05). Output checked in demos/farm-oop-demo.ipynb. -->
+        <ul class="text-medium">
+          <li><code><span class="green">Animal</span>(<span class="blue">"Bessy", 2010, 4, 1, 200</span>)</code>
+            calls the class like a function. <br />The object is constructed using <code
+              class="green">__init__()</code>.<br />
+            Values must
+            be in the same
+            order as its arguments. <br /><span class="red">This also is why function headers are important - they tell
+              the user what to expect.</span></li><br />
+          <li><code><span class="green">print</span>(<span class="blue">f"hello {bessy.name}"</span>)</code>:
+            the <code>f</code> makes a "formatted string". <br />Whatever is inside <code>{ }</code> is
+            run, so <code>{bessy.name}</code> = <code>Bessy</code>. <br />Output printed: <code>hello Bessy</code>
+          </li>
+        </ul>
+      </section>
+
+      <!-- A24-3.2 §14 -->
+      <section>
+        <h2>Principle #2 of OOP: Inheritance</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m4-oop-heirarchy.png"
+            alt="A cartoon of a man pouring a jar of clockwork toy mice through a stack of sieves labelled, from top to bottom, toy mice, clockwork motors, component parts, atoms, and etc. Caption: Abstractions form a hierarchy." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m4-oop-animal-heirarchy.png"
+            alt="A UML class hierarchy. Animal holds name, birthdate and weight, with methods __init__, change_name, calculate_age and print_details. Three subclasses inherit from it: Chicken, with breeds and purpose egg or meat; Cow, with breeds and purpose dairy or beef; and Goat, with breeds." />
+        </div>
+        <p>Objects have relationships!</p>
+        <p class="red fragment"><b>Let's try to create a hierarchy of reusable classes</b></p>
+        <p class="cite">img src: Booch et al., 2007, <a
+            href="https://archive.org/details/objectorientedan0000booc_o2l7/mode/2up">Object Oriented Analysis &amp;
+            Design</a>.</p>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Inheritance: <code class="green">Dodo</code> is empty class stub</h2>
+        <pre data-id="farm-2" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-5|4-5"><script type="text/template">
+class Animal:
+    ...
+
+class Dodo(Animal):
+    pass
+        </script></code></pre>
+        <ul class="text-medium no-bullets">
+          <li>The brackets denote the parent being inherited: </li><br />
+          <li><code><span class="red">class</span>
+            <span class="green">Dodo</span>(<span class="green">Animal</span>) = </code> <code>Dodo</code> is a child
+            of <code>Animal</code>. </li>
+          <li><code>Dodo</code> inherits everything an <code>Animal</code> has: attributes and methods.</li>
+          <li><code class="red">pass</code> means "nothing new to add yet".</li>
+        </ul>
+      </section>
+
+      <section data-auto-animate>
+        <h2>Inheritance: <code class="green">Goat</code> is a child class</h2>
+        <pre data-id="farm-2" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-9|4|5-6|7|8-9"><script type="text/template">
+class Animal:
+    ...
+
+class Goat(Animal):
+    def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
+        super().__init__(name, birth_year, birth_month, birth_day, weight)
+        self.breed = breed
+        goat_secret_name = "secret goaty goat"
+        self.goat_secret_name = "secret goaty goat"
+        </script></code></pre>
+        <ul class="text-small">
+          <li>Note: in code, <code class="purple">breed</code> arrives through the <code class="green">Goat</code>
+            and <code class="green">Cow</code> subclasses; <br />in the Farm tracker data model, <code
+              class="purple">breed</code> sits on the
+            one Animal table, next to a species column.</li>
+          <li>Classes tell Python what kind of animal it is - a table has no classes, so it needs a column.<br />
+            <!-- Links to Lecture 3.3's "Relational -> Document -> Graph DB" slide (Kleppmann Figures 2-1 to 2-5).
+                 #/22 is its slide index; recheck if slides are added or removed before it in 3.3. -->
+            <a href="../module-3-concept-modeling/lecture-3.3.html#/22">Kleppmann calls this the object-relational
+              mismatch.</a>
+          </li><br />
+
+          <li>In line 8: the lack of <code>self.</code> means that this is a local variable - not visible outside the
+            <code class="green">__init__</code> constructor method.
+            <br />Only
+            <code>self.<span class="purple">goat_secret_name</span></code> is kept.
+          </li>
+
+        </ul>
+        <!-- farm.py left as is (Ankita, 2026-10-01): breed stays on the subclasses because that is the
+             inheritance point. The data model diverges on purpose; see the note on the slide. -->
+      </section>
+
+      <!-- A24-3.2 §15 likely cut, it's out of place here since i've already taught the concept. leave as comment-->
+      <!-- <section>
+        <h2>Composition &amp; Association</h2>
+        <img src="img/m4-oop-car.png" class="r-stretch"
+          alt="A UML class diagram of a car. Car, with registration number, year and licence number and methods to move, stop and turn, is linked one-to-one to Engine, GearBox, Body and Brake, to one or more Suspensions, and many-to-one to a CarModel. GearBox links to a GearBoxType; Suspension to a Wheel; Wheel to a Tire and a Brake." />
+        <p class="cite">img src: Visual Paradigm, Tool Examples 2021.</p>
+      </section> -->
+
+      <!-- A24-3.2 §16, combined with the "A sense of self" slide (Ankita, 2026-10-05): the kettle gives way to
+           the cat, with her line. -->
+      <section>
+        <h2>Principle #3 of OOP: Encapsulation</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0"
+            src="img/m4-autumn-denny-object_design_electrickettle.png" width="50%"
+            alt="A labelled drawing of an electric kettle. The parts you use are on the outside: a handle to lift off the top lid, a spout for easy pouring, a handle for easy pouring and burn prevention, and a window to view the water boiling, with marks for measuring volume. The heating element that boils the water sits inside the base, and the plug has a grounding prong for electrical safety." />
+
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m4-oop-encapsulation.png" width="80%"
+            alt="A cartoon cat with a door open in its side, showing a hidden machine inside with parts labelled purrer, pouncer, wool tangler and taunter. Caption: Encapsulation hides the details of the implementation of an object." />
+        </div>
+        <p>Objects contain data + methods. They have a sense of "self".</p>
+        <p class="red fragment" data-fragment-index="1"><b>Let's write a few methods</b></p>
+        <p class="cite">img src: Booch et al., 2007, <a
+            href="https://archive.org/details/objectorientedan0000booc_o2l7/mode/2up">Object Oriented Analysis &amp;
+            Design</a>. Electric kettle: Autumn
+          Denny, Ag Informatics Lab, Purdue University, 2025.</p>
+      </section>
+
+      <section data-auto-animate>
+        <h2>At last, my encapsulated operations!</h2>
+        <p>Hide the birthdate, calculate the age.</p>
+        <pre data-id="farm-3" class="text-small"><code class="language-python" data-trim data-line-numbers="1-11|5-8|10-11"><script type="text/template">
+class Animal:
+    def __init__(self, name, birth_year, birth_month, birth_day, weight):
+        ...
+
+    def calculate_age(self):
+        today = date.today()
+        age = today.year - self.birthdate.year - ((today.month, today.day) < (self.birthdate.month, self.birthdate.day))
+        return age
+
+    def details(self):
+        print(f"{self.name} is {self.calculate_age()} years old today!")
+        </script></code></pre>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: farm.py comment. -->
+        <ul class="text-medium">
+          <li><code>(today.month, today.day) &lt; (...)</code> is <code>True</code> or <code>False</code><br />
+            In Python, <code>True</code> = 1: it takes off a year if this year's birthday hasn't happened yet.
+          </li><br />
+          <li><code class="green">details()</code> calls <code>self.<span class="green">calculate_age()</span></code>:
+            a method can use the object's other methods through <code>self</code>.</li>
+        </ul>
+
+      </section>
+
+      <section data-auto-animate>
+        <h2>Goat tried to keep secrets</h2>
+        <pre data-id="farm-3" class="text-medium"><code class="language-python" data-trim data-line-numbers="1-3|2|3"><script type="text/template">
+sunny = Goat("Sunny", 2009, 4, 1, 20, "highland")
+sunny.details()
+print(sunny.goat_secret_name)
+        </script></code></pre>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: farm.py comment, reworded from an instructor cue ("explain why that's bad"). -->
+        <ul class="text-medium">
+          <!-- Claude-drafted (2026-10-05), converted from a suggestion comment: edit or cut. -->
+          <li>Prints: <code>Sunny is 17 years old today!</code> and <code>secret goaty goat</code></li>
+          <li>Goat inherited <code class="green">details()</code> and <code class="green">calculate_age()</code> from
+            its parent class:
+            <code class="green">Animal</code>
+          </li><br />
+          <li>We can access the goat's secret name. Why is that bad? Any code can read/change the goat. </li><br />
+          <li><span class="blue">Python has no truly private
+              attributes.</span><br /> The convention is a leading underscore
+            (<code>self.<span class="purple">_secret_name</span></code>) and associated method.
+          </li>
+        </ul>
+
+      </section>
+
+      <!-- A24-3.2 §17; heading renumbered #3 -> #4 (2024 had two "#3"s) -->
+      <section>
+        <h2>Principle #4 of OOP: Polymorphism</h2>
+        <img src="img/m4-oop-animal-polymorphism.png" width="50%"
+          alt="The Animal class hierarchy again, now with methods on the subclasses: Chicken and Cow each have their own __init__ and print_details, and Goat its own __init__, so each kind of animal can behave differently." />
+        <p class="red fragment"><b>Let's make our classes behave differently depending on what they are</b></p>
+      </section>
+
+      <section>
+        <h2><code class="green">Cow</code> practices polymorphism</h2>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-10|1|6-7|9-10"><script type="text/template">
+class Cow(Animal):
+    def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
+        super().__init__(name, birth_year, birth_month, birth_day, weight)
+        self.breed = breed
+
+    def details(self):
+        print(f"{self.name} is {self.calculate_age()} years old today. She is a {self.breed} weighing {self.weight} pounds.")
+
+bessy = Cow("Bessy", 2010, 4, 1, 200, "Holstein")
+bessy.details()
+        </script></code></pre>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: farm.py comment. -->
+        <ul class="text-medium no-bullets">
+          <li>Overriding the previously defined method.</li>
+        </ul>
+      </section>
+
+      <!-- A24-3.2 §19, retitled in the fresh outline -->
+      <section>
+        <h2>Object-Oriented Programming (OOP)</h2>
+        <p>Model your system as objects</p>
+        <ul>
+          <li>Identify classes.</li>
+          <li>Identify attributes (nouns).</li>
+          <li>Outline methods (verbs).</li>
+          <li>Create associations &amp; other relationships</li>
+        </ul>
+      </section>
+
+      <!-- A24-3.2 §18 -->
+      <section>
+        <h2>Methods as an Object Interface</h2>
+        <img src="img/m4-oop-interfaces.png" width="50%"
+          alt="Three boxes connected by cables. The middle box is open, with tools, variables and functions inside, and plugs into a red box on one side and a purple box on the other. Text: We can change something inside an object without changing the interface and the program will continue to work normally." />
+        <p>Interface with: a library, a module, <b class="red">a web application.</b><br />
+          <br />
+          A collection of
+          methods are... <br />an Application
+          Programming Interface (API!)
+        </p>
+        <p class="cite"><a
+            href="https://medium.com/practicum-by-yandex/introduction-to-object-oriented-programming-34cc3b7ab582">Introduction
+            to object-oriented programming</a>, Practicum by Yandex, Medium.</p>
+      </section>
+
+      <section>
+        <h2>Questions?</h2>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

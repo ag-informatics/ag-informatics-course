@@ -18,9 +18,8 @@ db.sqlite3
 #ignore massive files
 *.pptx
 
-#ignore folders explicitly marked do-not-commit
-archived releases - do not commit/
-ankita reference docs - do not commit/
+#ignore folders explicitly marked do-not-commit (any folder whose name ends "- do not commit")
+*- do not commit/
 
 #ignore local Claude Code settings (machine-specific, not shared config)
 .claude/settings.local.json

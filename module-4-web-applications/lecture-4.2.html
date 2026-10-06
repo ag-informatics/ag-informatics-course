@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m4-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Intro to Django</h1>
+
+        <p>
+          Module 4 - Web Applications<br />
+          Lecture 4.2 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE. Split from lecture-4.1.html 2026-10-05 (prompts.md, "Lecture 4.2 and L4.3"); purpose and goal
+          carried from 4.1's outline.
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">Implement web apps in Django.</p>
+
+        <ol class="fragment text-medium">
+          <li>Intro to Django
+            <ul class="text-small no-bullets">
+              <li>Software development tools: Django</li>
+              <li>Languages: Python</li>
+            </ul>
+          </li><br />
+
+          <li>Django setup</li>
+        </ol>
+        <p class="fragment green">Goal: Design, scope, and implement a web app MVP.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- CODE COLORS, Module 4 only (Ankita, 2026-10-05; redistributed 2026-10-06). Inline code in slide text and titles:
+             red    = Python keywords (def, class, return, pass, from, import)
+             green  = functions, methods and classes: anything you call or define with ()
+             blue   = arguments: the values passed in
+             purple = attributes (name, breed, self.x) AND terminal commands (pip, django-admin, python manage.py ...,
+                      git ...). The two never share a slide, so they share a color.
+             pink   = files, folders and local URLs (myapp/settings.py, views.py, http://127.0.0.1:8000/)
+           Blue also marks plain-text highlights outside <code>. Code blocks keep the highlight.js theme.
+           The "Code color key" slide shows this table before each lecture's first code. -->
+
+      <!-- ============ 1. INTRO TO DJANGO ============ -->
+      <!-- A24-4.1 §3-13. Ported verbatim; headings h3 -> h2; alt text and cites added. -->
+
+      <!-- Same image as module-1-web-fundamentals/img/m1-web-response.png: the "HTTTP" typo is Issue #13. -->
+      <section>
+        <h2>Static Websites</h2>
+        <img src="img/m4-web-response.png"
+          alt="Diagram of an HTTP request/response cycle: the client sends 'GET /images/plant.png HTTP/1.1, Host: www.plants.org' to the server; the server replies with 'HTTP/1.1 200 OK' and the image's binary data." />
+      </section>
+
+      <section>
+        <h2>Dynamic Sites?</h2>
+        <p>"[C]an generate and return content based on the specific request URL and data (rather than always returning
+          the same hard-coded file for a particular URL)."</p>
+        <br /><br />
+        <p class="cite"><a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview">https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Dynamic Web Apps</h2>
+        <h3>use 'server-side' code to...</h3>
+        <ul>
+          <li> Store, structure, and deliver data (e.g., search engine)</li>
+          <li> Notify user on status (e.g., calendar notifications) </li>
+          <li> Provide controlled access to content (e.g., email)</li>
+          <li> Data analysis to provide user recommendations (e.g., netflix)</li>
+          <li> Provide customized user experiences ("Hello {{ person_name }}!)"</li>
+          <li>...and much more!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>A Simplified Web App Architecture</h2>
+        <img src="img/m4-web-application.png" width="50%"
+          alt="Pettit's 'The Web Application' figure: a stack of six layers above a box labelled User Input and Browser. From the bottom: User Interface Code, Web Server, Frontend Systems, Backend Systems, Database, Data. Up and down arrows run between every layer." />
+        <br /><br />
+        <!-- Link check 2026-10-05: the cgisecurity.com PDF is 404. Needs an archived copy or a new source. -->
+        <p class="cite">Pettit, 2001, White paper: Anatomy of a Web Application: Security Considerations. <a
+            href="https://www.cgisecurity.com/lib/Web_Server.pdf">https://www.cgisecurity.com/lib/Web_Server.pdf</a></p>
+      </section>
+
+      <section>
+        <h2>Server-Side Programming</h2>
+        <img src="img/m4-web-application-dynamic.png"
+          alt="MDN's diagram of a dynamic website. A browser sends an HTTP GET request (1) to a web server. Static resources such as CSS, JavaScript and images come straight from files (7). Dynamic requests are forwarded with their request data, URL encoding, GET/POST data and cookies (2), to a web application, which reads and writes the database (3), combines the data with HTML templates (4), and returns HTML to the web server (5), which sends the response back to the browser (6)." />
+        <p class="text-small">"Requests for dynamic resources are instead forwarded (2) to server-side code (shown in
+          the
+          diagram as a Web Application). For "dynamic requests" the server interprets the request, reads required
+          information from the database (3), combines the retrieved data with HTML templates (4), and sends back a
+          response containing the generated HTML (5,6)."</p>
+
+        <br />
+        <p class="cite"><a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction">Mozilla,
+            Intro to
+            the server side,
+            https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction</a>
+        </p>
+      </section>
+
+
+
+      <section>
+        <h2>Web Frameworks</h2>
+        <p><span class="red">Django (python)</span>.
+          <br />Flask (python). Drupal (php). Express (javascript). Spring (java).
+          ASP.NET. Ruby on Rails (ruby)
+        </p><br />
+        <ul>
+          <li>Handle HTTP requests and responses</li>
+          <li>Manage access to data (in request, in database)</li>
+          <li>Render data in dynamic user interfaces</li>
+          <li>...provide a skeleton and toolbox to build web apps!</li>
+        </ul>
+      </section>
+
+      <!-- Docs link 5.1 -> 5.2 (current LTS, supported to April 2028; the version the demo runs on). -->
+      <section>
+        <h2>Django</h2>
+        <ul>
+          <li>Easy(ish) to learn: esp. since we've already started python</li>
+          <li>Batteries included: lots of good defaults (web security, caching, shortcuts)</li>
+          <li><a href="https://docs.djangoproject.com/en/5.2/">Excellent documentation.</a></li>
+          <li>Built to scale </li>
+          <li>Portable - runs on Windows, Linux, and Mac OS X.</li>
+          <li>Good for rapid prototyping!</li>
+        </ul>
+      </section>
+
+      <!-- Updated 2026-10-05 (Ankita): text-and-logo slide replacing the 2013-2019 screenshots (Spotify and
+           Robinhood dropped). Descriptions and links: Claude-drafted, links checked 2026-10-05.
+           [ANKITA] logos: add one small <img> before each name if wanted (alt = the tool's name). -->
+      <section>
+        <h2>Built with Django?</h2>
+        <div class="r-hstack">
+          <div>
+            <h3>At scale</h3>
+            <ul class="text-medium">
+              <li><a
+                  href="https://medium.com/instagram-engineering/types-for-python-http-apis-an-instagram-story-d3c3a207fdb7">Instagram</a>:
+                a Python monolith with thousands of Django endpoints</li>
+              <li><a href="https://github.com/mozilla/addons-server">Mozilla Add-ons</a>: open-source Django; you
+                can read the code</li>
+              <li><a href="https://wagtail.org/">Wagtail</a>: a content management system built on Django;
+                nasa.gov runs on it</li>
+            </ul>
+          </div>
+          <div class="fragment">
+            <h3>In agriculture</h3>
+            <ul class="text-medium">
+              <li><a href="https://github.com/kobotoolbox/kpi">KoboToolbox</a>: field survey and data collection;
+                two Django apps</li>
+              <li><a href="https://openpub.fmach.it/bitstream/10449/90796/1/2025%20ECPA%20Moretto.pdf">DigiAgriApp</a>:
+                open-source farm data: crops, sensors, irrigation, field operations</li>
+              <li>Our cover crop decision support prototype (next slide)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>Django for Rapid Prototyping</h2>
+        <img src="img/m4-cctool-umd-prototype.png" width="80%"
+          alt="Screenshot of the prototype Decisions Support Platform. A Cover Crop Selector form asks for state or province, county, seed species, flooding or ponding, drainage type, and a set of goal checkboxes such as legume nitrogen source, weed fighter and soil builder. Beside it, a Recommended Cover Crops table lists species such as spring and winter barley, buckwheat, flax and oats, each with an Add Crop button." />
+        <ul class="text-small">
+          <li>Used to create an early prototype of a cover crop decision support platform for Northeast Cover Crop
+            Council + USDA ARS</li>
+          <li>Proof of concept (excel tool -> online web app) = 6 undergrad CS students x 3 months</li>
+        </ul>
+      </section>
+
+      <!-- Outline suggestion (not applied): this slide could open Part 2 as the "why". -->
+      <section>
+        <h2>Structure of a Django Application</h2>
+        <img src="img/m4-basic-django.png" width="60%"
+          alt="Diagram of a Django application. An HTTP request arrives at URLS (urls.py), which forwards it to the appropriate view. The View (views.py) reads and writes data through the Model (models.py), uses a Template (filename.html), and returns an HTTP response as HTML." />
+        <p class="fragment"><span class="red">Pre-req: Object Oriented Programming in Python!</span></p>
+        <p class="cite">img src: <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Introduction">MDN,
+            Django introduction</a>.</p>
+      </section>
+
+      <!-- Code color key (Ankita, 2026-10-06): shown before the first code in every Module 4 lecture. Same table in
+           every deck; keep them in sync with the key in the harvest outline. -->
+      <section>
+        <h2>Code color key</h2>
+        <table class="text-medium">
+          <tr>
+            <th>Color</th>
+            <th>Marks</th>
+            <th>For example</th>
+          </tr>
+          <tr>
+            <td class="red">red</td>
+            <td>Python keywords</td>
+            <td><code class="red">def</code>, <code class="red">class</code>, <code class="red">return</code></td>
+          </tr>
+          <tr>
+            <td class="green">green</td>
+            <td>functions, methods and classes: things you call</td>
+            <td><code class="green">print()</code>, <code class="green">__init__()</code>, <code
+                class="green">Animal</code></td>
+          </tr>
+          <tr>
+            <td class="blue">blue</td>
+            <td>arguments: the values you pass in</td>
+            <td><code class="blue">name</code> in
+              <code><span class="green">greet</span>(<span class="blue">name</span>)</code>
+            </td>
+          </tr>
+          <tr>
+            <td class="purple">purple</td>
+            <td>attributes: the data an object holds<br />and commands you type in the terminal</td>
+            <td><code>self.<span class="purple">name</span></code>, <code class="purple">pip install</code></td>
+          </tr>
+          <tr>
+            <td class="pink">pink</td>
+            <td>files, folders and local URLs</td>
+            <td><code class="pink">views.py</code>, <code class="pink">http://127.0.0.1:8000/</code></td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- ============ AI-ASSISTED DEBUGGING: OUTLINE SLIDES (Ankita, 2026-10-06) ============
+           Four slides, bounded on purpose: at most 3 bullets each, about 12 words a bullet. Each slide names the
+           repo practice it comes from and the policy line it serves. Bullets populated from Claude's suggestions
+           (2026-10-06) for Ankita to edit; the suggestion and its source stay in a comment under each slide. -->
+
+      <section>
+        <h2>When Django breaks</h2>
+        <p class="text-medium blue">Modules 3-5: AI for debugging and exploring only.</p>
+        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
+        <ul class="text-medium">
+          <li>Read the error: the last line says <b>what</b>, the lines above say <b>where</b>.</li>
+          <li>Search it: the Django docs, Stack Overflow.</li>
+          <li>Then ask an AI, to understand, not to fix.</li>
+        </ul>
+        <!-- From: the course README's AI policy, Modules 3-5 ("Only use AI tools to explore and debug your code"; "when
+             you're stuck and receive error messages, use a search tool, check Stack Overflow, or use an LLM").
+             Suggested: (1) Read the error: the last line of the traceback says what, the lines above say where.
+             (2) Search it: the docs, Stack Overflow. (3) Then ask an AI, to understand, not to fix. -->
+      </section>
+
+      <section>
+        <h2>Write the question first</h2>
+        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
+        <ul class="text-medium">
+          <li>What I expected, and what happened: paste the full error.</li>
+          <li>The smallest code that still breaks, and its file: <code class="pink">views.py</code>, <code
+              class="pink">urls.py</code>, <code class="pink">settings.py</code>.</li>
+          <li>What I already tried.</li>
+        </ul>
+        <p class="cite">Stack Overflow, <a href="https://stackoverflow.com/help/how-to-ask">How do I ask a good
+            question?</a> and <a href="https://stackoverflow.com/help/minimal-reproducible-example">How to create a
+            minimal, reproducible example</a>.</p>
+        <!-- From: her prompts.md habit (prep and log the prompt before asking) and Stack Overflow's guidance.
+             Suggested: (1) What I expected, and what happened: paste the full error. (2) The smallest code that still
+             breaks, with its file path (views.py, urls.py, settings.py). (3) What I already tried. -->
+      </section>
+
+      <section>
+        <h2>Ask to understand, then verify</h2>
+        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
+        <ul class="text-medium">
+          <li>Ask "why is this failing?", not "fix this".</li>
+          <li>Ask for a reference you can check, like the Django docs.</li>
+          <li>Change one thing, rerun, and keep only what you understand.</li>
+        </ul>
+        <!-- From: her "list first" flag (findings before fixes), "verify paths from the real file", and Lab 3's AI
+             section ("ask for references or pointers to learning materials that you can verify").
+             Suggested: (1) Ask "why is this failing?", not "fix this". (2) Ask for a reference you can check: the
+             Django docs, not just the answer. (3) Change one thing, rerun, and keep only what you understand. -->
+      </section>
+
+      <section>
+        <h2>Keep a debugging log</h2>
+        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
+        <ul class="text-medium">
+          <li>One entry per bug: the error, what I tried, what fixed it.</li>
+          <li>Save the prompts and answers you used.</li>
+          <li>Disclose your AI use in your lab README.</li>
+        </ul>
+        <!-- From: her changelog entries (Request / Findings / Response / Next), her transcript archive, and the course
+             README ("disclose if and how you used AI tools... save and/or include transcripts or sample prompts").
+             Suggested: (1) Error, what I tried, what fixed it: one entry per bug. (2) Save the prompts and answers
+             you used. (3) Disclose it in your lab README. -->
+      </section>
+
+
+
+      <!-- ============ 2. DJANGO SETUP ============ -->
+      <!-- A24-4.2 §3, 4, 6-12, moved up from 4.2 (Ankita: "they need to see this ASAP to be able to install
+           django and get a test application built"). Names market/farmstand -> myapp/farmnotes (D8). Verified
+           2026-10-05 against Django 5.2.17. Speaker notes are A-DJ's own explanations, verbatim. -->
+
+      <!-- From A-DJ "Install Django". Version pinned to the 5.2 LTS (H9 default, Issue #26); run inside the
+           Lab 2 .venv. -->
+      <section>
+        <h2>Install Django</h2>
+        <pre><code class="language-bash" data-trim><script type="text/template">
+pip install "django>=5.2,<5.3"
+        </script></code></pre>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ. -->
+        <ul class="text-medium">
+          <li><code class="purple">pip</code> is a popular package manager for python.</li>
+          <li>We used it in previous labs when we created a virtual environment and install packages.<br />This lab,
+            we will use it to install Django.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Create a Project</h2>
+        <pre><code class="language-bash" data-trim><script type="text/template">
+django-admin startproject myapp
+
+cd myapp
+ls -al
+cat manage.py
+
+python manage.py runserver
+        </script></code></pre>
+
+        <p>Navigate to <code class="pink">http://127.0.0.1:8000/</code></p>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ. -->
+        <ul class="text-medium">
+          <li>The <code class="purple">django-admin</code> is our main command line tool for administrative tasks.</li>
+          <li>If you go to the URL in your browser, you should see a "Congratulations!"
+            page.</li>
+        </ul>
+      </section>
+
+      <!-- Fixes: the 2024 slide ran `cd farmstand` before `runserver`, but manage.py lives one level up, so
+           runserver failed; the cd is dropped. "pen folder" -> "Open folder". -->
+      <section>
+        <h2>Create a skeleton app</h2>
+        <pre><code class="language-bash" data-trim><script type="text/template">
+python manage.py startapp farmnotes
+
+# G=color, a=show . files, l=in long from
+ls -Gal
+
+# CTRL+R (search recent commands)
+python manage.py runserver
+        </script></code></pre>
+        <p>Navigate to <code class="pink">http://127.0.0.1:8000/farmnotes/</code></p>
+        <p>Open folder in editor</p>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ. -->
+        <ul class="text-medium">
+          <li>You should see an "404 Page not found" error page.</li>
+          <li>Your django project is running, but your app is empty! <br />Makes sense that it found no pages :)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Register the application</h2>
+        <p>In <code class="pink">myapp/settings.py</code>, we add:</p>
+        <pre><code class="language-python" data-trim><script type="text/template">
+INSTALLED_APPS = [
+  'farmnotes.apps.FarmnotesConfig',
+  # corresponds to /farmnotes/apps.py
+  .
+  .
+  .
+]
+        </script></code></pre>
+
+        <p>Note: we'll use the default database <code class="pink">db.sqlite3</code>.</p>
+      </section>
+
+      <section>
+        <h2>Two levels of URL Mapping</h2>
+
+        <p>Project level: <code class="pink">myapp/myapp/urls.py</code></p>
+        <pre><code class="language-python" data-trim><script type="text/template">
+urlpatterns = [
+    path('farmnotes/', include('farmnotes.urls')),
+    path('admin/', admin.site.urls),
+]
+        </script></code></pre>
+
+        <p>App level. Create new file: <code class="pink">myapp/farmnotes/urls.py</code></p>
+        <pre><code class="language-python" data-trim><script type="text/template">
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+        </script></code></pre>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ, plus the include line. -->
+        <ul class="text-small">
+          <li>Django works by using a URL dispatcher, <br />a tool that tells the webserver how different URLs map to
+            python functions (written inside <code class="pink">views.py</code>).</li>
+          <li>The project-level file also needs <code class="green">include</code>: <code><span
+                class="red">from</span> django.urls <span class="red">import</span> <span class="green">include</span>, <span
+                class="green">path</span></code>.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Create <code><span class="pink">views</span>.<span class="green">index</span></code></h2>
+
+        <p><code class="pink">farmnotes/views.py</code></p>
+        <pre><code class="language-python" data-trim><script type="text/template">
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("Hello, world! You're at the index, or 'home' page.")
+        </script></code></pre>
+        <p>Navigate to <code class="pink">http://127.0.0.1:8000/farmnotes/</code></p>
+      </section>
+
+      <!-- Doc links 5.1 -> 5.2 and made clickable. -->
+      <section>
+        <h2>Create a <code class="pink">model</code></h2>
+
+        <ul>
+          <li>Django <code class="pink">models</code> are classes = objects. </li>
+          <li>Django <code class="pink">models</code> have fields = attributes. </li>
+          <li>Django <code class="pink">models</code> have methods = functions inside classes.</li><br /><br />
+          <li>Django's admin gives every model CRUD methods for free: Create, Read, Update, Delete.</li>
+        </ul>
+
+
+        <p>References</p>
+        <ul class="text-small">
+          <li>Model basics: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/db/models/">https://docs.djangoproject.com/en/5.2/topics/db/models/</a>
+          </li>
+          <li>Model field types: <a
+              href="https://docs.djangoproject.com/en/5.2/ref/models/fields/">https://docs.djangoproject.com/en/5.2/ref/models/fields/</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- The class -> model pair. Code is Claude's, built for the demo (demo spec, 2026-10-05): Field is the
+           farm tracker's Field, Observation is farmnotes'. Copied from demos/farm-oop-demo.ipynb (Part 3) and
+           demos/myapp/farmnotes/models.py; both executed. Titles are the file names. 
+class Observation:
+    def __init__(self, field, observation_title, author, observation_content, observation_type, observation_date):
+        self.field = field
+        self.observation_title = observation_title
+        self.author = author
+        self.observation_content = observation_content
+        self.observation_type = observation_type
+        self.observation_date = observation_date
+        -->
+      <section data-auto-animate>
+        <h2>Python classes: <br /><code class="pink">farm-oop-demo.ipynb</code></h2>
+        <p class="blue">This is a conventional Python class.</p>
+        <pre data-id="model" class="text-small"><code class="language-python" data-trim data-line-numbers="1-6|8-15"><script type="text/template">
+class Field:
+    def __init__(self, name, acres, field_type, note=""):
+        self.name = name
+        self.acres = acres
+        self.field_type = field_type
+        self.note = note
+        </script></code></pre>
+
+        <p class="text-medium">I'm using the notebook to show snippets, but this is not a required part of Django.<br />
+          I
+          just like notebooks as
+          a drafting space!</p>
+      </section>
+
+      <!-- class Observation(models.Model):
+    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    observation_title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    observation_content = models.CharField(max_length=1000)
+    observation_type = models.CharField(choices=OBSERVATION_TYPES, max_length=100)
+    observation_date = models.DateField('date observed') -->
+      <section data-auto-animate>
+        <h2>Django models: <br /><code class="pink">farmnotes/models.py</code></h2>
+        <p class="blue">The same Python class translated into Django model.</p>
+        <pre data-id="model" class="text-small"><code class="language-python" data-trim data-line-numbers="1|3-7|9-15"><script type="text/template">
+from django.db import models
+
+class Field(models.Model):
+    name = models.CharField(max_length=200)
+    acres = models.FloatField()
+    field_type = models.CharField(choices=FIELD_TYPES, max_length=20)
+    note = models.CharField(max_length=1000, blank=True)
+
+        </script></code></pre>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ, plus the lookup-list line. -->
+        <ul class="text-medium">
+          <li>In Django, a MODEL describes the structure of your data, as well as your database.</li>
+          <li>Since models are written in python, we are essentially creating python OBJECTS, or CLASSES, <br />that
+            Django processes and converts into the database itself.</li>
+          <li><code>FIELD_TYPES</code> and <code>OBSERVATION_TYPES</code> are lookup lists defined above the classes
+            (see the demo).</li>
+        </ul>
+      </section>
+
+      <!-- From A-DJ §2, its "Remember:" list, verbatim; the title is the two commands. -->
+      <section>
+        <h2>Update models, migrate to DB</h2>
+        <!-- <code class="purple">makemigrations</code>, <code class="purple">migrate</code> -->
+        <ol>
+          <li>Edit your models in the file <code class="pink">models.py</code></li><br />
+          <li class="fragment"><code class="purple">python manage.py makemigrations farmnotes</code> to stage the
+            migration to reflect model changes.</li><br />
+          <li class="fragment"><code class="purple">python manage.py migrate</code>
+            to push the changes to the database.</li>
+        </ol>
+        <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ. -->
+        <p class="fragment text-medium">
+          You can think of <code class="purple">makemigrations</code> as the Django version of <code
+            class="purple">git add</code> and <code class="purple">git
+              commit</code>, <br />where you are simply indexing the changes you'd like to make. <code
+            class="purple">migrate</code> is like the Django equivalent of <code class="purple">git push</code>
+          --
+          it actually makes the
+          changes you desire.
+        </p>
+      </section>
+
+      <!-- Kept per Ankita (item 1, 2026-10-05): "they'll still need to know they exist, I just won't play
+           with views and templates in 4.1". Built in 4.3. Doc links 5.1 -> 5.2. -->
+      <section>
+        <h2>Create a <code class="pink">View</code></h2>
+        <ul>
+          <li>View function will pull data from model.</li>
+          <li>View function will render template.</li>
+          <li><code class="pink">urls.py</code> will route view function -> template.</li>
+        </ul>
+
+        <p>References</p>
+        <ul class="text-small">
+          <li>How to a write a view function: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/http/views/">https://docs.djangoproject.com/en/5.2/topics/http/views/</a>
+          </li>
+          <li>View shortcuts: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/">https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Create a <code class="pink">Template</code></h2>
+        <ul>
+          <li>Template presents your data in HTML.</li>
+          <li>Works just like any other HTML page. Can attach CSS!</li>
+          <li>Template uses variables passed from the view function of the same name.</li>
+        </ul>
+
+        <p>References</p>
+        <ul class="text-small">
+          <li>Template: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/templates/">https://docs.djangoproject.com/en/5.2/topics/templates/</a>
+          </li>
+          <li>Some helpful structures.</li>
+        </ul>
+      </section>
+
+      <!-- Revised 2026-10-06 (Ankita accepted): real comment syntax (# in the terminal, -- at the sqlite> prompt), the actual
+           file, Django's app_model table names (checked on the demo database), and .quit. Split into a terminal block
+           and an SQL block so each highlights correctly. -->
+      <section>
+        <h2>Django + SQLite</h2>
+        <pre><code class="language-bash" data-trim><script type="text/template">
+# in the terminal, from the myapp/ folder: open the database
+sqlite3 db.sqlite3
+        </script></code></pre>
+        <pre><code class="language-sql" data-trim><script type="text/template">
+-- list the tables: Django names them app_model
+.tables
+
+-- show everything (*) from a specific table
+SELECT * FROM farmnotes_field;
+
+-- show everything (*) from a specific table, filter by condition
+SELECT * FROM farmnotes_field WHERE field_type = 'pasture';
+
+-- back to the terminal
+.quit
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>Django names each table <code>app_model</code>: <code>farmnotes_field</code>, not <code>field</code>.
+            <br />The <code>auth_</code> and <code>django_</code> tables are Django's own.</li>
+          <li><code class="purple">.tables</code> and <code class="purple">.quit</code> need no semicolon; SQL does.</li>
+          <li>No SQLite installed? <code class="purple">python manage.py dbshell</code> opens the same database (or see
+            Lab 3, STEP 0).</li>
+        </ul>
+      </section>
+
+
+
+      <section>
+        <h2>Questions?</h2>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

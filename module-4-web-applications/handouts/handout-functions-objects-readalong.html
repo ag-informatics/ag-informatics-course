@@ -3,20 +3,18 @@
 
 <head>
   <meta charset="utf-8">
-  <title>farm.py read-along — ASM 532 Lecture 3.3 handout</title>
+  <title>Functions and objects read-along — ASM 532 Lecture 4.1 handout</title>
 
   <!--
       PRINTABLE HANDOUT. Open in a browser and print to PDF, or print directly.
 
-      The full farm.py from Lecture 3.3's read-along (2024 oop-example/farm.py), in
-      the slides' order: one block per read-along slide, titled as the slide is
-      (rebuilt 2026-10-01). Its comments are stripped so students write their own
-      in the notes column; the commented-out Chicken class and the importlib note
-      are left out. "..." marks lines already shown, as on the slides. Code is
-      otherwise verbatim (tabs as 4 spaces).
+      Every code block from Lecture 4.1, in the slides' order, titled as the slides are (built 2026-10-05
+      from Module 3's farm.py read-along handout, same layout). Code is verbatim from the deck; comments
+      are left for students to write in the notes column. "..." marks lines already shown, as on the
+      slides. Page 1: function design. Pages 2-3: objects in Python. The same code runs in
+      demos/farm-oop-demo.ipynb.
 
-      Self-contained by design: no stylesheet link, so it prints correctly from
-      wherever it is copied to.
+      Self-contained by design: no stylesheet link, so it prints correctly from wherever it is copied to.
     -->
 
   <style>
@@ -77,10 +75,73 @@
 
 <body>
   <main>
-    <h1>farm.py read-along</h1>
-    <p class="sub">ASM 532, Lecture 3.3 &middot; Objects in Python. Name: ______________________</p>
+    <h1>Functions and objects read-along</h1>
+    <p class="sub">ASM 532, Lecture 4.1 &middot; Python Objects. Name: ______________________</p>
 
-    <h2>Let's try to create a more reusable animal</h2>
+    <h2>Procedural Programming</h2>
+    <div class="block">
+      <pre>import pandas as pd
+...
+dirty_CORN = pd.read_csv('dirty-cornprices.csv')
+dirty_CORN.dropna(how='all', axis=1, inplace=True)
+...
+dirty_CORN.to_csv('clean-cornprices.csv')
+...
+plt.plot(clean_CORN['Year'], clean_CORN['Value'])
+plt.show()</pre>
+      <div class="notes">Notes</div>
+    </div>
+    <h2>Functional Programming</h2>
+    <div class="block">
+      <pre>def greet():
+  print ("Hello World!")
+
+def greet(name):
+  print ("Hello " + name)</pre>
+      <div class="notes">Notes</div>
+    </div>
+    <h2>Functional Programming: *args</h2>
+    <div class="block">
+      <pre>def greet(*args):
+    for name in args:
+      print(f"Hello {name}")</pre>
+      <div class="notes">Notes</div>
+    </div>
+    <h2>Functional Programming: return</h2>
+    <div class="block">
+      <pre>def ac_to_sqft(value):
+  answer = value*43560
+  return answer
+
+sqft = ac_to_sqft(15)</pre>
+      <div class="notes">Notes</div>
+    </div>
+    <h2 class="page-break">Function Design, in short</h2>
+    <div class="block">
+      <pre>def get_area(width, height):
+  """Get the area of a rectangle.
+  @type width, height: int
+  &gt;&gt;&gt; get_area(2, 5)
+  10
+  &gt;&gt;&gt; get_area(100,42)
+  4200
+  """
+
+  area = width*height
+
+  return(area)</pre>
+      <div class="notes">Notes</div>
+    </div>
+    <h2>Python class</h2>
+    <div class="block">
+      <pre>class Animal:
+    animal_type = "cow"
+    name = "Bessy"
+    age = 10
+    breed = "Holstein"</pre>
+      <div class="notes">Notes</div>
+    </div>
+    <h2>An abstract, reusable class Animal</h2>
     <div class="block">
       <pre>from datetime import date
 
@@ -91,22 +152,19 @@ class Animal:
         self.weight = weight</pre>
       <div class="notes">Notes</div>
     </div>
-
-    <h2>Demo using the animal</h2>
+    <h2>Instantiate &quot;Bessy&quot;</h2>
     <div class="block">
       <pre>bessy = Animal("Bessy", 2010, 4, 1, 200)
 print(f"hello {bessy.name}")</pre>
       <div class="notes">Notes</div>
     </div>
-
-    <h2>Example stub class</h2>
+    <h2 class="page-break">Inheritance: Dodo is empty class stub</h2>
     <div class="block">
       <pre>class Dodo(Animal):
     pass</pre>
       <div class="notes">Notes</div>
     </div>
-
-    <h2>Goat as an example of inheritance</h2>
+    <h2>Inheritance: Goat is a child class</h2>
     <div class="block">
       <pre>class Goat(Animal):
     def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
@@ -116,8 +174,7 @@ print(f"hello {bessy.name}")</pre>
         self.goat_secret_name = "secret goaty goat"</pre>
       <div class="notes">Notes</div>
     </div>
-
-    <h2 class="page-break">Later: come write a method</h2>
+    <h2>At last, my encapsulated operations!</h2>
     <div class="block">
       <pre>class Animal:
     def __init__(self, name, birth_year, birth_month, birth_day, weight):
@@ -132,16 +189,14 @@ print(f"hello {bessy.name}")</pre>
         print(f"{self.name} is {self.calculate_age()} years old today!")</pre>
       <div class="notes">Notes</div>
     </div>
-
-    <h2>Demo goat object</h2>
+    <h2>Goat tried to keep secrets</h2>
     <div class="block">
       <pre>sunny = Goat("Sunny", 2009, 4, 1, 20, "highland")
 sunny.details()
 print(sunny.goat_secret_name)</pre>
       <div class="notes">Notes</div>
     </div>
-
-    <h2>Cow is an example of polymorphism</h2>
+    <h2 class="page-break">Cow is an example of polymorphism</h2>
     <div class="block">
       <pre>class Cow(Animal):
     def __init__(self, name, birth_year, birth_month, birth_day, weight, breed):
