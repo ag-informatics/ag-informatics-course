@@ -1,4 +1,4 @@
-# Lecture 4.1 demo (2026). Field is the Farm tracker's Field from Lecture 3.3; Observation and its
+# Module 4 demo (2026), Lectures 4.2-4.3. Field is the Farm tracker's Field from Lecture 3.3; Observation and its
 # lookup list are from the 2024 farmnotes tutorial. Built and run on Django 5.2 LTS.
 from django.db import models
 

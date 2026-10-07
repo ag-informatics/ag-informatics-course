@@ -27,11 +27,8 @@ Learn how to design
 Lecture materials including handouts, demos, and quizzes.
 
 - [Lecture 4.1](lecture-4.1.html) - [Demo: from functions to Django models](demos/README.md) ([read-along handout](handouts/handout-functions-objects-readalong.html))
-- [Lecture 4.2](lecture-4.2.html) - same demo: its `myapp` Django project
-<!-- Add when they ship (Lecture 4.4 is built; it stays out of the push until reviewed):
-- [Lecture 4.3](lecture-4.3.html) - follow-the-object activity (lab period), with its cards and worksheet handouts
-- [Lecture 4.4](lecture-4.4.html) - same `myapp` project: views, templates, static files and a fixture
--->
+- [Lecture 4.2](lecture-4.2.html) - same demo: its `myapp` Django project ([Django code-map handout](handouts/handout-django-code-map.html), used with Lecture 4.3 too)
+- [Lecture 4.3](lecture-4.3.html) - same `myapp` project: views, templates and static files ([Django code-map handout](handouts/handout-django-code-map.html))
 
 ### Lab 4
 
@@ -47,7 +44,7 @@ If you are a Purdue ASM 532 student: Check Brightspace for current instructions,
 Every graded item in this module, with its points. Keep rubrics here, not in the lab or quiz
 README — one place to look, and the lab README stays about doing the lab.
 
-<!-- Total, the in-class activity (Lecture 4.3) and the check-in: Ankita to add, with their points, when 4.3 ships.
+<!-- Total and the check-in: Ankita to add, with their points, when 4.3 ships. (No in-class activity this module: it moved to Module 5, 2026-10-07.)
      The template's sections were removed so the push scan passes. -->
 
 ### Lab 4 — 20 pts
@@ -56,11 +53,11 @@ Specify, model, and build a Django web application. Default-farm track: the ACRE
 
 * Git Commits — 4 pts
     * 1 pt for each of 4 commits.
-* Specification — 4 pts (STEPs 1-3)
-    * Problem statement, worksheet photo, 2-3 use cases, functional and non-functional requirements, and an MVP cut.
-* Site map, data model and data dictionary — 4 pts (STEP 4)
+* Problem statement — 4 pts (STEP 1)
+    * A problem statement: whose data, what it is, and what the app should let them do. (Was "Specification"; the worksheet, use cases, requirements and MVP cut moved to Module 5, 2026-10-07. [ANKITA]: check the points.)
+* Site map, data model and data dictionary — 4 pts (STEP 2)
     * Pages labelled with their view, template and model(s); a class diagram of at least 4 classes, with primary keys, a foreign key relationship and any lookup lists; a data dictionary.
-* Implementation — 8 pts (STEPs 5-8)
+* Implementation — 8 pts (STEPs 3-6)
     * A working project and app, models with admin test data, data imported with a fixture file (and `db.sqlite3` left out of the repo), and an index page listing the main objects.
 
 ## References

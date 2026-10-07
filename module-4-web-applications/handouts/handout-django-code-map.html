@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Django code map — ASM 532 Lectures 4.2-4.3 handout</title>
+
+  <!--
+      PRINTABLE HANDOUT. Open in a browser and print to PDF, or print directly (page 1 prints landscape).
+
+      Page 1 is a map of a Django app's parts, laid out like the "Structure of a Django Application" diagram
+      in Lectures 4.2-4.3, with empty zones. Pages 2-12 are every file of the farmnotes demo, one file per page, in
+      the order the lectures build them. Students lay the map on the table and place each code page on its zone
+      (Ankita's design, 2026-10-06/07). Code is generated verbatim from demos/myapp (settings.py is the
+      INSTALLED_APPS excerpt; models.py without its provenance comment). The map's layout, the prompts, and the
+      arrows are Claude-drafted, for Ankita to edit.
+
+      Self-contained by design: no stylesheet link, so it prints correctly from wherever it is copied to.
+    -->
+
+  <style>
+    @page { margin: 1.2cm; }
+    @page mapPage { size: letter landscape; }
+    body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #000; background: #fff; font-size: 11pt; }
+    h1 { font-size: 16pt; margin: 0 0 0.2em; }
+    h2 { font-size: 12pt; margin: 0 0 0.4em; }
+    .sub { margin: 0 0 0.6em; }
+    .mappage { page: mapPage; }
+    .map { position: relative; height: 15cm; margin-top: 0.4cm; }
+    .arrows { position: absolute; inset: 0; width: 100%; height: 100%; stroke: #000; stroke-width: 2; fill: none; }
+    .arrows marker path { fill: #000; stroke: none; }
+    .zone { position: absolute; border: 2px solid #000; border-radius: 6px; padding: 0.3cm; background: #fff; box-sizing: border-box; }
+    .zname { font-weight: bold; font-size: 13pt; }
+    .zfile { font-size: 9pt; color: #444; margin-top: 0.3cm; }
+    .zhint { font-size: 9pt; color: #444; margin-top: 0.2cm; }
+    .browser { left: 0; top: 0; width: 19%; height: 23%; border-style: dashed; }
+    .urls { left: 32%; top: 0; width: 36%; height: 23%; }
+    .view { left: 40%; top: 36%; width: 20%; height: 22%; }
+    .model { left: 0; top: 36%; width: 25%; height: 26%; }
+    .db { left: 0; top: 75%; width: 25%; height: 25%; }
+    .tmpl { left: 74%; top: 30%; width: 26%; height: 32%; }
+    .static { left: 74%; top: 75%; width: 26%; height: 25%; }
+    .admin { left: 38%; top: 75%; width: 24%; height: 25%; }
+    .settings { left: 74%; top: 0; width: 26%; height: 23%; border-style: dotted; }
+    .legend { font-size: 9pt; margin-top: 0.3cm; }
+    .filepage { break-before: page; }
+    .excerpt { font-weight: normal; font-size: 10pt; color: #444; }
+    .ask { font-size: 10pt; margin: 0 0 0.4em; }
+    .block { display: grid; grid-template-columns: 68% 32%; border: 1px solid #000; }
+    pre { margin: 0; padding: 0.6em; font-family: Menlo, Consolas, monospace; font-size: 8.5pt; line-height: 1.6; white-space: pre-wrap; border-right: 1px solid #000; }
+    .notes { padding: 0.6em; font-size: 9pt; color: #555; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 1.65em, #bbb 1.65em, #bbb calc(1.65em + 1px)); }
+  </style>
+</head>
+
+<body>
+  <main>
+    <section class="mappage">
+      <h1>Django code map: farmnotes</h1>
+      <p class="sub">ASM 532, Lectures 4.2-4.3 &middot; Name: ______________________</p>
+      <p class="legend"><b>How to use it:</b> lay this map on your table. Place each code page on the zone where it
+        belongs, and write its file name in the zone. Then trace one request, <code>/farmnotes/1/</code>, from the
+        browser and back: draw on the arrows what each piece hands to the next. Solid arrows: one request's path, and what
+        talks to what. Dashed arrow: the view's response going back to the browser.</p>
+
+    <div class="map">
+      <div class="browser zone"><div class="zname">Browser</div><div class="zhint">sends an HTTP request,<br />gets back an HTTP response (HTML)</div></div>
+      <div class="zone urls"><div class="zname">URLs</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone view"><div class="zname">View</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone model"><div class="zname">Model</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone db"><div class="zname">Database</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone tmpl"><div class="zname">Template</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone static"><div class="zname">Static files</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone settings"><div class="zname">Settings</div><div class="zhint">the whole project</div><div class="zfile">file(s): ______________________</div></div>
+      <div class="zone admin"><div class="zname">Admin</div><div class="zfile">file(s): ______________________</div></div>
+      <svg class="arrows" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+        <defs><marker id="h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" /></marker></defs>
+        <line x1="190" y1="70" x2="320" y2="70" marker-end="url(#h)" />
+        <line x1="500" y1="130" x2="500" y2="200" marker-end="url(#h)" />
+        <line x1="400" y1="285" x2="250" y2="285" marker-end="url(#h)" />
+        <line x1="250" y1="315" x2="400" y2="315" marker-end="url(#h)" />
+        <line x1="110" y1="350" x2="110" y2="420" marker-end="url(#h)" />
+        <line x1="110" y1="420" x2="110" y2="350" marker-end="url(#h)" />
+        <line x1="600" y1="290" x2="740" y2="290" marker-end="url(#h)" />
+        <line x1="740" y1="310" x2="600" y2="310" marker-end="url(#h)" />
+        <line x1="850" y1="420" x2="850" y2="350" marker-end="url(#h)" />
+        <line x1="380" y1="470" x2="250" y2="340" marker-end="url(#h)" />
+        <line x1="400" y1="210" x2="190" y2="120" marker-end="url(#h)" stroke-dasharray="6 5" />
+      </svg>
+    </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/myapp/settings.py</code> <span class="excerpt">(excerpt: the app is registered here)</span></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>INSTALLED_APPS = [
+    &#x27;farmnotes.apps.FarmnotesConfig&#x27;,
+    &#x27;django.contrib.admin&#x27;,
+    &#x27;django.contrib.auth&#x27;,
+    &#x27;django.contrib.contenttypes&#x27;,
+    &#x27;django.contrib.sessions&#x27;,
+    &#x27;django.contrib.messages&#x27;,
+    &#x27;django.contrib.staticfiles&#x27;,
+]</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/myapp/urls.py</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path(&#x27;farmnotes/&#x27;, include(&#x27;farmnotes.urls&#x27;)),
+    path(&#x27;admin/&#x27;, admin.site.urls),
+]</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/urls.py</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # /farmnotes/
+    path(&#x27;&#x27;, views.index, name=&#x27;index&#x27;),
+
+    # /farmnotes/field_id/
+    # /farmnotes/5/
+    path(&#x27;&lt;int:field_id&gt;/&#x27;, views.notes, name=&#x27;notes&#x27;),
+
+    # /farmnotes/field_id/observation_id/
+    # 3rd observation for my 4th field
+    # /farmnotes/4/3/
+    path(&#x27;&lt;int:field_id&gt;/&lt;int:observation_id&gt;/&#x27;, views.observation, name=&#x27;observation&#x27;),
+]</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/models.py</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>from django.db import models
+
+FIELD_TYPES = [
+    (&#x27;pasture&#x27;, &#x27;Pasture&#x27;),
+    (&#x27;cropland&#x27;, &#x27;Cropland&#x27;),
+]
+
+OBSERVATION_TYPES = [
+    (&#x27;weather&#x27;, &#x27;Weather&#x27;),
+    (&#x27;crop&#x27;, &#x27;Crop&#x27;),
+    (&#x27;soil&#x27;, &#x27;Soil&#x27;),
+    (&#x27;water&#x27;, &#x27;Water&#x27;),
+    (&#x27;pest&#x27;, &#x27;Pest&#x27;),
+    (&#x27;other&#x27;, &#x27;Other&#x27;),
+]
+
+class Field(models.Model):
+    name = models.CharField(max_length=200)
+    acres = models.FloatField()
+    field_type = models.CharField(choices=FIELD_TYPES, max_length=20)
+    note = models.CharField(max_length=1000, blank=True)
+
+    def __str__(self):
+        return f&quot;{self.name} ({self.field_type}, {self.acres} acres)&quot;
+
+class Observation(models.Model):
+    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    observation_title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    observation_content = models.CharField(max_length=1000)
+    observation_type = models.CharField(choices=OBSERVATION_TYPES, max_length=100)
+    observation_date = models.DateField(&#x27;date observed&#x27;)
+
+    def __str__(self):
+        return f&quot;{self.observation_title} by {self.author} on {self.observation_date}&quot;</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/admin.py</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>from django.contrib import admin
+from .models import Field, Observation
+
+admin.site.register(Field)
+admin.site.register(Observation)</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/fixtures/farmnotes-data.json</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>[
+  {
+    &quot;model&quot;: &quot;farmnotes.field&quot;,
+    &quot;pk&quot;: 1,
+    &quot;fields&quot;: {
+      &quot;name&quot;: &quot;North pasture&quot;,
+      &quot;acres&quot;: 12.5,
+      &quot;field_type&quot;: &quot;pasture&quot;,
+      &quot;note&quot;: &quot;&quot;
+    }
+  },
+  {
+    &quot;model&quot;: &quot;farmnotes.field&quot;,
+    &quot;pk&quot;: 2,
+    &quot;fields&quot;: {
+      &quot;name&quot;: &quot;South field&quot;,
+      &quot;acres&quot;: 8.0,
+      &quot;field_type&quot;: &quot;cropland&quot;,
+      &quot;note&quot;: &quot;&quot;
+    }
+  },
+  {
+    &quot;model&quot;: &quot;farmnotes.observation&quot;,
+    &quot;pk&quot;: 1,
+    &quot;fields&quot;: {
+      &quot;field&quot;: 1,
+      &quot;observation_title&quot;: &quot;Fence down&quot;,
+      &quot;author&quot;: &quot;Sam&quot;,
+      &quot;observation_content&quot;: &quot;East fence post broken near the gate.&quot;,
+      &quot;observation_type&quot;: &quot;other&quot;,
+      &quot;observation_date&quot;: &quot;2026-10-06&quot;
+    }
+  },
+  {
+    &quot;model&quot;: &quot;farmnotes.observation&quot;,
+    &quot;pk&quot;: 2,
+    &quot;fields&quot;: {
+      &quot;field&quot;: 2,
+      &quot;observation_title&quot;: &quot;Aphids on lettuce&quot;,
+      &quot;author&quot;: &quot;Sam&quot;,
+      &quot;observation_content&quot;: &quot;Aphids on the undersides of the leaves in the south plots.&quot;,
+      &quot;observation_type&quot;: &quot;pest&quot;,
+      &quot;observation_date&quot;: &quot;2026-10-06&quot;
+    }
+  }
+]</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/views.py</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>from django.shortcuts import render, get_object_or_404
+
+from .models import Field, Observation
+
+
+# Show all the fields in my farm
+def index(request):
+    latest_fields = Field.objects.all()
+    context = {&#x27;latest_fields&#x27;: latest_fields}
+    return render(request, &#x27;farmnotes/index.html&#x27;, context)
+
+
+# List all notes related to a particular field
+def notes(request, field_id):
+    field = get_object_or_404(Field, pk=field_id)
+    return render(request, &#x27;farmnotes/notes.html&#x27;, {&#x27;field&#x27;: field})
+
+
+# View the details of a single observation
+def observation(request, field_id, observation_id):
+    observation = get_object_or_404(Observation, pk=observation_id)
+    return render(request, &#x27;farmnotes/observation.html&#x27;, {&#x27;observation&#x27;: observation})</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/templates/farmnotes/index.html</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Farmnotes App&lt;/title&gt;
+    {% load static %}
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;{% static &#x27;farmnotes/style.css&#x27; %}&quot;&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h1&gt;My Farm Fields&lt;/h1&gt;
+    {% if latest_fields %}
+        &lt;ul&gt;
+        {% for field in latest_fields %}
+            &lt;li&gt;&lt;a href=&quot;/farmnotes/{{ field.id }}/&quot;&gt;{{ field.name }}&lt;/a&gt;&lt;/li&gt;
+        {% endfor %}
+        &lt;/ul&gt;
+    {% else %}
+        &lt;p&gt;No fields are available.&lt;/p&gt;
+    {% endif %}
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/templates/farmnotes/notes.html</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Farmnotes App&lt;/title&gt;
+    {% load static %}
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;{% static &#x27;farmnotes/style.css&#x27; %}&quot;&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;div&gt;
+      &lt;h1&gt;{{ field.name }}&lt;/h1&gt;
+      &lt;h2&gt;Observations:&lt;/h2&gt;
+      &lt;ul&gt;
+        {% for observation in field.observation_set.all %}
+        &lt;li&gt;
+          &lt;a href=&quot;/farmnotes/{{ field.id }}/{{ observation.id }}/&quot;&gt;{{ observation.observation_title }}&lt;/a&gt;
+        &lt;/li&gt;
+        {% endfor %}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/templates/farmnotes/observation.html</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Farmnotes App&lt;/title&gt;
+    {% load static %}
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;{% static &#x27;farmnotes/style.css&#x27; %}&quot;&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;header&gt;Farmnotes&lt;/header&gt;
+    &lt;div&gt;
+      &lt;h1&gt;{{ observation.field.name }}&lt;/h1&gt;
+      &lt;h2&gt;Observation: {{ observation.observation_title }}&lt;/h2&gt;
+      &lt;ul style=&quot;list-style-type:none;&quot;&gt;
+        &lt;li&gt;{{ observation.observation_content }}&lt;/li&gt;
+        &lt;li&gt;{{ observation.author }}&lt;/li&gt;
+        &lt;li&gt;{{ observation.observation_date }}&lt;/li&gt;
+        &lt;li&gt;{{ observation.observation_type }}&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+    <section class="filepage">
+      <h2><code>myapp/farmnotes/static/farmnotes/style.css</code></h2>
+      <p class="ask">Zone on the map: ____________________ &nbsp; Talks to: ____________________</p>
+      <div class="block">
+        <pre>body {
+  background: green;
+}</pre>
+        <div class="notes">Notes</div>
+      </div>
+    </section>
+
+  </main>
+</body>
+
+</html>

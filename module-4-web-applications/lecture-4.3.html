@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m4-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Django Continued</h1>
+
+        <p>
+          Module 4 - Web Applications<br />
+          Lecture 4.3 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          OUTLINE SLIDE. Built as 4.4 ("Django continued: the views half"); renamed 4.3 on 2026-10-07, when the activity lecture was cut (prompts.md). Purpose line
+          follows 4.1/4.2's pattern; the goal is the module goal.
+        -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">Implement views, templates, and data in Django.</p>
+
+        <ol class="fragment text-medium">
+          <li>Views and URL routing</li>
+          <li>Templates and static files
+            <ul class="text-small no-bullets">
+              <li>Software development tools: Django</li>
+              <li>Languages: Python, HTML, CSS</li>
+            </ul>
+          </li>
+        </ol>
+        <p class="fragment green">Goal: Design, scope, and implement a web app MVP.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- CODE COLORS, Module 4 only (Ankita, 2026-10-05; redistributed 2026-10-06). Inline code in slide text and titles:
+             red    = Python keywords (def, class, return, pass, from, import)
+             green  = functions, methods and classes: anything you call or define with ()
+             blue   = arguments: the values passed in
+             purple = attributes (name, breed, self.x) AND terminal commands (pip, django-admin, python manage.py ...,
+                      git ...). The two never share a slide, so they share a color.
+             pink   = files, folders and local URLs (myapp/settings.py, views.py, http://127.0.0.1:8000/)
+           Blue also marks plain-text highlights outside <code>. Code blocks keep the highlight.js theme.
+           The "Code color key" slide shows this table before each lecture's first code. -->
+
+      <!-- Built 2026-10-06 from A-DJ (the 2024 farmnotes tutorial) §3-4 and A-L4.2 §10, §11, §13. On-slide notes
+           are A-DJ's own sentences, trimmed. Code is demos/myapp, renamed to the Module 4 farmnotes models
+           (field.field_name -> field.name) and run on Django 5.2.17: every page returns 200, a missing field 404s,
+           and the stylesheet loads under runserver. -->
+
+      <!-- Callback: 4.2's "Structure of a Django Application", as the map for today. -->
+      <section>
+        <h2>Structure of a Django Application</h2>
+        <img src="img/m4-basic-django.png" width="60%"
+          alt="Diagram of a Django application. An HTTP request arrives at URLS (urls.py), which forwards it to the appropriate view. The View (views.py) reads and writes data through the Model (models.py), uses a Template (filename.html), and returns an HTTP response as HTML." />
+        <p class="cite">img src: <a
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django/Introduction">MDN,
+            Django introduction</a>.</p>
+      </section>
+
+      <!-- Code color key (Ankita, 2026-10-06): shown before the first code in every Module 4 lecture. Same table in
+           every deck; keep them in sync with the key in the harvest outline. -->
+      <section>
+        <h2>Code color key</h2>
+        <table class="text-medium">
+          <tr>
+            <th>Color</th>
+            <th>Marks</th>
+            <th>For example</th>
+          </tr>
+          <tr>
+            <td class="red">red</td>
+            <td>Python keywords</td>
+            <td><code class="red">def</code>, <code class="red">class</code>, <code class="red">return</code></td>
+          </tr>
+          <tr>
+            <td class="green">green</td>
+            <td>functions, methods and classes: things you call</td>
+            <td><code class="green">print()</code>, <code class="green">__init__()</code>, <code
+                class="green">Animal</code></td>
+          </tr>
+          <tr>
+            <td class="blue">blue</td>
+            <td>arguments: the values you pass in</td>
+            <td><code class="blue">name</code> in
+              <code><span class="green">greet</span>(<span class="blue">name</span>)</code>
+            </td>
+          </tr>
+          <tr>
+            <td class="purple">purple</td>
+            <td>attributes: the data an object holds<br />and commands you type in the terminal</td>
+            <td><code>self.<span class="purple">name</span></code>, <code class="purple">pip install</code></td>
+          </tr>
+          <tr>
+            <td class="pink">pink</td>
+            <td>files, folders and local URLs</td>
+            <td><code class="pink">views.py</code>, <code class="pink">http://127.0.0.1:8000/</code></td>
+          </tr>
+        </table>
+      </section>
+
+
+
+      <!-- ============ 1. VIEWS AND URL ROUTING ============ -->
+
+      <!-- A-DJ §3 "Creating the front-end", verbatim list. -->
+      <section>
+        <h2>Three views for farmnotes</h2>
+        <p class="text-medium">We will create a total of three views, or web pages, for our site:</p>
+        <ol class="text-medium">
+          <li>Field <code class="green">index</code> page - displays all the fields in my farm.</li>
+          <li>Field <code class="green">notes</code> page - displays all the observations related to a particular
+            field.</li>
+          <li>A Field <code class="green">observation</code> page - displays the details of a specific observation
+            related to a field.</li>
+        </ol>
+      </section>
+
+      <!-- NEW: the worked example of the annotated site map (demo spec item 5), drawn from demos/myapp. The slide's
+           framing text is [ANKITA]'s to add if wanted. -->
+      <section>
+        <h2>farmnotes site map</h2>
+        <pre class="mermaid">
+flowchart LR
+    accTitle: farmnotes site map, annotated
+    accDescr: Three pages. The index page at /farmnotes/ uses the index view, the index.html template and the Field model, and links to each field's notes page. The notes page at /farmnotes/field_id/ uses the notes view, notes.html, and the Field and Observation models, and links to each observation page. The observation page at /farmnotes/field_id/observation_id/ uses the observation view, observation.html and the Observation model.
+    A["index<br/>/farmnotes/<br/>view: index()<br/>template: index.html<br/>model: Field"] --> B["notes<br/>/farmnotes/field_id/<br/>view: notes()<br/>template: notes.html<br/>models: Field, Observation"]
+    B --> C["observation<br/>/farmnotes/field_id/observation_id/<br/>view: observation()<br/>template: observation.html<br/>model: Observation"]
+        </pre>
+      </section>
+
+      <!-- A-L4.2 §10, as in 4.2 (built here). -->
+      <section>
+        <h2>Create a <code class="pink">View</code></h2>
+        <p class="blue">Recap from Lecture 4.2: today we build them.</p>
+        <ul>
+          <li>View function will pull data from model.</li>
+          <li>View function will render template.</li>
+          <li><code class="pink">urls.py</code> will route view function -> template.</li>
+        </ul>
+
+        <p>References</p>
+        <ul class="text-small">
+          <li>How to write a view function: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/http/views/">https://docs.djangoproject.com/en/5.2/topics/http/views/</a>
+          </li>
+          <li>View shortcuts: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/">https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Stub views: <br /><code class="pink">farmnotes/views.py</code></h2>
+        <p class="blue">Set up every page's URL before the page exists.</p>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers><script type="text/template">
+# List all notes related to a particular field
+def notes(request, field_id):
+    return HttpResponse("You're looking at the notes related to field %s." % field_id)
+
+# View the details of a single observation
+def observation(request, field_id, observation_id):
+    return HttpResponse("You're looking at observation %s related to field %s." % (observation_id, field_id))
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>A "stub" is a small piece of code that does a minimal set of actions.</li>
+          <li>Stubs let us set up the URLs for each of the pages before the pages exist.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Routing: <br /><code class="pink">farmnotes/urls.py</code></h2>
+        <p class="blue">Point each URL to its view.</p>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-6|8-11|13-17"><script type="text/template">
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # /farmnotes/
+    path('', views.index, name='index'),
+
+    # /farmnotes/field_id/
+    # /farmnotes/5/
+    path('<int:field_id>/', views.notes, name='notes'),
+
+    # /farmnotes/field_id/observation_id/
+    # 3rd observation for my 4th field
+    # /farmnotes/4/3/
+    path('<int:field_id>/<int:observation_id>/', views.observation, name='observation'),
+]
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>Try <code class="pink">http://127.0.0.1:8000/farmnotes/1/</code> and <code
+              class="pink">http://127.0.0.1:8000/farmnotes/1/1/</code>.</li>
+          <li>Routing is how we point the HTTP request from the user to the correct Django view.</li>
+        </ul>
+      </section>
+
+      <!-- ============ 2. TEMPLATES AND STATIC FILES ============ -->
+
+      <!-- A-L4.2 §11, as in 4.2 (built here). -->
+      <section>
+        <h2>Create a <code class="pink">Template</code></h2>
+        <ul>
+          <li>Template presents your data in HTML.</li>
+          <li>Works just like any other HTML page. Can attach CSS!</li>
+          <li>Template uses the variables the view function passes to it.</li>
+        </ul>
+
+        <p>References</p>
+        <ul class="text-small">
+          <li>Template: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/templates/">https://docs.djangoproject.com/en/5.2/topics/templates/</a>
+          </li>
+          <li>Template language: <a
+              href="https://docs.djangoproject.com/en/5.2/ref/templates/language/">https://docs.djangoproject.com/en/5.2/ref/templates/language/</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Where templates live</h2>
+        <pre class="text-small"><code class="language-text" data-trim data-line-numbers><script type="text/template">
+farmnotes/
+  templates/
+    farmnotes/
+      index.html
+  models.py
+  views.py
+  ...etc.
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>Create <code class="pink">templates/</code> inside the <code>farmnotes</code> app folder, and another
+            folder inside it named after the app.</li>
+          <li>Because of how the Django template loader works: <code
+              class="pink">farmnotes/templates/farmnotes/index.html</code></li>
+          <li class="fragment">Skip the inner folder and you get <code>TemplateDoesNotExist</code>: the sample bug in
+            your <a href="lab-4-web-app/ai-debugging-kit/debug-log.md"><code class="pink">debug-log.md</code></a>.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>A template: <br /><code class="pink">index.html</code></h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-10|4,6|5"><script type="text/template">
+<h1>My Farm Fields</h1>
+{% if latest_fields %}
+    <ul>
+    {% for field in latest_fields %}
+        <li><a href="/farmnotes/{{ field.id }}/">{{ field.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No fields are available.</p>
+{% endif %}
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code>{% for %} ... {% endfor %}</code>: <b>tags</b> perform some logic, e.g., loops.</li>
+          <li><code>{{ field.<span class="purple">name</span> }}</code>: anything inside <code>{{ }}</code> is a
+            <b>variable</b>.
+          </li>
+          <li><code class="pink">/farmnotes/{{ field.id }}/</code> follows the format of <code
+              class="pink">urls.py</code>: it points to the <code class="green">notes</code> view.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Render the template: <br /><code class="pink">farmnotes/views.py</code></h2>
+        <p class="blue">The view pulls data from the model and hands it to a template.</p>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-9|7|8|9"><script type="text/template">
+from django.shortcuts import render
+
+from .models import Field
+
+# Show all the fields in my farm
+def index(request):
+    latest_fields = Field.objects.all()
+    context = {'latest_fields': latest_fields}
+    return render(request, 'farmnotes/index.html', context)
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code class="green">render()</code> has three arguments: the <code class="blue">request</code>, the
+            template's name, and a dictionary of objects to pass to the template.</li>
+          <li>That's how the template can use <code class="blue">latest_fields</code>.</li>
+        </ul>
+      </section>
+
+<!-- Screenshots: the demo app on Django 5.2.17, captured with headless Chrome (2026-10-07), with its fixture loaded; unstyled except the last. They replace the 2024 tutorial's notes01/observation01 and the missing index01. The "Module 5 / Bootstrap" line on the styled result is Claude-drafted. -->
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/</code></h2>
+        <img class="r-stretch" src="img/m4-farmnotes-index.png"
+          alt="The farmnotes index page in a browser: a heading, My Farm Fields, over a bulleted list of two links, North pasture and South field." />
+      </section>
+
+
+      <section data-auto-animate>
+        <h2>404 page not found errors</h2>
+        <p>The long way:</p>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers><script type="text/template">
+from django.http import Http404
+
+def notes(request, field_id):
+    try:
+        field = Field.objects.get(pk=field_id)
+    except Field.DoesNotExist:
+        raise Http404("Field does not exist")
+    return render(request, 'farmnotes/notes.html', {'field': field})
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>The <code class="red">try</code> clause, and <code class="green">get()</code>, which finds an object
+            by its primary key: <code class="blue">pk=field_id</code>.</li>
+        </ul>
+      </section>
+
+      <section data-auto-animate>
+        <h2>404 page not found errors</h2>
+        <p>The Django shortcut:</p>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers><script type="text/template">
+from django.shortcuts import get_object_or_404
+
+# List all notes related to a particular field
+def notes(request, field_id):
+    field = get_object_or_404(Field, pk=field_id)
+    return render(request, 'farmnotes/notes.html', {'field': field})
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>This is a common enough thing that there is a Django shortcut function for it.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Follow the foreign key: <br /><code class="pink">notes.html</code></h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-9|4"><script type="text/template">
+<h1>{{ field.name }}</h1>
+<h2>Observations:</h2>
+<ul>
+  {% for observation in field.observation_set.all %}
+  <li>
+    <a href="/farmnotes/{{ field.id }}/{{ observation.id }}/">{{ observation.observation_title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code>field.<span class="purple">observation_set</span></code>: the foreign key on <code
+              class="green">Observation</code> lets a field find all its observations.</li>
+        </ul>
+        <!-- Claude-drafted line (2026-10-06): A-DJ uses observation_set without saying where it comes from. -->
+      </section>
+
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/1/</code></h2>
+        <img class="r-stretch" src="img/m4-farmnotes-notes.png"
+          alt="The notes page for field 1 in a browser: the heading North pasture, a subheading Observations:, and one linked observation, Fence down." />
+      </section>
+
+
+      <section>
+        <h2>View a single observation</h2>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers><script type="text/template">
+from .models import Field, Observation
+
+# View the details of a single observation
+def observation(request, field_id, observation_id):
+    observation = get_object_or_404(Observation, pk=observation_id)
+    return render(request, 'farmnotes/observation.html', {'observation': observation})
+        </script></code></pre>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers><script type="text/template">
+<h1>{{ observation.field.name }}</h1>
+<h2>Observation: {{ observation.observation_title }}</h2>
+<ul style="list-style-type:none;">
+  <li>{{ observation.observation_content }}</li>
+  <li>{{ observation.author }}</li>
+  <li>{{ observation.observation_date }}</li>
+  <li>{{ observation.observation_type }}</li>
+</ul>
+        </script></code></pre>
+      </section>
+
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/1/1/</code></h2>
+        <img class="r-stretch" src="img/m4-farmnotes-observation.png"
+          alt="The observation page in a browser: the word Farmnotes, the heading North pasture, the subheading Observation: Fence down, then four lines: East fence post broken near the gate., Sam, Oct. 6, 2026, and other." />
+      </section>
+
+
+      
+
+      <section>
+        <h2>Styling your web app: <br /><code class="pink">static/farmnotes/style.css</code></h2>
+        <p class="blue">Static files: CSS, images, and JavaScript that every page can load.</p>
+        <pre class="text-small"><code class="language-css" data-trim data-line-numbers><script type="text/template">
+body {
+  background: green;
+}
+        </script></code></pre>
+        <p>Link the style sheet in the <code>&lt;head&gt;</code> of each template:</p>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="3|4"><script type="text/template">
+<head>
+  <title>Farmnotes App</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'farmnotes/style.css' %}">
+</head>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>The same Django quirk as templates: <code class="pink">farmnotes/static/farmnotes/</code>.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/</code></h2>
+        <img class="r-stretch" src="img/m4-farmnotes-index-styled.png"
+          alt="The same farmnotes index page, now with the stylesheet loaded: a bright green background behind the heading My Farm Fields and the links North pasture and South field." />
+        <p class="text-medium">Same page, one CSS rule. In Module 5, you will use a CSS framework (Bootstrap) instead.</p>
+      </section>
+
+
+      
+
+      <!-- Learn More (Style Guide: further reading on a closing slide). Re-pointed 2026-10-07 at this lecture's topics
+           (views, templates, static files); the models/SQL links belong with 4.2. -->
+      <section>
+        <h2>Learn More</h2>
+        <ul class="text-medium">
+          <li>Writing views: <a href="https://docs.djangoproject.com/en/5.2/topics/http/views/">https://docs.djangoproject.com/en/5.2/topics/http/views/</a></li>
+          <li>Templates: <a href="https://docs.djangoproject.com/en/5.2/topics/templates/">https://docs.djangoproject.com/en/5.2/topics/templates/</a></li>
+          <li>The template language: <a href="https://docs.djangoproject.com/en/5.2/ref/templates/language/">https://docs.djangoproject.com/en/5.2/ref/templates/language/</a></li>
+          <li>Static files (CSS, images, JavaScript): <a href="https://docs.djangoproject.com/en/5.2/howto/static-files/">https://docs.djangoproject.com/en/5.2/howto/static-files/</a></li>
+          <li>Mozilla Django overview: <a
+              href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django">MDN</a>
+          </li>
+          <li>Full Django documentation (with tutorials!): <a href="https://docs.djangoproject.com/en/5.2/">https://docs.djangoproject.com/en/5.2/</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Questions?</h2>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

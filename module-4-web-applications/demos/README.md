@@ -1,11 +1,11 @@
 # Demo: from functions to Django models
 
-ASM 532 - Module 4 - Lectures 4.1, 4.2 and 4.4
+ASM 532 - Module 4 - Lectures 4.1, 4.2 and 4.3
 
 This is the demo from class. Poke around at your own pace. Nothing here is graded.
 
 1. A notebook that walks through function design, then objects in Python, then the two classes that become the `farmnotes` app's models.
-2. `myapp`, a Django project with one app, `farmnotes`: the Django setup from Lecture 4.2, and the views, templates, static files and fixture from Lecture 4.4.
+2. `myapp`, a Django project with one app, `farmnotes`: the Django setup from Lecture 4.2, and the views, templates, static files and fixture from Lecture 4.3.
 
 ## The notebook
 
@@ -29,11 +29,11 @@ Source folder: [myapp/](myapp/)
 The project from the lectures, finished:
 
 - **Lecture 4.2:** `startproject myapp`, `startapp farmnotes`, the app registered in `settings.py`, both levels of URL mapping, and the `Field` and `Observation` models with their first migration.
-- **Lecture 4.4:** three views (`index`, `notes`, `observation`) with their URL routes, a template for each in `farmnotes/templates/farmnotes/`, a stylesheet in `farmnotes/static/farmnotes/`, and a fixture with two fields and two observations in `farmnotes/fixtures/`.
+- **Lecture 4.3:** three views (`index`, `notes`, `observation`) with their URL routes, a template for each in `farmnotes/templates/farmnotes/`, a stylesheet in `farmnotes/static/farmnotes/`, and a fixture with two fields and two observations in `farmnotes/fixtures/`.
 
 ### farmnotes site map
 
-The app's three pages, each labelled with its URL, view, template and model(s). It's the same diagram as in Lecture 4.4, and a worked example for Lab 4's site map.
+The app's three pages, each labelled with its URL, view, template and model(s). It's the same diagram as in Lecture 4.3, and a worked example for Lab 4's site map.
 
 ```mermaid
 flowchart LR

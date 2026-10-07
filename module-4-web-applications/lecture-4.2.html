@@ -70,6 +70,9 @@
           </li><br />
 
           <li>Django setup</li>
+          <li>Models, the admin dashboard, and fixtures</li><br />
+
+          <li>Debugging, and the AI debugging starter kit</li>
         </ol>
         <p class="fragment green">Goal: Design, scope, and implement a web app MVP.</p>
       </section>
@@ -116,7 +119,7 @@
           <li> Notify user on status (e.g., calendar notifications) </li>
           <li> Provide controlled access to content (e.g., email)</li>
           <li> Data analysis to provide user recommendations (e.g., netflix)</li>
-          <li> Provide customized user experiences ("Hello {{ person_name }}!)"</li>
+          <li> Provide customized user experiences ("Hello {{ person_name }}!")</li>
           <li>...and much more!</li>
         </ul>
       </section>
@@ -274,73 +277,6 @@
         </table>
       </section>
 
-      <!-- ============ AI-ASSISTED DEBUGGING: OUTLINE SLIDES (Ankita, 2026-10-06) ============
-           Four slides, bounded on purpose: at most 3 bullets each, about 12 words a bullet. Each slide names the
-           repo practice it comes from and the policy line it serves. Bullets populated from Claude's suggestions
-           (2026-10-06) for Ankita to edit; the suggestion and its source stay in a comment under each slide. -->
-
-      <section>
-        <h2>When Django breaks</h2>
-        <p class="text-medium blue">Modules 3-5: AI for debugging and exploring only.</p>
-        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
-        <ul class="text-medium">
-          <li>Read the error: the last line says <b>what</b>, the lines above say <b>where</b>.</li>
-          <li>Search it: the Django docs, Stack Overflow.</li>
-          <li>Then ask an AI, to understand, not to fix.</li>
-        </ul>
-        <!-- From: the course README's AI policy, Modules 3-5 ("Only use AI tools to explore and debug your code"; "when
-             you're stuck and receive error messages, use a search tool, check Stack Overflow, or use an LLM").
-             Suggested: (1) Read the error: the last line of the traceback says what, the lines above say where.
-             (2) Search it: the docs, Stack Overflow. (3) Then ask an AI, to understand, not to fix. -->
-      </section>
-
-      <section>
-        <h2>Write the question first</h2>
-        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
-        <ul class="text-medium">
-          <li>What I expected, and what happened: paste the full error.</li>
-          <li>The smallest code that still breaks, and its file: <code class="pink">views.py</code>, <code
-              class="pink">urls.py</code>, <code class="pink">settings.py</code>.</li>
-          <li>What I already tried.</li>
-        </ul>
-        <p class="cite">Stack Overflow, <a href="https://stackoverflow.com/help/how-to-ask">How do I ask a good
-            question?</a> and <a href="https://stackoverflow.com/help/minimal-reproducible-example">How to create a
-            minimal, reproducible example</a>.</p>
-        <!-- From: her prompts.md habit (prep and log the prompt before asking) and Stack Overflow's guidance.
-             Suggested: (1) What I expected, and what happened: paste the full error. (2) The smallest code that still
-             breaks, with its file path (views.py, urls.py, settings.py). (3) What I already tried. -->
-      </section>
-
-      <section>
-        <h2>Ask to understand, then verify</h2>
-        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
-        <ul class="text-medium">
-          <li>Ask "why is this failing?", not "fix this".</li>
-          <li>Ask for a reference you can check, like the Django docs.</li>
-          <li>Change one thing, rerun, and keep only what you understand.</li>
-        </ul>
-        <!-- From: her "list first" flag (findings before fixes), "verify paths from the real file", and Lab 3's AI
-             section ("ask for references or pointers to learning materials that you can verify").
-             Suggested: (1) Ask "why is this failing?", not "fix this". (2) Ask for a reference you can check: the
-             Django docs, not just the answer. (3) Change one thing, rerun, and keep only what you understand. -->
-      </section>
-
-      <section>
-        <h2>Keep a debugging log</h2>
-        <!-- Bullets: Claude-drafted from the suggestion below (2026-10-06), for Ankita to edit. -->
-        <ul class="text-medium">
-          <li>One entry per bug: the error, what I tried, what fixed it.</li>
-          <li>Save the prompts and answers you used.</li>
-          <li>Disclose your AI use in your lab README.</li>
-        </ul>
-        <!-- From: her changelog entries (Request / Findings / Response / Next), her transcript archive, and the course
-             README ("disclose if and how you used AI tools... save and/or include transcripts or sample prompts").
-             Suggested: (1) Error, what I tried, what fixed it: one entry per bug. (2) Save the prompts and answers
-             you used. (3) Disclose it in your lab README. -->
-      </section>
-
-
-
       <!-- ============ 2. DJANGO SETUP ============ -->
       <!-- A24-4.2 §3, 4, 6-12, moved up from 4.2 (Ankita: "they need to see this ASAP to be able to install
            django and get a test application built"). Names market/farmstand -> myapp/farmnotes (D8). Verified
@@ -356,7 +292,7 @@ pip install "django>=5.2,<5.3"
         <!-- Moved from the speaker notes (students don't use the notes view), 2026-10-05. Source: A-DJ. -->
         <ul class="text-medium">
           <li><code class="purple">pip</code> is a popular package manager for python.</li>
-          <li>We used it in previous labs when we created a virtual environment and install packages.<br />This lab,
+          <li>We used it in previous labs when we created a virtual environment and installed packages.<br />Now,
             we will use it to install Django.</li>
         </ul>
       </section>
@@ -389,7 +325,7 @@ python manage.py runserver
         <pre><code class="language-bash" data-trim><script type="text/template">
 python manage.py startapp farmnotes
 
-# G=color, a=show . files, l=in long from
+# G=color, a=show . files, l=in long form
 ls -Gal
 
 # CTRL+R (search recent commands)
@@ -451,6 +387,25 @@ urlpatterns = [
       </section>
 
       <section>
+        <h2>Create a <code class="pink">View</code></h2>
+        <ul>
+          <li>View function will pull data from model.</li>
+          <li>View function will render template.</li>
+          <li><code class="pink">urls.py</code> will route view function -> template.</li>
+        </ul>
+
+        <p>References</p>
+        <ul class="text-small">
+          <li>How to write a view function: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/http/views/">https://docs.djangoproject.com/en/5.2/topics/http/views/</a>
+          </li>
+          <li>View shortcuts: <a
+              href="https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/">https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
         <h2>Create <code><span class="pink">views</span>.<span class="green">index</span></code></h2>
 
         <p><code class="pink">farmnotes/views.py</code></p>
@@ -486,18 +441,6 @@ def index(request):
         </ul>
       </section>
 
-      <!-- The class -> model pair. Code is Claude's, built for the demo (demo spec, 2026-10-05): Field is the
-           farm tracker's Field, Observation is farmnotes'. Copied from demos/farm-oop-demo.ipynb (Part 3) and
-           demos/myapp/farmnotes/models.py; both executed. Titles are the file names. 
-class Observation:
-    def __init__(self, field, observation_title, author, observation_content, observation_type, observation_date):
-        self.field = field
-        self.observation_title = observation_title
-        self.author = author
-        self.observation_content = observation_content
-        self.observation_type = observation_type
-        self.observation_date = observation_date
-        -->
       <section data-auto-animate>
         <h2>Python classes: <br /><code class="pink">farm-oop-demo.ipynb</code></h2>
         <p class="blue">This is a conventional Python class.</p>
@@ -516,13 +459,6 @@ class Field:
           a drafting space!</p>
       </section>
 
-      <!-- class Observation(models.Model):
-    field = models.ForeignKey(Field, on_delete=models.CASCADE)
-    observation_title = models.CharField(max_length=200)
-    author = models.CharField(max_length=100)
-    observation_content = models.CharField(max_length=1000)
-    observation_type = models.CharField(choices=OBSERVATION_TYPES, max_length=100)
-    observation_date = models.DateField('date observed') -->
       <section data-auto-animate>
         <h2>Django models: <br /><code class="pink">farmnotes/models.py</code></h2>
         <p class="blue">The same Python class translated into Django model.</p>
@@ -546,7 +482,59 @@ class Field(models.Model):
         </ul>
       </section>
 
-      <!-- From A-DJ §2, its "Remember:" list, verbatim; the title is the two commands. -->
+      <!-- Moved from 4.3 to 4.2 (2026-10-07): Lab 4's fixtures need the foreign key before the views lecture. -->
+      <section>
+        <h2>Relate two models: <br /><code class="pink">farmnotes/models.py</code></h2>
+        <p class="blue">Every observation belongs to one field.</p>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-7|2"><script type="text/template">
+class Observation(models.Model):
+    field = models.ForeignKey(Field, on_delete=models.CASCADE)
+    observation_title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    observation_content = models.CharField(max_length=1000)
+    observation_type = models.CharField(choices=OBSERVATION_TYPES, max_length=100)
+    observation_date = models.DateField('date observed')
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code class="green">ForeignKey</code> is the foreign key from Lab 3: each observation points to one
+            <code class="green">Field</code>.
+          </li>
+          <li><code class="blue">on_delete=models.CASCADE</code>: delete a field, and its observations go too.</li>
+          <li>Django adds the other direction for you: <code>field.<span class="purple">observation_set</span></code>.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Class diagram drawn from demos/myapp/farmnotes/models.py (2026-10-07). It replaces the 2024 tutorial's
+           classdiag.png, which shows the old Field (field_name, date_planted). -->
+      <section>
+        <h2>The farmnotes data model</h2>
+        <pre class="mermaid">
+classDiagram
+    accTitle: farmnotes class diagram
+    accDescr: Two classes. Field has name, acres, field_type and note. Observation has field (a foreign key to Field), observation_title, author, observation_content, observation_type and observation_date. One Field has many Observations.
+    direction LR
+    class Field {
+        name : CharField[200]
+        acres : FloatField
+        field_type : CharField, choices FIELD_TYPES
+        note : CharField[1000]
+        __str__()
+    }
+    class Observation {
+        field : ForeignKey to Field, CASCADE
+        observation_title : CharField[200]
+        author : CharField[100]
+        observation_content : CharField[1000]
+        observation_type : CharField, choices OBSERVATION_TYPES
+        observation_date : DateField
+        __str__()
+    }
+    Field "1" --> "many" Observation
+        </pre>
+      </section>
+
+
       <section>
         <h2>Update models, migrate to DB</h2>
         <!-- <code class="purple">makemigrations</code>, <code class="purple">migrate</code> -->
@@ -569,47 +557,68 @@ class Field(models.Model):
         </p>
       </section>
 
-      <!-- Kept per Ankita (item 1, 2026-10-05): "they'll still need to know they exist, I just won't play
-           with views and templates in 4.1". Built in 4.3. Doc links 5.1 -> 5.2. -->
+      <!-- Moved from 4.3 to 4.2 (2026-10-07): Lab 4 builds models -> admin test data -> fixtures, all before views.
+           Screenshots are the 2024 tutorial's (django-example/img/admin02.png, admin03.png); still match the demo. -->
       <section>
-        <h2>Create a <code class="pink">View</code></h2>
-        <ul>
-          <li>View function will pull data from model.</li>
-          <li>View function will render template.</li>
-          <li><code class="pink">urls.py</code> will route view function -> template.</li>
-        </ul>
+        <h2>The admin dashboard: <br /><code class="pink">farmnotes/admin.py</code></h2>
+        <p class="blue">A back-end tool to create test data and inspect your database.</p>
+        <div class="r-stack r-stretch">
+          <div class="fragment fade-out" data-fragment-index="0">
+            <pre class="text-small"><code class="language-bash" data-trim><script type="text/template">
+python manage.py createsuperuser
+            </script></code></pre>
+            <pre class="text-small"><code class="language-python" data-trim><script type="text/template">
+from django.contrib import admin
+from .models import Field, Observation
 
-        <p>References</p>
-        <ul class="text-small">
-          <li>How to a write a view function: <a
-              href="https://docs.djangoproject.com/en/5.2/topics/http/views/">https://docs.djangoproject.com/en/5.2/topics/http/views/</a>
-          </li>
-          <li>View shortcuts: <a
-              href="https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/">https://docs.djangoproject.com/en/5.2/topics/http/shortcuts/</a>
-          </li>
-        </ul>
+admin.site.register(Field)
+admin.site.register(Observation)
+            </script></code></pre>
+            <ul class="text-medium">
+              <li><code class="purple">createsuperuser</code> asks for an admin username, email address, and password.
+              </li>
+              <li>Open <code class="pink">http://127.0.0.1:8000/admin/</code>: if you don't add a model to <code
+                  class="pink">admin.py</code>, it won't show up.</li>
+            </ul>
+          </div>
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m4-django-admin-site.png"
+            alt="The Django administration site after logging in, before any models are registered. Under Site administration, only Authentication and Authorization is listed, with Groups and Users, each with Add and Change links, beside an empty Recent Actions panel." />
+          <img class="fragment fade-in" data-fragment-index="1" src="img/m4-django-admin-farmnotes.png"
+            alt="The same Django administration site after admin.py registers the farmnotes models. A new FARMNOTES section lists Fields and Observations, each with Add and Change links, below Authentication and Authorization." />
+        </div>
       </section>
 
+      <!-- Moved from 4.3 to 4.2 (2026-10-07, Ankita): the fixture demo belongs here, as in 2024 L4.2 §13. -->
+      <!-- A-L4.2 §13. Example changed from cropexplorer to farmnotes (D8: one example app); the records are Claude's,
+           from demos/myapp/farmnotes/fixtures/farmnotes-data.json, which loads cleanly. Docs link 3.2 -> 5.2. -->
       <section>
-        <h2>Create a <code class="pink">Template</code></h2>
-        <ul>
-          <li>Template presents your data in HTML.</li>
-          <li>Works just like any other HTML page. Can attach CSS!</li>
-          <li>Template uses variables passed from the view function of the same name.</li>
-        </ul>
-
-        <p>References</p>
-        <ul class="text-small">
-          <li>Template: <a
-              href="https://docs.djangoproject.com/en/5.2/topics/templates/">https://docs.djangoproject.com/en/5.2/topics/templates/</a>
-          </li>
-          <li>Some helpful structures.</li>
-        </ul>
+        <h2>Django + JSON</h2>
+        <p>Create a <a href="https://docs.djangoproject.com/en/5.2/howto/initial-data/">Django fixture file</a> =
+          "annotated" JSON. <br />Place in <code class="pink">farmnotes/fixtures/</code>.</p>
+        <!-- Highlight steps walk the "annotation" Django adds around the data: model (which table), pk (which row),
+             fields (the column values). -->
+        <pre class="text-small"><code class="language-json" data-trim data-line-numbers="1-12|3|4|5,10|6-9"><script type="text/template">
+[
+  {
+    "model": "farmnotes.field",
+    "pk": 1,
+    "fields": {
+      "name": "North pasture",
+      "acres": 12.5,
+      "field_type": "pasture",
+      "note": ""
+    }
+  }
+]
+        </script></code></pre>
+        <div class="fragment">
+          <p>Then: Bulk import the data!</p>
+          <pre><code class="language-bash" data-trim><script type="text/template">
+python manage.py loaddata farmnotes-data.json
+        </script></code></pre>
+        </div>
       </section>
 
-      <!-- Revised 2026-10-06 (Ankita accepted): real comment syntax (# in the terminal, -- at the sqlite> prompt), the actual
-           file, Django's app_model table names (checked on the demo database), and .quit. Split into a terminal block
-           and an SQL block so each highlights correctly. -->
       <section>
         <h2>Django + SQLite</h2>
         <pre><code class="language-bash" data-trim><script type="text/template">
@@ -631,11 +640,181 @@ SELECT * FROM farmnotes_field WHERE field_type = 'pasture';
         </script></code></pre>
         <ul class="text-medium">
           <li>Django names each table <code>app_model</code>: <code>farmnotes_field</code>, not <code>field</code>.
-            <br />The <code>auth_</code> and <code>django_</code> tables are Django's own.</li>
-          <li><code class="purple">.tables</code> and <code class="purple">.quit</code> need no semicolon; SQL does.</li>
+            <br />The <code>auth_</code> and <code>django_</code> tables are Django's own.
+          </li>
+          <li><code class="purple">.tables</code> and <code class="purple">.quit</code> need no semicolon; SQL does.
+          </li>
           <li>No SQLite installed? <code class="purple">python manage.py dbshell</code> opens the same database (or see
             Lab 3, STEP 0).</li>
         </ul>
+      </section>
+
+      <!-- ============ AI-ASSISTED DEBUGGING (revised 2026-10-07 to match the Lab 4 AI debugging starter kit) ============
+           -->
+
+      <section>
+        <h2>Debugging escalation pathway</h2>
+        <p class="blue">Got 99 errors but a lack of support ain't one.</p>
+        <ol class="text-medium">
+          <li><b class="red">Read the error message </b> the last line says <b>what</b>, the lines above say
+            <b>where</b>.<br />
+            See also: Julia's Debugging Zine (pg 10 covers this tip).
+          </li><br />
+          <li><b class="red">Search for the error:</b> the Django docs, Stack Overflow. <br /> Good key terms: error
+            code + name of the language / library / code component.</li><br />
+          <li><b class="red">Ask your peers</b> for a fresh set of eyes.<br />
+            Explain what you're doing and thinking, and discuss like you're fixing a tire!</li><br />
+          <li><b class="red">Ask the TA</b> for debugging support during lab!<br />Be prepared to explain what you've
+            encountered and
+            tried so far.</li><br />
+          <li><b class="red">Ask an AI</b> to work through the problem. To understand, not to fix.<br />See my
+            experimental AI Debugging
+            Starter Kit in the lab folder.
+          </li>
+        </ol>
+      </section>
+
+      <!-- Julia Evans images: Ankita confirmed (2026-10-07) both are her publicly available pages, not the paid zine,
+           so clear to republish with the citation. -->
+      <section>
+        <h2>Ask good questions</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m4-julia-evans-debugging-guide-cover.jpg"
+            alt="The cover of The Pocket Guide to Debugging by Julia Evans, subtitled Stellar strategies for sticky situations. A cartoon explorer with a magnifying glass and a butterfly net holds a smiling bug in the palm of her hand, surrounded by leafy plants." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m4-julia-evans-debugging-help-message.png"
+            alt="A hand-drawn page titled 'write a message asking for help'. When I'm REALLY stuck, I'll write an email to a friend: 'Here's what I'm trying to do...', 'I did X and I expected Y to happen, but instead...', 'Could this be because...?', 'This seems impossible because...', 'I've tried A, B, and C to fix it, but...'. This helps me organize my thoughts, and often by the time I finish writing, I've magically fixed the problem on my own! It has to be a specific person, so that the imaginary version of them in my mind will say useful things." />
+        </div>
+        <p class="text-small">Handout available in class.</p>
+        <p class="cite">Julia Evans, <a href="https://wizardzines.com/zines/debugging-guide/">The Pocket Guide to
+            Debugging</a>, Wizard Zines.</p>
+      </section>
+
+      <section>
+        <h2>Asking the Internet</h2>
+        <ul class="text-medium">
+          <li>What I expected, and what happened: paste the full error.</li>
+          <li>The smallest code that still breaks, and its file: <code class="pink">views.py</code>, <code
+              class="pink">urls.py</code>, <code class="pink">settings.py</code>.
+            <p class="text-medium">Minimal reproducible example?</p>
+            <ul class="text-medium  fragment">
+              <li>"<b>Minimal:</b> Use as little code as possible that still produces the same problem</li>
+              <li><b>Complete:</b> Provide all parts someone else needs to reproduce your problem in the question itself
+              </li>
+              <li><b>Reproducible:</b> Test the code you're about to provide to make sure it reproduces the problem"
+              </li>
+            </ul>
+          </li><br />
+          <li>What I already tried. Then ask "why is this failing?", not "fix this".</li>
+        </ul>
+        <p class="cite">Stack Overflow, <a href="https://stackoverflow.com/help/how-to-ask">How do I ask a good
+            question?</a> and <a href="https://stackoverflow.com/help/minimal-reproducible-example">How to create a
+            minimal, reproducible example</a>.</p>
+      </section>
+
+      <section>
+        <h2>The AI debugging starter kit</h2>
+        <p class="text-medium blue">Modules 3-5: AI for debugging and exploring only.</p>
+        <table class="text-medium">
+          <tr>
+            <th>File</th>
+            <th>Put it</th>
+            <th>What it does</th>
+          </tr>
+          <tr>
+            <td><code class="pink">AGENTS.md</code></td>
+            <td>the root of your labs repo</td>
+            <td>tells your AI tool how to help you</td>
+          </tr>
+          <tr>
+            <td><code class="pink">prompts.md</code></td>
+            <td>your <code class="pink">lab4/</code> folder</td>
+            <td>what you asked, what came back, what you did</td>
+          </tr>
+          <tr>
+            <td><code class="pink">debug-log.md</code></td>
+            <td>your <code class="pink">lab4/</code> folder</td>
+            <td>one entry per bug</td>
+          </tr>
+        </table>
+        <p class="text-small">An experimental setup, simplified from how I work. Try it, carefully, and tell me what
+          breaks: <a href="lab-4-web-app/ai-debugging-kit/README.md">the kit, in Lab 4</a>.</p>
+      </section>
+
+      <!-- Excerpts are verbatim from the kit files (2026-10-07), hard-wrapped at ~70 characters with Markdown
+           continuation lines so they fit the slide; [...] marks cut text. Update both if the kit changes. -->
+      <section>
+        <h2>0. <code class="pink">AGENTS.md</code>: rules for your AI</h2>
+        <pre class="text-small"><code class="language-markdown" data-trim data-line-numbers="1-9|11-16"><script type="text/template">
+## I'm learning: how to help me
+
+- **Explain errors.** Tell me what the error means, which file and
+  line it points to, and why it happened.
+- **Don't write my code.** Do not write my models, views, templates,
+  or data-import scripts for me.
+- **Point me to the docs.** Link the official Django 5.2 or Python
+  documentation for anything you explain, so I can check it.
+
+## Don't change things without asking
+
+- **Git:** never commit, push, pull, reset, revert, or switch branches.
+  I commit my own work, after I've reviewed it.
+- **My database:** never run anything that deletes or resets data:
+  `flush`, deleting `db.sqlite3`, or deleting migration files.
+        </script></code></pre>
+        <p class="text-small">Your tool reads it automatically. Read the whole file: <a
+            href="lab-4-web-app/ai-debugging-kit/AGENTS.md"><code class="pink">AGENTS.md</code></a>.</p>
+      </section>
+
+      <section>
+        <h2>1. <code class="pink">prompts.md</code>: write your question</h2>
+        <pre class="text-small"><code class="language-markdown" data-trim data-line-numbers="1-3|4-8|9-12"><script type="text/template">
+## 2026-10-15: Django can't find my index template
+- **Tool:** Copilot Chat in VS Code
+- **Where:** lab4, `farmnotes/views.py`, line 10
+- **What I asked:**
+  > I'm getting `django.template.exceptions.TemplateDoesNotExist:
+  > farmnotes/index.html` when I open http://127.0.0.1:8000/farmnotes/.
+  > [...] Why can't Django find it? Please explain, and point me to
+  > the Django docs, rather than rewriting my code.
+- **What came back:** Django looks inside each app's `templates/`
+  folder for the path in `render()`. [...]
+- **What I did with it, and how I checked it:** Read the "Template
+  namespacing" note in the Django 5.2 tutorial, part 3. [...]
+        </script></code></pre>
+        <p class="text-small">Sample entry, about a real Django error. The full entry: <a
+            href="lab-4-web-app/ai-debugging-kit/prompts.md"><code class="pink">prompts.md</code></a>.</p>
+      </section>
+
+      <section>
+        <h2>2. <code class="pink">debug-log.md</code>: while debugging</h2>
+        <pre class="text-small"><code class="language-markdown" data-trim data-line-numbers="1-3|4-7|8-12"><script type="text/template">
+## 2026-10-15: index page shows a server error
+- **Error:** `django.template.exceptions.TemplateDoesNotExist:
+  farmnotes/index.html`, raised from `farmnotes/views.py`, line 10
+- **Tried:**
+  1. Restarted the server: same error.
+  2. Checked the spelling of `index.html`: correct.
+  3. Asked Copilot Chat (see `prompts.md`, 2026-10-15).
+- **Found:** my template was at `farmnotes/templates/index.html`, but
+  `'farmnotes/index.html'` tells Django to look in
+  `farmnotes/templates/farmnotes/`.
+- **Fixed:** moved the template to
+  `farmnotes/templates/farmnotes/index.html`.
+        </script></code></pre>
+        <p class="text-small">The error text is real: it's what Django 5.2 prints. The full entry: <a
+            href="lab-4-web-app/ai-debugging-kit/debug-log.md"><code class="pink">debug-log.md</code></a>.</p>
+      </section>
+
+      <section>
+        <h2>Set up an AI assistant in VS Code</h2>
+        <ul class="text-medium">
+          <li><b>GitHub Copilot:</b> free for verified students, via GitHub Education.</li>
+          <li><b>Claude Code:</b> needs a Claude subscription.</li>
+          <li><b>Any other chat:</b> paste <code class="pink">AGENTS.md</code> as your first message.</li>
+        </ul>
+        <p class="green fragment">Disclose it: one line in your lab README, plus your two logs.</p>
+        <p class="text-small">Setup links for each tool: <a href="lab-4-web-app/ai-debugging-kit/README.md">the kit's
+            README</a>.</p>
       </section>
 
 

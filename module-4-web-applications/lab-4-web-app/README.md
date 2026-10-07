@@ -3,8 +3,8 @@
 ## Orientation
 
 You will design and build a small **data management web application** in Django, with the same two-part workflow we have practiced to date: plan on paper, then build. 
-* **Part 1 - Design** turns a real workflow into a plan for an app: follow a real-world THING managed by a user through a task domain. Then, you will scope a web application (a specification), define which web pages are required (a site map), and determine what data is stored and used (a class diagram).
-* **Part 2 - Build** turns the web application specification (your plan) into a working Django app: models to represent the system components. Then you will populate your database using a sample dataset and develop your first web page to display this data.
+* **Part 1 - Design** turns a real problem into a plan for an app: state the problem, define which web pages are required (a site map), and determine what data is stored and used (a class diagram).
+* **Part 2 - Build** turns your plan into a working Django app: models to represent the system components. Then you will populate your database using a sample dataset and develop your first web page to display this data.
 
 You will stack the languages and skills learned to date. Thus, this lab assumes you can:
 * Map user and data workflows to specify a software implementation (Modules 1-3)
@@ -26,7 +26,7 @@ The architecture a Django web app includes:
   * Learn more about the [URL dispatcher](https://docs.djangoproject.com/en/5.2/topics/http/urls/).
 * **views**: coordinates user requests to decide which data and templates are required to create a user response. Django Views control the HTML response: they ask `models` to pull the requested data, and render that data using HTML `templates`. These are Python functions in `views.py` file.
   * Learn more about [how to write views](https://docs.djangoproject.com/en/5.2/topics/http/views/)
-* **models**: structures data in the database based on your specification. Each `model` is a Python class in the `models.py` file, where methods support interaction with the data itself. CRUD methods are built-in (see also: [Django model queries](https://docs.djangoproject.com/en/5.2/topics/db/queries/)).
+* **models**: structures data in the database based on your design. Each `model` is a Python class in the `models.py` file, where methods support interaction with the data itself. CRUD methods are built-in (see also: [Django model queries](https://docs.djangoproject.com/en/5.2/topics/db/queries/)).
   * Learn more about models: [Django models documentation page](https://docs.djangoproject.com/en/5.2/topics/db/models/)
 * **templates**: provide a generic web page layout in HTML, and CSS can be used in conjunction with these layouts. Think of these as fill-in-the-blank pages that get filled out by the `view` using answers from the `model`. These HTML pages are stored in the app's `templates/` folder.
   * Learn more about [Django's template language that connects HTML and Django](https://docs.djangoproject.com/en/5.2/topics/templates/).
@@ -108,7 +108,7 @@ Watch the following tutorials:
 - Introduction to Django: https://cs50.harvard.edu/web/weeks/3/
 - SQL, Models, and Migrations: https://cs50.harvard.edu/web/weeks/4/
 
-Then visit the [demos folder](../demos/README.md) for this module. It has the `farmnotes` example project from Lectures 4.2 and 4.4, all of whose code runs. It is highly recommended to install Django and run the demo before starting this lab.
+Then visit the [demos folder](../demos/README.md) for this module. It has the `farmnotes` example project from Lectures 4.2 and 4.3, all of whose code runs. It is highly recommended to install Django and run the demo before starting this lab.
 
 #### Install Django
 
@@ -143,7 +143,7 @@ Real farm operations data from the [Purdue ACRE / Agronomy Farm](https://ag.purd
 
 Bring your own problem domain and data: the domain you modeled in Lab 3, your research, a job, a family farm or business, or anything else you scope with me first. Your data should be similar in size to the ACRE data (a few hundred rows): an existing dataset, a subsample of one, or a reasonable sample dataset you generate.
 
-Either way, **you will import your data with a fixture file** (STEP 7). 
+Either way, **you will import your data with a fixture file** (STEP 5). 
 
 &#128587; Not sure? Talk to me. I'll help you scope it quickly.
 
@@ -160,7 +160,7 @@ lab4/
 
 ---
 
-## Part 1 - DESIGN -- in the Lecture 4.3 activity, finish on your own.
+## Part 1 - DESIGN
 
 ### Follow ONE track: default-farm vs choose-your-own
 
@@ -191,32 +191,12 @@ The farm manager wants a web application in which all her historical field data 
 
 Write a short problem statement in the same shape as the ACRE one: whose data, what it is, and what the app should let them do.
 
+<!-- STEP 2 (follow the object) and STEP 3 (specification) removed 2026-10-07: Module 4 now focuses on Django
+     fundamentals; that design work is parked for Module 5 (#58). Steps renumbered. -->
 
-### STEP 2: Follow the object (update if needed)
+### STEP 2: Site map and data model
 
-In the Lecture 4.3 activity, you followed one thing through a system, filling in a color-coded card at each station, and then drew a rough **activity diagram** and wrote **use cases**.
-
-#### &#128640; Choose-your-own track: support user-data interactions
-
-If you followed something from another domain in class, repeat the walk for your own domain.
-
-#### Both tracks
-
-> IMAGE UPLOAD: Save a photo of your worksheet with the filename **'worksheet'** inside your **'lab4/images'** folder.
-
-### STEP 3: Write a specification
-
-The specification is the plan for your **minimum viable product (MVP)**: the smallest app that is still useful.
-
-> README.MD: Under the heading "Specification", write:
-> 1. **Use cases**: 2-3, each naming who (a role) does what.
-> 2. **Functional requirements**: what the app must do, e.g. "a technician can record an operation for a field".
-> 3. **Non-functional requirements**: qualities the app must have, e.g. "a worker can find a field's history in under a minute".
-> 4. **MVP cut**: which of the above your app will do in this lab, and which wait for later.
-
-### STEP 4: Site map and data model
-
-**The site map.** Draw the pages your app will have, and how they link. Label each page with its **view**, its **template**, and the **model(s)** it shows. For a worked example, see the [farmnotes site map](../demos/README.md#farmnotes-site-map) in this module's demos (also in Lecture 4.4).
+**The site map.** Draw the pages your app will have, and how they link. Label each page with its **view**, its **template**, and the **model(s)** it shows. For a worked example, see the [farmnotes site map](../demos/README.md#farmnotes-site-map) in this module's demos (also in Lecture 4.3).
 
 **The data model.** Design a data model that considers logical groupings of data entities into Django `classes` and attributes.
 
@@ -231,7 +211,7 @@ Start by looking at the [data](./data/) folder. Consider the first row: on April
 
 #### &#128640; Choose-your-own track: support user-data interactions
 
-If you already have a data model for your domain (from Lab 3, for example), start from it. If not, start from your data, as the default-farm track does. Either way, shape the model to what your app now needs to do (your STEP 3 specification).
+If you already have a data model for your domain (from Lab 3, for example), start from it. If not, start from your data, as the default-farm track does. Either way, shape the model to what your app needs to do (your STEP 1 problem statement).
 
 #### Both tracks
 
@@ -263,7 +243,7 @@ Draw a simplified UML class diagram of the **data model** for your app. Your dat
 
 ## Part 2 - BUILD -- LAB INSTRUCTIONS
 
-### STEP 5: Initialize the Project & Application
+### STEP 3: Initialize the Project & Application
 
 Initialize a project, and within it, an app.
 
@@ -302,19 +282,19 @@ acre/
   db.sqlite3
 ```
 
-<!-- Template path changed from templates/index.html to templates/acrelog/index.html, the convention Lecture 4.4 teaches. -->
+<!-- Template path changed from templates/index.html to templates/acrelog/index.html, the convention Lecture 4.3 teaches. -->
 
 Start the server and visit http://127.0.0.1:8000/acrelog to confirm that you have a working application.
 
 > IMAGE UPLOAD: Take a screenshot of your working application with the filename **'hello-world'** inside your **'lab4/images'** folder.
 
-### STEP 6: Implement the Data Model
+### STEP 4: Implement the Data Model
 
 First, implement your models in the **'models.py'**. Run `makemigrations` and `migrate`. Create a couple of test data entries through either the Django API or the admin dashboard as we previously did in class.
 
 > IMAGE UPLOAD: Take a screenshot of your admin dashboard showing that you have successfully created a few data entries in your application. Upload with the filename **'sample-data'** inside your **'lab4/images'** folder.
 
-### STEP 7: Import the data with fixtures
+### STEP 5: Import the data with fixtures
 
 Next, you will need to bulk import your data into your application.
 
@@ -369,7 +349,7 @@ You might have multiple fixture files or have multiple versions of them. In some
 
 **Don't commit your database.** `db.sqlite3` holds your admin login, and your migrations plus fixtures can rebuild it. Add a `.gitignore` file to your `lab4` folder containing the line `db.sqlite3`.
 
-### STEP 8: Create a View for Data Exploration
+### STEP 6: Create a View for Data Exploration
 
 Create a view and its template that lets a user view the list of the main objects in your database (e.g., the fields in the ACRE database) in your **'index.html'** page.
 
@@ -378,7 +358,7 @@ Create a view and its template that lets a user view the list of the main object
 ## How to Submit your Lab - GitHub + Brightspace
 
 - Push to your private `YOURNAME-ASM532-Labs` repo, in the `lab4` folder:
-   - your README, with the Problem Statement, Specification, Data Model, and Data Dictionary, and a line disclosing any AI use
+   - your README, with the Problem Statement, Data Model, and Data Dictionary, and a line disclosing any AI use
    - your `prompts.md` and `debug-log.md` (from the [AI debugging starter kit](ai-debugging-kit/README.md))
    - the images listed in each step
    - your Django project, with its fixtures, and a `.gitignore` that leaves out `db.sqlite3`
@@ -394,7 +374,6 @@ lab4/
   prompts.md                  <-- your prompt log
   debug-log.md                <-- your debugging log
   images/                     <-- images you've uploaded
-    worksheet.jpg
     site-map.png
     data-model.png
     hello-world.png
