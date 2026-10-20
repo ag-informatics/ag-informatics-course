@@ -1,0 +1,9 @@
+{# A reusable component: one field as a Bootstrap card. Pulled into a page with {% include %}. #}
+{# It uses whatever `field` the including page has in its loop. #}
+<div class="card h-100">
+    <div class="card-body">
+        <h2 class="card-title h5">{{ field.name }}</h2>
+        <p class="card-text">{{ field.get_field_type_display }}, {{ field.acres }} acres</p>
+        <a href="{% url 'notes' field.id %}" class="card-link">See notes for {{ field.name }}</a>
+    </div>
+</div>

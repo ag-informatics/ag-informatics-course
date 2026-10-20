@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <section>
+        <img src="img/m5-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Design Activity</h1>
+
+        <p>
+          Module 5 - User Interfaces<br />
+          Lecture 5.2 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <section>
+        <h2>In-class activity -> Lab 5</h2>
+        <table class="text-medium">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Handout</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Journey map and use case</td>
+              <td><a href="handouts/handout-journey-map.html">Journey map</a></td>
+              <td>~20 mins</td>
+              <td>yes</td>
+            </tr>
+            <tr>
+              <td>2. Pick 4 views, paper-prototype them</td>
+              <td><a href="handouts/handout-paper-prototype-kit.html">Paper prototype kit</a></td>
+              <td>~30 mins</td>
+              <td>yes</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-medium">It doesn't have to be "right". But it should guide your lab work.</p>
+        <p class="text-small">This is Lab 5, Part 1. Photograph your work before you leave: the photos go in
+          your spec kit (<code>lab5/spec-kit/img</code>), and you'll need them in lab this afternoon.</p>
+      </section>
+
+      <!-- Step 1. Lab 5 README STEP 1; wording from her answer to open question 8. -->
+      <section>
+        <h2>1. Journey map and use case</h2>
+        <ul class="text-medium">
+          <li>Map the <b>full flow</b>: how someone interacts with your Lab 4 web app, from start to finish.</li>
+          <li>Step by step: what they do, which page they're on, what data they see or enter.</li>
+          <li>(Think back to your task analysis in Lab 3)</li>
+          <li class="red">Look for holes: step with no page = view to be built.</li><br />
+          <li class="blue">Then <b>circle one task</b>: as your use case. Fill in <b>who</b> and their
+            <b>goal</b> at the top. <br />Continue to Step 2 with this use case as your scope of work.
+          </li>
+        </ul>
+        <p class="text-small">Spec kit: this is section 1 of your <code>SPEC.md</code>.</p>
+      </section>
+
+      <section>
+        <h2>2. Pick 4 views to paper prototype</h2>
+        <ul class="text-medium">
+          <li>Based on your use case: pick 4 views. <br /><span class="red">Look at the Lab 5 menu: 2 basic, 1 form, 1
+              advanced.</span></li><br />
+          <li>Build each view using the paper prototype kit's 12-column screen.</li>
+          <li>Front: two screens, one view each. <br />Back: cut out the pieces you need (use your second copy for
+            more).</li>
+          <li>Draw anything the kit doesn't have on the grid itself.</li><br /><br />
+          <li class="blue">Done early? Swap with someone: they try the task, you play the "computer" and swap screens.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Lab 5: pick your 4 views</h2>
+        <div class="r-hstack">
+          <div class="align-left">
+            <h3>2 basic</h3>
+            <ul class="text-small">
+              <li>Cards</li>
+              <li>Table</li>
+              <li>Detail page</li>
+              <li>Filtered list</li>
+              <li>Accordion</li>
+              <li>Summary home page</li>
+              <li>Carousel home page</li>
+            </ul>
+          </div>
+          <div class="align-left">
+            <h3>1 form</h3>
+            <ul class="text-small">
+              <li>A page where the user adds a record</li>
+            </ul>
+          </div>
+          <div class="align-left">
+            <h3>1 advanced</h3>
+            <ul class="text-small">
+              <li>Admin dashboard</li>
+              <li>Search box</li>
+              <li>Slider filter</li>
+              <li>Edit page + modal</li>
+              <li>Chart</li>
+              <li>Map</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-small">Details and examples: <a href="lab-5-ui-prototype/README.md">Lab 5</a>, STEP 2.</p>
+      </section>
+
+      <section>
+        <h2>Before you leave</h2>
+        <ul class="text-medium">
+          <li class="red">Photograph your journey map, and your paper prototype one view at a time, into
+            <code>lab5/spec-kit/img</code>.
+          </li><br />
+          <li>In <code>SPEC.md</code>: section 1 (who, goal, steps), section 2 (your 4 views), section 3 (your paper
+            prototype).</li><br /><br />
+          <li>This afternoon in lab: how to connect Bootstrap to Django and making styling decisions.
+          </li>
+        </ul>
+      </section>
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

@@ -53,9 +53,9 @@ You can jump between publicly released modules available in Fall 2026 below. If 
 * [Module 2: Data Exploration](module-2-data-exploration)
 * [Module 3: Concept Modeling](module-3-concept-modeling)
 * [Module 4: Web Applications](module-4-web-applications)
+* [Module 5: User Interfaces](module-5-user-interfaces)
 
 --- Coming Soon
-* Module 5: User Interfaces
 * Module 6: Software Engineering
 * Module 7: Future of Ag Tech
 

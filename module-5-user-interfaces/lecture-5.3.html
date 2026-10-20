@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<!--
+    LECTURE 5.3, built 2026-10-18 from the Module 5 harvest outline (rev 3) → "Lecture 5.3": Django implementation
+    details, in Module 4's read-along style. Every code block is copied verbatim from demos/myapp; "Result" screenshots
+    are the demo running on Django 5.2 (captured 2026-10-18). Explainer text sits on the slide (Module 4 convention).
+    Lines Claude drafted carry a comment; the CLI/NLI close is ported from the 2024 Lecture 5.2 (A-L5.2 §3-5).
+  -->
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <section>
+        <img src="img/m5-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Django + Bootstrap</h1>
+
+        <p>
+          Module 5 - User Interfaces<br />
+          Lecture 5.3 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">Using Django and Bootstrap for UI implementation.
+        </p>
+
+        <ol class="fragment text-medium">
+          <li>Django's template design principles</li>
+          <li>Template inheritance: <code>base.html</code>, <code>{% extends %}</code>, <code>{% include %}</code></li>
+          <br />
+          <li>Bootstrap in templates: the grid, components, and your design system in CSS</li>
+          <li>Forms: a page that saves user input</li>
+        </ol>
+        <p class="fragment green">Goal: Design and develop user interfaces.
+        </p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <section>
+        <h2>Code color key</h2>
+        <table class="text-medium">
+          <tr>
+            <th>Color</th>
+            <th>Marks</th>
+            <th>For example</th>
+          </tr>
+          <tr>
+            <td class="red">red</td>
+            <td>Python keywords</td>
+            <td><code class="red">def</code>, <code class="red">class</code>, <code class="red">return</code></td>
+          </tr>
+          <tr>
+            <td class="green">green</td>
+            <td>functions, methods and classes: things you call</td>
+            <td><code class="green">print()</code>, <code class="green">__init__()</code>, <code
+                class="green">Animal</code></td>
+          </tr>
+          <tr>
+            <td class="blue">blue</td>
+            <td>arguments: the values you pass in</td>
+            <td><code class="blue">name</code> in
+              <code><span class="green">greet</span>(<span class="blue">name</span>)</code>
+            </td>
+          </tr>
+          <tr>
+            <td class="purple">purple</td>
+            <td>attributes: the data an object holds<br />and commands you type in the terminal</td>
+            <td><code>self.<span class="purple">name</span></code>, <code class="purple">pip install</code></td>
+          </tr>
+          <tr>
+            <td class="pink">pink</td>
+            <td>files, folders and local URLs</td>
+            <td><code class="pink">views.py</code>, <code class="pink">http://127.0.0.1:8000/</code></td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- From the Lab 5 README, "Django templates and their design philosophy". -->
+      <section>
+        <h2>Django's template design principles</h2>
+        <br />
+        <ul class="text-medium">
+          <li><b><a
+                href="https://docs.djangoproject.com/en/5.2/misc/design-philosophies/#separate-logic-from-presentation">Separate
+                logic from presentation</a>:</b>
+            query, filter and sort in <code class="pink">views.py</code>. Templates only loop, branch, and lay it out.
+          </li><br />
+          <li class="fragment"><b><a
+                href="https://docs.djangoproject.com/en/5.2/misc/design-philosophies/#discourage-redundancy">Discourage
+                redundancy</a>:</b>
+            a sitewide header, footer and navbar live "in a single place": template inheritance.</li><br />
+          <li class="fragment"><b><a
+                href="https://docs.djangoproject.com/en/5.2/misc/design-philosophies/#safety-and-security">Safety and
+                security</a>:</b>
+            templates can't run arbitrary Python, and <code>{{ }}</code> escapes what users type.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Farmnotes demo with UI upgrades</h2>
+        <pre class="text-medium"><code data-trim><script type="text/template">
+base.html              Bootstrap + style.css, navbar, footer, {% block content %}
+├── index.html         {% extends %}: the fields, as cards
+│   └── _card.html     {% include %}: one field's card
+├── notes.html         {% extends %}: a field's observations
+├── observation.html   {% extends %}: one observation
+└── observe.html       {% extends %}: the form
+        </script></code></pre>
+        <p class="text-medium">Same models and data as Module 4. Code: the <a href="demos/README.md">Bootstrap + Django
+            demo</a>.</p>
+      </section>
+
+      <section>
+        <h2>Parent template: <br /><code class="pink">base.html</code>, the head</h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-14|8-9|11-13"><script type="text/template">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Farmnotes App{% endblock %}</title>
+
+    <!-- Bootstrap 5.3 CSS, from a CDN: https://getbootstrap.com/docs/5.3/getting-started/introduction/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Your own CSS loads AFTER Bootstrap, so your design system wins. -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'farmnotes/style.css' %}">
+</head>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>Bootstrap's CSS from a CDN (line 9).</li>
+          <li>Then <b>your</b> <code class="pink">style.css</code>: it loads second, so your design system wins.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Parent template: <br /><code class="pink">base.html</code>, the navbar</h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-15|3|7-13" data-ln-start-from="18"><script type="text/template">
+    <nav class="navbar navbar-expand-sm bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Farm Notes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>A Bootstrap <b>navbar</b> component, in a <code>container</code>.</li>
+          <li>Its links use <code>{% url %}</code>: by route name, not typed-out paths.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Parent template: <br /><code class="pink">base.html</code>, the body</h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-13|2-3|6-8|10-11" data-ln-start-from="34"><script type="text/template">
+    <main class="container my-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="container border-top py-3 text-body-secondary">
+        Farm Notes, a Module 5 demo.
+    </footer>
+
+    <!-- Bootstrap 5.3 JavaScript (the navbar's collapse button needs it) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code>{% block content %}</code> is the hole each page fills in.</li>
+          <li>A footer, shared by every page.</li>
+          <li>Bootstrap's JavaScript, at the bottom: the navbar's collapse button needs it.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>A page: <code class="pink">index.html</code></h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-18|1|3,18|7-13|10"><script type="text/template">
+{% extends 'farmnotes/base.html' %}
+
+{% block content %}
+
+    <h1>My Farm Fields</h1>
+    {% if latest_fields %}
+        <div class="row g-3">
+        {% for field in latest_fields %}
+            <div class="col-sm-6 col-lg-4">
+                {% include 'farmnotes/_card.html' %}
+            </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>No fields are available.</p>
+    {% endif %}
+
+{% endblock %}
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code>{% extends %}</code> pulls in <code class="pink">base.html</code>; the page fills only
+            <code>{% block content %}</code>.
+          </li>
+          <li>Bootstrap's grid: a <code>row</code>, and a <code>col</code> per card (<code>col-lg-4</code> = 4 of 12
+            columns).</li>
+          <li><code>{% include %}</code> drops in one <b>component</b> per field.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>A component: <code class="pink">_card.html</code></h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-9|3-9|7"><script type="text/template">
+{# A reusable component: one field as a Bootstrap card. Pulled into a page with {% include %}. #}
+{# It uses whatever `field` the including page has in its loop. #}
+<div class="card h-100">
+    <div class="card-body">
+        <h2 class="card-title h5">{{ field.name }}</h2>
+        <p class="card-text">{{ field.get_field_type_display }}, {{ field.acres }} acres</p>
+        <a href="{% url 'notes' field.id %}" class="card-link">See notes for {{ field.name }}</a>
+    </div>
+</div>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>A Bootstrap <b>card</b>, written once, reused on any page that has a <code class="blue">field</code>.</li>
+          <li>The underscore in <code class="pink">_card.html</code> marks it as a piece, not a page.</li>
+          <li><code>{% url 'notes' field.id %}</code>: a link by route <b>name</b>, not a typed-out path.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/</code></h2>
+        <img class="r-stretch" src="img/m5-demo-index.png"
+          alt="The farmnotes index page styled with Bootstrap: a Farm Notes navbar, the heading My Farm Fields, and two cards, North pasture (pasture, 12.5 acres) and South field (cropland, 8.0 acres), each with a link to its notes." />
+      </section>
+      <section>
+        <h2>Named URLs: <br /><code class="pink">farmnotes/urls.py</code></h2>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-17|3,7,12,16" data-ln-start-from="5"><script type="text/template">
+urlpatterns = [
+    # /farmnotes/
+    path('', views.index, name='index'),
+
+    # /farmnotes/field_id/
+    # /farmnotes/5/
+    path('<int:field_id>/', views.notes, name='notes'),
+
+    # /farmnotes/field_id/observation_id/
+    # 3rd observation for my 4th field
+    # /farmnotes/4/3/
+    path('<int:field_id>/<int:observation_id>/', views.observation, name='observation'),
+
+    # /farmnotes/field_id/observe/
+    # Module 5: the form for a new observation on a field
+    path('<int:field_id>/observe/', views.observe, name='observe'),
+]
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>Each route has a <code class="blue">name</code>. Templates link with
+            <code>{% url 'notes' field.id %}</code>.
+          </li>
+          <li>Change a path here, and every link still works.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Components: <code class="pink">notes.html</code></h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-16|7-13|10|14"><script type="text/template">
+{% extends 'farmnotes/base.html' %}
+
+{% block content %}
+
+    <h1>{{ field.name }}</h1>
+    <h2 class="h4">Observations:</h2>
+    <div class="list-group mb-3">
+        {% for observation in field.observation_set.all %}
+            <a href="{% url 'observation' field.id observation.id %}" class="list-group-item list-group-item-action">{{ observation.observation_title }}</a>
+        {% empty %}
+            <p>No observations yet.</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'observe' field.id %}" class="btn btn-primary">Add an observation</a>
+
+{% endblock %}
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>A Bootstrap <b>list group</b>: each observation is a link.</li>
+          <li><code>{% empty %}</code> covers a field with no observations yet.</li>
+          <li>A Bootstrap <b>button</b> into the form.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/1/</code></h2>
+        <img class="r-stretch" src="img/m5-demo-notes.png"
+          alt="The notes page for North pasture: the heading, an Observations list group with one item, Fence down, and a green Add an observation button." />
+      </section>
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/1/1/</code></h2>
+        <img class="r-stretch" src="img/m5-demo-observation.png"
+          alt="One observation, Fence down, as a Bootstrap card: the field name North pasture as the heading, the observation text, the author Sam, the date, a gray Other badge, and a link back to North pasture." />
+      </section>
+
+      <section>
+        <h2>Codified design: <br /><code class="pink">static/farmnotes/style.css</code></h2>
+        <pre class="text-small"><code class="language-css" data-trim data-line-numbers="1-17|1-8|10-17" data-ln-start-from="5"><script type="text/template">
+:root {
+  /* Typography: one font family for the whole app */
+  --bs-body-font-family: Georgia, "Times New Roman", serif;
+
+  /* Palette: links in a field green */
+  --bs-link-color-rgb: 46, 125, 50;
+  --bs-link-hover-color-rgb: 27, 94, 32;
+}
+
+/* Components: Bootstrap's primary button, recolored to the same green */
+.btn-primary {
+  --bs-btn-bg: #2e7d32;
+  --bs-btn-border-color: #2e7d32;
+  --bs-btn-hover-bg: #1b5e20;
+  --bs-btn-hover-border-color: #1b5e20;
+  --bs-btn-active-bg: #1b5e20;
+}
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>Bootstrap reads its colors and fonts from <b>CSS variables</b> (<code>--bs-...</code>)</li>
+          <li>Set a variable once, and every component that uses it changes.</li>
+        </ul>
+      </section>
+      <!-- ===================== FORMS ===================== -->
+      <section>
+        <h2>Forms: enable user input</h2>
+        <ul class="text-medium">
+          <li>A form page is visited <b>twice</b>.</li>
+          <li class="fragment"><b>GET:</b> the user arrives, and the view shows an empty form.</li>
+          <li class="fragment"><b>POST:</b> the user submits. The view checks the data, saves it, and <b>redirects</b>;
+            if
+            the data isn't valid, the same page comes back with the errors.</li>
+        </ul>
+        <!-- ^ From the demo README's "Two things worth knowing". -->
+      </section>
+
+      <section>
+        <h2>Build forms on models: <br /><code class="pink">farmnotes/forms.py</code></h2>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-19|7-9|11|13-19"><script type="text/template">
+# Module 5 demo (2026), Lecture 5.3: a form built from the Observation model.
+from django import forms
+
+from .models import Observation
+
+
+class ObservationForm(forms.ModelForm):
+    class Meta:
+        model = Observation
+        # The field this observation belongs to comes from the URL, so it isn't on the form.
+        fields = ['observation_title', 'author', 'observation_type', 'observation_date', 'observation_content']
+        # widgets: give each input Bootstrap's class, and a date picker for the date.
+        widgets = {
+            'observation_title': forms.TextInput(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control'}),
+            'observation_type': forms.Select(attrs={'class': 'form-select'}),
+            'observation_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'observation_content': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
+        </script></code></pre>
+        <ul class="text-medium">
+          <li>A <code class="green">ModelForm</code> builds its fields from the <code class="green">Observation</code>
+            model.</li>
+          <li><code class="blue">fields</code>: what the user fills in. The field comes from the URL, so it isn't on the
+            form.</li>
+          <li><code class="blue">widgets</code>: gives each input Bootstrap's <code>form-control</code> class, and a
+            date picker.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Handle GET and POST: <br /><code class="pink">farmnotes/views.py</code></h2>
+        <pre class="text-small"><code class="language-python" data-trim data-line-numbers="1-17|5|7-11|12" data-ln-start-from="31"><script type="text/template">
+# Make an observation related to a particular field (Module 5: forms)
+def observe(request, field_id):
+    field = get_object_or_404(Field, pk=field_id)
+
+    if request.method == 'POST':
+        # The user submitted the form: fill it with what they sent, and check it.
+        form = ObservationForm(request.POST)
+        if form.is_valid():
+            observation = form.save(commit=False)
+            observation.field = field
+            observation.save()
+            return redirect('notes', field_id=field.id)
+    else:
+        # The user just arrived: show an empty form.
+        form = ObservationForm()
+
+    return render(request, 'farmnotes/observe.html', {'field': field, 'form': form})
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code>request.method == 'POST'</code>: the user submitted.</li>
+          <li><code class="green">is_valid()</code> checks the data; <code class="green">save(commit=False)</code> lets
+            the view attach the field first.</li>
+          <li><code class="green">redirect()</code> back to the notes page, by route name.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Form template: <code class="pink">observe.html</code></h2>
+        <pre class="text-small"><code class="language-html" data-trim data-line-numbers="1-16|1|2|4-12|14-15" data-ln-start-from="8"><script type="text/template">
+<form method="post">
+    {% csrf_token %}
+
+    {% for item in form %}
+    <div class="mb-3">
+        <label for="{{ item.id_for_label }}" class="form-label">{{ item.label }}</label>
+        {{ item }}
+        {% for error in item.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Save observation</button>
+    <a href="{% url 'notes' field.id %}" class="btn btn-outline-secondary">Cancel</a>
+</form>
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><code>method="post"</code>: the form <b>sends</b> data.</li>
+          <li><code>{% csrf_token %}</code>: Django checks the form came from this site. </li>
+          <li>Without it, the POST is
+            refused.</li>
+          <li>Each field gets a Bootstrap label and input, and its errors.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Result: <code class="pink">http://127.0.0.1:8000/farmnotes/1/observe/</code></h2>
+        <img class="r-stretch" src="img/m5-demo-form.png"
+          alt="The demo's 'New observation: North pasture' page: a Farm Notes navbar, Bootstrap-styled fields for observation title, author, a type dropdown, a date picker and a content box, and a green Save observation button beside a Cancel button." />
+      </section>
+
+      <!-- Learn More: Module 4's list, plus Bootstrap and forms, and the 2024 Lab 5 "Future learning pathways". -->
+      <section>
+        <h2>Learn More</h2>
+        <ul class="text-medium">
+          <li>Template inheritance and the template language: <a
+              href="https://docs.djangoproject.com/en/5.2/ref/templates/language/">Django docs</a></li>
+          <li>Working with forms: <a href="https://docs.djangoproject.com/en/5.2/topics/forms/">Django docs</a></li>
+          <li>Bootstrap 5.3: <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">getting
+              started</a>, <a href="https://getbootstrap.com/docs/5.3/customize/css-variables/">CSS variables</a></li>
+          <li>Mozilla's Django tutorial: <a
+              href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/Django">MDN</a>
+          </li>
+          <li>JavaScript basics, if you want to go further: <a
+              href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting">MDN</a></li>
+        </ul>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

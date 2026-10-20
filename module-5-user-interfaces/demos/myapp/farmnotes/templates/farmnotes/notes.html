@@ -1,0 +1,16 @@
+{% extends 'farmnotes/base.html' %}
+
+{% block content %}
+
+    <h1>{{ field.name }}</h1>
+    <h2 class="h4">Observations:</h2>
+    <div class="list-group mb-3">
+        {% for observation in field.observation_set.all %}
+            <a href="{% url 'observation' field.id observation.id %}" class="list-group-item list-group-item-action">{{ observation.observation_title }}</a>
+        {% empty %}
+            <p>No observations yet.</p>
+        {% endfor %}
+    </div>
+    <a href="{% url 'observe' field.id %}" class="btn btn-primary">Add an observation</a>
+
+{% endblock %}

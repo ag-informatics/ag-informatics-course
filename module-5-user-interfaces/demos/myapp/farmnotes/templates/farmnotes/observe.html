@@ -1,0 +1,25 @@
+{% extends 'farmnotes/base.html' %}
+
+{% block content %}
+
+<h1>New observation: {{ field.name }}</h1>
+
+<!-- method="post": the form SENDS data. Django checks the csrf_token to make sure the form came from this site. -->
+<form method="post">
+    {% csrf_token %}
+
+    {% for item in form %}
+    <div class="mb-3">
+        <label for="{{ item.id_for_label }}" class="form-label">{{ item.label }}</label>
+        {{ item }}
+        {% for error in item.errors %}
+        <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Save observation</button>
+    <a href="{% url 'notes' field.id %}" class="btn btn-outline-secondary">Cancel</a>
+</form>
+
+{% endblock %}

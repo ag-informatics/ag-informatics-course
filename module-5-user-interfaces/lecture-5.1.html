@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+<!--
+    LECTURE 5.1, built 2026-10-18 from the Module 5 harvest outline (documentation/ankita-review-needed/
+    module-5-harvest-outline.md → "Lecture 5.1"). Slide text is ported verbatim from her sources; each slide's
+    source is in a comment above it. [ANKITA] marks a gap with no source text. Claude-drafted text is marked.
+
+    Markup changes made while porting, not wording: h3 slide titles → h2 and h4 → h3 (heading order); the HCAI
+    deck's <figure>/<figcaption> → <img> + <p class="cite"> and its .accent → .red, since styles.css has neither;
+    every image got alt text.
+  -->
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <!--
+          TITLE SLIDE
+
+          The logo is intentionally unprefixed — build_credits.py renames it to
+          mN-axilab-logo.png on --apply and rewrites this reference. If the
+          module folder ALREADY has mN-axilab-logo.png, point this at that file
+          instead of re-copying module-template/img/ (a second, unprefixed copy
+          shadows the prefixed one and breaks the other decks — happened
+          2026-08-26).
+        -->
+      <section>
+        <img src="img/m5-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>User Interface Design</h1>
+
+        <p>
+          Module 5 - User Interfaces<br />
+          Lecture 5.1 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+
+      <!-- Outline: her blue line and goal kept; the list is rewritten to her four goals for 5.1 (outline rev 3). -->
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">User interfaces support human-machine interactions and "good" user experiences.
+        </p>
+
+        <ol class="fragment text-medium">
+          <li>Why user interface design: interactions and experiences</li>
+          <li>The design cycle: a cover crop case study</li><br />
+
+          <li>Types of user interfaces, and how to decompose one into parts</li>
+          <li>A parts kit: Bootstrap, strapped onto Django</li><br />
+
+          <li>A design system is more than a parts kit: Lab 5, step by step
+            <ul class="text-small no-bullets">
+              <li>Design methods: journey maps, paper prototyping, mockups</li>
+              <li>Software development tools: Bootstrap in Django</li>
+            </ul>
+          </li>
+        </ol>
+        <p class="fragment green">Goal: Design and develop user interfaces.
+        </p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- ===================== 1. WHY UI ===================== -->
+
+      <!-- HCAI-2.1 §8/§10/§15 layers, with the definitions interleaved (her note, outline rev 3): things →
+           interactions (+ interaction design, + UI) → experiences (+ UX). Quotes are her sources' (HCAI-2.1 §12, §17). -->
+      <section>
+        <h2>What do we design?</h2>
+        <div class="r-stack">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-design-layers-things.jpg" width="50%"
+            alt="A single filled circle labelled 'things': the first layer of what we design." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m5-design-layers-interactions.jpg"
+            width="50%"
+            alt="The 'things' circle with people of different ages and groups around it, connected to it by arrows labelled 'interactions'." />
+          <img class="fragment fade-in-then-out" data-fragment-index="1" src="img/m5-design-layers-interactions.jpg"
+            width="50%"
+            alt="The 'things' circle with people of different ages and groups around it, connected to it by arrows labelled 'interactions'." />
+          <img class="fragment fade-in" data-fragment-index="2" src="img/m5-design-layers-experiences.jpg" width="50%"
+            alt="Diagram of three layers of design: 'things' in a central circle; people around it connected by arrows labelled 'interactions', each with a speech bubble showing a reaction (happy, confused, worried, approving); and a cloud labelled 'experiences' above." />
+        </div>
+        <div class="r-stack">
+          <p class="text-medium fragment fade-out" data-fragment-index="0"><b>Things:</b> products, systems, structures,
+            processes, services.</p>
+          <p class="text-medium fragment fade-in-then-out" data-fragment-index="0"><b>Interaction design:</b> "Design of
+            interactive products to support the way people communicate and interact in their everyday working lives."
+            <span class="cite">Sharp, Rogers, and Piece, Interaction Design 5th ed, 2019</span>
+          </p>
+          <p class="text-medium fragment fade-in" data-fragment-index="2"><b>User experience:</b> "How a [thing] behaves
+            and is used by people in the real world." <span class="cite">Sharp, Rogers, and Preece, Interaction Design
+              5th ed, 2019</span></p>
+        </div>
+      </section>
+
+      <section>
+        <h2>UI vs UX</h2>
+        <div class="r-hstack">
+          <div>
+            <h3>User Interface (UI)</h3>
+            <img src="img/m5-design-ui.jpg" width="90%"
+              alt="A long blue steel arch bridge over a river, above an engineering drawing of the same bridge with its spans, arch ribs, hangers and main girder labelled in meters." />
+            <p class="text-medium red">People directly interact with the UI.</p>
+          </div>
+          <div>
+            <h3>User Experience (UX)</h3>
+            <img src="img/m5-design-ux.png" width="90%"
+              alt="A cyclist riding a narrow bike lane on the Brooklyn Bridge, squeezed between pedestrians and a fence, beside traffic and a 'Road narrows' sign." />
+            <p class="text-medium red">People respond to the overall UX.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>What is a User Interface?</h2>
+        <br />
+        <p class="blue align-left">"All components of an interactive system (software or hardware) that provide
+          information and controls for the
+          user to accomplish specific tasks with the interactive system"</p>
+        <p class="align-left">ISO 9241-210:2019(en) <br /> Ergonomics of human-system interaction — <br /> Part 210:
+          Human-centred design
+          for interactive systems</p>
+        <p class="cite"><a href="https://www.iso.org/obp/ui/en/#iso:std:iso:9241:-210:ed-2:v1:en">ISO 9241-210:2019</a>,
+          3.16</p>
+      </section>
+
+      <section>
+        <h2>Three Mile Island, 1979: a UI failure</h2>
+        <p class="fragment text-medium blue" data-fragment-index="0">Imagine you're on shift. What could go wrong here?
+        </p>
+        <div class="r-hstack">
+          <img class="fragment" data-fragment-index="0" src="img/m5-design-tmi-tour.jpg" width="50%"
+            alt="President Jimmy Carter and others in yellow shoe covers stand in the Three Mile Island control room, in front of walls of switches, dials and indicator lights, under a sign reading 'Unnecessary personnel stay behind lines'." />
+          <img src="img/m5-design-tmi-aftermath.jpg" width="50%"
+            alt="The Three Mile Island plant across a river: four cooling towers, two of them releasing steam." />
+        </div>
+        <ol class="text-small">
+          <li class="fragment" data-fragment-index="1">A relief valve stuck open and nuclear cooling water drained away.
+            The controls showed neither the valve's position nor the coolant
+            level.</li>
+          <li class="fragment" data-fragment-index="2">Many similar alarms and a <span class="red">confusing control
+              layout</span> made it hard
+            to spot the problem.</li>
+          <li class="fragment" data-fragment-index="3">Operators didn't recognize the loss of coolant in time: <span
+              class="red">their
+              training hadn't prepared them, operating procedures didn't either.</span></li>
+          <li class="fragment" data-fragment-index="4">Partial meltdown and radiation leak: the most significant
+            commercial nuclear accident in the U.S.</li>
+        </ol>
+
+        <p class="fragment text-medium red" data-fragment-index="5">A critical design flaw: The UI said "safe" when the
+          plant wasn't.</p>
+
+        <p class="cite">https://americanhistory.si.edu/tmi/04-03.htm and
+          https://en.wikipedia.org/wiki/Three_Mile_Island_accident</p>
+      </section>
+
+      <!-- ===================== 2. THE DESIGN CYCLE ===================== -->
+
+      <section>
+        <h2>The software design cycle</h2>
+
+        <p class="fragment text-medium red">
+          In this module we'll focus on the interaction design to guide UI implementation.</p>
+        <div class="r-hstack">
+          <div style="flex: 1 1 40%;">
+            <img src="img/m5-diagram-software-process.png" width="90%"
+              alt="A sketched design cycle: arrows loop from a girl standing beside a bicycle, to a hand holding a cube covered in diagrams, to hands holding paper sketches of screens, and back." />
+          </div>
+          <div class="align-left" style="flex: 1 1 20%;">
+            <ul class="text-medium">
+              <li>User research</li>
+              <li>Concept and data modeling</li>
+              <li class="red">Interaction design</li>
+              <li>Software architecture and testing</li>
+              <li>Implementation</li>
+              <li>Maintenance and refinement</li>
+
+            </ul>
+          </div>
+        </div>
+        <p class="cite">img src: Petre, van der Hoek &amp; Quach, 2016</p>
+      </section>
+
+      <section>
+        <h2>Interaction design process</h2>
+        <div class="r-stack">
+          <div class="fragment fade-out" data-fragment-index="0">
+            <p class="align-left"><b>In <span class="blue">Human-Computer Interactions (HCI)</span>, <br /> you need to
+                build up two types of
+                fundamental knowledge:</b></p>
+            <ul>
+              <li>"<span class="blue">understand computers</span> -- limitations, capacities, tools, platforms"</li>
+              <br />
+              <li>"<span class="blue">understand people</span> -- psychological, social aspects, human error"</li>
+            </ul>
+            <p class="cite">Top quote: Dix, Finlay, Abowd & Beale, "Human Computer Interaction", 3rd edition, 2004 </p>
+          </div>
+          <div class="fragment fade-in-then-out" data-fragment-index="0">
+            <p class="align-left"><b>In <span class="blue">domain-specific design,</span>
+                you must additionally
+                understand:</b></p>
+            <ul>
+              <li><span class="blue">context-specific factors</span> -- connectivity in rural spaces, outdoor
+                environmental use conditions</li><br />
+              <li><span class="blue">specific user groups</span> -- not all people are the same, even within a subgroup
+                (e.g, farmers, planners,
+                policymakers)</li><br />
+              <li><span class="blue">users beyond people</span> -- animals as technology users, non-human technology
+                stakeholders (impacts to and from
+                the
+                environment)</li><br />
+              <li><span class="blue">devices beyond personal computers</span> -- embedded and control systems</li>
+            </ul>
+          </div>
+          <div class="fragment fade-in" data-fragment-index="1">
+            <img src="img/m5-IMG_7615.jpeg" width="75%"
+              alt="Dix et al.'s interaction design process: what is wanted (interviews, ethnography; what is there vs. what is wanted) leads to analysis (scenarios, task analysis), then design (guidelines, principles), then implement and deploy (precise specification; architectures, documentation, help). A prototype stage (evaluation, heuristics; dialog notations) loops back from design to analysis." />
+            <p class="cite">Dix, Finlay, Abowd &amp; Beale, Human-Computer Interaction, 3rd ed., 2004, Figure 5.1</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Prototypes, from low to high fidelity</h2>
+        <ul class="text-medium">
+          <li><b>Low fidelity:</b> a paper prototype. Quick, cheap, easy to throw away.</li>
+          <li class="fragment"><b>Mid fidelity:</b> a wireframe. Layout and structure, on screen, without the look.</li>
+          <li class="fragment"><b>High fidelity:</b> a mockup or interactive prototype. Looks like the real thing.</li>
+        </ul>
+        <p class="fragment text-medium red">In Lab 5: paper prototypes of all 4 views, then one high-fidelity mockup.
+        </p>
+      </section>
+
+      <!-- The photo carries content (she explains cover crops from it), so it's described in the slide's text, on an
+           .overlay for contrast (Accessibility Guidelines). -->
+      <section data-background-image="img/m5-2018-covercrops-green-brown.JPG">
+        <div class="overlay">
+          <h2>Case Study: <br /> Cover Crop Decision Support Tools</h2>
+          <p class="text-small">Left: Crimson clover and cereal rye cover crop. Right: Bare ground.</p>
+        </div>
+        <br /><br /><br /><br /><br /><br />
+      </section>
+
+      <section>
+        <h2>Cover Crop DST User Groups</h2>
+        <div class="r-stack">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-covercrop-dst-modules.png" width="80%"
+            alt="A cover crop platform drawn across devices: a laptop dashboard with nutrient cycling charts, linked to phones and tablets showing maps, field photos and data tables." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m5-covercrop-usergroups.png" width="80%"
+            alt="Three user groups, each with an icon: Grower, goal: find a cover crop to meet my farming goals. Advisor, goal: advise a grower on cover cropping, including selection and management. Explorer, goal: learn about cover crops!" />
+        </div>
+      </section>
+
+      <section>
+        <h2>What leads to *effective* cover crop decision support?</h2>
+        <br />
+        <div class="r-hstack">
+          <div>
+            <ul class="no-bullets">
+              <li>
+                <h3>Data</h3>
+              </li>
+              <li>High quality regional cover crop performance data + local field conditions</li><br /><br />
+              <li class="red">Behind the scenes</li>
+            </ul>
+          </div>
+
+          <div class="fragment">
+            <ul class="no-bullets">
+              <li>
+                <h3>Design</h3>
+              </li>
+              <li>An improved user experience that reduces information overload</li><br /><br />
+              <li class="red">What you see on the screen</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Data modeling with 200+ experts</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-covercrop-existing.png"
+            alt="Existing data sources for a cover crop tool: cover crop data from the MCCC Selector Tool and the NRCS NY Seeding Rate Tool, and plant and environmental data from the Integrated Taxonomic Information System (plant names), USDA PLANTS (agronomics, growth, morphology), Web Soil Survey (soils) and weather data." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m5-covercrop-sample-before.png"
+            alt="A spreadsheet of cover crop species before data curation: scientific and common names, family, life cycle, growth habit, temperature, frost and seeding columns, filled in unevenly." />
+          <img class="fragment fade-in-then-out" data-fragment-index="1" src="img/m5-covercrop-wall.png"
+            alt="A wall of the cover crop information a grower had to piece together: weather and plant hardiness maps, a soil survey map, an alphabetical list of cover crop species, the Managing Cover Crops Profitably book, a cover crop chart, USDA PLANTS listings, an MCCC decision tool table, and a SmartMix seed calculator." />
+          <img class="fragment fade-in" data-fragment-index="2" src="img/m5-2025-NECCC-data-dictionary.gif"
+            alt="Animated screen recording of the NECCC data dictionary: a spreadsheet of cover crop variables, each with a description, data type, units and allowed values, grouped into taxonomy, environmental tolerances and agronomics." />
+        </div>
+      </section>
+
+      <section>
+        <h2>UI/UX nearest neighbors</h2>
+        <img class="r-stretch" src="img/m5-covercrop-ux.png"
+          alt="A collage of the cover crop tools growers used before: a dense color-coded species chart, a crop rotation timeline over three years, a seed retailer's online catalog with seed bag photos, and a seed-mix product listing." />
+      </section>
+
+      <section>
+        <h2>Paper prototyping</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-paper-prototypes.png"
+            alt="Paper prototype pieces laid out on black: hand-drawn windows, dialog boxes, buttons, form fields and menus, cut out separately so they can be swapped in and out." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m5-paper-prototyping.png"
+            alt="Line drawing of a paper prototype test: a user works with a lo-fi prototype, a facilitator guides them through tasks and prompts for their thoughts, a person playing the 'computer' swaps in paper components, an observer takes notes on index cards, and a camera on a tripod points at the interface." />
+        </div>
+        <p class="fragment" data-fragment-index="1"><a href="https://www.youtube.com/watch?v=GrV2SZuRPv0">A little
+            demo!</a></p>
+        <p class="cite"><a href="http://fpl.cs.depaul.edu/jriely/360/extras/prototyping-for-tiny-fingers.pdf">Marc
+            Rettig, Prototyping for tiny fingers, 1994.</a></p>
+      </section>
+
+      <section>
+        <h2>Low-fidelity sketches to brainstorm</h2>
+        <img class="r-stretch" src="img/m5-covercrop-lofi.png"
+          alt="Photos of low-fidelity paper prototypes: hand-drawn screens sketched in a notebook and on sticky notes, showing tables, filters and lists of cover crops." />
+      </section>
+
+      <section>
+        <h2>Mapping the logic-flow and workflow</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-ccc-process-logic-all.png"
+            alt="The Seeding Rate Calculator's full process-logic map: from a selected species, branches for single-species seeding rate modifiers, mix modifiers, seeding rate details, and an educational cross-check of seeds and plants per square foot, each a chain of input and calculation boxes, converging on a final validated bulk and pure-live-seed seeding rate, with dynamically updated warnings alongside." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m5-ccc-process-logic.png"
+            alt="A zoomed-in branch of the map, the educational cross-check of seeds and plants per square foot: input boxes for total pure live seeds and seed percent emergence, combined by multiplication and division (including by 43,560 square feet per acre and by 100) into the calculated result." />
+        </div>
+      </section>
+
+      <section>
+        <h2>Mid-fidelity wireframes to discuss options</h2>
+        <img class="r-stretch" src="img/m5-covercrop-src-lofi.png"
+          alt="A Miro board for the Seeding Rate Calculator: a row of phone-screen wireframes connected by arrows, surrounded by yellow sticky notes of design comments." />
+      </section>
+
+      <section>
+        <h2>High-fidelity interactive prototype for demonstration</h2>
+        <img class="r-stretch" src="img/m5-covercrop-src-hifi.png"
+          alt="High-fidelity mobile mockups of the Seeding Rate Calculator, five screens in sequence: home, state and county selection, a species library with photos, species selection, and default seeding rates with pie charts." />
+      </section>
+
+      <section>
+        <h2>Cover Crop Species Selector Tool</h2>
+        <img class="r-stretch" src="img/m5-covercrop-tool-new.gif"
+          alt="Animated screen recording of the Northeast Cover Crops Council's Species Selector Tool: a filter sidebar (hardiness zone, cover crop type, environmental tolerances, seeds, roots) beside a grid of cover crop photo cards, each with an 'Add to list' button." />
+        <br />
+        <p class="cite">https://covercrop-selector.org/</p>
+      </section>
+
+      <section>
+        <h2>Cover Crop Seeding Rate Calculator</h2>
+        <img class="r-stretch" src="img/m5-2025-covercrops-seeding-rate-calculator-MCCC.png"
+          alt="The Midwest Cover Crops Council's Seeding Rate Calculator: a progress bar of steps (site conditions, species selection, mix ratios, seeding method, mix seeding rate, seed tag info, review mix, confirm plan) above a map of the U.S. with Illinois selected, asking 'Tell us about your planting site'." />
+        <p class="cite">https://covercrop-seedcalc.org/</p>
+      </section>
+
+      <!-- ===================== 3. TYPES OF USER INTERFACES ===================== -->
+
+      <section>
+        <h2>Interaction Styles</h2>
+        <p class="align-left">Interaction styles support dialog between the computer and the user.</p>
+        <ul>
+          <li class="fragment">Command Line Interface (CLI)
+            <ul class="text-small">
+              <li>e.g., terminal</li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Natural Language Interface (NLI)
+            <ul class="text-small">
+              <li>e.g., chatbots</li>
+            </ul>
+          </li><br />
+
+          <li class="fragment">Graphical User Interface (GUI)
+            <ul class="text-small">
+              <li>point and click</li>
+              <li>menus</li>
+              <li>drag and drop</li>
+              <li>WIMP: windows, icons, menus, and pointers!</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="cite">pg 136, Dix, Finlay, Abowd & Beale, "Human Computer Interaction", 3rd edition, 2004</p>
+      </section>
+
+      <section>
+        <h2>Command Line Interface (CLI)</h2>
+        <p class="text-medium">Example: DayCent, a biogeochemical model used in agroecosystem simulation (e.g., nitrogen
+          leaching, soil organic carbon, etc.)</p>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-daycent-model.png"
+            alt="The DayCent model diagram: flows of carbon, nitrogen and water between plant components, soil organic matter pools, and nitrogen gases, with a legend of processes." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m5-daycent-cli.png"
+            alt="A page of DayCent's command-line documentation: the command DDcent_vDec2016.exe with its -s, -n and -e arguments, and definitions of each input and output file." />
+        </div>
+        <ul class="fragment no-bullets text-small" data-fragment-index="1">
+          <li><b class="blue">CLI DESIGN CONSIDERATIONS:</b> Linear program flow. How to manage decision logic? Provide
+            user with
+            options via arguments OR text-based menus. Good documentation is key!</li>
+        </ul>
+        <p class="cite">DayCent example, <a
+            href="https://www.nrel.colostate.edu/projects/daycent/">https://www.nrel.colostate.edu/projects/daycent/</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Natural Language Interface (NLI)</h2>
+        <p class="text-medium">Example: <a href="https://www.wolframalpha.com/">Wolfram Alpha</a> (<a
+            href="https://www.wolframalpha.com/examples/society-and-culture/economic-data/agriculture/">more agriculture
+            examples</a>)</p>
+        <img class="r-stretch" src="img/m5-nli-wolfram.png"
+          alt="Wolfram Alpha answering 'what is the total acreage of farmland in the US': its interpretation, a summary of total, largest and smallest crop land area, and a world map shaded by crop land area." />
+        <ul class="fragment no-bullets text-small">
+          <li><b class="blue">NLI DESIGN CONSIDERATIONS:</b> Are there appropriate algorithms to parse user inputs? What
+            is the
+            breadth of possible inputs? Mode of user input: voice vs text. Good training data is key!</li>
+        </ul>
+        <p class="cite">Wolfram Alpha example, <a
+            href="https://www.wolframalpha.com/input/?i=what+is+the+total+acreage+of+farmland+in+the+US">https://www.wolframalpha.com/input/?i=what+is+the+total+acreage+of+farmland+in+the+US</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>Graphical User Interface (GUI)</h2>
+        <p>Interaction Styles:</p>
+        <p>1. Form Fillin, 2. Menu Selection, 3. Direct Manipulation.</p>
+        <div class="r-hstack">
+          <img class="fragment" src="img/m5-gui-form.gif" width="30%"
+            alt="Form fill-in: labelled text fields for name, address, city, state and zip." />
+          <img class="fragment" src="img/m5-gui-menu.gif" width="22%"
+            alt="Menu selection: Notepad's Edit menu open, listing Undo, Cut, Copy, Paste, Delete, Find, Replace, Go To, Select All and Time/Date, with keyboard shortcuts." />
+          <img class="fragment" src="img/m5-gui-direct.gif" width="30%"
+            alt="Direct manipulation: a file being dragged between folders in a Windows file explorer." />
+        </div>
+        <p class="cite">Learn more about interaction styles: <a
+            href="https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction/interaction-styles">Interaction
+            Design Foundation</a></p>
+      </section>
+
+      <section>
+        <h2>GUI Design: Mobile vs Desktop</h2>
+        <img class="r-stretch" src="img/m5-mobile-v-desktop.png"
+          alt="A table comparing mobile and desktop interactions: mobile favours brief, focused, transactional interactions with more disruptive interruptions and page loads and relatively poor response time; desktop supports continuous, non-transactional work, more complexity, and good response time." />
+        <p class="cite"><a
+            href="https://developer.ibm.com/articles/wa-interface/">https://developer.ibm.com/articles/wa-interface/</a>
+        </p>
+      </section>
+
+      <!-- ===================== 4. DECOMPOSE A UI INTO PARTS ===================== -->
+
+      <section>
+        <h2>GUI Anatomy: Mobile vs Web</h2>
+        <div class="r-hstack">
+          <img src="img/m5-mobile-elements.jpg" width="40%"
+            alt="An annotated sketch of a mobile app: a top nav bar with back and search, tab navigation, a list of cards, an alert dialog asking for location access, and a bottom nav bar with menu items." />
+          <img src="img/m5-web-elements.jpg" width="40%"
+            alt="An annotated sketch of a farm website: a header with the site name, a menu/nav bar (Home, Products, About), a sidebar with a form of checkboxes and radio buttons, a photo carousel, a grid of cards, and a footer." />
+        </div>
+      </section>
+
+      <section>
+        <h2>User Interface Components</h2>
+        <ul class="no-bullets">
+          <li><b class="red">Input controls:</b> buttons, text-fields, checkboxes, radio buttons, dropdown lists, list
+            boxes, toggles, date field</li><br />
+          <li><b class="red">Navigational components:</b> breadcrumbs, sliders, search fields, pagination, tags, icons
+          </li><br />
+          <li><b class="red">Information components:</b> tooltips, icons, progress bars, notifications, message boxes,
+            modal windows</li><br />
+          <li><b class="red">Containers:</b> accordions, sliders, tables, galleries, cards</li>
+        </ul>
+        <br />
+        <br />
+        <p class="cite">Learn more: https://www.usability.gov/how-to-and-tools/methods/user-interface-elements.html</p>
+      </section>
+
+      <section>
+        <h2>Component-based design</h2>
+        <p class="text-medium">Design and build each piece once, then reuse it everywhere.</p>
+        <div class="r-hstack contain">
+          <div style="flex: 1 1 45%;">
+            <img width="90%" src="img/m5-atomic-design-recap.png"
+              alt="Atomic design's five levels, using an Instagram post as the example: atoms (icons), molecules (a photo header bar), organisms (a full post header), templates (the post layout with a placeholder image), and pages (the same layout with a real photo of a bulldog and a real caption)." />
+            <p class="cite">Brad Frost: Atomic Design <a href="https://atomicdesign.bradfrost.com/chapter-2/">Ch2</a>
+            </p>
+          </div>
+          <div class="align-left" style="flex: 1 1 55%;">
+            <ul class="text-medium">
+              <li class="fragment" data-fragment-index="0"><b>Atoms:</b> button, text input, badge</li>
+              <li class="fragment" data-fragment-index="0"><b>Molecules:</b> search box (input and button), card</li>
+              <li class="fragment" data-fragment-index="0"><b>Organisms:</b> navbar, form, table</li><br />
+              <li class="fragment" data-fragment-index="1"><b>Templates:</b> <span class="blue">Django templates</span>
+              </li><br />
+              <li class="fragment" data-fragment-index="2"><b>Pages:</b> <span class=" blue">Django views.<br />
+                  In Django, a view = one
+                  page: a URL route + a view function (maybe filled with data) + a template.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <h2>UI basics in practice...</h2>
+        <div class="r-stack">
+          <div class="fragment fade-out" data-fragment-index="0">
+            <p class="text-medium"><b>Local structure:</b> to support user goals within an application</p>
+            <ul class="text-medium">
+              <li>knowing where you are <span class="blue">-- color in the current page on the menu</span></li>
+              <li>knowing what you can do <span class="blue">-- a menu of options</span></li>
+              <li>knowing where you are going, or what will happen <span class="blue">-- on hover, explain where it
+                  goes</span></li>
+              <li>knowing where you have been, or what you've done <span class="blue">-- a hyperlink turns purple once
+                  visited</span></li>
+            </ul>
+            <p class="text-medium">Communicating how your design will achieve this? <br /><span class="blue">Site map,
+                color
+                palette like a legend</span></p>
+          </div>
+
+          <div class="fragment fade-in-then-out" data-fragment-index="0">
+            <p class="text-medium"><b>Global structure:</b> hierarchical organization and dialog</p>
+            <ul class="text-medium">
+              <li>show what leads to what <span class="blue">-- the menu has a hierarchy</span></li>
+              <li>show what happens when <span class="blue">-- timer shows</span></li>
+              <li>include branches and loops <span class="blue">-- repeating events</span></li>
+              <li>be more task oriented than a hierarchy</li>
+            </ul>
+            <p class="text-medium">Communicating how your design will achieve this? <br /><span class="blue">User
+                journey map,
+                connected mockups</span></p>
+          </div>
+
+          <div class="fragment fade-in" data-fragment-index="1">
+            <p class="text-medium"><b>Screen layout</b></p>
+            <ul class="text-medium">
+              <li>Grouping and structure <span class="blue">-- logical organization based on user understanding</span>
+              </li>
+              <li>Order of group and items <span class="blue">-- follows the flow of user actions</span></li>
+              <li>Decoration <span class="blue">-- used to denote meaning (e.g., font, color)</span></li>
+              <li>Alignment <span class="blue">-- indicates flow of information (e.g., left to right reading)</span>
+              </li>
+              <li>White space <span class="blue">-- used to separate, structure, and highlight</span></li>
+            </ul>
+            <p class="text-medium">Communicating how your design will achieve this? <br /><span class="blue">Site map,
+                color
+                palette like a legend</span></p>
+          </div>
+        </div>
+        <p class="cite">Listed principles from: Dix, Finlay, Abowd &amp; Beale, Human-Computer Interaction, 3rd ed.,
+          2004
+        </p>
+      </section>
+
+
+      <!-- ===================== 5. A PARTS KIT: BOOTSTRAP, STRAPPED ONTO DJANGO ===================== -->
+
+      <section>
+        <h2>get support from: UI Frameworks!</h2>
+        <p><span class="red">Bootstrap (CSS + JavaScript)</span>.
+          <br />Tailwind CSS. Material UI (React).
+        </p><br />
+        <ul>
+          <li>Prebuilt components: buttons, cards, navbars, forms</li>
+          <li>A layout grid</li>
+          <li>Consistent styling</li>
+          <li>Responsive to different screens</li>
+          <li>Accessibility supported nearly-out-of-the-box</li>
+          <li class="blue">...a parts kit for user interfaces!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap</a></h2>
+        <p class="text-medium">An open source collection of prebuilt, configurable, UI components and page
+          layouts.<br /> Think lego for web UI.</p>
+        <ul class="text-medium">
+          <li>CSS + JavaScript: link two files from a CDN (a server that hosts the files). Nothing to install.
+          </li>
+          <li>The most popular open-source front-end toolkit, started at Twitter in 2011</li>
+          <li>A 12-column grid, responsive to screen size</li>
+          <li>Dozens of components; customizable with CSS variables</li>
+          <li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Excellent documentation.</a>
+          </li>
+          <li>Good for rapid prototyping!</li>
+        </ul>
+        <p class="fragment text-medium red">A pattern library and a component library to
+          upgrade your web applications.</p>
+      </section>
+
+      <section>
+        <h2>Bootstrap UI Kit</h2>
+        <div class="r-hstack">
+          <a href="https://getbootstrap.com/docs/5.3/examples/album/"><img src="img/m5-demo-album.png" width="90%"
+              alt="Bootstrap's Album example page: a dark navbar, a centred heading with two call-to-action buttons, and a grid of thumbnail cards with text and View/Edit buttons." /></a>
+          <a href="https://getbootstrap.com/docs/5.3/examples/dashboard/"><img src="img/m5-demo-dashboard.png"
+              width="100%"
+              alt="Bootstrap's Dashboard example page: a sidebar of navigation links, a line chart across the week, and a data table below it." /></a>
+        </div>
+        <p class="cite"><a href="https://getbootstrap.com/docs/5.3/examples/">Bootstrap examples</a></p>
+      </section>
+
+      <!-- NEW, from the Lab 5 README and the demo. Code is copied from demos/myapp. -->
+      <section>
+        <h2>Bootstrap's grid = your grid</h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 40%;">
+            <ul class="text-medium">
+              <li>A page is rows of <b>12 columns</b>.</li>
+              <li>A <code>col-4</code> takes 4 of them: the same as a "4 col" piece in your kit.</li>
+              <li><b>Responsive:</b> <code>col-sm-6 col-lg-4</code> means 6 columns on a small screen, 4 on a large one.
+              </li>
+            </ul>
+          </div>
+          <div class="align-left text-medium" style="flex: 1 1 60%;">
+            <pre><code data-trim><script type="text/template">
+              <div class="container">
+                <div class="row">
+                  <div class="col-8"> carousel </div>
+                  <div class="col-4"> card </div>
+                </div>
+              </div>
+            </script></code></pre>
+          </div>
+        </div>
+        <p class="cite"><a href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap grid</a></p>
+      </section>
+
+      <section>
+        <h2>Django templates, with Bootstrap</h2>
+        <pre class="text-medium"><code data-trim><script type="text/template">
+          base.html          Bootstrap + style.css, navbar, footer, {% block content %}
+          └── index.html     {% extends "acrelog/base.html" %}: fills in the content
+              └── _card.html  {% include "acrelog/_card.html" %}: one component, reused
+        </script></code></pre>
+        <ul class="text-medium">
+          <li><b>Write it once:</b> everything shared lives in <code>base.html</code>.</li>
+          <li><b>Logic in <code>views.py</code></b>, layout in templates.</li>
+        </ul>
+        <p class="fragment green">We'll do this together in lab + lecture.</p>
+      </section>
+
+      <section>
+        <h2>Worked example: a form</h2>
+        <img class="r-stretch" src="img/m5-demo-form.png"
+          alt="The demo's 'New observation: North pasture' page: a Farm Notes navbar, Bootstrap-styled fields for observation title, author, a type dropdown, a date picker and a content box, and a green Save observation button beside a Cancel button." />
+        <p class="text-medium">A Bootstrap-styled form, inside a Django template.</p>
+        <p class="fragment green">Code in Demo + Lecture 5.3.<br /> In Lab:
+          you'll connect Bootstrap to Django.</p>
+        <p class="cite">The <code>observe</code> page in the <a href="demos/README.md">Bootstrap + Django demo</a></p>
+      </section>
+
+      <section>
+        <h2>Structure of a Django Application, with Bootstrap</h2>
+        <pre class="mermaid">
+flowchart LR
+    accTitle: A Django application with Bootstrap
+    accDescr: The browser sends a request to urls.py, which calls a view in views.py. The view reads data from models.py and renders a page template, which extends base.html. base.html links Bootstrap's CSS and JavaScript from a CDN and your style.css from static. The view returns the finished HTML to the browser, which loads Bootstrap and style.css to style it.
+    B["Browser"] -->|request| U["urls.py"]
+    U --> V["views.py"]
+    V <--> M["models.py"]
+    V --> T["page template<br/>extends base.html"]
+    T -->|HTML response| B
+    CDN["Bootstrap CSS + JS<br/>(CDN)"] -.-> B
+    S["style.css<br/>(static/)"] -.-> B
+        </pre>
+        <p class="text-small"><code class="pink">base.html</code> links Bootstrap, then your <code
+            class="pink">style.css</code>.
+          Every page extends it, so Bootstrap reaches every page.</p>
+      </section>
+
+      <!-- ===================== 6. A DESIGN SYSTEM IS MORE THAN A PARTS KIT: LAB 5, STEP BY STEP =====================
+           Reordered 2026-10-19 to follow Lab 5's steps (titles carry the step numbers). The closing "User Interface
+           Design, in Lab 5" list is merged into the roadmap slide. Style guide = what to choose; accessibility = how
+           to check (the contrast / 16px / alt-text bullets now live only on the accessibility slide). -->
+
+      <section>
+        <h2>Design systems: more than a parts kit</h2>
+        <table class="text-medium">
+          <thead>
+            <tr>
+              <th>Concept</th>
+              <th>What it contains</th>
+              <th>In Lab 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Design system</b></td>
+              <td>Everything together: principles, guidelines, components, tokens, documentation</td>
+              <td>Your light design system</td>
+            </tr>
+            <tr>
+              <td><b>Style guide</b></td>
+              <td>Visual rules: colors, typography, spacing, iconography, brand voice</td>
+              <td>Your colors, fonts and assets, in CSS</td>
+            </tr>
+            <tr>
+              <td><b>Pattern library</b></td>
+              <td>Reusable UX patterns: layouts, page templates, interaction patterns</td>
+              <td>Bootstrap's grid and examples; your <code>base.html</code></td>
+            </tr>
+            <tr>
+              <td><b>Component library</b></td>
+              <td>Coded UI components: buttons, inputs, modals, cards</td>
+              <td>Bootstrap's components</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="cite">Adapted from <a
+            href="https://www.uxpin.com/studio/blog/design-systems-vs-pattern-libraries-vs-style-guides-whats-difference/">Design
+            Systems vs Pattern Libraries vs Style Guides</a>, UXPin.</p>
+      </section>
+
+      <section>
+        <h2>Your Lab 5 roadmap</h2>
+
+        <p class="text-medium red">
+          In this module we'll focus on the interaction design to guide UI implementation.</p>
+        <div class="r-hstack">
+          <div style="flex: 1 1 40%;">
+            <img src="img/m5-diagram-software-process.png" width="80%"
+              alt="A sketched design cycle: arrows loop from a girl standing beside a bicycle, to a hand holding a cube covered in diagrams, to hands holding paper sketches of screens, and back." />
+          </div>
+          <div class="align-left" style="flex: 1 1 20%;">
+            <ol class="text-medium">
+              <li>Scope: Journey map and use case</li>
+              <li>Ideate: Pick 4 views and paper-prototype them</li>
+              <li>Design: your style guide and one digital mockup</li>
+              <li>Implement: 4 Bootstrapified views</li>
+            </ol>
+          </div>
+        </div>
+        <p class="fragment text-medium red">Your spec kit (v1 of your software specification) documents your
+          design.
+        </p>
+        <p class="cite">img src: Petre, van der Hoek &amp; Quach, 2016</p>
+      </section>
+
+      <section>
+        <h2>Three maps with three jobs</h2>
+        <table class="text-medium">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Maps</th>
+              <th>Its job</th>
+              <th>Lab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Task analysis</b></td>
+              <td>What a person is trying to get done, broken into tasks</td>
+              <td>What the system must support</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td><b>Site map</b></td>
+              <td>The pages of an app, and how they link</td>
+              <td>How the app is organized</td>
+              <td>4</td>
+            </tr>
+            <tr class="fragment red">
+              <td><b>Journey map</b></td>
+              <td>One person's path through the app, step by step</td>
+              <td>Where the flow breaks, and which views it needs</td>
+              <td>5</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>STEP 1: Journey map -> use case</h2>
+        <p><b>User Journey Maps:</b> what is the ideal user workflow?<br />
+          Example: <a href="https://www.thisisservicedesigndoing.com/methods/mapping-journeys">This is Service Design
+            Doing: Mapping journeys</a></p>
+        <ol class="text-medium">
+          <li>Map the <b>full flow</b>: how someone uses your app, from start to finish.</li>
+          <li class="fragment">Circle <b>one task</b>: that's your use case. Who is the user, and what is their goal?
+          </li>
+          <li class="fragment">Your 4 views are the pages this use case moves through.</li>
+        </ol>
+        <p class="fragment red"><b>This is the jumpoff point to begin laying out your app's pages!</b></p>
+      </section>
+
+      <section>
+        <h2>STEP 2: Pick 4 views</h2>
+        <div class="r-hstack">
+          <div class="align-left">
+            <h3>2 basic</h3>
+            <ul class="text-small">
+              <li>Cards</li>
+              <li>Table</li>
+              <li>Detail page</li>
+              <li>Filtered list</li>
+              <li>Accordion</li>
+              <li>Summary home page</li>
+              <li>Carousel home page</li>
+            </ul>
+          </div>
+          <div class="align-left">
+            <h3>1 form</h3>
+            <ul class="text-small">
+              <li>A page where the user adds a record</li>
+            </ul>
+          </div>
+          <div class="align-left">
+            <h3>1 advanced</h3>
+            <ul class="text-small">
+              <li>Admin dashboard</li>
+              <li>Search box</li>
+              <li>Slider filter</li>
+              <li>Edit page + modal</li>
+              <li>Chart</li>
+              <li>Map</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-small">Details and examples: <a href="lab-5-ui-prototype/README.md">Lab 5</a>, STEP 2.</p>
+      </section>
+
+      <section>
+        <h2>Ideate with paper prototypes</h2>
+        <div class="r-hstack">
+          <img src="img/m5-kit-front.png" width="40%"
+            alt="Front of the paper prototype kit: two blank browser screens, each with Bootstrap's 12 columns marked faintly and numbered 1 to 12, under a 'Screen, View' label." />
+          <img src="img/m5-kit-back.png" width="40%"
+            alt="Back of the kit: dashed-outline cut-outs of Bootstrap components, each labelled with its name, atomic level and width in columns, such as navbar (organism, 12 col), carousel (8 col), card (molecule, 4 col), table, accordion, form, chart, map, buttons, badges and inputs." />
+        </div>
+        <p class="text-medium red">Pieces fit grid columns the way their code would fit the screen.</p>
+      </section>
+
+      <section>
+        <h2>STEP 3: Style for consistency</h2>
+        <p class="text-medium">A blueprint shared across every page of your app.</p>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 33%;">
+            <h3>Palette</h3>
+            <ul class="text-small">
+              <li>Background (white is ok!), accent, font, and "highlight" colors</li>
+              <li>Generate one: <a href="https://coolors.co/">Coolors</a> or <a
+                  href="https://color.adobe.com/create/color-wheel">Adobe Color</a></li>
+            </ul>
+          </div>
+          <div class="align-left" style="flex: 1 1 33%;">
+            <h3>Typography</h3>
+            <ul class="text-small">
+              <li>1-2 font families, at about 4 sizes: header, subheader, main text, small text</li>
+              <li><a href="https://fonts.google.com/">Google Fonts</a>, or <a
+                  href="https://getbootstrap.com/docs/5.3/content/typography/">Bootstrap's defaults</a></li>
+            </ul>
+          </div>
+          <div class="align-left" style="flex: 1 1 33%;">
+            <h3>Assets</h3>
+            <ul class="text-small">
+              <li>Icons, images, videos: credit third-party content</li>
+              <li>Icons: <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a>, <a
+                  href="https://thenounproject.com/">Noun Project</a></li>
+              <li>Photos: <a href="https://unsplash.com/">Unsplash</a>, <a
+                  href="https://commons.wikimedia.org/">Wikimedia Commons</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="cite"><a href="https://digital.gov/guides/accessibility-for-teams/visual-design">Visual design for
+            accessibility</a>, digital.gov</p>
+      </section>
+
+      <section>
+        <h2>Consider: web accessibility basics</h2>
+        <ul class="text-medium">
+          <li><b>Contrast:</b> text at least 4.5:1 against its background. Check with the <a
+              href="https://webaim.org/resources/contrastchecker/">WebAIM contrast checker</a>.</li><br />
+          <li class="fragment"><b>Color is never the only signal:</b> pair it with a label or an icon.</li><br />
+          <li class="fragment"><b>Readable text:</b> main text at least 16px, Bootstrap's default.</li><br />
+          <li class="fragment"><b>Alt text:</b> every image says what it shows or does.</li><br />
+          <li class="fragment"><b>Components used as documented</b> keep Bootstrap's built-in accessibility.</li>
+        </ul>
+        <p class="cite"><a href="https://digital.gov/guides/accessibility-for-teams/visual-design">Visual design for
+            accessibility</a>, digital.gov</p>
+      </section>
+
+      <section>
+        <h2>STEP 4: ONE digital mockup in a design tool</h2>
+        <ul class="text-medium">
+          <li><a href="https://miro.com/education-whiteboard/">Miro</a> (free, recommended): its <a
+              href="https://miro.com/wireframe/">wireframe toolkit</a></li>
+          <li><a href="https://pencil.evolus.vn/">Pencil Project</a> (free, open source, recommended)</li>
+          <li><a href="https://creately.com/lp/ui-mockup-tool/">Creately</a></li>
+          <li class="fragment">More advanced: <a href="https://www.figma.com/education/">Figma</a> (free student
+            access), <a href="https://www.uxpin.com/">UXPin</a>, <a href="https://balsamiq.com/">Balsamiq</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>STEP 5: Your style guide in code</h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 40%;">
+            <ul class="text-medium">
+              <li>Your colors and fonts become <b>CSS variables</b> in <code>style.css</code>, loaded after Bootstrap.
+              </li>
+              <li>Change a variable once, and every component that uses it changes. More in Lecture 5.3.</li>
+            </ul>
+          </div>
+          <div class="align-left text-medium" style="flex: 1 1 60%;">
+            <pre><code class="language-css" data-trim>
+              :root {
+                --bs-body-font-family: Georgia, serif;
+                --bs-link-color-rgb: 46, 125, 50;
+              }
+            </code></pre>
+          </div>
+        </div>
+        <p class="cite">From the <a href="demos/README.md">Bootstrap + Django demo</a>'s <code>style.css</code></p>
+      </section>
+
+      <section>
+        <h2>Lab 5 roadmap</h2>
+        <div class="r-hstack">
+          <div style="flex: 1 1 40%;">
+            <img src="img/m5-diagram-software-process.png" width="80%"
+              alt="A sketched design cycle: arrows loop from a girl standing beside a bicycle, to a hand holding a cube covered in diagrams, to hands holding paper sketches of screens, and back." />
+          </div>
+          <div class="align-left" style="flex: 1 1 20%;">
+            <ol class="text-medium">
+              <li>Scope: Journey map and use case</li>
+              <li>Ideate: Pick 4 views and paper-prototype them</li>
+              <li>Design: your style guide and one digital mockup</li>
+              <li>Implement: 4 Bootstrapified views</li>
+            </ol>
+          </div>
+        </div>
+        <p class="text-medium red">Your spec kit (v1 of your software specification) documents your
+          design.
+        </p>
+        <p class="cite">img src: Petre, van der Hoek &amp; Quach, 2016</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

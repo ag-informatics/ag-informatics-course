@@ -1,0 +1,46 @@
+[
+  {
+    "model": "farmnotes.field",
+    "pk": 1,
+    "fields": {
+      "name": "North pasture",
+      "acres": 12.5,
+      "field_type": "pasture",
+      "note": ""
+    }
+  },
+  {
+    "model": "farmnotes.field",
+    "pk": 2,
+    "fields": {
+      "name": "South field",
+      "acres": 8.0,
+      "field_type": "cropland",
+      "note": ""
+    }
+  },
+  {
+    "model": "farmnotes.observation",
+    "pk": 1,
+    "fields": {
+      "field": 1,
+      "observation_title": "Fence down",
+      "author": "Sam",
+      "observation_content": "East fence post broken near the gate.",
+      "observation_type": "other",
+      "observation_date": "2026-10-06"
+    }
+  },
+  {
+    "model": "farmnotes.observation",
+    "pk": 2,
+    "fields": {
+      "field": 2,
+      "observation_title": "Aphids on lettuce",
+      "author": "Sam",
+      "observation_content": "Aphids on the undersides of the leaves in the south plots.",
+      "observation_type": "pest",
+      "observation_date": "2026-10-06"
+    }
+  }
+]

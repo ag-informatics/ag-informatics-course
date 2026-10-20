@@ -1,0 +1,21 @@
+/* A light design system, Module 5 demo. This file loads after Bootstrap, so these rules win.
+   Bootstrap 5.3 reads its colors and fonts from CSS variables: change the variable, and every
+   component that uses it changes too. https://getbootstrap.com/docs/5.3/customize/css-variables/ */
+
+:root {
+  /* Typography: one font family for the whole app */
+  --bs-body-font-family: Georgia, "Times New Roman", serif;
+
+  /* Palette: links in a field green */
+  --bs-link-color-rgb: 46, 125, 50;
+  --bs-link-hover-color-rgb: 27, 94, 32;
+}
+
+/* Components: Bootstrap's primary button, recolored to the same green */
+.btn-primary {
+  --bs-btn-bg: #2e7d32;
+  --bs-btn-border-color: #2e7d32;
+  --bs-btn-hover-bg: #1b5e20;
+  --bs-btn-hover-border-color: #1b5e20;
+  --bs-btn-active-bg: #1b5e20;
+}

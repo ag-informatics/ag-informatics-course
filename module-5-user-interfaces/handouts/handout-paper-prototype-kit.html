@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Paper prototype kit — ASM 532 Lecture 5.2 handout</title>
+
+  <!--
+      PRINTABLE HANDOUT. Print DOUBLE-SIDED on US Letter, portrait, at 100% scale ("actual size", not "fit to page"),
+      or the pieces stop matching the screens. Hand out 2 copies per student: one to cut, one to photocopy.
+
+      FRONT: two browser screens, each with Bootstrap's 12-column grid printed faintly.
+      BACK: cut-outs of Bootstrap components, drawn TO THE SAME SCALE: 1 grid column = 16 mm on both sides, so a
+      "4 col" piece covers exactly 4 columns of a screen. Each piece is labelled with its Bootstrap name, its atomic
+      level (atom / molecule / organism, from Module 1's atomic design), and its width in columns.
+
+      Built by Claude, 2026-10-18, for Ankita's review. Why: her printed kit's pieces weren't drawn to scale, and
+      students laid them out in ways that don't translate to a screen (prompts.md, "re: paper prototyping kit").
+      Pieces cover every component in the Lab 5 view menu, plus her kit's carousel and slider (range). The
+      "Under construction" and "Loading" pieces follow NN/g's paper prototyping cutout kit (idea only; their files
+      aren't copied, since their reuse terms aren't stated).
+
+      Heights are drawn to look right at this scale; only widths are exact (a real component's height depends on
+      its content). Self-contained by design, like the other handouts: no stylesheet link.
+    -->
+
+  <style>
+    :root {
+      --col: 16mm;
+    }
+
+    @page {
+      size: letter portrait;
+      margin: 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 10mm;
+      width: calc(var(--col) * 12 + 20mm);
+      line-height: 1.25;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        width: auto;
+      }
+    }
+
+    .side-two {
+      page-break-before: always;
+    }
+
+    header {
+      border-bottom: 2px solid #000;
+      padding-bottom: 1.5mm;
+      margin-bottom: 2.5mm;
+    }
+
+    h1 {
+      font-size: 14pt;
+      margin: 0;
+    }
+
+    .course {
+      font-size: 7.5pt;
+      margin: 0.5mm 0 0;
+    }
+
+    .name-line {
+      float: right;
+      font-size: 8pt;
+      margin-top: 1mm;
+    }
+
+    .instructions {
+      font-size: 8pt;
+      margin: 0 0 3mm;
+    }
+
+    /* ---------- FRONT: screens ---------- */
+    .screen-label {
+      font-size: 8pt;
+      font-weight: bold;
+      margin: 0 0 1mm;
+    }
+
+    .screen {
+      width: calc(var(--col) * 12);
+      border: 1.5px solid #000;
+      border-radius: 2mm;
+      margin-bottom: 4mm;
+    }
+
+    .chrome {
+      height: 6mm;
+      border-bottom: 1.5px solid #000;
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+      padding: 0 2mm;
+    }
+
+    .chrome .dot {
+      width: 2mm;
+      height: 2mm;
+      border: 1px solid #000;
+      border-radius: 50%;
+    }
+
+    .chrome .url {
+      flex: 1;
+      height: 3.5mm;
+      border: 1px solid #000;
+      border-radius: 1.5mm;
+      margin-left: 2mm;
+      font-size: 6pt;
+      line-height: 3.2mm;
+      padding-left: 1.5mm;
+    }
+
+    .colnums {
+      display: flex;
+      font-size: 5.5pt;
+      color: #777;
+    }
+
+    .colnums span {
+      width: var(--col);
+      text-align: center;
+    }
+
+    .viewport {
+      height: 93mm;
+      display: flex;
+    }
+
+    .viewport span {
+      width: var(--col);
+      border-left: 1px dotted #aaa;
+    }
+
+    .viewport span:first-child {
+      border-left: none;
+    }
+
+    /* ---------- BACK: pieces ---------- */
+    .legend {
+      font-size: 7.5pt;
+      margin: 0 0 2.5mm;
+    }
+
+    .row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 2.5mm;
+    }
+
+    .piece {
+      border: 1px dashed #000;
+      position: relative;
+      padding: 3.6mm 1.6mm 1.4mm;
+      font-size: 6pt;
+      overflow: hidden;
+    }
+
+    .tag {
+      position: absolute;
+      top: 0.6mm;
+      left: 1.2mm;
+      font-size: 5.5pt;
+      color: #444;
+      white-space: nowrap;
+    }
+
+    .w1 { width: calc(var(--col) * 1); }
+    .w2 { width: calc(var(--col) * 2); }
+    .w3 { width: calc(var(--col) * 3); }
+    .w4 { width: calc(var(--col) * 4); }
+    .w6 { width: calc(var(--col) * 6); }
+    .w8 { width: calc(var(--col) * 8); }
+    .w12 { width: calc(var(--col) * 12); }
+
+    .ln {
+      border-top: 1px solid #000;
+      margin: 1.6mm 0;
+    }
+
+    .ln.s { width: 40%; }
+    .ln.m { width: 65%; }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid #000;
+      border-radius: 1.2mm;
+      padding: 0.3mm 2.2mm;
+      font-size: 5.5pt;
+    }
+
+    .btn.fill {
+      background: #000;
+      color: #fff;
+    }
+
+    .inp {
+      border: 1px solid #000;
+      border-radius: 0.8mm;
+      height: 3.6mm;
+      font-size: 5.5pt;
+      line-height: 3.2mm;
+      padding-left: 1mm;
+      color: #555;
+    }
+
+    .lbl {
+      font-size: 5.5pt;
+      margin: 1mm 0 0.4mm;
+    }
+
+    svg.fill {
+      display: block;
+      width: 100%;
+    }
+
+    .flex {
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+    }
+
+    .grow {
+      flex: 1;
+    }
+
+    .bar {
+      border: 1px solid #000;
+      border-radius: 0.8mm;
+      height: 4mm;
+      margin-bottom: 1mm;
+      font-size: 5.5pt;
+      line-height: 3.6mm;
+      padding: 0 1.2mm;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    table.tbl {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table.tbl td {
+      border-bottom: 1px solid #000;
+      height: 3.6mm;
+    }
+
+    table.tbl tr:first-child td {
+      border-bottom-width: 2px;
+    }
+
+    .pill {
+      display: inline-block;
+      border: 1px solid #000;
+      border-radius: 3mm;
+      padding: 0.3mm 2.5mm;
+      font-size: 5.5pt;
+    }
+
+    .pill.fill {
+      background: #000;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 1mm;
+      padding-top: 1mm;
+      border-top: 1px solid #000;
+      font-size: 6.5pt;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== FRONT: two screens ===================== -->
+
+  <header>
+    <span class="name-line">Name: ______________________</span>
+    <h1>Paper prototype kit: screens</h1>
+    <p class="course">ASM 532: Introduction to Ag Informatics &middot; Module 5, Lecture 5.2 &middot; ankita@purdue.edu
+    </p>
+  </header>
+
+  <p class="instructions">Each screen is a browser window with Bootstrap's <b>12-column grid</b>. Cut out pieces from
+    the back of another copy. Every piece is sized in columns, so place it on the columns it covers: it will take the
+    same space on screen in code. Draw anything the kit doesn't have, on the grid. One view per screen; use your
+    second copy for more.</p>
+
+  <p class="screen-label">Screen ___ &nbsp;·&nbsp; View: ______________________________</p>
+  <div class="screen">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span
+        class="url">127.0.0.1:8000/</span></div>
+    <div class="colnums"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+    <div class="viewport"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <p class="screen-label">Screen ___ &nbsp;·&nbsp; View: ______________________________</p>
+  <div class="screen">
+    <div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span
+        class="url">127.0.0.1:8000/</span></div>
+    <div class="colnums"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+    <div class="viewport"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <!-- ===================== BACK: cut-outs ===================== -->
+
+  <div class="side-two">
+
+    <header>
+      <span class="name-line">Name: ______________________</span>
+      <h1>Paper prototype kit: components</h1>
+      <p class="course">ASM 532: Introduction to Ag Informatics &middot; Module 5, Lecture 5.2 &middot; cut along the
+        dashed lines</p>
+    </header>
+
+    <p class="legend">Each piece: its <b>Bootstrap name</b> · its <b>atomic level</b> (atom = smallest piece; molecule
+      = atoms combined; organism = a section of a page) · its <b>width in columns</b>. Your screen is the template;
+      the finished prototype is the page.</p>
+
+    <!-- navbar -->
+    <div class="row">
+      <div class="piece w12" style="height: 9mm;">
+        <span class="tag">navbar · organism · 12 col</span>
+        <div class="flex"><b>App name</b><span class="ln s" style="width: 12mm; margin: 0 0 0 4mm;"></span><span
+            class="ln s" style="width: 12mm; margin: 0;"></span><span class="ln s"
+            style="width: 12mm; margin: 0;"></span></div>
+      </div>
+    </div>
+
+    <!-- carousel + card -->
+    <div class="row">
+      <div class="piece w8" style="height: 32mm;">
+        <span class="tag">carousel · organism · 8 col</span>
+        <svg class="fill" viewBox="0 0 100 30" preserveAspectRatio="none" style="height: 22mm;">
+          <rect x="0.5" y="0.5" width="99" height="29" fill="none" stroke="#000" stroke-width="0.4" />
+          <line x1="0" y1="0" x2="100" y2="30" stroke="#000" stroke-width="0.2" />
+          <line x1="100" y1="0" x2="0" y2="30" stroke="#000" stroke-width="0.2" />
+          <text x="3" y="17" font-size="6">‹</text><text x="94" y="17" font-size="6">›</text>
+        </svg>
+        <div style="text-align: center; font-size: 7pt; margin-top: 0.8mm;">● ○ ○</div>
+      </div>
+      <div class="piece w4" style="height: 32mm;">
+        <span class="tag">card · molecule · 4 col</span>
+        <svg class="fill" viewBox="0 0 100 40" preserveAspectRatio="none" style="height: 11mm;">
+          <rect x="0.5" y="0.5" width="99" height="39" fill="none" stroke="#000" stroke-width="0.6" />
+          <line x1="0" y1="0" x2="100" y2="40" stroke="#000" stroke-width="0.3" />
+          <line x1="100" y1="0" x2="0" y2="40" stroke="#000" stroke-width="0.3" />
+        </svg>
+        <div class="ln m"></div>
+        <div class="ln"></div>
+        <div class="ln s"></div>
+        <span class="btn fill">Button</span>
+      </div>
+    </div>
+
+    <!-- table + card -->
+    <div class="row">
+      <div class="piece w8" style="height: 32mm;">
+        <span class="tag">table · organism · 8 col</span>
+        <table class="tbl">
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+          <tr><td></td><td></td><td></td><td></td></tr>
+        </table>
+      </div>
+      <div class="piece w4" style="height: 32mm;">
+        <span class="tag">card · molecule · 4 col</span>
+        <div class="ln m" style="border-top-width: 2px;"></div>
+        <div class="ln"></div>
+        <div class="ln"></div>
+        <div class="ln m"></div>
+        <div class="ln"></div>
+        <div class="ln s"></div>
+        <span class="btn">Button</span>
+      </div>
+    </div>
+
+    <!-- accordion + form -->
+    <div class="row">
+      <div class="piece w6" style="height: 31mm;">
+        <span class="tag">accordion · organism · 6 col</span>
+        <div class="bar"><span>Item 1</span><span>▴</span></div>
+        <div class="ln" style="margin-left: 2mm;"></div>
+        <div class="ln m" style="margin-left: 2mm;"></div>
+        <div class="bar"><span>Item 2</span><span>▾</span></div>
+        <div class="bar"><span>Item 3</span><span>▾</span></div>
+      </div>
+      <div class="piece w6" style="height: 31mm;">
+        <span class="tag">form · organism · 6 col</span>
+        <div class="lbl">Label</div>
+        <div class="inp"></div>
+        <div class="lbl">Label</div>
+        <div class="inp">Choose… ▾</div>
+        <div class="lbl">Label</div>
+        <div class="inp">mm/dd/yyyy</div>
+        <div style="margin-top: 1.2mm;"><span class="btn fill">Save</span> <span class="btn">Cancel</span></div>
+      </div>
+    </div>
+
+    <!-- chart + map + image -->
+    <div class="row">
+      <div class="piece w4" style="height: 24mm;">
+        <span class="tag">chart · organism · 4 col</span>
+        <svg class="fill" viewBox="0 0 100 50" style="height: 17mm;">
+          <line x1="8" y1="2" x2="8" y2="46" stroke="#000" stroke-width="0.8" />
+          <line x1="8" y1="46" x2="98" y2="46" stroke="#000" stroke-width="0.8" />
+          <rect x="16" y="26" width="12" height="20" fill="none" stroke="#000" />
+          <rect x="36" y="14" width="12" height="32" fill="none" stroke="#000" />
+          <rect x="56" y="30" width="12" height="16" fill="none" stroke="#000" />
+          <rect x="76" y="8" width="12" height="38" fill="none" stroke="#000" />
+        </svg>
+      </div>
+      <div class="piece w4" style="height: 24mm;">
+        <span class="tag">map · organism · 4 col</span>
+        <svg class="fill" viewBox="0 0 100 50" style="height: 17mm;">
+          <rect x="1" y="1" width="98" height="48" fill="none" stroke="#000" stroke-width="0.8" />
+          <path d="M5 35 Q30 20 50 30 T95 18" fill="none" stroke="#000" stroke-width="0.5" stroke-dasharray="2 2" />
+          <path d="M30 12 c-3 0 -5 2 -5 5 c0 4 5 9 5 9 c0 0 5 -5 5 -9 c0 -3 -2 -5 -5 -5z" fill="none" stroke="#000" />
+          <path d="M68 22 c-3 0 -5 2 -5 5 c0 4 5 9 5 9 c0 0 5 -5 5 -9 c0 -3 -2 -5 -5 -5z" fill="none" stroke="#000" />
+          <text x="88" y="10" font-size="7">+</text><text x="88" y="16" font-size="7">−</text>
+        </svg>
+      </div>
+      <div class="piece w4" style="height: 24mm;">
+        <span class="tag">image · atom · 4 col</span>
+        <svg class="fill" viewBox="0 0 100 50" preserveAspectRatio="none" style="height: 17mm;">
+          <rect x="0.5" y="0.5" width="99" height="49" fill="none" stroke="#000" stroke-width="0.6" />
+          <line x1="0" y1="0" x2="100" y2="50" stroke="#000" stroke-width="0.3" />
+          <line x1="100" y1="0" x2="0" y2="50" stroke="#000" stroke-width="0.3" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- input group + nav pills -->
+    <div class="row">
+      <div class="piece w6" style="height: 9mm;">
+        <span class="tag">input group (search) · molecule · 6 col</span>
+        <div class="flex"><div class="inp grow">Search…</div><span class="btn fill">Search</span></div>
+      </div>
+      <div class="piece w6" style="height: 9mm;">
+        <span class="tag">nav pills · molecule · 6 col</span>
+        <span class="pill fill">All</span> <span class="pill">Type A</span> <span class="pill">Type B</span>
+      </div>
+    </div>
+
+    <!-- list group + modal -->
+    <div class="row">
+      <div class="piece w6" style="height: 22mm;">
+        <span class="tag">list group · molecule · 6 col</span>
+        <div class="bar"><span class="ln m" style="margin: 1.6mm 0;"></span><span class="pill">3</span></div>
+        <div class="bar"><span class="ln m" style="margin: 1.6mm 0;"></span><span class="pill">1</span></div>
+        <div class="bar"><span class="ln m" style="margin: 1.6mm 0;"></span><span class="pill">7</span></div>
+      </div>
+      <div class="piece w6" style="height: 22mm;">
+        <span class="tag">modal · organism · 6 col</span>
+        <div class="flex" style="justify-content: space-between;"><b>Are you sure?</b><span>×</span></div>
+        <div class="ln"></div>
+        <div class="ln m"></div>
+        <div style="text-align: right; margin-top: 1.5mm;"><span class="btn">Cancel</span> <span
+            class="btn fill">Confirm</span></div>
+      </div>
+    </div>
+
+    <!-- atoms -->
+    <div class="row">
+      <div class="piece w2" style="height: 9mm;"><span class="tag">button · atom · 2</span><span
+          class="btn fill">Button</span></div>
+      <div class="piece w2" style="height: 9mm;"><span class="tag">button · atom · 2</span><span
+          class="btn">Button</span></div>
+      <div class="piece w1" style="height: 9mm;"><span class="tag">badge · 1</span><span class="pill">new</span></div>
+      <div class="piece w1" style="height: 9mm;"><span class="tag">icon · 1</span>☆</div>
+      <div class="piece w2" style="height: 9mm;"><span class="tag">checkbox · atom · 2</span>☐ Label</div>
+      <div class="piece w4" style="height: 9mm;">
+        <span class="tag">range (slider) · atom · 4 col</span>
+        <div class="flex"><span>0</span><span class="grow" style="border-top: 1.5px solid #000;"></span><span
+            style="width: 2.4mm; height: 2.4mm; border: 1px solid #000; border-radius: 50%; background: #fff; margin-left: -14mm;"></span><span
+            style="margin-left: 10mm;">100</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="piece w4" style="height: 9mm;"><span class="tag">text input · atom · 4 col</span>
+        <div class="inp">Placeholder</div>
+      </div>
+      <div class="piece w4" style="height: 9mm;"><span class="tag">select · atom · 4 col</span>
+        <div class="inp">Choose… ▾</div>
+      </div>
+      <div class="piece w4" style="height: 9mm;"><span class="tag">alert · molecule · 4 col</span>
+        <div class="bar" style="margin: 0;"><span>Saved!</span><span>×</span></div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="row">
+      <div class="piece w12" style="height: 8mm;">
+        <span class="tag">footer · organism · 12 col</span>
+        <div class="ln s" style="margin: 0.8mm auto 0;"></div>
+      </div>
+    </div>
+
+    <!-- NN/g-style test pieces -->
+    <div class="row">
+      <div class="piece w6" style="height: 11mm; text-align: center;">
+        <span class="tag">for testing · 6 col</span>
+        <b style="font-size: 8pt;">Under construction</b><br />This page isn't part of the prototype.
+      </div>
+      <div class="piece w6" style="height: 11mm; text-align: center;">
+        <span class="tag">for testing · 6 col</span>
+        <b style="font-size: 8pt;">Loading…</b><br />One moment, please.
+      </div>
+    </div>
+
+    <footer>
+      Component names from <a href="https://getbootstrap.com/docs/5.3/components/accordion/">Bootstrap 5.3</a>.
+      "Under construction" and "Loading" pieces after <a
+        href="https://www.nngroup.com/articles/paper-prototyping-cutout-kit/">NN/g's paper prototyping cutout kit</a>.
+      This work by <a href="https://github.com/ag-informatics/ag-informatics-course">Ankita Raturi, Purdue
+        University</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA
+        4.0</a>.
+    </footer>
+
+  </div>
+
+</body>
+
+</html>

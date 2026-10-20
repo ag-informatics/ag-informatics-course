@@ -1,0 +1,22 @@
+{% extends 'farmnotes/base.html' %}
+
+{% block content %}
+
+    <!-- observation -> field -> name -->
+    <h1>{{ observation.field.name }}</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <!-- observation -> name -->
+            <h2 class="card-title h4">Observation: {{ observation.observation_title }}</h2>
+            <p class="card-text">{{ observation.observation_content }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">By {{ observation.author }}</li>
+            <li class="list-group-item">On {{ observation.observation_date }}</li>
+            <li class="list-group-item"><span class="badge text-bg-secondary">{{ observation.get_observation_type_display }}</span></li>
+        </ul>
+    </div>
+    <p class="mt-3"><a href="{% url 'notes' observation.field.id %}">Back to {{ observation.field.name }}</a></p>
+
+{% endblock %}
