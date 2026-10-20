@@ -4,13 +4,13 @@
 
 In this module, we'll learn the fundamentals of user interface design and development, while accounting for overally user experiences. The emphasis will be on learning how design and implement a cohesive and consistent user interfaces.
 
-**1. Domain fluency: user interactions for agricultual user experiences**
+**1. Domain fluency: user interactions for agricultural user experiences**
 Provide users with  the ability to better manage their data
 * How can you translate user workflows into a defined set of domain-relevant user interaction?
 * How do people elicit and translate domain-specific considerations into software designs?
 * What makes a user interface design "good"?
 * What are some examples of "good" ag-tech?
-* Goal: Define and support appropriate human-computer interactions, wiht focus on what the user sees and does.
+* Goal: Define and support appropriate human-computer interactions, with focus on what the user sees and does.
 
 **2. Technical fluency: implementing user interfaces**
 Implement user interfaces to support defined user interactions and experiences.
@@ -41,9 +41,6 @@ As a reminder, the overarching AI policy is available in the main repository [RE
 If you are a Purdue ASM 532 student: Check Brightspace for current instructions, due dates, and other submission details.
 
 ## Rubrics
-
-Every graded item in this module, with its points. Keep rubrics here, not in the lab or quiz
-README — one place to look, and the lab README stays about doing the lab.
 
 Total: 30 (5 in-class activity + 5 quiz + 20 lab).
 
