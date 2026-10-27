@@ -72,3 +72,40 @@ Break it on purpose. You can always undo.
 - Submit the form with the title left blank.
 - Swap the card in `_card.html` for a different [Bootstrap component](https://getbootstrap.com/docs/5.3/components/accordion/). Every page that includes it changes.
 - Include `_card.html` on the notes page too, above the observations: `{% include 'farmnotes/_card.html' %}` (the notes view already passes `field`).
+
+
+### Forms addendum
+
+**TLDR: By default, Django will create default labels from the model field name, force-create labels in `forms.py`**
+    
+From [Django documentation on forms](https://docs.djangoproject.com/en/6.1/topics/forms/):
+* "Django handles three distinct parts of the work involved in forms:
+    * preparing and restructuring data to make it ready for rendering
+    * creating HTML forms for the data
+    * receiving and processing submitted forms and data from the client
+* It is possible to write code that does all of this manually, but Django can take care of it all for you.
+* [...]
+* In a similar way that a model class’s fields map to database fields, a form class’s fields map to HTML form `<input>` elements. 
+* A ModelForm maps a model class’s fields to HTML form `<input>` elements via a Form; this is what the Django admin is based upon."
+
+Here's a breakdown of `forms.py` to determine what is sent to `observe.html` from `views.py` `observe` function:
+
+* Which model should this form fill out? 
+    * `model = Observation` 
+
+* Which fields should the user fill out?
+    * `fields = ['observation_title', 'author', 'observation_type', 'observation_date', 'observation_content']`
+
+* Which boostrap class should I use for each input field?
+    * e.g., `widgets = {'observation_title': forms.TextInput(attrs={'class': 'form-control'})}`
+    * Widgets is a dictionary of key-value pairs, 
+        * where the key, `observation_title` refers to the field
+        * and the  value, `forms.TextInput(attrs={'class': 'form-control'}` is saying: use the bootstrap class "form-control" for the text input
+
+* Which labels does the user see on the form?
+    * By default, Django creates form labels from the model's field names.
+    * Django swaps underscore for spaces, and capitalizes the first letter: observation_title -> Observation title
+    * If you want to override the defaul labels, use in `forms.py`:
+        * `labels= {'observation_title': 'What do you observe?'}`
+
+Learn more about forms here: https://docs.djangoproject.com/en/6.1/ref/forms/api/#ref-forms-api-outputting-html
