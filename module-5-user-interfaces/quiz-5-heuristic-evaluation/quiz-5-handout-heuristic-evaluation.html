@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Quiz 5: Heuristic evaluation — ASM 532 Lecture 5.4</title>
+
+  <!--
+      PRINTABLE QUIZ HANDOUT. Print single-sided, US Letter, LANDSCAPE. One page.
+
+      Redesigned 2026-10-28 (her request): a heuristic evaluation in three steps, using a real tool instead of 2024's
+      setup videos. Step 1, alone: write your own criteria. Step 2, alone: compare them with Nielsen's 10 and with
+      farmers' criteria (CAFF's 7 principles, verbatim from L5.4's "Community Reports"; added 2026-10-29), then mark
+      a combined list. Step 3, in groups (2026-10-29: one app for everyone, farmOS's demo; the group picks 5
+      criteria, so the table has 5 taller rows): review farmOS against that list, rating each criterion works /
+      partly / breaks with one line of evidence, then rank the top problems. Her structure; the prompts, the 5-criteria
+      count, the rating scale and the layout are Claude-drafted for her review. [ANKITA]: the two tools, and a task
+      if you want one. The criteria checklist is her "How to build your digital toolbox" workbook (DS-Apr §33),
+      shown as starters for step 1.
+
+      Styles follow the Module 5 handouts. Self-contained by design: no stylesheet link.
+    -->
+
+  <style>
+    @page {
+      size: letter landscape;
+      margin: 1cm;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      margin: 0;
+      padding: 1cm;
+      max-width: 26cm;
+      line-height: 1.25;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+      }
+    }
+
+    header {
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.3em;
+      margin-bottom: 0.5em;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 0.85rem;
+      margin: 0 0 0.25em;
+    }
+
+    .course {
+      font-size: 0.78rem;
+      margin: 0.1em 0 0;
+    }
+
+    .name-line {
+      float: right;
+      font-size: 0.8rem;
+      margin-top: 0.3em;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .columns {
+      display: flex;
+      gap: 0.6em;
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
+
+    .right {
+      flex: 1.45;
+    }
+
+    .box {
+      border: 1px solid #000;
+      padding: 0.3em 0.4em;
+      font-size: 0.75rem;
+    }
+
+    .hint {
+      font-size: 0.68rem;
+      line-height: 1.35;
+      margin: 0 0 0.3em;
+    }
+
+    ol.lines {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+
+    ol.lines li {
+      border-bottom: 1px dotted #000;
+      height: 0.75cm;
+    }
+
+    .nielsen {
+      font-size: 0.66rem;
+      line-height: 1.35;
+      columns: 2;
+      column-gap: 0.8em;
+      margin: 0 0 0.3em;
+      padding-left: 1.4em;
+    }
+
+    .prompt {
+      border-top: 1px dotted #000;
+      min-height: 1.15cm;
+      padding-top: 0.15em;
+    }
+
+    .meta {
+      font-size: 0.8rem;
+      margin: 0 0 0.3em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      border: 1px solid #000;
+      vertical-align: top;
+      padding: 0.2em 0.4em;
+      font-size: 0.75rem;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    td.rating {
+      font-size: 0.68rem;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    tr.row td {
+      height: 1.5cm;
+    }
+
+    .bottom {
+      display: flex;
+      gap: 0.6em;
+      margin-top: 0.5em;
+    }
+
+    .bottom .box {
+      flex: 1;
+      min-height: 2.1cm;
+    }
+
+    .box b {
+      display: block;
+      margin-bottom: 0.2em;
+    }
+
+    footer {
+      margin-top: 0.4em;
+      padding-top: 0.2em;
+      border-top: 1px solid #000;
+      font-size: 0.68rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <span class="name-line">Name: ______________________<br />Group (step 3): ______________________</span>
+    <h1>Quiz 5: Heuristic evaluation</h1>
+    <p class="course">ASM 532: Introduction to Ag Informatics &middot; Module 5, Lecture 5.4 &middot; steps 1-2 alone,
+      step 3 in groups &middot; everyone hands in their own sheet &middot; 5 pts</p>
+  </header>
+
+  <div class="columns">
+
+    <div class="left">
+      <div class="box">
+        <h2>Step 1 (alone): Your criteria. What makes a tool "good" to you?</h2>
+        <p class="hint">Starters, from the slide: utility, usability, affordability, portability, agency,
+          repairability; made "well", made by someone I trust, can see "under the hood", cooperatively owned.</p>
+        <ol class="lines">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
+
+      <div class="box">
+        <h2>Step 2 (alone): Yours vs. Nielsen's vs. farmers'</h2>
+        <p class="hint"><b>Nielsen's 10 usability heuristics</b></p>
+        <ol class="nielsen">
+          <li>Visibility of system status</li>
+          <li>Match between system and the real world</li>
+          <li>User control and freedom</li>
+          <li>Consistency and standards</li>
+          <li>Error prevention</li>
+          <li>Recognition rather than recall</li>
+          <li>Flexibility and efficiency of use</li>
+          <li>Aesthetic and minimalist design</li>
+          <li>Help users recognize, diagnose, and recover from errors</li>
+          <li>Help and documentation</li>
+        </ol>
+        <p class="hint"><b>CAFF's 7 principles</b></p>
+        <ol class="nielsen" type="A">
+          <li>Human-centered</li>
+          <li>Appropriately-scaled</li>
+          <li>Cost-effective</li>
+          <li>User-friendly</li>
+          <li>De-risked experimentation</li>
+          <li>Protection of privacy</li>
+          <li>Strengthening local economies</li>
+          <li>Other: ________________</li>
+        </ol>
+        <div class="prompt">Which of yours do Nielsen or CAFF cover? Which of yours does neither cover?</div>
+        <div class="prompt">What did they name that you missed? Circle the numbers and letters you'll add to your list.
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="box">
+        <h2>Step 3 (in groups): Review farmOS with 5 criteria</h2>
+        <p class="meta"><b>Tool:</b> farmOS, a demo farm &nbsp;&nbsp; <b>Task:</b> ______________________________
+        </p>
+        <p class="hint">Pool your lists: everyone's criteria plus what you circled in step 2. As a group, pick the
+          <b>5</b> that matter most. For each one, explore farmOS, circle a rating, and write what you saw.</p>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 32%;">What you'll measure (claim)?</th>
+              <th style="width: 22%;">Rating (circle)</th>
+              <th>What you saw (evidence)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row">
+              <td></td>
+              <td class="rating">works · partly · breaks</td>
+              <td></td>
+            </tr>
+            <tr class="row">
+              <td></td>
+              <td class="rating">works · partly · breaks</td>
+              <td></td>
+            </tr>
+            <tr class="row">
+              <td></td>
+              <td class="rating">works · partly · breaks</td>
+              <td></td>
+            </tr>
+            <tr class="row">
+              <td></td>
+              <td class="rating">works · partly · breaks</td>
+              <td></td>
+            </tr>
+            <tr class="row">
+              <td></td>
+              <td class="rating">works · partly · breaks</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bottom">
+        <div class="box">
+          <b>Rank your top 3 problems, worst first:</b>
+          1. ______________________<br />2. ______________________<br />3. ______________________
+        </div>
+        <div class="box">
+          <b>One change you'd make, and which criterion it fixes:</b>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Heuristics from Jakob Nielsen, <i>10 Usability Heuristics for User Interface Design</i>, Nielsen Norman Group.
+    Principles from Siemens, Vaughan &amp; Ridoutt-Orozco, <i>Small Farms and the Future of AgTech</i>, CAFF, 2025.
+    Starter criteria from Ankita Raturi's <i>How to build your digital toolbox</i> workbook, 2026. This work by Ankita
+    Raturi, Purdue University, is licensed under CC BY-NC-SA 4.0.
+  </footer>
+
+</body>
+
+</html>

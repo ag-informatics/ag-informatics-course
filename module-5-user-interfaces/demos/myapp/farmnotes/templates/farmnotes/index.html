@@ -2,17 +2,18 @@
 
 {% block content %}
 
-    <h1>My Farm Fields</h1>
-    {% if latest_fields %}
-        <div class="row g-3">
-        {% for field in latest_fields %}
-            <div class="col-sm-6 col-lg-4">
-                {% include 'farmnotes/_card.html' %}
-            </div>
-        {% endfor %}
-        </div>
-    {% else %}
-        <p>No fields are available.</p>
-    {% endif %}
+<h1>My Farm Fields</h1>
+
+{% if latest_fields %}
+<div class="row g-3">
+    {% for field in latest_fields %}
+    <div class="col-sm-6 col-lg-4">
+        {% include 'farmnotes/_card.html' %}
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No fields are available.</p>
+{% endif %}
 
 {% endblock %}

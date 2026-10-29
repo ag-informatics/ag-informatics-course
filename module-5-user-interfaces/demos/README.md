@@ -77,7 +77,7 @@ Break it on purpose. You can always undo.
 ### Forms addendum
 
 **TLDR: By default, Django will create default labels from the model field name, force-create labels in `forms.py`**
-    
+
 From [Django documentation on forms](https://docs.djangoproject.com/en/6.1/topics/forms/):
 * "Django handles three distinct parts of the work involved in forms:
     * preparing and restructuring data to make it ready for rendering
@@ -96,16 +96,16 @@ Here's a breakdown of `forms.py` to determine what is sent to `observe.html` fro
 * Which fields should the user fill out?
     * `fields = ['observation_title', 'author', 'observation_type', 'observation_date', 'observation_content']`
 
-* Which boostrap class should I use for each input field?
+* Which Bootstrap class should I use for each input field?
     * e.g., `widgets = {'observation_title': forms.TextInput(attrs={'class': 'form-control'})}`
     * Widgets is a dictionary of key-value pairs, 
         * where the key, `observation_title` refers to the field
-        * and the  value, `forms.TextInput(attrs={'class': 'form-control'}` is saying: use the bootstrap class "form-control" for the text input
+        * and the value, `forms.TextInput(attrs={'class': 'form-control'})` is saying: use the bootstrap class "form-control" for the text input
 
 * Which labels does the user see on the form?
     * By default, Django creates form labels from the model's field names.
     * Django swaps underscore for spaces, and capitalizes the first letter: observation_title -> Observation title
-    * If you want to override the defaul labels, use in `forms.py`:
+    * If you want to override the default labels, use in `forms.py`:
         * `labels= {'observation_title': 'What do you observe?'}`
 
 Learn more about forms here: https://docs.djangoproject.com/en/6.1/ref/forms/api/#ref-forms-api-outputting-html

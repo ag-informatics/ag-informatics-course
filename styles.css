@@ -241,3 +241,40 @@ img {
 .no-border {
     border-width: 0;
 }
+
+/* ===== Added 2026-10-29 (L5.4 review, replacing inline styles). Additive only:
+   no existing rule changes, so approved decks are unaffected. ===== */
+
+/* A table whose columns share the width evenly: <table class="table-even">.
+   Mark a narrower row-label column with <col class="label-col" /> in a
+   <colgroup>; the other columns split what is left. */
+.table-even {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table-even .label-col {
+    width: 16%;
+}
+
+/* Spreads its children to the two ends of a row, e.g. a "within → out"
+   label running across a table header. */
+.spread {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Screen-reader-only text: keeps a slide's <h2> in the outline (heading
+   hierarchy) when the slide is deliberately image-only on screen. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

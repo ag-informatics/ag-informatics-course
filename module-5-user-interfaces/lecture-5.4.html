@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>ASM 532 Intro to Ag Informatics</title>
+
+  <link rel="stylesheet" href="../revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="../revealjs/dist/theme/white.css">
+
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+
+  <!-- Ankita's theme overrides-->
+  <link rel="stylesheet" href="../styles.css">
+</head>
+
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <div class="footer">
+        Purdue ASM 532 &middot; ankita@purdue.edu
+      </div>
+
+      <!--
+          Do not EDIT ABOVE ------------------------------------------------------------
+        -->
+
+      <section>
+        <img src="img/m5-axilab-logo.png" width="200px" alt="AxiLab and Purdue University logos" />
+        <h1>Design Evaluation</h1>
+
+        <p>
+          Module 5 - User Interfaces<br />
+          Lecture 5.4 <br /><br />
+          ASM 532, Introduction to Ag Informatics<br />
+          Ankita Raturi, ankita@purdue.edu<br />
+        </p>
+      </section>
+      <section>
+        <h2>Lecture Outline</h2>
+        <p class="text-medium blue">Basics of verification and validation.</p>
+
+        <!-- Trimmed 2026-10-28 (her option B): the testing framing, unit testing and ag-tech assessments moved to
+             instructor-content/m6-harvest-from-l5.4.html. Items and goal cut to match; her wording otherwise.
+             2026-10-29: the AgTech and criteria-sources items added back to match the deck (slide headings). -->
+        <ol class="fragment text-medium">
+          <li>Software testing: a first look</li><br />
+          <li>Design evaluation: test UI/UX</li>
+          <li>UI + UX design in AgTech</li>
+          <li>Design criteria</li>
+          <li>Where do criteria come from?</li>
+          <li>Quiz 5: heuristic evaluation</li>
+        </ol>
+        <p class="fragment green">Goal: Learn heuristic evaluation.</p>
+      </section>
+
+      <!--
+          VARIABLE CONTENT BEGINS
+        -->
+
+      <!-- ===================== SOFTWARE TESTING: A FIRST LOOK ===================== -->
+      <section>
+        <h2>Software testing</h2>
+        <table class="text-medium">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Verification (within)</th>
+              <th class="fragment" data-fragment-index="0">Validation (out)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>"Are we building the product right?"</td>
+              <td class="fragment" data-fragment-index="0">"Are we building the right product?"</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Did you build what you said you were going to?</td>
+              <td class="fragment" data-fragment-index="0">Does it do what your users need?</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Checked against the <b>specification</b>.</td>
+              <td class="fragment" data-fragment-index="0">Checked against your <b>users</b>.</td>
+            </tr>
+            <tr class="fragment" data-fragment-index="1">
+              <td><b>User level</b></td>
+              <td>Check your design specification against the software requirements.</td>
+              <td>Check your software requirements against stakeholder and user needs.</td>
+            </tr>
+            <tr class="fragment" data-fragment-index="2">
+              <td><b>Code level</b></td>
+              <td>Check the implemented code against the design specification.</td>
+              <td>Check user input against the domain rules and constraints.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="cite">Barry Boehm, <a href="https://www.proquest.com/docview/215842250">Verifying and Validating
+            Software Requirements and Design Specifications</a>, IEEE Software, 1984; <a
+            href="https://en.wikipedia.org/wiki/Software_verification_and_validation">Wikipedia: Software verification
+            and validation</a></p>
+      </section>
+
+      <section>
+        <!-- 2026-10-29 (her go-ahead on Claude's suggestions): retitled from "Software validation", since column 1 is
+             verification; a within → out arrow row ties back to "Software testing"'s Verification (within) /
+             Validation (out); "AI agents" and capitalized How cells. -->
+        <h2>Software verification and validation</h2>
+        <table class="text-medium table-even">
+          <colgroup>
+            <col class="label-col" />
+            <col />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th colspan="3">
+                <div class="spread">
+                  <span class="blue">Within (verification)</span>
+                  <span aria-hidden="true">⟶</span>
+                  <span class="blue">Out (validation)</span>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>Test your code</th>
+              <th>Test without users</th>
+              <th>Test with users</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Goal</b></td>
+              <td>Does it work?</td>
+              <td>Is it usable?</td>
+              <td>Is it useful, and usable, for them?</td>
+            </tr>
+            <tr class="fragment">
+              <td><b>Who</b></td>
+              <td>You, Automations, AI agents</td>
+              <td>You, Experts, Stakeholders</td>
+              <td>Not you: Users</td>
+            </tr>
+            <tr class="fragment">
+              <td><b>How</b></td>
+              <td>Unit tests, integration tests, test harness</td>
+              <td>Model-checking, requirements testing, <span class="green">heuristic evaluation</span>, benchmark
+                tests, pen-testing
+              </td>
+              <td>Usability testing, think-aloud, interviews, surveys</td>
+            </tr>
+            <tr class="fragment">
+              <td><b>When</b></td>
+              <td>During implementation, major changes, before releases</td>
+              <td>Early in the design process, before asking for a user's time</td>
+              <td>Once there's something to try</td>
+            </tr>
+            <tr class="fragment">
+              <td><b>In this course</b></td>
+              <td>Module 6</td>
+              <td>Today: Quiz 5</td>
+              <td>Module 6</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="fragment red">Where does conceptual testing fit? </p>
+      </section>
+
+      <!-- ===================== WHAT IS GOOD DESIGN? ===================== -->
+
+      <!-- Her add (2026-10-29): image only, the DOET cover beside Carelman's coffeepot. Her file was named
+           1_by-1CJUc4k9MSzhLH-3XHw.webp (a Medium image ID); renamed. [ANKITA]: the Medium article it came from, for
+           the cite. The h2 is screen-reader-only (.sr-only), so the slide stays image-only on screen. -->
+      <section>
+        <h2 class="sr-only">The Design of Everyday Things</h2>
+        <img class="r-stretch" src="img/m5-norman-coffeepot.webp"
+          alt="Don Norman's book The Design of Everyday Things, its yellow cover showing a red teapot, beside Jacques Carelman's 'Coffeepot for Masochists' from his Catalogue of Impossible Objects, 1969: a red pot with its spout on the same side as its handle." />
+        <p class="cite">Don Norman, The Design of Everyday Things, 2013 · Jacques Carelman, Coffeepot for Masochists,
+          Catalogue of Impossible Objects, 1969</p>
+      </section>
+
+      <!-- HCAI-2.4 §5 (her text and notes). Images (her pick, 2026-10-28): the Design of Everyday Things cover, then
+           her HCAI 2.2 "Human Interactions" doors (failure, then success), as a click-through stack beside the list.
+           The doors are copied from her HCAI 2.2 img/ (norman-doors.gif, norman-crash-bars.jpg); the cover moved to its
+           own slide before this one (2026-10-29), with its citation. Alt text checked against the files. -->
+      <section>
+        <h2>What is "Good" Interaction Design?</h2>
+        <div class="r-hstack">
+          <div class="align-left">
+            <ul class="text-medium">
+              <li><b>User-door interaction:</b> push, pull, walk, fly </li>
+              <li><b>Eater-food interaction:</b> forks, chopsticks, hands, wrap it up</li>
+              <li><b>Human-road interaction:</b> stop signs, lights, bike lane</li>
+            </ul>
+            <br />
+            <br />
+            <ul class="fragment text-medium no-bullets red" data-fragment-index="2">
+              <li>Good for <b>whom</b>?</li>
+              <li>Good in what <b>context</b>?</li>
+              <li>How is good <b>measured, defined, assessed</b>?</li>
+            </ul>
+          </div>
+          <div>
+            <div class="r-stack">
+              <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m5-norman-doors.gif" width="80%"
+                alt="An animation from 99% Invisible: a woman in an office hallway at a glass door with long vertical bar handles, which give no clue whether to push or pull." />
+              <img class="fragment fade-in" data-fragment-index="1" src="img/m5-norman-crash-bars.jpg" width="80%"
+                alt="Two pairs of dark hallway doors under an exit sign, each with a horizontal push bar across it: the bar can only be pushed, and shows where." />
+            </div>
+            <div class="r-stack">
+              <p class="cite fragment fade-in-then-out" data-fragment-index="0"><a
+                  href="https://99percentinvisible.org/article/norman-doors-dont-know-whether-push-pull-blame-design/">99%
+                  Invisible</a>, Norman Doors: Don't Know Whether to Push or Pull? Blame Design, 2016</p>
+              <p class="cite fragment fade-in" data-fragment-index="1"><a
+                  href="https://commons.wikimedia.org/wiki/File:Set_of_Crash_Bar_Doors.jpg">Scott Brody</a>, <a
+                  href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section>
+        <h2>UI + UX Design in AgTech</h2>
+        <h3>Massey, 1973</h3>
+        <img src="img/m5-design-tractor-massey.JPG" width="40%"
+          alt="The open cab of a red 1973 Massey Ferguson tractor: a large steering wheel, a few round analog gauges, and a padded seat." />
+        <p class="cite">Jamie Casey, via Farming Independent</p>
+      </section>
+
+      <section>
+        <h2>UI + UX Design in AgTech</h2>
+        <h3>Deere & CNH Tractors, 2019</h3>
+        <div class="r-hstack">
+          <img src="img/m5-design-tractor-deere1.jpg" width="49%"
+            alt="View from the driver's seat of a 2019 John Deere tractor: the steering wheel, a slim digital display on the cab post, and a large touchscreen with a grid of settings." />
+          <img src="img/m5-design-tractor-deere2.jpg" width="49%"
+            alt="A tractor armrest console covered in buttons, dials, a joystick and color-coded switches." />
+        </div>
+      </section>
+
+      <section>
+        <h2>UI + UX Design in AgTech</h2>
+        <h3>Granular</h3>
+        <img class="r-stretch" src="img/m5-design-granular2.png"
+          alt="The Granular farm management dashboard: a satellite map with field boundaries outlined in yellow, a sidebar filtering tasks by type (planting, tillage, irrigation, scouting, harvesting), and a pop-up for one field showing its planned tasks and the next three days' weather." />
+        <p class="cite"><a href="https://agfundernews.com/dupont-acquires-farm-management-software-granular-300m">AgFunderNews</a>
+        </p>
+      </section>
+
+      <section>
+        <h2>UI + UX Design in AgTech</h2>
+        <h3>Tend</h3>
+        <img class="r-stretch" src="img/m5-design-tend2.gif"
+          alt="Animated screen recording of Tend's crop planning page: a list of crops (arugula, basil, broccoli, cabbage, carrots, celery, lettuce) against a timeline of months, with an 'Add Planting' button." />
+        <!-- The original source, Tend's Zendesk article on crop planning, is offline (help center closed, 2026-10-29). -->
+        <p class="cite"><a href="https://www.tend.com/">Tend</a>, crop planning</p>
+      </section>
+
+      <!-- ===================== WHAT'S GOOD TO YOU? ===================== -->
+
+      <section>
+        <h2 class="text-massive">What is good?</h2>
+        <div class="r-stack">
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m5-good-smithfarms.png"
+            height="580"
+            alt="A Facebook post from Smith Farms Indiana: 'Customers often ask what do you do all winter. This winter I have been learning how to change over to our new software', above a link to a strawberry jam canning class booked through Barn2Door." />
+          <img class="fragment fade-in-then-out" data-fragment-index="1" src="img/m5-good-terrateck.gif"
+            height="580"
+            alt="An Instagram post from Terrateck: two people lie face down on a low electric weeding cart, hand-weeding a crop row, with a caption listing the Glider 200's battery life, speed and load capacity." />
+          <img class="fragment fade-in-then-out" data-fragment-index="2" src="img/m5-good-youngfarmers.png"
+            height="580"
+            alt="An Instagram post from Young Farmers: 'Farmers are other farmers' most trusted mentors', supporting the Farmer to Farmer Education Act, with photos of hands holding seeds and freshly pulled carrots." />
+          <div class="r-hstack fragment fade-in" data-fragment-index="3">
+            <img src="img/m5-good-smithfarms.png" height="460" alt="" />
+            <img src="img/m5-good-terrateck.gif" height="460" alt="" />
+            <img src="img/m5-good-youngfarmers.png" height="460" alt="" />
+          </div>
+        </div>
+        <p class="fragment text-massive blue" data-fragment-index="3">It depends!</p>
+      </section>
+      <section>
+        <h2>Define your criteria</h2>
+        <div class="r-hstack">
+          <div class="align-left">
+            <h3>Tool qualities?</h3>
+            <ul class="text-medium">
+              <li><b>Utility:</b> does the job "well"</li>
+              <li><b>Usability:</b> easy to learn, user friendly</li>
+              <li><b>Affordability:</b> up-front costs, subscription fees, training costs</li>
+              <li><b>Portability:</b> can import/export data</li>
+              <li><b>Agency:</b> no vendor-lock in</li>
+              <li><b>Repairability:</b> whether DIY or low maintenance effort</li>
+            </ul>
+          </div>
+          <div class="align-left">
+            <h3>How it's made?</h3>
+            <ul class="text-medium">
+              <li>Made "well"</li>
+              <li>Made by someone I trust? (farmers / food workers)</li>
+              <li>Knowing your toolbuilder matters</li>
+              <li>Can see "under the hood", whether open source or easy to open</li>
+              <li>Cooperatively produced / owned</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fragment text-medium red">What do you think makes a tool "bad"?</p>
+      </section>
+
+      <!-- DS-Mar §26 (= DS-Apr §25), her text, captions and images (extracted 2026-10-29). Her ask: four parts, one
+           image per click, then the full slide (image row + list) at once. The row repeats the images with empty alt.
+           Sources (hers): Obsidian's site; her own photo; her Seek by iNaturalist screen recording (2026-10-29: her
+           replacements for the extracted images; her second Seek clip, m5-criteria-seek-species.mov, is unused). The video is an H.264 re-encode
+           (macOS avconvert, 2026-10-29) of her HEVC m5-criteria-seek-identify.mp4, which some browsers won't play. -->
+      <section>
+        <h2>e.g., these are a few of my criteria</h2>
+        <div class="r-stack">
+          <div class="fragment fade-in-then-out" data-fragment-index="0">
+            <img src="img/m5-criteria-obsidian.png" height="400"
+              alt="Obsidian, a note-taking app, on a laptop and a phone: a note titled 'Writing is telepathy' beside a graph of linked notes, and a trip-planning to-do list on the phone." />
+            <p class="text-medium">Writing Canvas</p>
+          </div>
+          <div class="fragment fade-in-then-out" data-fragment-index="1">
+            <img src="img/m5-criteria-paper-coffee.jpg" height="400"
+              alt="A paper pour-over coffee filter, folded from its own packet, hooked over the rim of a mug and full of used grounds, beside its printed packet." />
+            <p class="text-medium">Tasty PaperCraft</p>
+          </div>
+          <div class="fragment fade-in-then-out" data-fragment-index="2">
+            <video data-autoplay muted loop playsinline src="img/m5-criteria-seek-identify-h264.mp4"
+              height="400"
+              aria-label="A screen recording of Seek by iNaturalist identifying bread wheat: photos of a wheat head and a wheat field above 'You resighted a species! Triticum aestivum. You first observed it on Feb 6, 2026'."></video>
+            <p class="text-medium">Identify Plants</p>
+          </div>
+          <div class="fragment fade-in" data-fragment-index="3">
+            <div class="r-hstack">
+              <div>
+                <img src="img/m5-criteria-obsidian.png" height="170" alt="" />
+                <p class="text-small">Writing Canvas</p>
+              </div>
+              <div>
+                <img src="img/m5-criteria-paper-coffee.jpg" height="170" alt="" />
+                <p class="text-small">Tasty PaperCraft</p>
+              </div>
+              <div>
+                <video data-autoplay muted loop playsinline src="img/m5-criteria-seek-identify-h264.mp4"
+                  height="170" aria-hidden="true"></video>
+                <p class="text-small">Identify Plants</p>
+              </div>
+            </div>
+            <ul class="text-medium">
+              <li><b>Utility + Usability:</b> Balance of task-tool fit with user-centered design</li>
+              <li><b>Flexible:</b> It gives me many ways to explore ideas and interactions</li>
+              <li><b>Responsibly Made:</b> Supports ecological + socially inclusive practices (both mine and the
+                toolmakers)</li>
+              <li><b>Design for Commons:</b> I am using and supporting a public good, cooperative, or community.</li>
+            </ul>
+          </div>
+        </div>
+        <p class="cite">Writing Canvas: <a href="https://obsidian.md">Obsidian</a> · Tasty PaperCraft: Ankita Raturi ·
+          Identify Plants: <a href="https://www.inaturalist.org/pages/seek_app">Seek by iNaturalist</a></p>
+      </section>
+
+      <!-- Quiz 5 step 1 (her redesign, 2026-10-28: criteria → yours vs Nielsen's → review a tool). Claude-drafted
+           wording; the count of 5 is a suggestion. [ANKITA]: check. -->
+      <section>
+        <h2>Quiz 5, step 1: your criteria</h2>
+        <p class="text-medium"><b>Alone, on the handout.</b></p>
+        <ul class="text-medium">
+          <li>Write down 5 criteria: what makes a tool "good" to you?</li>
+          <li class="fragment">Borrow from the checklist or my list, or write your own.</li>
+          <li class="fragment">Keep it: you'll test a real tool against it.</li>
+        </ul>
+        <p class="text-small">Handout: <a
+            href="quiz-5-heuristic-evaluation/quiz-5-handout-heuristic-evaluation.html">Quiz
+            5</a></p>
+      </section>
+
+      <!-- ===================== QUIZ 5 ===================== -->
+
+      <!-- The NN/g poster, moved up from the debrief (outline rev 4: guidelines are a design rule). -->
+      <section>
+        <h2>Guidelines: Nielsen's 10 heuristics</h2>
+        <img class="r-stretch" src="img/m5-design-eval.png"
+          alt="Nielsen Norman Group's poster of Jakob's Ten Usability Heuristics: visibility of system status; match between system and the real world; user control and freedom; consistency and standards; error prevention; recognition rather than recall; flexibility and efficiency of use; aesthetic and minimalist design; help users recognize, diagnose and recover from errors; help and documentation." />
+        <p class="cite"><a href="https://www.nngroup.com/articles/ten-usability-heuristics/">Nielsen Norman Group: 10
+            usability heuristics</a></p>
+      </section>
+
+      <!-- ===================== WHERE DO CRITERIA COME FROM? ===================== -->
+
+      <!-- DS-Mar §8, her text. The three images are the reports on the next slides. AfriTAP removed (her call,
+           2026-10-29); its cover image is now unused. -->
+      <section>
+        <h2>Where do criteria come from?</h2>
+        <p class="text-medium"><b>Technology Assessments:</b> Provide good guidance to understand user needs.</p>
+        <div class="r-hstack">
+          <div>
+            <img src="img/m5-assess-trustinfood-cover.jpg" width="95%"
+              alt="Report cover: Farmer Perspectives On Data, a roadmap for engaging with farmers to scale the collection and sharing of farm-level production data, from Trust In Food and The Sustainability Consortium. A woman works at a laptop and a tablet." />
+            <p class="cite">Trust in Food, 2021</p>
+          </div>
+          <div>
+            <img src="img/m5-assess-caff-tools.png" width="95%"
+              alt="A table of sample hard tools (sprayers, robotic tractors, soil moisture sensors, weeders) and soft tools (farm management apps, crop planning, marketing platforms, accounting software), above photos of a small sensor and a walk-behind tractor." />
+            <p class="cite">CAFF, 2025</p>
+          </div>
+          <div>
+            <img src="img/m5-assess-atdt-principles.png" width="95%"
+              alt="Six illustrated principles for including smallholders in digital tools: engage diverse farmers, enhance access, co-create digitally enabled farming practices with farmers, use technology appropriately, use farmers' data responsibly, and develop tools responsibly." />
+            <p class="cite">Dittmer et al., 2024</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DS-Mar §9, her quote and citation, on the report's cover (catalog: big quote). -->
+      <section data-background-image="img/m5-assess-trustinfood-cover.jpg" data-background-opacity="0.8">
+        <div class="overlay">
+          <h2 class="align-left text-medium">Research &amp; Surveys</h2>
+          <p class="align-left text-large">"[D]ata is a very personal thing. It is a specific farmer's web of
+            decisions ... [T]here must be a perceived, and real, benefit to the farmer. There also must be trust
+            between the farmer and the data software they use"</p>
+          <p class="cite">Slattery et al., Trust in Food, a Farm Journal Initiative &amp; The Sustainability Consortium,
+            <a
+              href="https://www.trustinfood.com/wp-content/uploads/2020/05/Farmer-Data-Perspectives-Research_final.pdf">Farmer
+              Perspectives on Data</a>, 2021
+          </p>
+        </div>
+      </section>
+
+      <!-- DS-Mar §9's two findings pages. Click-through stack: first visible on arrival. -->
+      <section>
+        <h2>Research &amp; Surveys: key findings</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-assess-trustinfood-findings1.png"
+            alt="Key findings, part 1: a significant digital gap (62% don't rely on farm management software exclusively); trusted advisors are sparse (only 52% have one for digital ag); satisfaction with software outputs is mediocre (47% entirely satisfied); and software use rises with acreage, though not universally." />
+          <img class="fragment fade-in" data-fragment-index="0" src="img/m5-assess-trustinfood-findings2.png"
+            alt="Key findings, part 2: 79% would start or increase precision technology use if cost barriers were addressed; 73% don't trust private companies with their data and 58% don't trust the government; 65% say customers don't have a right to know how a crop was produced; and software use differs across crop marketing outlets." />
+        </div>
+        <p class="cite">Slattery et al., Trust in Food &amp; The Sustainability Consortium, Farmer Perspectives on Data,
+          2021</p>
+      </section>
+
+      <!-- DS-Mar §10: her title and citation, with the report's three images as a click-through stack. -->
+      <section>
+        <h2>Community Reports</h2>
+        <div class="r-stack r-stretch">
+          <img class="fragment fade-out" data-fragment-index="0" src="img/m5-assess-caff-quote.png"
+            alt="Pull quote: small farms often operate with thin margins and cannot risk investing in equipment that does not quickly generate returns, so technology adoption depends not only on engineering solutions but also on training, peer-to-peer learning, reliable infrastructure, and supportive policy." />
+          <img class="fragment fade-in-then-out" data-fragment-index="0" src="img/m5-assess-caff-tools.png"
+            alt="A table of sample hard tools (sprayers, electric or robotic tractor, soil moisture sensors, mower, weeder, bed former, shade cloth) and soft tools (farm management apps, crop planning, automated irrigation, marketing platforms, bee pollination monitoring, weather forecasting, accounting software), above photos of a small sensor and a walk-behind tractor." />
+          <img class="fragment fade-in" data-fragment-index="1" src="img/m5-assess-caff-principles.png"
+            alt="Seven principles: human-centered, appropriately-scaled, cost-effective, user-friendly, de-risked experimentation, protection of privacy, and strengthening local economies." />
+        </div>
+        <p class="cite">Siemens R., Vaughan E., Ridoutt-Orozco M., <a href="https://caff.org/tech-assessment/">Small
+            Farms
+            and the Future of AgTech</a>, Needs Assessment on Tools &amp; Technology for Small Farms in the San Joaquin
+          Valley of California, 2025</p>
+      </section>
+
+      <!-- DS-Mar §11: her citation. The title is the outline's name for this kind of assessment. -->
+      <section>
+        <h2>Principles</h2>
+        <img class="r-stretch" src="img/m5-assess-atdt-principles.png"
+          alt="Six illustrated principles for including smallholders in digital tools, each with sub-points: 1 engage diverse farmers, 2 enhance access, 3 co-create digitally enabled farming practices with farmers, 4 use technology appropriately, 5 use farmers' data responsibly, 6 develop tools responsibly." />
+        <p class="cite">Dittmer et al., <a href="https://agledx.ccafs.cgiar.org/about/atdt/#outputs">Principles for
+            inclusion of smallholders in digital tools</a>, 2024</p>
+      </section>
+
+      <!-- DS-Mar §12: her citation and "Guidance for Technologists". The title is the outline's name for this kind. -->
+      <section>
+        <h2>Toolkits: guidance for technologists</h2>
+        <img class="r-stretch" src="img/m5-assess-ethical-data-governance.png"
+          alt="An illustrated poster, Envisioning Ethical Data Governance in Agriculture: challenges (ag data is varied, collecting it is difficult and expensive, unequal benefits, data agreements lack transparency) lead through best practices that are necessary but not sufficient (open data, privacy and data rights, codes and principles, data ownership) to what data justice could look like (new governance structures, laws and regulatory changes, solidarity and collaboration, building capacity)." />
+        <p class="cite">Ruder, S., Wittman H., Kornelsen A., <a
+            href="https://www.bcacarn.ca/2024/05/27/ethical-data-governance/">Ethical Data Governance Toolkit</a>,
+          2025</p>
+      </section>
+
+      <!-- Quiz 5 step 2 (her redesign, 2026-10-28; farmers added as a third column 2026-10-29, after the technology
+           assessments). Claude-drafted prompts. [ANKITA]: check. -->
+      <section>
+        <h2>Quiz 5, step 2: yours vs. Nielsen's vs. farmers'</h2>
+        <p class="text-medium"><b>Individually:</b> Compare lists:</p>
+        <br />
+        <table class="text-medium table-even">
+          <thead>
+            <tr>
+              <th>Yours</th>
+              <th>Nielsen's</th>
+              <th>Farmers'</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>your 5 criteria</td>
+              <td>10 usability heuristics</td>
+              <td>CAFF's 7 principles</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <ul class="text-medium">
+          <li class="fragment">Which of yours do Nielsen or the farmers cover?</li>
+          <li class="fragment">Which of yours does neither cover?</li>
+          <li class="fragment">What did they name that you missed? Circle the ones you'll add.</li>
+        </ul>
+        <p class="fragment text-medium green">Your criteria + what you circled = your review list.</p>
+      </section>
+
+      <!-- Quiz 5 step 3 (her redesign, 2026-10-28; 2026-10-29: one app for everyone, farmOS's free demo, in groups,
+           with 5 criteria picked by the group). Claude-drafted instructions. The screenshot is her demo instance's
+           landing page. The class link (her call) is the Fall 2026 instance, created ~12:30 AM Oct 29, so it lives
+           until ~12:30 PM; class ends 11:30 AM. URL transcribed from her screenshot. NEXT TIME: new demo, new link and
+           screenshot (Issue #64). -->
+      <section>
+        <h2>Quiz 5, step 3: review farmOS</h2>
+        <div class="r-hstack contain">
+          <div class="align-left">
+            <p class="text-medium"><b>In groups.</b> Everyone reviews the same app: a farmOS demo farm.</p>
+            <p class="text-small">Log in: <a
+                href="https://main-wnrposozbvcxf3reqct2fgqndd8of0ii.tugboatqa.com/user/login">Juan's Alpaca Farm</a> ·
+              username
+              and password: <code>manager</code></p>
+            <ol class="text-medium">
+              <li>Pool your lists, and agree on <b>5 criteria</b> as a group.</li>
+              <li class="fragment">Explore farmOS. For each criterion: <b>works</b>, <b>partly</b>, or <b>breaks</b>,
+                and what you saw.</li>
+              <li class="fragment">Rank your top 3 problems, worst first.</li>
+              <li class="fragment">Name one change you'd make, and which criterion it fixes.</li>
+            </ol>
+          </div>
+          <div>
+            <img src="img/m5-quiz5-farmos-demo.png" width="95%"
+              alt="The farmOS demo landing page for 'Juan's Alpaca Farm': 'Your demo of farmOS is ready!', a View the dashboard button, the login (username and password: manager), and a note that the demo persists for 12 hours. Provided by Rooted Solutions, powered by Tugboat." />
+          </div>
+        </div>
+        <p class="text-small">Everyone hands in their own sheet. Handout: <a
+            href="quiz-5-heuristic-evaluation/quiz-5-handout-heuristic-evaluation.html">Quiz 5</a> · <a
+            href="https://farmos.org">farmOS.org</a></p>
+      </section>
+
+      <!-- A-L1.3 §15 debrief. The poster moved up to "Guidelines"; the prompts are Claude-drafted (rewritten
+           2026-10-28 for the redesigned quiz). -->
+      <section>
+        <h2>What did you find?</h2>
+        <ul class="text-medium">
+          <li>What was your worst problem, and which criterion caught it?</li>
+          <li class="fragment">Which 5 criteria did your group pick, and why those?</li>
+          <li class="fragment">Would you pick farmOS? For which farmer?</li>
+        </ul>
+      </section>
+
+      <!-- Her add (2026-10-19). DS-Apr §5, her 12 steps verbatim; the Lab 5 mapping is Claude-drafted. The full
+           toolbox workbook is parked for Module 6 or 7. -->
+      <section>
+        <h2>Task-tool fit: you've done this already</h2>
+        <div class="r-hstack contain">
+          <div class="align-left" style="flex: 1 1 45%;">
+            <ol class="text-medium">
+              <li>Situate in context</li>
+              <li>Reflect on current practices</li>
+              <li>Identify your pain points</li>
+              <li><b>Pick one task to explore</b></li>
+              <li><b>Map your workflows</b></li>
+              <li>Inventory your toolbox</li>
+              <li>Review your toolbox</li>
+              <li><b>Define your criteria</b></li>
+              <li>Learn about alternatives</li>
+              <li><b>Evaluate with your criteria</b></li>
+              <li>Phone a friend</li>
+              <li>Imagine possibilities</li>
+            </ol>
+          </div>
+          <div class="align-left fragment" style="flex: 1 1 55%;">
+            <ul class="text-medium">
+              <li><b>Pick one task:</b> your use case (Lab 5, STEP 1)</li>
+              <li><b>Map your workflows:</b> your journey map (Lab 5, STEP 1)</li>
+              <li><b>Define your criteria:</b> today</li>
+              <li><b>Evaluate with your criteria:</b> Quiz 5</li>
+            </ul>
+            <p class="text-medium red">The same process, applied to choosing a tool instead of building one.</p>
+          </div>
+        </div>
+        <p class="cite">Ankita Raturi, How to build your digital toolbox, 2026</p>
+      </section>
+
+      <!-- Her call (2026-10-19): a reminder for Part 2. Updated 2026-10-29 for the pitch-deck version
+           (project/project-part-2-solution-pitch.md): the title and slide list are hers, the wording Claude-drafted.
+           No due date on the slide (checklist: dates live in Brightspace). -->
+      <section>
+        <h2>Reminder: Project Part 2</h2>
+        <p class="text-medium"><b>Solution Pitch</b>: a short pitch deck, presented in class as a show and tell.</p>
+        <p class="text-medium">Problem · design requirements · steps to identify a solution · 3 ideas · next steps</p>
+        <p class="fragment text-medium red">Criteria are how you pick.</p>
+        <p class="text-small">Prompt: <a href="../project/project-part-2-solution-pitch.md">Project Part 2</a>. Check
+          Brightspace for current instructions.</p>
+      </section>
+
+
+
+      <!--
+          VARIABLE CONTENT ENDS
+        -->
+
+      <!--
+          Do not EDIT BELOW ------------------------------------------------------------
+        -->
+
+      <!--
+          CLOSING SLIDE — license
+        -->
+      <section>
+        <h2>License</h2>
+        <ul class="no-bullets text-small">
+          <li>
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+              <img class="no-border" alt="Creative Commons License"
+                src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" />
+            </a><br />
+            <span property="dct:title">Introduction to Agricultural Informatics Course</span> by
+            <a href="https://github.com/ag-informatics/ag-informatics-course" property="cc:attributionName"
+              rel="cc:attributionURL">Ankita Raturi, Purdue University</a>
+            is licensed under a
+            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
+              Attribution-NonCommercial-ShareAlike 4.0 International License.</a><br /><br />
+          </li>
+          <li class="align-left">You are free to:
+            <ul class="text-small">
+              <li>Share — copy and redistribute the material in any medium or format</li>
+              <li>Adapt — remix, transform, and build upon the material</li>
+            </ul>
+          </li>
+          <li class="align-left">Under the following terms:
+            <ul class="text-small">
+              <li>Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes
+                were made. You may do so in any reasonable manner, but not in any way that suggests the licensor
+                endorses you or your use.</li>
+              <li>NonCommercial — You may not use the material for commercial purposes.</li>
+              <li>ShareAlike — If you remix, transform, or build upon the material, you must distribute your
+                contributions under the same license as the original.</li>
+              <li>No additional restrictions — You may not apply legal terms or technological measures that legally
+                restrict others from doing anything the license permits.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="../revealjs/dist/reveal.js"></script>
+  <script src="../revealjs/plugin/notes/notes.js"></script>
+  <script src="../revealjs/plugin/markdown/markdown.js"></script>
+  <script src="../revealjs/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      autoAnimateDuration: 0.5,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+    });
+  </script>
+  <!--
+      MERMAID (from Lecture 3.3, 2026-10-01; added to both templates 2026-10-04). Fetched only
+      when the deck has a <pre class="mermaid"> block, so other decks load nothing extra. See the catalog's
+      "diagram from text" slide. Mermaid draws <pre class="mermaid"> blocks in the browser. It can't lay out a diagram on a
+      hidden slide (zero size), so it runs on the slide that is showing, as each slide appears.
+      Version pinned, per Issue #26.
+    -->
+  <style>
+    /* Keep a tall diagram on the slide: reveal lays slides out at 960x700 and scales them. */
+    .reveal pre.mermaid svg {
+      max-height: 520px;
+    }
+  </style>
+  <script type="module">
+    // Only fetch Mermaid when the deck has a diagram, so other decks load nothing extra.
+    if (document.querySelector('pre.mermaid')) {
+      const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs');
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+      const draw = () => {
+        const nodes = Reveal.getCurrentSlide().querySelectorAll('pre.mermaid:not([data-processed])');
+        if (nodes.length) mermaid.run({ nodes });
+      };
+      if (Reveal.isReady()) draw(); else Reveal.on('ready', draw);
+      Reveal.on('slidechanged', draw);
+    }
+  </script>
+</body>
+
+</html>

@@ -29,7 +29,7 @@ Lecture materials including handouts, demos, and quizzes.
 - [Lecture 5.1](lecture-5.1.html)
 - [Lecture 5.2](lecture-5.2.html) - Graded in-class activity, TA-led ([journey map](handouts/handout-journey-map.html), [paper prototype kit](handouts/handout-paper-prototype-kit.html))
 - [Lecture 5.3](lecture-5.3.html) - [Demo: Bootstrap + Django](demos/README.md)
-<!-- - [Lecture 5.4](lecture-5.4.html) - [Quiz 5: Heuristic Evaluation](quiz-5-heuristic-evaluation/README.md) -->
+- [Lecture 5.4](lecture-5.4.html) - [Quiz 5: Heuristic Evaluation](quiz-5-heuristic-evaluation/README.md)
 
 ### Lab 5
 
@@ -56,8 +56,7 @@ The TA-led design activity: the journey map with its use case circled, and the p
 
 ### Quiz 5 — 5 pts
 
-An individual, on-paper heuristic evaluation in Lecture 5.4: a cognitive walkthrough of an ag-tech tool, guided by Norman's principles of design and one criterion of your own.
-<!-- See [quiz-5-heuristic-evaluation/](quiz-5-heuristic-evaluation/README.md). -->
+An in-class heuristic evaluation in Lecture 5.4: write your own criteria for a "good" tool, compare them with Nielsen's 10 heuristics and with farmers' criteria, then review farmOS in groups against 5 criteria you pick together. Everyone hands in their own sheet. See [quiz-5-heuristic-evaluation/](quiz-5-heuristic-evaluation/README.md).
 
 ### Lab 5 — 20 pts
 

@@ -1,8 +1,8 @@
 # Agricultural Informatics Project - The Big Picture
 
-In Project Part 1, you will "pitch" a concept regarding an informatics problem that people encounter in agriculture, food systems, ecology, and related areas of research and practice. 
+In Project Part 1, you will propose a concept regarding an informatics problem that people encounter in agriculture, food systems, ecology, and related areas of research and practice. 
 
-In Project Part 2, you will ideate and describe 5 possible solutions, whether they are entirely separate alternatives, variations on a theme, or components of a larger solution. You will explore these solutions to consider both technical feasibility and user-centered design implications.
+In Project Part 2, you will ideate and describe 3 possible solutions, whether they are entirely separate alternatives, variations on a theme, or components of a larger solution. You will explore these solutions to consider both technical feasibility and user-centered design implications.
 
 In Project Part 3, you will write a software engineering specification document that puts together your problem statement (building on project part 1), your proposed solution (synthesizing from project part 2). You will articulate your users' requirements, software design and architecture, and your intended implementation strategy. 
 
